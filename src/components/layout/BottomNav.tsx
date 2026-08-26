@@ -5,7 +5,7 @@ import styles from './BottomNav.module.css';
 
 const ITEMS: { to: string; label: string; icon: IconName }[] = [
   { to: '/', label: 'Inicio', icon: 'home' },
-  { to: '/learn', label: 'Aprender', icon: 'book' },
+  { to: '/friends', label: 'Amigos', icon: 'users' },
   { to: '/practice', label: 'Practicar', icon: 'target' },
   { to: '/progress', label: 'Progreso', icon: 'chart' },
   { to: '/profile', label: 'Perfil', icon: 'user' },
