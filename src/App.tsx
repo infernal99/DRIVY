@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { SyncNoticeToast } from './components/auth/SyncNoticeToast';
+import { FriendNotificationWatcher } from './components/friends/FriendNotificationWatcher';
 import { RequireAuth } from './components/auth/RequireAuth';
 import { RedirectIfAuthed } from './components/auth/RedirectIfAuthed';
 import { LoginPage } from './pages/LoginPage';
@@ -30,6 +31,7 @@ function App() {
   return (
     <>
       <SyncNoticeToast />
+      <FriendNotificationWatcher />
       <Routes>
         {/* Dev-only content curation tool (content spec §15) — never shipped in production builds. */}
         {import.meta.env.DEV && <Route path="/admin/content" element={<AdminContentPage />} />}
