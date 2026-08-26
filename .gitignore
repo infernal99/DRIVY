@@ -16,6 +16,7 @@ dist-ssr
 .env.*
 .env.local
 .env.*.local
+!.env.example
 
 # Content pipeline: local HTTP fetch cache only — sources/reports are tracked.
 content/.cache/

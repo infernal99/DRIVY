@@ -4,6 +4,10 @@ Aplicación web (React + TypeScript + Vite) para aprender y practicar de cara al
 permiso B en España. El diseño visual es el del prototipo original `DRIVY.dc.html`; este repositorio
 implementa la funcionalidad real sobre esa misma base visual (colores, tipografías, cards, navegación).
 
+> **¿Vas a colaborar en este repo (o eres una sesión de Claude Code leyéndolo)?** Lee primero
+> [`CONTRIBUTING.md`](CONTRIBUTING.md) — el flujo de ramas y Pull Requests que seguimos Ian y Uri no es
+> el de "commit y push directo a main".
+
 ## Cómo ejecutar el proyecto
 
 ```bash
