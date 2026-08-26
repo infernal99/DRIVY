@@ -21,6 +21,7 @@ import { ProgressPage } from './pages/ProgressPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { FriendsPage } from './pages/FriendsPage';
 import { FriendProfilePage } from './pages/FriendProfilePage';
+import { BattlePage } from './pages/BattlePage';
 import { SourcesPage } from './pages/SourcesPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { HelpPage } from './pages/HelpPage';
@@ -61,6 +62,7 @@ function App() {
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/friends" element={<FriendsPage />} />
           <Route path="/friends/:userId" element={<FriendProfilePage />} />
+          <Route path="/battles/:battleId" element={<BattlePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/sources" element={<SourcesPage />} />
           <Route path="/settings" element={<SettingsPage />} />

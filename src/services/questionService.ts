@@ -169,3 +169,15 @@ export function pickDailyChallenge(progress: UserProgress, count = 5): Question[
 export function pickRandomReview(count = 10): Question[] {
   return shuffle(ALL_QUESTIONS).slice(0, count).map(shuffleQuestionOptions);
 }
+
+/**
+ * Picks `count` distinct question ids for a friend battle. Both players
+ * resolve the same ids independently from their own local copy of
+ * ALL_QUESTIONS (question content is static and identical for everyone), so
+ * only the ids need to travel through the server — see battlesService.ts.
+ */
+export function pickRandomQuestionIds(count: number): string[] {
+  return shuffle(ALL_QUESTIONS)
+    .slice(0, Math.min(count, ALL_QUESTIONS.length))
+    .map((q) => q.id);
+}

@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { getMyFriendships, type FriendSummary, type MyFriendships } from '../services/friendsService';
+import { getMyBattles } from '../services/battlesService';
 
 // Drives the red dot on BottomNav's "Amigos" tab. Two independent triggers:
 //   - hasIncomingRequests: a pending friend request is waiting on you. Fully
@@ -33,17 +34,21 @@ function saveSeenIds(ids: Set<string>) {
 interface FriendNotificationState {
   hasIncomingRequests: boolean;
   hasNewFriend: boolean;
+  hasIncomingBattles: boolean;
   /** Applies an already-fetched fn_get_my_friendships() result — avoids a second network call from pages that already have it. */
   ingest: (data: Pick<MyFriendships, 'incomingRequests' | 'friends'>) => void;
+  /** Applies an already-fetched fn_get_my_battles() result — same reasoning as `ingest`. */
+  ingestBattles: (incomingCount: number) => void;
   /** Marks every friend currently in the list as "seen" — call when the Friends page is actually opened. */
   markFriendsSeen: (friends: FriendSummary[]) => void;
-  /** Fetches fresh friendship data just to update the badge (e.g. from a background watcher that isn't otherwise on the Friends page). */
+  /** Fetches fresh friendship + battle data just to update the badge (e.g. from a background watcher that isn't otherwise on the Friends page). */
   refresh: () => Promise<void>;
 }
 
 export const useFriendNotificationStore = create<FriendNotificationState>((set, get) => ({
   hasIncomingRequests: false,
   hasNewFriend: false,
+  hasIncomingBattles: false,
 
   ingest: (data) => {
     const seen = loadSeenIds();
@@ -53,6 +58,10 @@ export const useFriendNotificationStore = create<FriendNotificationState>((set, 
     });
   },
 
+  ingestBattles: (incomingCount) => {
+    set({ hasIncomingBattles: incomingCount > 0 });
+  },
+
   markFriendsSeen: (friends) => {
     saveSeenIds(new Set(friends.map((f) => f.userId)));
     set({ hasNewFriend: false });
@@ -60,8 +69,9 @@ export const useFriendNotificationStore = create<FriendNotificationState>((set, 
 
   refresh: async () => {
     try {
-      const data = await getMyFriendships();
-      get().ingest(data);
+      const [friendships, battles] = await Promise.all([getMyFriendships(), getMyBattles()]);
+      get().ingest(friendships);
+      get().ingestBattles(battles.incoming.length);
     } catch {
       // Silent — a stale/missing badge isn't worth an error toast over.
     }
