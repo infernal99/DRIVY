@@ -14,9 +14,14 @@ dist-ssr
 *.tsbuildinfo
 .env
 .env.*
+.env.local
+.env.*.local
 
 # Content pipeline: local HTTP fetch cache only — sources/reports are tracked.
 content/.cache/
+
+# Supabase CLI local cache — not project config.
+supabase/.temp/
 
 # Editor directories and files
 .vscode/*

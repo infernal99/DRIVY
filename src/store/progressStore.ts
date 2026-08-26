@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import type { ExamResult, Question, UnlockedAchievement, UserProgress, UserStats } from '../types';
+import type { ProgressRepository } from '../services/storage';
 import { progressRepository } from '../services/storage';
 import { CATEGORIES } from '../data/categories';
 import { getLessonsForCategory } from '../data/lessons';
@@ -42,18 +43,36 @@ interface ProgressState {
   resetProgress: () => void;
 }
 
-function loadInitial(): UserProgress {
-  const stored = progressRepository.load();
+// The repository backing reads/writes below — swapped between
+// LocalStorageProgressRepository (guests) and SupabaseProgressRepository
+// (signed-in accounts) by src/services/progressSync.ts as auth state
+// changes. progressStore itself stays storage-agnostic, per the interface
+// documented in src/services/storage.ts.
+let activeRepository: ProgressRepository = progressRepository;
+
+function loadFrom(repo: ProgressRepository): UserProgress {
+  const stored = repo.load();
   if (!stored) return createInitialProgress();
   return migrateProgress(stored);
 }
 
 function persist(progress: UserProgress) {
-  progressRepository.save(progress);
+  activeRepository.save(progress);
+}
+
+/** Switches which repository progressStore reads/writes through and reloads state from it. */
+export function setActiveRepository(repo: ProgressRepository) {
+  activeRepository = repo;
+  useProgressStore.setState({
+    progress: loadFrom(repo),
+    lastAnswerFeedback: null,
+    lastUnlockedAchievements: [],
+    lastExamResult: null,
+  });
 }
 
 export const useProgressStore = create<ProgressState>((set, get) => ({
-  progress: loadInitial(),
+  progress: loadFrom(activeRepository),
   lastAnswerFeedback: null,
   lastUnlockedAchievements: [],
   lastExamResult: null,
@@ -102,7 +121,7 @@ export const useProgressStore = create<ProgressState>((set, get) => ({
 
   resetProgress: () => {
     const fresh = createInitialProgress();
-    progressRepository.clear();
+    activeRepository.clear();
     persist(fresh);
     set({ progress: fresh, lastAnswerFeedback: null, lastUnlockedAchievements: [], lastExamResult: null });
   },

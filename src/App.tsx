@@ -1,4 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
+import { SyncNoticeToast } from './components/auth/SyncNoticeToast';
+import { RequireAuth } from './components/auth/RequireAuth';
+import { RedirectIfAuthed } from './components/auth/RedirectIfAuthed';
+import { LoginPage } from './pages/LoginPage';
+import { RegisterPage } from './pages/RegisterPage';
+import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { HomePage } from './pages/HomePage';
 import { LearnPage } from './pages/LearnPage';
 import { CategoryPage } from './pages/CategoryPage';
@@ -18,25 +25,43 @@ import { AdminContentPage } from './pages/AdminContentPage';
 
 function App() {
   return (
-    <Routes>
-      {/* Dev-only content curation tool (content spec §15) — never shipped in production builds. */}
-      {import.meta.env.DEV && <Route path="/admin/content" element={<AdminContentPage />} />}
-      <Route path="/" element={<HomePage />} />
-      <Route path="/learn" element={<LearnPage />} />
-      <Route path="/learn/:categoryId" element={<CategoryPage />} />
-      <Route path="/learn/:categoryId/lesson/:subcategoryId" element={<LessonPage />} />
-      <Route path="/practice" element={<PracticePage />} />
-      <Route path="/practice/random" element={<RandomPracticePage />} />
-      <Route path="/practice/daily" element={<DailyChallengePage />} />
-      <Route path="/practice/mistakes" element={<MistakeReviewPage />} />
-      <Route path="/practice/exam/:mode" element={<ExamPage />} />
-      <Route path="/progress" element={<ProgressPage />} />
-      <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/sources" element={<SourcesPage />} />
-      <Route path="/settings" element={<SettingsPage />} />
-      <Route path="/help" element={<HelpPage />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <>
+      <SyncNoticeToast />
+      <Routes>
+        {/* Dev-only content curation tool (content spec §15) — never shipped in production builds. */}
+        {import.meta.env.DEV && <Route path="/admin/content" element={<AdminContentPage />} />}
+
+        {/* Public, unauthenticated-only: bounce a signed-in user back to "/". */}
+        <Route element={<RedirectIfAuthed />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
+
+        {/* Public regardless of auth state — see RedirectIfAuthed's comment for why. */}
+        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+        {/* Everything else requires a signed-in account — no guest mode. */}
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/learn" element={<LearnPage />} />
+          <Route path="/learn/:categoryId" element={<CategoryPage />} />
+          <Route path="/learn/:categoryId/lesson/:subcategoryId" element={<LessonPage />} />
+          <Route path="/practice" element={<PracticePage />} />
+          <Route path="/practice/random" element={<RandomPracticePage />} />
+          <Route path="/practice/daily" element={<DailyChallengePage />} />
+          <Route path="/practice/mistakes" element={<MistakeReviewPage />} />
+          <Route path="/practice/exam/:mode" element={<ExamPage />} />
+          <Route path="/progress" element={<ProgressPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/sources" element={<SourcesPage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/help" element={<HelpPage />} />
+        </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </>
   );
 }
 

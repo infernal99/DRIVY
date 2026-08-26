@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import type { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
+import { useAuthStore } from '../store/authStore';
+import { changePassword, deleteOwnAccount, MIN_PASSWORD_LENGTH } from '../services/authService';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
+import { AuthField } from '../components/auth/AuthField';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 
@@ -10,6 +14,7 @@ export function SettingsPage() {
   const navigate = useNavigate();
   const userName = useProgressStore((s) => s.progress.userName);
   const resetProgress = useProgressStore((s) => s.resetProgress);
+  const authStatus = useAuthStore((s) => s.status);
   const [confirmingReset, setConfirmingReset] = useState(false);
 
   return (
@@ -22,17 +27,27 @@ export function SettingsPage() {
         </Card>
 
         <Card style={{ padding: 16 }}>
-          <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>Datos guardados localmente</div>
+          <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>
+            {authStatus === 'authenticated' ? 'Datos guardados en tu cuenta' : 'Datos guardados localmente'}
+          </div>
           <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: 0 }}>
-            Tu progreso se guarda en este dispositivo (localStorage), no en un servidor. Si borras los datos del
-            navegador para este sitio, perderás tu progreso.
+            {authStatus === 'authenticated'
+              ? 'Tu progreso se sincroniza con tu cuenta y estará disponible si inicias sesión en otro dispositivo.'
+              : 'Tu progreso se guarda en este dispositivo (localStorage), no en un servidor.'}
           </p>
         </Card>
+
+        {authStatus === 'authenticated' && (
+          <>
+            <ChangePasswordCard />
+            <DeleteAccountCard />
+          </>
+        )}
 
         <Card style={{ padding: 16 }}>
           <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-error)', marginBottom: 8 }}>Reiniciar progreso</div>
           <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: '0 0 12px' }}>
-            Borra XP, racha, logros, estadísticas y errores guardados. Esta acción no se puede deshacer.
+            Borra XP, racha, logros, estadísticas y errores guardados{authStatus === 'authenticated' ? ', en este dispositivo y en tu cuenta' : ''}. Esta acción no se puede deshacer.
           </p>
           {confirmingReset ? (
             <div style={{ display: 'flex', gap: 8 }}>
@@ -59,5 +74,215 @@ export function SettingsPage() {
         </Card>
       </div>
     </AppShell>
+  );
+}
+
+function ChangePasswordCard() {
+  const [open, setOpen] = useState(false);
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  function reset() {
+    setOpen(false);
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmNewPassword('');
+    setError(null);
+    setSuccess(false);
+  }
+
+  async function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setError(null);
+
+    if (!currentPassword) {
+      setError('Introduce tu contraseña actual.');
+      return;
+    }
+    if (newPassword.length < MIN_PASSWORD_LENGTH) {
+      setError(`La nueva contraseña debe tener al menos ${MIN_PASSWORD_LENGTH} caracteres.`);
+      return;
+    }
+    if (newPassword !== confirmNewPassword) {
+      setError('Las contraseñas nuevas no coinciden.');
+      return;
+    }
+
+    setSubmitting(true);
+    const result = await changePassword(currentPassword, newPassword);
+    setSubmitting(false);
+
+    if (!result.ok) {
+      setError(result.error ?? 'No se pudo cambiar la contraseña.');
+      return;
+    }
+    setSuccess(true);
+    setCurrentPassword('');
+    setNewPassword('');
+    setConfirmNewPassword('');
+  }
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>Cambiar contraseña</div>
+      {!open ? (
+        <>
+          <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: '0 0 12px' }}>
+            Te pediremos tu contraseña actual antes de cambiarla.
+          </p>
+          <Button variant="secondary" onClick={() => setOpen(true)}>
+            Cambiar contraseña
+          </Button>
+        </>
+      ) : success ? (
+        <>
+          <p style={{ fontSize: 13, color: 'var(--color-success)', fontWeight: 600, margin: '8px 0 12px' }}>
+            Contraseña actualizada correctamente.
+          </p>
+          <Button variant="secondary" onClick={reset}>
+            Cerrar
+          </Button>
+        </>
+      ) : (
+        <form onSubmit={handleSubmit} noValidate style={{ marginTop: 8 }}>
+          {error && (
+            <div
+              className="anim-shake"
+              style={{
+                background: 'var(--color-error-bg)',
+                color: 'var(--color-error)',
+                borderRadius: 12,
+                padding: '10px 14px',
+                fontSize: 13,
+                fontWeight: 600,
+                marginBottom: 14,
+              }}
+            >
+              {error}
+            </div>
+          )}
+          <AuthField
+            id="currentPassword"
+            label="Contraseña actual"
+            type="password"
+            autoComplete="current-password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+          />
+          <AuthField
+            id="newPassword"
+            label="Nueva contraseña"
+            type="password"
+            autoComplete="new-password"
+            placeholder={`Mínimo ${MIN_PASSWORD_LENGTH} caracteres`}
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          <AuthField
+            id="confirmNewPassword"
+            label="Confirmar nueva contraseña"
+            type="password"
+            autoComplete="new-password"
+            value={confirmNewPassword}
+            onChange={(e) => setConfirmNewPassword(e.target.value)}
+          />
+          <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+            <Button type="button" variant="secondary" onClick={reset} style={{ flex: 1 }} disabled={submitting}>
+              Cancelar
+            </Button>
+            <Button type="submit" style={{ flex: 1 }} disabled={submitting}>
+              {submitting ? 'Guardando…' : 'Guardar'}
+            </Button>
+          </div>
+        </form>
+      )}
+    </Card>
+  );
+}
+
+function DeleteAccountCard() {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [deleting, setDeleting] = useState(false);
+
+  async function handleDelete() {
+    setError(null);
+    if (!password) {
+      setError('Introduce tu contraseña para confirmar.');
+      return;
+    }
+    setDeleting(true);
+    const result = await deleteOwnAccount(password);
+    setDeleting(false);
+
+    if (!result.ok) {
+      setError(result.error ?? 'No se pudo eliminar la cuenta.');
+      return;
+    }
+    navigate('/login', { replace: true });
+  }
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-error)', marginBottom: 8 }}>Eliminar cuenta</div>
+      <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: '0 0 12px' }}>
+        Borra tu cuenta y todo tu progreso de forma permanente. Esta acción no se puede deshacer.
+      </p>
+      {!open ? (
+        <Button variant="danger" onClick={() => setOpen(true)}>
+          Eliminar cuenta
+        </Button>
+      ) : (
+        <div>
+          {error && (
+            <div
+              className="anim-shake"
+              style={{
+                background: 'var(--color-error-bg)',
+                color: 'var(--color-error)',
+                borderRadius: 12,
+                padding: '10px 14px',
+                fontSize: 13,
+                fontWeight: 600,
+                marginBottom: 14,
+              }}
+            >
+              {error}
+            </div>
+          )}
+          <AuthField
+            id="deletePassword"
+            label="Confirma tu contraseña"
+            type="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+            <Button
+              variant="secondary"
+              onClick={() => {
+                setOpen(false);
+                setPassword('');
+                setError(null);
+              }}
+              style={{ flex: 1 }}
+              disabled={deleting}
+            >
+              Cancelar
+            </Button>
+            <Button variant="danger" onClick={handleDelete} style={{ flex: 1 }} disabled={deleting}>
+              {deleting ? 'Eliminando…' : 'Eliminar definitivamente'}
+            </Button>
+          </div>
+        </div>
+      )}
+    </Card>
   );
 }
