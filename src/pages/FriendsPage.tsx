@@ -14,6 +14,7 @@ import {
   type LeaderboardEntry,
   type MyFriendships,
 } from '../services/friendsService';
+import { useFriendNotificationStore } from '../store/friendNotificationStore';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 import { Card } from '../components/ui/Card';
@@ -35,15 +36,23 @@ export function FriendsPage() {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
+  const ingestNotifications = useFriendNotificationStore((s) => s.ingest);
+  const markFriendsSeen = useFriendNotificationStore((s) => s.markFriendsSeen);
+
   const refresh = useCallback(() => {
     setLoadError(null);
     return Promise.all([getMyFriendships(), getFriendLeaderboard()])
       .then(([friendships, board]) => {
         setData(friendships);
         setLeaderboard(board);
+        // Reflect this fresh fetch in the nav badge immediately, then mark
+        // every currently-listed friend as seen — actually opening this page
+        // is what "acknowledging" a newly-accepted friend means.
+        ingestNotifications(friendships);
+        markFriendsSeen(friendships.friends);
       })
       .catch((err) => setLoadError(errorMessage(err, 'No se pudo cargar la información de amigos.')));
-  }, []);
+  }, [ingestNotifications, markFriendsSeen]);
 
   useEffect(() => {
     refresh().finally(() => setLoading(false));
