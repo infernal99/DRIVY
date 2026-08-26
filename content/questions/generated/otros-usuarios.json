@@ -1,0 +1,458 @@
+[
+  {
+    "id": "OTR-PEA-01",
+    "question": "En un paso de peatones sin semáforo, un peatón que ya ha iniciado el cruce tiene:",
+    "options": [
+      {
+        "id": "OTR-PEA-01-0",
+        "text": "Prioridad; debes detenerte o reducir para dejarlo pasar"
+      },
+      {
+        "id": "OTR-PEA-01-1",
+        "text": "Ninguna prioridad si el vehículo ya se aproxima"
+      },
+      {
+        "id": "OTR-PEA-01-2",
+        "text": "Prioridad solo si es menor de edad"
+      }
+    ],
+    "correctOptionId": "OTR-PEA-01-0",
+    "explanation": "Los conductores deben ceder el paso a los peatones que estén cruzando por un paso señalizado, incluso sin semáforo, especialmente si ya han iniciado el cruce.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "peatones",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "peatones"
+    ],
+    "contentHash": "7f33f346b7aedbc268ec4a582ed453ed3381826d6a17556438e429e1df555c95",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-PEA-02",
+    "question": "Al girar en una intersección donde hay peatones cruzando la calle a la que te incorporas:",
+    "options": [
+      {
+        "id": "OTR-PEA-02-0",
+        "text": "Debes cederles el paso antes de completar el giro"
+      },
+      {
+        "id": "OTR-PEA-02-1",
+        "text": "Tienes prioridad porque estás circulando"
+      },
+      {
+        "id": "OTR-PEA-02-2",
+        "text": "Solo debes ceder si son niños o personas mayores"
+      }
+    ],
+    "correctOptionId": "OTR-PEA-02-0",
+    "explanation": "Al girar, el vehículo debe ceder el paso a los peatones que ya estén cruzando legalmente la vía a la que se incorpora, sin distinción de edad.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "peatones",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "peatones"
+    ],
+    "contentHash": "4d0d3b73fbdaf96d0ee63752fb3f83ddc7d6155c1803ea4ce8a6885035a79eb9",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-PEA-03",
+    "question": "En una vía sin acera y sin arcén, los peatones deben circular:",
+    "options": [
+      {
+        "id": "OTR-PEA-03-0",
+        "text": "Por el borde de la calzada, en sentido contrario a la marcha de los vehículos, como norma general"
+      },
+      {
+        "id": "OTR-PEA-03-1",
+        "text": "Siempre por el centro de la calzada"
+      },
+      {
+        "id": "OTR-PEA-03-2",
+        "text": "En el mismo sentido que los vehículos"
+      }
+    ],
+    "correctOptionId": "OTR-PEA-03-0",
+    "explanation": "A falta de acera y arcén, los peatones deben caminar lo más cerca posible del borde de la calzada, y como norma general en sentido contrario al de los vehículos, para verlos llegar de frente.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "peatones",
+    "difficulty": "hard",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "peatones"
+    ],
+    "contentHash": "0f1f2dc955b194b18440ceeb8ab92da738ce2ba951cd15e20530575c5297d589",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-CIC-01",
+    "question": "Al adelantar a un ciclista, un turismo debe dejar una separación lateral mínima de:",
+    "options": [
+      {
+        "id": "OTR-CIC-01-0",
+        "text": "1,5 metros"
+      },
+      {
+        "id": "OTR-CIC-01-1",
+        "text": "0,5 metros"
+      },
+      {
+        "id": "OTR-CIC-01-2",
+        "text": "No hay una distancia mínima regulada"
+      }
+    ],
+    "correctOptionId": "OTR-CIC-01-0",
+    "explanation": "La normativa exige respetar una distancia lateral mínima de 1,5 metros al adelantar a un ciclista, tanto dentro como fuera de poblado.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "ciclistas",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "ciclistas"
+    ],
+    "contentHash": "554ab70e8f8b970e3733780167f18f386ee998e64ef3da73d98b980eaedb1c46",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-CIC-02",
+    "question": "Los ciclistas, en vías sin arcén o carril bici, pueden circular:",
+    "options": [
+      {
+        "id": "OTR-CIC-02-0",
+        "text": "Ocupando la parte de la calzada que necesiten, pudiendo hacerlo en paralelo en algunas condiciones"
+      },
+      {
+        "id": "OTR-CIC-02-1",
+        "text": "Nunca por la calzada, siempre por la acera"
+      },
+      {
+        "id": "OTR-CIC-02-2",
+        "text": "Solo pegados al bordillo, sin excepción"
+      }
+    ],
+    "correctOptionId": "OTR-CIC-02-0",
+    "explanation": "Los ciclistas tienen derecho a circular por la calzada ocupando el espacio necesario para su seguridad, y en determinadas condiciones (por ejemplo, en zonas urbanas o de baja velocidad) se les permite circular en paralelo.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "ciclistas",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "ciclistas"
+    ],
+    "contentHash": "ab7d0cf626ec9c471a7e111a8e2c94101bc57e1dbe504e05ece489cf227b9f98",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-CIC-03",
+    "question": "¿Pueden circular dos ciclistas en paralelo por la calzada?",
+    "options": [
+      {
+        "id": "OTR-CIC-03-0",
+        "text": "Sí, siempre que no entorpezcan indebidamente al resto de vehículos"
+      },
+      {
+        "id": "OTR-CIC-03-1",
+        "text": "Nunca, es siempre obligatorio ir en fila"
+      },
+      {
+        "id": "OTR-CIC-03-2",
+        "text": "Solo en autopistas"
+      }
+    ],
+    "correctOptionId": "OTR-CIC-03-0",
+    "explanation": "Con carácter general, los ciclistas pueden circular en paralelo dentro de un carril, siempre que no entorpezcan de forma indebida la circulación del resto de vehículos.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "ciclistas",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "ciclistas"
+    ],
+    "contentHash": "10b33c257f1f77ca9760cf73ef6179244ce3c603c9f215c907cfccc9664f3fe9",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-MOT-01",
+    "question": "El uso del casco de protección homologado es obligatorio para:",
+    "options": [
+      {
+        "id": "OTR-MOT-01-0",
+        "text": "El conductor y el pasajero de motocicletas y ciclomotores"
+      },
+      {
+        "id": "OTR-MOT-01-1",
+        "text": "Solo el conductor"
+      },
+      {
+        "id": "OTR-MOT-01-2",
+        "text": "Solo en carretera, no en ciudad"
+      }
+    ],
+    "correctOptionId": "OTR-MOT-01-0",
+    "explanation": "Tanto el conductor como cualquier pasajero de una motocicleta o ciclomotor están obligados a usar casco de protección homologado, tanto en vías urbanas como interurbanas.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "motocicletas",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "motocicletas"
+    ],
+    "contentHash": "d0b26466e84851c5c9fe3cdb2f4da2ae1c9cc2861421ca4d722e1db8584da44a",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-MOT-02",
+    "question": "Al circular junto a una motocicleta, un turismo debe:",
+    "options": [
+      {
+        "id": "OTR-MOT-02-0",
+        "text": "Extremar la precaución, ya que su menor tamaño la hace más difícil de ver y más vulnerable"
+      },
+      {
+        "id": "OTR-MOT-02-1",
+        "text": "Tratarla como cualquier otro vehículo sin ninguna precaución adicional"
+      },
+      {
+        "id": "OTR-MOT-02-2",
+        "text": "Adelantarla siempre lo más rápido posible"
+      }
+    ],
+    "correctOptionId": "OTR-MOT-02-0",
+    "explanation": "Las motocicletas son más vulnerables ante una colisión y más difíciles de detectar por su tamaño; conviene comprobar dos veces los retrovisores y el ángulo muerto antes de cualquier maniobra.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "motocicletas",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "motocicletas"
+    ],
+    "contentHash": "b6de076bce11d077c4c620b8eecaf7d19775adbbd8dfd175d57f720e075341ae",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-VPR-01",
+    "question": "Ante un vehículo de emergencias con las señales luminosas y acústicas en marcha, debes:",
+    "options": [
+      {
+        "id": "OTR-VPR-01-0",
+        "text": "Facilitarle el paso, reduciendo la velocidad o cambiando de carril si es necesario"
+      },
+      {
+        "id": "OTR-VPR-01-1",
+        "text": "Ignorarlo si tú también llevas prisa"
+      },
+      {
+        "id": "OTR-VPR-01-2",
+        "text": "Adelantarlo antes de que se acerque más"
+      }
+    ],
+    "correctOptionId": "OTR-VPR-01-0",
+    "explanation": "Los vehículos prioritarios en servicio de urgencia tienen preferencia de paso; el resto de conductores deben facilitarles la circulación, apartándose o deteniéndose si es necesario, con precaución.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "vehiculos-prioritarios",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "vehículos prioritarios"
+    ],
+    "contentHash": "3bb7dd92e9d3a44490d8663b4ba4618267c98a24629bc82fd61c6164995a0daa",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-VPR-02",
+    "question": "Los vehículos prioritarios en servicio urgente pueden, cuando resulte imprescindible:",
+    "options": [
+      {
+        "id": "OTR-VPR-02-0",
+        "text": "Incumplir algunas normas de circulación siempre que no pongan en peligro a otros usuarios"
+      },
+      {
+        "id": "OTR-VPR-02-1",
+        "text": "Incumplir cualquier norma sin ninguna limitación"
+      },
+      {
+        "id": "OTR-VPR-02-2",
+        "text": "Solo circular en horario nocturno"
+      }
+    ],
+    "correctOptionId": "OTR-VPR-02-0",
+    "explanation": "Cuando la urgencia lo justifique, estos vehículos pueden apartarse de determinadas normas de circulación, pero siempre extremando la precaución y sin generar un peligro innecesario para otros usuarios.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "vehiculos-prioritarios",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "vehículos prioritarios"
+    ],
+    "contentHash": "c3503e183ea6a5b7208b0f3ee472d5f899bd8f824cd1f23dd2bf3046264de132",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-TRP-01",
+    "question": "Al aproximarte a un autobús urbano detenido en una parada señalizada, debes:",
+    "options": [
+      {
+        "id": "OTR-TRP-01-0",
+        "text": "Moderar la velocidad y extremar la precaución por la posible presencia de peatones"
+      },
+      {
+        "id": "OTR-TRP-01-1",
+        "text": "Adelantarlo sin reducir la velocidad"
+      },
+      {
+        "id": "OTR-TRP-01-2",
+        "text": "Tocar el claxon para que arranque"
+      }
+    ],
+    "correctOptionId": "OTR-TRP-01-0",
+    "explanation": "Cerca de una parada de autobús es habitual que haya peatones cruzando la calzada por delante o por detrás del vehículo, por lo que hay que reducir la velocidad y aumentar la atención.",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "transporte-publico",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "transporte público"
+    ],
+    "contentHash": "1420052e1badbc3ebb5baa6f74d59b0a552264985d6a1581cb6db97f3117a42a",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "OTR-TRP-02",
+    "question": "Un carril bus (reservado para transporte público) puede ser utilizado por un turismo particular:",
+    "options": [
+      {
+        "id": "OTR-TRP-02-0",
+        "text": "No, salvo que la señalización indique expresamente que está permitido en determinadas circunstancias"
+      },
+      {
+        "id": "OTR-TRP-02-1",
+        "text": "Sí, siempre que no haya autobuses cerca"
+      },
+      {
+        "id": "OTR-TRP-02-2",
+        "text": "Sí, sin ninguna restricción"
+      }
+    ],
+    "correctOptionId": "OTR-TRP-02-0",
+    "explanation": "Los carriles reservados a determinados vehículos, como el carril bus, no pueden ser utilizados por el resto de vehículos salvo que la señalización lo permita expresamente (por ejemplo, para girar).",
+    "categoryId": "otros-usuarios",
+    "subcategoryId": "transporte-publico",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "otros usuarios",
+      "transporte público"
+    ],
+    "contentHash": "bd89e86ff482ad7cd01508c2151f7ed50fecb14d58c11fd300fe9f0999468333",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  }
+]

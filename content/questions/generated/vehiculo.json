@@ -1,0 +1,497 @@
+[
+  {
+    "id": "VEH-NEU-01",
+    "question": "La profundidad mínima legal del dibujo de un neumático es de:",
+    "options": [
+      {
+        "id": "VEH-NEU-01-0",
+        "text": "1,6 mm"
+      },
+      {
+        "id": "VEH-NEU-01-1",
+        "text": "1 cm"
+      },
+      {
+        "id": "VEH-NEU-01-2",
+        "text": "5 mm"
+      }
+    ],
+    "correctOptionId": "VEH-NEU-01-0",
+    "explanation": "La normativa exige una profundidad mínima de dibujo de 1,6 mm en el neumático; por debajo de esa medida se pierde adherencia de forma peligrosa, especialmente en mojado.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "neumaticos",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "neumáticos"
+    ],
+    "contentHash": "5fad617bea13b53908ce12d75cfae520605c8a96674e6d68f8553d116e0dd32d",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-NEU-02",
+    "question": "Una presión de inflado inadecuada en los neumáticos provoca:",
+    "options": [
+      {
+        "id": "VEH-NEU-02-0",
+        "text": "Peor adherencia, mayor desgaste irregular y más consumo de combustible"
+      },
+      {
+        "id": "VEH-NEU-02-1",
+        "text": "Ningún efecto relevante en la conducción"
+      },
+      {
+        "id": "VEH-NEU-02-2",
+        "text": "Solo un problema estético"
+      }
+    ],
+    "correctOptionId": "VEH-NEU-02-0",
+    "explanation": "Circular con una presión de neumáticos incorrecta (por exceso o por defecto) empeora la adherencia y el comportamiento del vehículo, provoca un desgaste irregular y aumenta el consumo de combustible.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "neumaticos",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "neumáticos"
+    ],
+    "contentHash": "d071442a384d48be1369480400c8486759504f6c4b3c3aa1eae25d47823af720",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-NEU-03",
+    "question": "Los neumáticos de un mismo eje deben tener:",
+    "options": [
+      {
+        "id": "VEH-NEU-03-0",
+        "text": "El mismo dibujo y una profundidad similar"
+      },
+      {
+        "id": "VEH-NEU-03-1",
+        "text": "Marcas y modelos distintos para mayor tracción"
+      },
+      {
+        "id": "VEH-NEU-03-2",
+        "text": "No importa que sean diferentes tamaños"
+      }
+    ],
+    "correctOptionId": "VEH-NEU-03-0",
+    "explanation": "Por seguridad, los dos neumáticos de un mismo eje deben ser del mismo tipo y con un desgaste similar, para no comprometer la estabilidad del vehículo, especialmente al frenar.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "neumaticos",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "neumáticos"
+    ],
+    "contentHash": "c9cb431f346d281c9a57559da47bf777aa23a8f67e75d7cdd2d7470841382554",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-FRE-01",
+    "question": "El sistema ABS de frenado tiene como función principal:",
+    "options": [
+      {
+        "id": "VEH-FRE-01-0",
+        "text": "Evitar el bloqueo de las ruedas al frenar, manteniendo la capacidad de dirección"
+      },
+      {
+        "id": "VEH-FRE-01-1",
+        "text": "Aumentar la velocidad máxima del vehículo"
+      },
+      {
+        "id": "VEH-FRE-01-2",
+        "text": "Reducir el consumo de combustible"
+      }
+    ],
+    "correctOptionId": "VEH-FRE-01-0",
+    "explanation": "El ABS (sistema antibloqueo de frenos) evita que las ruedas se bloqueen durante una frenada brusca, lo que permite seguir controlando la dirección del vehículo mientras se frena.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "frenos",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "frenos",
+      "ABS"
+    ],
+    "contentHash": "3306a127617a210c4fc3d6611cd0c4252f84dbebe52171e1e5c39232fc9588f5",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-FRE-02",
+    "question": "Si notas que el pedal de freno \"se hunde\" más de lo normal, es un indicio de:",
+    "options": [
+      {
+        "id": "VEH-FRE-02-0",
+        "text": "Posible avería en el sistema de frenos que requiere revisión inmediata"
+      },
+      {
+        "id": "VEH-FRE-02-1",
+        "text": "Que el motor necesita más aceite"
+      },
+      {
+        "id": "VEH-FRE-02-2",
+        "text": "Un problema sin importancia"
+      }
+    ],
+    "correctOptionId": "VEH-FRE-02-0",
+    "explanation": "Un pedal de freno blando o que se hunde en exceso puede indicar aire en el circuito hidráulico, fuga de líquido de frenos u otra avería grave; debe revisarse de inmediato antes de seguir circulando.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "frenos",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "frenos"
+    ],
+    "contentHash": "5460c5d7876233f7e674409f9c96409bb2c1691ddf3241e1b3ada761f748fa16",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-ALU-01",
+    "question": "¿Cuándo es obligatorio usar el alumbrado del vehículo?",
+    "options": [
+      {
+        "id": "VEH-ALU-01-0",
+        "text": "Entre el ocaso y la orto, y siempre que la visibilidad sea insuficiente (túneles, niebla, lluvia intensa)"
+      },
+      {
+        "id": "VEH-ALU-01-1",
+        "text": "Solo de noche en carretera, nunca en ciudad"
+      },
+      {
+        "id": "VEH-ALU-01-2",
+        "text": "Solo cuando lo indique un agente"
+      }
+    ],
+    "correctOptionId": "VEH-ALU-01-0",
+    "explanation": "El alumbrado es obligatorio durante la noche (entre el ocaso y la orto) y en cualquier momento en que la visibilidad sea insuficiente, como en túneles, con niebla densa o lluvia intensa.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "alumbrado",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "alumbrado"
+    ],
+    "contentHash": "92b07f0c5fe07c1c1ed9344dbe8eea08bca8578040beb847c245401f2159ee07",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-ALU-02",
+    "question": "Las luces antiniebla traseras deben usarse:",
+    "options": [
+      {
+        "id": "VEH-ALU-02-0",
+        "text": "Solo cuando la visibilidad sea muy reducida por niebla, nieve o lluvia intensa"
+      },
+      {
+        "id": "VEH-ALU-02-1",
+        "text": "Siempre que se circule de noche"
+      },
+      {
+        "id": "VEH-ALU-02-2",
+        "text": "De forma permanente en autopista"
+      }
+    ],
+    "correctOptionId": "VEH-ALU-02-0",
+    "explanation": "Las luces antiniebla, especialmente las traseras, deben reservarse para situaciones de visibilidad muy reducida, ya que su uso continuo puede deslumbrar y confundir a quien circula detrás.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "alumbrado",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "alumbrado"
+    ],
+    "contentHash": "0de0bcd54576e3ffd07853d421d5589c8f44fd12f337542df16caaf9967e4ce7",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-ITV-01",
+    "question": "Un turismo nuevo debe pasar su primera Inspección Técnica de Vehículos (ITV) a los:",
+    "options": [
+      {
+        "id": "VEH-ITV-01-0",
+        "text": "4 años"
+      },
+      {
+        "id": "VEH-ITV-01-1",
+        "text": "1 año"
+      },
+      {
+        "id": "VEH-ITV-01-2",
+        "text": "10 años"
+      }
+    ],
+    "correctOptionId": "VEH-ITV-01-0",
+    "explanation": "Con carácter general, un turismo pasa su primera ITV a los 4 años desde su matriculación; después, cada 2 años hasta los 10 años de antigüedad, y anualmente a partir de entonces.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "itv",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "ITV"
+    ],
+    "contentHash": "b47eededdd319bdafd07f4b5131c81fbdae5fea26fffd211ffa1ad84a36e9df2",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-ITV-02",
+    "question": "Circular con la ITV caducada supone:",
+    "options": [
+      {
+        "id": "VEH-ITV-02-0",
+        "text": "Una infracción sancionable, y el vehículo puede ser inmovilizado"
+      },
+      {
+        "id": "VEH-ITV-02-1",
+        "text": "Ninguna consecuencia si el coche está en buen estado"
+      },
+      {
+        "id": "VEH-ITV-02-2",
+        "text": "Solo un aviso verbal la primera vez"
+      }
+    ],
+    "correctOptionId": "VEH-ITV-02-0",
+    "explanation": "Circular con la ITV caducada es una infracción de tráfico; además, un agente puede inmovilizar el vehículo si aprecia que su estado supone un riesgo para la circulación.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "itv",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "ITV"
+    ],
+    "contentHash": "ce9926ef6179e289a6094da55f4ee1f2eb7df4354b39339068c38fd25d033c7e",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-MAN-01",
+    "question": "Un mantenimiento preventivo adecuado del vehículo contribuye a:",
+    "options": [
+      {
+        "id": "VEH-MAN-01-0",
+        "text": "Reducir el riesgo de averías y accidentes derivados de fallos mecánicos"
+      },
+      {
+        "id": "VEH-MAN-01-1",
+        "text": "No tiene relación con la seguridad vial"
+      },
+      {
+        "id": "VEH-MAN-01-2",
+        "text": "Aumentar la velocidad máxima autorizada"
+      }
+    ],
+    "correctOptionId": "VEH-MAN-01-0",
+    "explanation": "Revisar periódicamente niveles de líquidos, frenos, neumáticos y luces reduce significativamente la probabilidad de sufrir una avería o un accidente por fallo mecánico.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "mantenimiento",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "mantenimiento"
+    ],
+    "contentHash": "e453594e88577d1ddefe98bb95b8dabbfde2d1fec407951d3ee0f69b37ae0d6d",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-SAC-01",
+    "question": "¿Qué son los elementos de \"seguridad activa\" de un vehículo?",
+    "options": [
+      {
+        "id": "VEH-SAC-01-0",
+        "text": "Los que ayudan a evitar el accidente, como los frenos, el ABS o el control de estabilidad"
+      },
+      {
+        "id": "VEH-SAC-01-1",
+        "text": "Los que solo actúan una vez ya se ha producido el accidente"
+      },
+      {
+        "id": "VEH-SAC-01-2",
+        "text": "Los adornos y accesorios estéticos"
+      }
+    ],
+    "correctOptionId": "VEH-SAC-01-0",
+    "explanation": "La seguridad activa engloba los elementos que ayudan a evitar que se produzca el accidente: frenos, ABS, control de estabilidad, neumáticos, dirección, etc.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "seguridad-activa",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "seguridad activa"
+    ],
+    "contentHash": "3dc9873476c67630f19e184ba1cfeb0aba09c2e3f6b3c50adbdfbd6a3a362bb9",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-SPA-01",
+    "question": "¿Qué son los elementos de \"seguridad pasiva\"?",
+    "options": [
+      {
+        "id": "VEH-SPA-01-0",
+        "text": "Los que reducen las consecuencias del accidente una vez que se ha producido, como el airbag o el cinturón"
+      },
+      {
+        "id": "VEH-SPA-01-1",
+        "text": "Los que impiden que el vehículo arranque"
+      },
+      {
+        "id": "VEH-SPA-01-2",
+        "text": "Los que mejoran el consumo de combustible"
+      }
+    ],
+    "correctOptionId": "VEH-SPA-01-0",
+    "explanation": "La seguridad pasiva incluye elementos como el cinturón de seguridad, el airbag, los reposacabezas o la carrocería deformable, diseñados para minimizar las lesiones cuando el accidente ya es inevitable.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "seguridad-pasiva",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "seguridad pasiva"
+    ],
+    "contentHash": "ec2079f71f4ed0a677909b5e264545c675d32b0d2c9b6684eae5a0fbbc0ec847",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VEH-SPA-02",
+    "question": "El uso del cinturón de seguridad es obligatorio:",
+    "options": [
+      {
+        "id": "VEH-SPA-02-0",
+        "text": "Para todos los ocupantes, en todas las plazas que dispongan de él"
+      },
+      {
+        "id": "VEH-SPA-02-1",
+        "text": "Solo para el conductor"
+      },
+      {
+        "id": "VEH-SPA-02-2",
+        "text": "Solo en carretera, no en ciudad"
+      }
+    ],
+    "correctOptionId": "VEH-SPA-02-0",
+    "explanation": "El cinturón de seguridad es obligatorio para el conductor y todos los pasajeros, en cualquier plaza que esté equipada con él, tanto en ciudad como en carretera.",
+    "categoryId": "vehiculo",
+    "subcategoryId": "seguridad-pasiva",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vehículo",
+      "cinturón"
+    ],
+    "contentHash": "0b37aec1e94adcfb7b2d532af8f27b82108276cdba7805ede032c6461a2bf3b6",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  }
+]

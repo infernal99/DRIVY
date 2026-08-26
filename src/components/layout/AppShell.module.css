@@ -1,0 +1,39 @@
+.shell {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  background: var(--color-bg-app);
+}
+
+.frame {
+  width: 100%;
+  max-width: var(--app-max-width);
+  min-height: 100dvh;
+  background: var(--color-bg-screen);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 0 1px rgba(11, 30, 61, 0.04);
+}
+
+@media (min-width: 640px) {
+  .shell {
+    padding: 24px 0;
+  }
+  .frame {
+    min-height: calc(100dvh - 48px);
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(11, 30, 61, 0.18), 0 0 0 1px rgba(11, 30, 61, 0.06);
+  }
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: calc(var(--nav-height) + 24px);
+}
+
+.content.noNav {
+  padding-bottom: 0;
+}

@@ -1,0 +1,572 @@
+[
+  {
+    "id": "SEG-DIS-01",
+    "question": "La distancia de seguridad con el vehículo de delante debe permitir:",
+    "options": [
+      {
+        "id": "SEG-DIS-01-0",
+        "text": "Detenerte a tiempo si el vehículo precedente frena bruscamente"
+      },
+      {
+        "id": "SEG-DIS-01-1",
+        "text": "Solo evitar el ruido del motor de delante"
+      },
+      {
+        "id": "SEG-DIS-01-2",
+        "text": "Adelantar en cualquier momento sin comprobar nada más"
+      }
+    ],
+    "correctOptionId": "SEG-DIS-01-0",
+    "explanation": "La distancia de seguridad debe ser suficiente para poder detener el vehículo sin colisionar si el que va delante frena de forma repentina, considerando velocidad, estado de la vía y del vehículo.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "distancia-seguridad",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "distancia"
+    ],
+    "contentHash": "e832d5cfe5d1d84c667d9aff6fbacb820084fd806e5fcf6bf3b40539ea73806b",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-DIS-02",
+    "question": "Una regla práctica para calcular la distancia de seguridad es:",
+    "options": [
+      {
+        "id": "SEG-DIS-02-0",
+        "text": "La \"regla de los dos segundos\" respecto al vehículo que te precede"
+      },
+      {
+        "id": "SEG-DIS-02-1",
+        "text": "Mantener siempre exactamente 10 metros"
+      },
+      {
+        "id": "SEG-DIS-02-2",
+        "text": "Ir pegado al parachoques para no perder el hueco"
+      }
+    ],
+    "correctOptionId": "SEG-DIS-02-0",
+    "explanation": "Una forma sencilla de estimar la distancia de seguridad es dejar transcurrir al menos dos segundos entre que el vehículo de delante pasa por un punto fijo y tú pasas por el mismo punto.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "distancia-seguridad",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "distancia"
+    ],
+    "contentHash": "50f06c1eaf87033bf86375ae05c2798bfe2970ed44e733b1c1e38e7f0483287f",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-DIS-03",
+    "question": "¿Qué factores aumentan la distancia de seguridad necesaria?",
+    "options": [
+      {
+        "id": "SEG-DIS-03-0",
+        "text": "Mayor velocidad, lluvia, niebla o mal estado de los neumáticos"
+      },
+      {
+        "id": "SEG-DIS-03-1",
+        "text": "Solo el número de ocupantes del vehículo"
+      },
+      {
+        "id": "SEG-DIS-03-2",
+        "text": "El color del vehículo que te precede"
+      }
+    ],
+    "correctOptionId": "SEG-DIS-03-0",
+    "explanation": "A mayor velocidad, o con condiciones adversas como lluvia, niebla, hielo o neumáticos en mal estado, la distancia de frenado aumenta y por tanto también debe aumentar la distancia de seguridad.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "distancia-seguridad",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "distancia"
+    ],
+    "contentHash": "05f6e30c64239449e2edc81a35de32f0fe349ad98bb4f3d34b5b2a6fe9581e36",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-VEL-01",
+    "question": "La velocidad adecuada en cada momento depende de:",
+    "options": [
+      {
+        "id": "SEG-VEL-01-0",
+        "text": "Las condiciones de la vía, el tráfico, la visibilidad y las características del vehículo, además del límite señalizado"
+      },
+      {
+        "id": "SEG-VEL-01-1",
+        "text": "Únicamente del límite máximo indicado en la señal"
+      },
+      {
+        "id": "SEG-VEL-01-2",
+        "text": "Solo de la potencia del motor"
+      }
+    ],
+    "correctOptionId": "SEG-VEL-01-0",
+    "explanation": "Circular al límite legal no siempre es circular a velocidad adecuada: hay que adaptar la velocidad a las condiciones reales de la vía, el tráfico, la meteorología y el propio vehículo.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "velocidad",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "velocidad"
+    ],
+    "contentHash": "ecfb53c4d2cf65c68d7980e2c40df4dcd539e3fa3bb6d7602ebc573f6aec599a",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-VEL-02",
+    "question": "Al duplicarse la velocidad de un vehículo, la energía cinética (y el riesgo en caso de colisión):",
+    "options": [
+      {
+        "id": "SEG-VEL-02-0",
+        "text": "Se multiplica por cuatro"
+      },
+      {
+        "id": "SEG-VEL-02-1",
+        "text": "Se duplica en la misma proporción"
+      },
+      {
+        "id": "SEG-VEL-02-2",
+        "text": "Se mantiene igual"
+      }
+    ],
+    "correctOptionId": "SEG-VEL-02-0",
+    "explanation": "La energía cinética depende del cuadrado de la velocidad, por lo que duplicar la velocidad multiplica por cuatro la energía que hay que disipar en una frenada o un choque.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "velocidad",
+    "difficulty": "hard",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "velocidad"
+    ],
+    "contentHash": "5aef4693da748ecb826099401577c7bcfc1dc5e93bf9642765875c86bd0df08e",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-FRE-01",
+    "question": "La distancia total de frenado se compone de:",
+    "options": [
+      {
+        "id": "SEG-FRE-01-0",
+        "text": "La distancia recorrida durante el tiempo de reacción más la distancia de frenado propiamente dicha"
+      },
+      {
+        "id": "SEG-FRE-01-1",
+        "text": "Solo la distancia que recorre el vehículo con el freno pisado"
+      },
+      {
+        "id": "SEG-FRE-01-2",
+        "text": "Solo el tiempo que tarda el conductor en ver el peligro"
+      }
+    ],
+    "correctOptionId": "SEG-FRE-01-0",
+    "explanation": "La distancia total de detención es la suma de la distancia recorrida durante el tiempo de reacción del conductor y la distancia que el vehículo recorre mientras frena hasta detenerse.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "frenado",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "frenado"
+    ],
+    "contentHash": "44cacd731390471c7b454af07b80a6ef01225e0d2c2e1b41e6e2c6cffbe6c95b",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-FRE-02",
+    "question": "El firme mojado, respecto al firme seco, hace que la distancia de frenado sea:",
+    "options": [
+      {
+        "id": "SEG-FRE-02-0",
+        "text": "Mayor, por la pérdida de adherencia"
+      },
+      {
+        "id": "SEG-FRE-02-1",
+        "text": "Menor"
+      },
+      {
+        "id": "SEG-FRE-02-2",
+        "text": "Exactamente igual"
+      }
+    ],
+    "correctOptionId": "SEG-FRE-02-0",
+    "explanation": "Con el firme mojado la adherencia de los neumáticos disminuye, por lo que la distancia necesaria para detener el vehículo aumenta respecto al firme seco.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "frenado",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "frenado"
+    ],
+    "contentHash": "a2f0014ef58b26d529f27e977a40ebde83247c93011dad12eef335eb77e9626b",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-RIE-01",
+    "question": "¿Cuál de estas situaciones incrementa claramente el riesgo de accidente?",
+    "options": [
+      {
+        "id": "SEG-RIE-01-0",
+        "text": "Circular con neumáticos desgastados bajo lluvia intensa"
+      },
+      {
+        "id": "SEG-RIE-01-1",
+        "text": "Circular con el depósito de combustible lleno"
+      },
+      {
+        "id": "SEG-RIE-01-2",
+        "text": "Llevar el maletero ordenado"
+      }
+    ],
+    "correctOptionId": "SEG-RIE-01-0",
+    "explanation": "Los neumáticos desgastados reducen mucho la adherencia, especialmente con lluvia, lo que aumenta notablemente el riesgo de pérdida de control o de aumento de la distancia de frenado.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "riesgos",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "riesgos"
+    ],
+    "contentHash": "575fb66c139bf9fa70962dce2a200062629f2fd7725f6227a4222312d4dc30bf",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-FAT-01",
+    "question": "En un viaje largo, se recomienda hacer una pausa de al menos:",
+    "options": [
+      {
+        "id": "SEG-FAT-01-0",
+        "text": "15-20 minutos cada 2 horas de conducción aproximadamente"
+      },
+      {
+        "id": "SEG-FAT-01-1",
+        "text": "5 minutos cada 6 horas"
+      },
+      {
+        "id": "SEG-FAT-01-2",
+        "text": "No es necesario parar si te sientes bien"
+      }
+    ],
+    "correctOptionId": "SEG-FAT-01-0",
+    "explanation": "La fatiga reduce la capacidad de reacción de forma progresiva; se recomienda descansar unos 15-20 minutos aproximadamente cada dos horas de conducción para mantener el nivel de atención.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "fatiga",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "fatiga"
+    ],
+    "contentHash": "f3bad11e16903de65855c86a673d27ce9c37c3691c156e6c91f2cfa39f2bd709",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-SOM-01",
+    "question": "Ante los primeros síntomas de somnolencia al volante debes:",
+    "options": [
+      {
+        "id": "SEG-SOM-01-0",
+        "text": "Parar en un lugar seguro y descansar, no intentar \"aguantar\" el sueño"
+      },
+      {
+        "id": "SEG-SOM-01-1",
+        "text": "Subir la música y abrir la ventanilla para espabilarte"
+      },
+      {
+        "id": "SEG-SOM-01-2",
+        "text": "Aumentar la velocidad para llegar antes"
+      }
+    ],
+    "correctOptionId": "SEG-SOM-01-0",
+    "explanation": "Los remedios como abrir la ventanilla o subir la música no eliminan la somnolencia real; ante los primeros síntomas lo seguro es detenerse en un lugar apropiado y descansar.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "somnolencia",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "somnolencia"
+    ],
+    "contentHash": "47e9edc57f8822d8141814f5f4ec14ccce1ca24086631d54388be9276bcfb4aa",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-SOM-02",
+    "question": "La somnolencia al volante es especialmente frecuente:",
+    "options": [
+      {
+        "id": "SEG-SOM-02-0",
+        "text": "A primera hora de la tarde y de madrugada, coincidiendo con los ciclos naturales de sueño"
+      },
+      {
+        "id": "SEG-SOM-02-1",
+        "text": "Únicamente si se ha dormido menos de 3 horas la noche anterior"
+      },
+      {
+        "id": "SEG-SOM-02-2",
+        "text": "Solo afecta a los conductores profesionales"
+      }
+    ],
+    "correctOptionId": "SEG-SOM-02-0",
+    "explanation": "Los \"bajones\" de vigilancia coinciden con los ritmos circadianos del cuerpo, especialmente en las primeras horas de la tarde y durante la madrugada, por lo que el riesgo de somnolencia es mayor en esas franjas.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "somnolencia",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "somnolencia"
+    ],
+    "contentHash": "b98f1cad3842698b72b9274a5942ce3e20c2e828de5183a27f590ce4e69e64ba",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-DIST-01",
+    "question": "¿Cuál de estas es una distracción que puede comprometer la seguridad al volante?",
+    "options": [
+      {
+        "id": "SEG-DIST-01-0",
+        "text": "Consultar el navegador o cambiar la música mientras se conduce"
+      },
+      {
+        "id": "SEG-DIST-01-1",
+        "text": "Ajustar el retrovisor antes de iniciar la marcha"
+      },
+      {
+        "id": "SEG-DIST-01-2",
+        "text": "Ponerse el cinturón antes de arrancar"
+      }
+    ],
+    "correctOptionId": "SEG-DIST-01-0",
+    "explanation": "Cualquier tarea que desvíe la atención visual, manual o mental de la conducción, como manipular el navegador o el equipo de música en marcha, constituye una distracción de riesgo.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "distracciones",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "distracciones"
+    ],
+    "contentHash": "c548647ad9337c65aa7174485cab8f40046069f2f7ba5186acb5be4eb4a0d740",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-DIST-02",
+    "question": "Una distracción de apenas 2 segundos a 100 km/h supone circular \"a ciegas\" durante:",
+    "options": [
+      {
+        "id": "SEG-DIST-02-0",
+        "text": "Unos 55 metros aproximadamente"
+      },
+      {
+        "id": "SEG-DIST-02-1",
+        "text": "5 metros"
+      },
+      {
+        "id": "SEG-DIST-02-2",
+        "text": "200 metros"
+      }
+    ],
+    "correctOptionId": "SEG-DIST-02-0",
+    "explanation": "A 100 km/h el vehículo recorre unos 27,7 metros por segundo, por lo que apartar la vista solo 2 segundos supone recorrer más de 55 metros sin control visual de la vía.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "distracciones",
+    "difficulty": "hard",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "distracciones"
+    ],
+    "contentHash": "8ee00ca13b7e89161ed330bd6105d7459134bda9518791cd58186edc9920a5be",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-TEL-01",
+    "question": "¿Está permitido sujetar el teléfono móvil con la mano mientras se conduce, aunque no se esté hablando?",
+    "options": [
+      {
+        "id": "SEG-TEL-01-0",
+        "text": "No, sujetarlo con la mano está prohibido y conlleva pérdida de puntos"
+      },
+      {
+        "id": "SEG-TEL-01-1",
+        "text": "Sí, si el semáforo está en rojo"
+      },
+      {
+        "id": "SEG-TEL-01-2",
+        "text": "Sí, siempre que el coche esté circulando despacio"
+      }
+    ],
+    "correctOptionId": "SEG-TEL-01-0",
+    "explanation": "Está prohibido conducir sujetando con la mano cualquier dispositivo de telefonía móvil o similar, incluso sin usarlo activamente; la normativa vigente sanciona esta conducta con pérdida de puntos.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "telefono-movil",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "móvil"
+    ],
+    "contentHash": "23eb9a580031fb37318e73a4934fca0cf5aea5261257cc4b03a13d6c6b2c423d",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEG-TEL-02",
+    "question": "¿Cómo se puede usar el teléfono móvil de forma legal durante la conducción?",
+    "options": [
+      {
+        "id": "SEG-TEL-02-0",
+        "text": "Mediante un sistema de manos libres que no requiera sujetarlo ni manipularlo"
+      },
+      {
+        "id": "SEG-TEL-02-1",
+        "text": "Sujetándolo con una mano mientras se conduce con la otra"
+      },
+      {
+        "id": "SEG-TEL-02-2",
+        "text": "Mirándolo brevemente en los semáforos en rojo"
+      }
+    ],
+    "correctOptionId": "SEG-TEL-02-0",
+    "explanation": "La forma legal de usar el móvil conduciendo es a través de un sistema de manos libres homologado, sin necesidad de sujetarlo, marcarlo o manipularlo con las manos.",
+    "categoryId": "seguridad-vial",
+    "subcategoryId": "telefono-movil",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "seguridad vial",
+      "móvil"
+    ],
+    "contentHash": "c0c12202e54d89b630b5b2f057a1b8018314dbadddcbfd6463993e5b402483d5",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  }
+]

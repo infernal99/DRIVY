@@ -1,0 +1,1437 @@
+[
+  {
+    "id": "SEN-PRI-01",
+    "question": "¿Qué significa esta señal?",
+    "image": {
+      "signKey": "ceda-el-paso",
+      "alt": "Triángulo invertido de borde rojo, sin pictograma",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PRI-01-0",
+        "text": "Ceda el paso"
+      },
+      {
+        "id": "SEN-PRI-01-1",
+        "text": "Stop obligatorio"
+      },
+      {
+        "id": "SEN-PRI-01-2",
+        "text": "Prohibido el paso"
+      }
+    ],
+    "correctOptionId": "SEN-PRI-01-0",
+    "explanation": "El triángulo invertido de borde rojo es la señal de Ceda el paso: obliga a detenerse si es necesario y a dejar pasar a los vehículos que circulan por la vía a la que se accede.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-prioridad",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "prioridad"
+    ],
+    "contentHash": "64f54f546a53db77ae7196848cd9fc057cc244b115af19277f5bd2509a86a6a9",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PRI-02",
+    "question": "¿Qué debes hacer ante una señal de STOP?",
+    "image": {
+      "signKey": "stop",
+      "alt": "Señal: Detención obligatoria (STOP)",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PRI-02-0",
+        "text": "Detener completamente el vehículo aunque no venga nadie"
+      },
+      {
+        "id": "SEN-PRI-02-1",
+        "text": "Reducir la velocidad y continuar si no hay peligro"
+      },
+      {
+        "id": "SEN-PRI-02-2",
+        "text": "Solo detenerte si hay otro vehículo circulando"
+      }
+    ],
+    "correctOptionId": "SEN-PRI-02-0",
+    "explanation": "La señal STOP obliga a detener completamente el vehículo ante la línea de detención, aunque no se aprecie ningún vehículo, y a cederle el paso a los que circulan por la vía a la que se incorpora.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-prioridad",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "prioridad"
+    ],
+    "contentHash": "415afb6da518468ff2eee8d8763a995d695a5cb58e77a4167f582b7d2be1cf2b",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PRI-03",
+    "question": "Esta señal indica que te aproximas a...",
+    "image": {
+      "signKey": "interseccion-prioridad",
+      "alt": "Señal: Intersección con prioridad",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PRI-03-0",
+        "text": "Una intersección con prioridad para los vehículos que circulan por tu derecha"
+      },
+      {
+        "id": "SEN-PRI-03-1",
+        "text": "Un carril reservado para bicicletas"
+      },
+      {
+        "id": "SEN-PRI-03-2",
+        "text": "El final de una vía prioritaria"
+      }
+    ],
+    "correctOptionId": "SEN-PRI-03-0",
+    "explanation": "Esta señal de peligro advierte de una intersección próxima en la que, si no hay otra señalización, rige la norma general de prioridad para quien viene por la derecha.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-prioridad",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "peligro",
+      "prioridad"
+    ],
+    "contentHash": "1c5e5fc074151220facfc63fbff7051e1eb449cf42a522a6e0752cde828febd8",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PEL-01",
+    "question": "¿De qué tipo es esta señal y qué anuncia?",
+    "image": {
+      "signKey": "curva-peligrosa-derecha",
+      "alt": "Señal: Curva peligrosa hacia la derecha",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PEL-01-0",
+        "text": "Señal de peligro: curva peligrosa hacia la derecha"
+      },
+      {
+        "id": "SEN-PEL-01-1",
+        "text": "Señal de obligación: gira a la derecha"
+      },
+      {
+        "id": "SEN-PEL-01-2",
+        "text": "Señal de indicación: desvío recomendado"
+      }
+    ],
+    "correctOptionId": "SEN-PEL-01-0",
+    "explanation": "Las señales de peligro son siempre triángulos de borde rojo sobre fondo blanco; anticipan un riesgo, en este caso una curva pronunciada hacia la derecha, para que reduzcas la velocidad con antelación.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-peligro",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "peligro"
+    ],
+    "contentHash": "6570c57fc31434d90a6e4e95d21460933aad8db494846763f246cffb2ac3443c",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PEL-02",
+    "question": "¿Qué anuncia esta señal?",
+    "image": {
+      "signKey": "obras",
+      "alt": "Señal: Obras",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PEL-02-0",
+        "text": "Obras en la calzada"
+      },
+      {
+        "id": "SEN-PEL-02-1",
+        "text": "Zona escolar"
+      },
+      {
+        "id": "SEN-PEL-02-2",
+        "text": "Área de descanso"
+      }
+    ],
+    "correctOptionId": "SEN-PEL-02-0",
+    "explanation": "El pictograma de una persona trabajando dentro de un triángulo de peligro anuncia obras en la vía: reduce la velocidad y extrema la atención ante posibles cambios en el trazado.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-peligro",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "peligro",
+      "obras"
+    ],
+    "contentHash": "90014a07d3f4768a7fafca61448cbfe4214efc4495e3d360791c167969ecfb4b",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PEL-03",
+    "question": "¿Qué anuncia esta señal de peligro?",
+    "image": {
+      "signKey": "paso-nivel",
+      "alt": "Señal: Paso a nivel sin barreras",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PEL-03-0",
+        "text": "Paso a nivel con barreras próximo"
+      },
+      {
+        "id": "SEN-PEL-03-1",
+        "text": "Túnel estrecho"
+      },
+      {
+        "id": "SEN-PEL-03-2",
+        "text": "Puente sobre un río"
+      }
+    ],
+    "correctOptionId": "SEN-PEL-03-0",
+    "explanation": "El pictograma con forma de vía férrea vallada advierte de un paso a nivel próximo; obliga a extremar la precaución y nunca detenerse sobre las vías.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-peligro",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "peligro"
+    ],
+    "contentHash": "d4a8c19b547f7132671819e3f9d5c3f83c5fd83154b557ff01b0bb55aa6df646",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PEL-04",
+    "question": "¿Qué anuncia esta señal?",
+    "image": {
+      "signKey": "animales-sueltos",
+      "alt": "Señal: Paso de animales en libertad",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PEL-04-0",
+        "text": "Posible presencia de animales sueltos en la calzada"
+      },
+      {
+        "id": "SEN-PEL-04-1",
+        "text": "Zona de aparcamiento para caravanas"
+      },
+      {
+        "id": "SEN-PEL-04-2",
+        "text": "Prohibido circular con animales"
+      }
+    ],
+    "correctOptionId": "SEN-PEL-04-0",
+    "explanation": "Esta señal de peligro advierte de la posible presencia de animales en la calzada, algo frecuente en carreteras rurales o de montaña; obliga a moderar la velocidad.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-peligro",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "peligro"
+    ],
+    "contentHash": "67f88c1c86155863cd1a6d95dfd10126ae1761a06f9c68c6c66a784e1783272c",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PEL-05",
+    "question": "Las señales de peligro se colocan, como norma general, con una antelación de:",
+    "options": [
+      {
+        "id": "SEN-PEL-05-0",
+        "text": "Entre 150 y 250 metros del peligro fuera de poblado"
+      },
+      {
+        "id": "SEN-PEL-05-1",
+        "text": "Justo en el punto donde comienza el peligro"
+      },
+      {
+        "id": "SEN-PEL-05-2",
+        "text": "1 kilómetro exacto siempre"
+      }
+    ],
+    "correctOptionId": "SEN-PEL-05-0",
+    "explanation": "Fuera de poblado, la normativa de señalización sitúa habitualmente las señales de peligro entre 150 y 250 metros antes del punto peligroso, para dar tiempo a reaccionar.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-peligro",
+    "difficulty": "hard",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "peligro"
+    ],
+    "contentHash": "5e61c07c16bc63c2e3ba003409e0a28533c25879ab60b0781a80b68af07c7fbf",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PRO-01",
+    "question": "¿Qué prohíbe esta señal?",
+    "image": {
+      "signKey": "prohibido-adelantar",
+      "alt": "Señal: Adelantamiento prohibido",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PRO-01-0",
+        "text": "Adelantar a otros vehículos de motor"
+      },
+      {
+        "id": "SEN-PRO-01-1",
+        "text": "Circular a más de 90 km/h"
+      },
+      {
+        "id": "SEN-PRO-01-2",
+        "text": "Girar a la izquierda"
+      }
+    ],
+    "correctOptionId": "SEN-PRO-01-0",
+    "explanation": "Las señales de prohibición son círculos de borde rojo. Esta en concreto prohíbe adelantar a vehículos de motor distintos de motocicletas de dos ruedas sin sidecar y ciclomotores de dos ruedas.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-prohibicion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "prohibición"
+    ],
+    "contentHash": "5973fed7965257f4532a0de49eeb5ff26773fe4d1c1f385ca630c778bbf279c0",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PRO-02",
+    "question": "¿Qué indica esta señal circular de borde rojo con el número 50?",
+    "image": {
+      "signKey": "limite-velocidad-50",
+      "alt": "Señal: Velocidad máxima (50 km/h)",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PRO-02-0",
+        "text": "Velocidad máxima autorizada: 50 km/h"
+      },
+      {
+        "id": "SEN-PRO-02-1",
+        "text": "Velocidad mínima obligatoria: 50 km/h"
+      },
+      {
+        "id": "SEN-PRO-02-2",
+        "text": "Distancia mínima de seguridad: 50 metros"
+      }
+    ],
+    "correctOptionId": "SEN-PRO-02-0",
+    "explanation": "El círculo de borde rojo con un número indica la velocidad máxima autorizada en ese tramo, en este caso 50 km/h.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-prohibicion",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "prohibición",
+      "velocidad"
+    ],
+    "contentHash": "769c9297ac98e46fc66bf3a6cbf42114e10b099f1dc6b392821a5c287b80375a",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PRO-03",
+    "question": "¿Qué significa esta señal?",
+    "image": {
+      "signKey": "fin-limite-velocidad",
+      "alt": "Señal: Fin de limitación de velocidad",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PRO-03-0",
+        "text": "Fin de la limitación de velocidad impuesta anteriormente"
+      },
+      {
+        "id": "SEN-PRO-03-1",
+        "text": "Inicio de una zona de velocidad mínima"
+      },
+      {
+        "id": "SEN-PRO-03-2",
+        "text": "Prohibido circular a partir de aquí"
+      }
+    ],
+    "correctOptionId": "SEN-PRO-03-0",
+    "explanation": "La señal con el número tachado por una franja diagonal indica el final de la restricción de velocidad señalada anteriormente; a partir de ahí rige el límite genérico de la vía.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-prohibicion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "prohibición",
+      "velocidad"
+    ],
+    "contentHash": "0150707db2194d131807e56aeeb072656917a03fc42677bb2e5afafdcd98c763",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PRO-04",
+    "question": "¿Qué prohíbe esta señal circular azul con una \"P\" y una franja roja?",
+    "image": {
+      "signKey": "prohibido-aparcar",
+      "alt": "Señal: Estacionamiento prohibido",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PRO-04-0",
+        "text": "Estacionar en esa zona"
+      },
+      {
+        "id": "SEN-PRO-04-1",
+        "text": "Parar y estacionar"
+      },
+      {
+        "id": "SEN-PRO-04-2",
+        "text": "Circular con remolque"
+      }
+    ],
+    "correctOptionId": "SEN-PRO-04-0",
+    "explanation": "Esta señal prohíbe el estacionamiento, aunque sí permite detenerse el tiempo imprescindible para dejar o recoger personas u objetos (parada).",
+    "categoryId": "senales",
+    "subcategoryId": "senales-prohibicion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "prohibición",
+      "estacionamiento"
+    ],
+    "contentHash": "42825ce33212bff13757008efb2d0b150ff5a0df0dc86e944d370c14e27bcb1c",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PRO-05",
+    "question": "¿Qué indica esta señal?",
+    "image": {
+      "signKey": "circulacion-prohibida-ambos-sentidos",
+      "alt": "Señal: Circulación prohibida",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PRO-05-0",
+        "text": "Circulación prohibida en ambos sentidos"
+      },
+      {
+        "id": "SEN-PRO-05-1",
+        "text": "Vía de doble sentido"
+      },
+      {
+        "id": "SEN-PRO-05-2",
+        "text": "Ceda el paso en ambos sentidos"
+      }
+    ],
+    "correctOptionId": "SEN-PRO-05-0",
+    "explanation": "El círculo rojo con una franja horizontal blanca indica que está prohibido el acceso a todo vehículo, en ambos sentidos, más allá de esa señal.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-prohibicion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "prohibición"
+    ],
+    "contentHash": "4e9f8d0d629b28eb03947006eb7a3bd15ad7038d6873f9b0bdafa273bdceb74d",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-PRO-06",
+    "question": "¿Qué prohíbe esta señal con la silueta de una persona cruzando y una franja roja?",
+    "image": {
+      "signKey": "prohibido-paso-peatones",
+      "alt": "Señal: Prohibido el paso a peatones",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-PRO-06-0",
+        "text": "El paso de peatones por ese tramo"
+      },
+      {
+        "id": "SEN-PRO-06-1",
+        "text": "El paso de bicicletas"
+      },
+      {
+        "id": "SEN-PRO-06-2",
+        "text": "El paso de vehículos pesados"
+      }
+    ],
+    "correctOptionId": "SEN-PRO-06-0",
+    "explanation": "Esta señal de prohibición indica que el paso de peatones está prohibido en ese punto de la vía, habitualmente por razones de seguridad.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-prohibicion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "prohibición",
+      "peatones"
+    ],
+    "contentHash": "3e75f33719a06bcbf736bfeb7f59973e9e26199654daaf68535c8ba19c865efe",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-OBL-01",
+    "question": "¿Qué obliga a hacer esta señal circular de fondo azul con una flecha hacia arriba?",
+    "image": {
+      "signKey": "direccion-obligatoria-recto",
+      "alt": "Señal: Sentido obligatorio (recto)",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-OBL-01-0",
+        "text": "Seguir todo recto obligatoriamente"
+      },
+      {
+        "id": "SEN-OBL-01-1",
+        "text": "Girar a la izquierda"
+      },
+      {
+        "id": "SEN-OBL-01-2",
+        "text": "Detenerse y esperar"
+      }
+    ],
+    "correctOptionId": "SEN-OBL-01-0",
+    "explanation": "Las señales de obligación son círculos de fondo azul. Esta en concreto obliga a seguir la dirección indicada por la flecha, en este caso todo recto.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-obligacion",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "obligación"
+    ],
+    "contentHash": "b23299abcb1e36fd6bac3286da78dc443ebe36360d2154a9ea04cd4bcf4e0825",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-OBL-02",
+    "question": "¿Qué indica esta señal azul con dos flechas circulares?",
+    "image": {
+      "signKey": "glorieta-obligatoria",
+      "alt": "Señal: Intersección de sentido giratorio obligatorio",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-OBL-02-0",
+        "text": "Intersección de sentido giratorio obligatorio (glorieta)"
+      },
+      {
+        "id": "SEN-OBL-02-1",
+        "text": "Cambio de sentido obligatorio"
+      },
+      {
+        "id": "SEN-OBL-02-2",
+        "text": "Prohibido el sentido giratorio"
+      }
+    ],
+    "correctOptionId": "SEN-OBL-02-0",
+    "explanation": "Esta señal de obligación anuncia una intersección con circulación giratoria (glorieta) en la que debes ceder el paso a quien ya circula por ella, salvo señalización distinta.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-obligacion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "obligación",
+      "glorieta"
+    ],
+    "contentHash": "979d942efc10fa6b424d0af3945327826cc0f3c79f52ab122f983ccfe2aa7fb9",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-OBL-03",
+    "question": "¿Qué indica esta señal circular azul con el número 40?",
+    "image": {
+      "signKey": "velocidad-minima-40",
+      "alt": "Señal: Velocidad mínima (40 km/h)",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-OBL-03-0",
+        "text": "Velocidad mínima obligatoria de 40 km/h"
+      },
+      {
+        "id": "SEN-OBL-03-1",
+        "text": "Velocidad máxima de 40 km/h"
+      },
+      {
+        "id": "SEN-OBL-03-2",
+        "text": "Distancia de seguridad de 40 metros"
+      }
+    ],
+    "correctOptionId": "SEN-OBL-03-0",
+    "explanation": "Cuando el número aparece en un círculo de fondo azul (no rojo), indica una velocidad mínima obligatoria, habitual en tramos de autopista o túneles donde circular despacio es peligroso.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-obligacion",
+    "difficulty": "hard",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "obligación",
+      "velocidad"
+    ],
+    "contentHash": "69a5b9ba0f8decd2f1a2e781f95f4bca10bef71c5655799f454aee24bf760b01",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-OBL-04",
+    "question": "¿Qué indica esta señal azul con dos círculos y una cadena?",
+    "image": {
+      "signKey": "carril-bici",
+      "alt": "Señal: Vía obligatoria para ciclos",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-OBL-04-0",
+        "text": "Vía o carril obligatorio para ciclos"
+      },
+      {
+        "id": "SEN-OBL-04-1",
+        "text": "Prohibido el paso a bicicletas"
+      },
+      {
+        "id": "SEN-OBL-04-2",
+        "text": "Zona de alquiler de bicicletas"
+      }
+    ],
+    "correctOptionId": "SEN-OBL-04-0",
+    "explanation": "Esta señal de obligación indica un tramo de vía o arcén reservado y obligatorio para la circulación de bicicletas.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-obligacion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "obligación",
+      "ciclistas"
+    ],
+    "contentHash": "9d38d16ac1d5c7fc084d58880e173cbcbfbf6db9e769a3528f6c8f57e6a9c278",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-IND-01",
+    "question": "¿Qué tipo de señal es esta y qué indica?",
+    "image": {
+      "signKey": "paso-peatones",
+      "alt": "Señal: Situación de un paso para peatones",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-IND-01-0",
+        "text": "Señal de indicación: paso para peatones"
+      },
+      {
+        "id": "SEN-IND-01-1",
+        "text": "Señal de prohibición: prohibido a peatones"
+      },
+      {
+        "id": "SEN-IND-01-2",
+        "text": "Señal de peligro: cruce de peatones"
+      }
+    ],
+    "correctOptionId": "SEN-IND-01-0",
+    "explanation": "Las señales de indicación son, por lo general, cuadradas o rectangulares de fondo azul y aportan información útil; esta señala la existencia de un paso para peatones.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-indicacion",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "indicación",
+      "peatones"
+    ],
+    "contentHash": "980000c35aa3ae8edcae6cbede020809894000e7fff1d7fe55219711112a865a",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-IND-02",
+    "question": "¿Qué indica esta señal cuadrada azul con una \"P\" blanca?",
+    "image": {
+      "signKey": "aparcamiento",
+      "alt": "Señal: Estacionamiento",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-IND-02-0",
+        "text": "Zona de estacionamiento"
+      },
+      {
+        "id": "SEN-IND-02-1",
+        "text": "Prohibido aparcar"
+      },
+      {
+        "id": "SEN-IND-02-2",
+        "text": "Parada de autobús"
+      }
+    ],
+    "correctOptionId": "SEN-IND-02-0",
+    "explanation": "La letra \"P\" sobre fondo azul es la señal de indicación que informa de la existencia de una zona habilitada para el estacionamiento.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-indicacion",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "indicación",
+      "estacionamiento"
+    ],
+    "contentHash": "21782c5f655e37e323057966c81cdc6b6240622b22c99cdb4f70455dba0fbc03",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-IND-03",
+    "question": "¿Qué indica esta señal cuadrada azul con el pictograma de una vía de dos calzadas?",
+    "image": {
+      "signKey": "autopista",
+      "alt": "Señal: Autopista",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-IND-03-0",
+        "text": "Comienzo de autopista"
+      },
+      {
+        "id": "SEN-IND-03-1",
+        "text": "Fin de autopista"
+      },
+      {
+        "id": "SEN-IND-03-2",
+        "text": "Área de servicio"
+      }
+    ],
+    "correctOptionId": "SEN-IND-03-0",
+    "explanation": "Esta señal de indicación anuncia el comienzo de una autopista, con las particularidades de circulación que le son propias (prohibido a peatones, ciclos, vehículos lentos, etc.).",
+    "categoryId": "senales",
+    "subcategoryId": "senales-indicacion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "indicación",
+      "autopista"
+    ],
+    "contentHash": "25cc8612e11332e6ed4f3c25ba72740fe4d424b55ff871a36a1f05f27d55794a",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-IND-04",
+    "question": "¿Qué indica esta señal gris con la misma vía tachada?",
+    "image": {
+      "signKey": "fin-autopista",
+      "alt": "Señal: Fin de autopista",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "sourceType": "derived"
+    },
+    "options": [
+      {
+        "id": "SEN-IND-04-0",
+        "text": "Fin de la autopista"
+      },
+      {
+        "id": "SEN-IND-04-1",
+        "text": "Prohibido circular por autopista"
+      },
+      {
+        "id": "SEN-IND-04-2",
+        "text": "Área de descanso próxima"
+      }
+    ],
+    "correctOptionId": "SEN-IND-04-0",
+    "explanation": "Cuando el pictograma de autopista aparece tachado sobre fondo gris, indica el final del tramo de autopista.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-indicacion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "indicación",
+      "autopista"
+    ],
+    "contentHash": "41e53d616528e8762584b53b19d88e4cd82e7cc2d32824acdb87d01ee64b2c95",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-CIR-01",
+    "question": "Las señales de circulación de carácter circunstancial (obras, desvíos, accidentes)...",
+    "options": [
+      {
+        "id": "SEN-CIR-01-0",
+        "text": "Prevalecen sobre las señales fijas mientras dure la circunstancia que las motiva"
+      },
+      {
+        "id": "SEN-CIR-01-1",
+        "text": "Nunca tienen validez legal si son temporales"
+      },
+      {
+        "id": "SEN-CIR-01-2",
+        "text": "Solo son informativas y pueden ignorarse"
+      }
+    ],
+    "correctOptionId": "SEN-CIR-01-0",
+    "explanation": "La señalización circunstancial (por ejemplo, en obras) prevalece sobre la señalización permanente mientras dure la situación que la motiva, aunque contradiga a la señal fija.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-circunstancial",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "circunstancial"
+    ],
+    "contentHash": "0a928ff1a70bdc293ef0e2ac30a7091f1b51076c7aa69bf27606048a1af96071",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-CIR-02",
+    "question": "Los paneles direccionales y conos de color naranja en una obra suelen indicar:",
+    "options": [
+      {
+        "id": "SEN-CIR-02-0",
+        "text": "El nuevo trazado provisional que debes seguir"
+      },
+      {
+        "id": "SEN-CIR-02-1",
+        "text": "Que la vía está totalmente cerrada sin alternativa"
+      },
+      {
+        "id": "SEN-CIR-02-2",
+        "text": "Una zona exclusiva para peatones"
+      }
+    ],
+    "correctOptionId": "SEN-CIR-02-0",
+    "explanation": "La señalización circunstancial en obras (paneles direccionales, conos, balizas) marca el nuevo trazado temporal por el que debe circular el tráfico mientras duran los trabajos.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-circunstancial",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "circunstancial",
+      "obras"
+    ],
+    "contentHash": "978f1892e1616755855220fc7bac377f0b01623cf8c3ee7000c2858616984746",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-MAR-01",
+    "question": "Una línea continua que separa dos carriles en el mismo sentido...",
+    "options": [
+      {
+        "id": "SEN-MAR-01-0",
+        "text": "No debe cruzarse ni siquiera para adelantar"
+      },
+      {
+        "id": "SEN-MAR-01-1",
+        "text": "Puede cruzarse siempre que no venga nadie"
+      },
+      {
+        "id": "SEN-MAR-01-2",
+        "text": "Solo es válida en autopistas"
+      }
+    ],
+    "correctOptionId": "SEN-MAR-01-0",
+    "explanation": "Una marca vial longitudinal continua no debe traspasarse ni pisarse; separa carriles o sentidos de circulación cuando hacerlo resulta peligroso.",
+    "categoryId": "senales",
+    "subcategoryId": "marcas-viales",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "marcas viales"
+    ],
+    "contentHash": "af5580320f675ccac4a1e58cbc115eee911d2cd33b397fd321ab0f8d45ac9173",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-MAR-02",
+    "question": "Una línea discontinua que separa dos sentidos de circulación...",
+    "options": [
+      {
+        "id": "SEN-MAR-02-0",
+        "text": "Puede cruzarse para adelantar si hay visibilidad y espacio suficiente"
+      },
+      {
+        "id": "SEN-MAR-02-1",
+        "text": "Nunca puede cruzarse bajo ningún concepto"
+      },
+      {
+        "id": "SEN-MAR-02-2",
+        "text": "Indica un carril exclusivo para bicicletas"
+      }
+    ],
+    "correctOptionId": "SEN-MAR-02-0",
+    "explanation": "La línea discontinua permite el cruce o el adelantamiento siempre que se haga con la visibilidad y el espacio necesarios para no poner en riesgo al tráfico en sentido contrario.",
+    "categoryId": "senales",
+    "subcategoryId": "marcas-viales",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "marcas viales"
+    ],
+    "contentHash": "e0fa85fa85342f3bbd49fc34baf06e419419bebcdbcbe79100b25c0c51352816",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-MAR-03",
+    "question": "Una línea continua amarilla en el borde de la calzada indica:",
+    "options": [
+      {
+        "id": "SEN-MAR-03-0",
+        "text": "Prohibición de parar y estacionar"
+      },
+      {
+        "id": "SEN-MAR-03-1",
+        "text": "Carril reservado para autobuses"
+      },
+      {
+        "id": "SEN-MAR-03-2",
+        "text": "Zona de velocidad reducida"
+      }
+    ],
+    "correctOptionId": "SEN-MAR-03-0",
+    "explanation": "La marca amarilla longitudinal junto al bordillo o borde de calzada indica prohibición de parar y estacionar en ese tramo.",
+    "categoryId": "senales",
+    "subcategoryId": "marcas-viales",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "marcas viales",
+      "estacionamiento"
+    ],
+    "contentHash": "a2c87ea58fc2d4fb5e194f0959646f2f0581fe2d223fa7b63ac2dceda975676e",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-MAR-04",
+    "question": "Unas flechas pintadas en el suelo dentro de un carril...",
+    "options": [
+      {
+        "id": "SEN-MAR-04-0",
+        "text": "Tienen carácter obligatorio sobre la dirección a seguir desde ese carril"
+      },
+      {
+        "id": "SEN-MAR-04-1",
+        "text": "Son solo orientativas y pueden ignorarse"
+      },
+      {
+        "id": "SEN-MAR-04-2",
+        "text": "Únicamente se usan en aparcamientos"
+      }
+    ],
+    "correctOptionId": "SEN-MAR-04-0",
+    "explanation": "Las flechas de selección de carriles pintadas en la calzada tienen carácter obligatorio: marcan la única dirección permitida para los vehículos situados en ese carril.",
+    "categoryId": "senales",
+    "subcategoryId": "marcas-viales",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "marcas viales"
+    ],
+    "contentHash": "7ab59d97583cc0d4bcb4c38503a6ca9280df8b1afff3da986f5778ed80ad2c6c",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-SEM-01",
+    "question": "Ante un semáforo en ámbar (amarillo) fijo, debes:",
+    "options": [
+      {
+        "id": "SEN-SEM-01-0",
+        "text": "Detenerte, salvo que ya estés tan cerca que frenar suponga un riesgo"
+      },
+      {
+        "id": "SEN-SEM-01-1",
+        "text": "Acelerar para cruzar antes de que cambie a rojo"
+      },
+      {
+        "id": "SEN-SEM-01-2",
+        "text": "Ignorarlo si no hay agentes presentes"
+      }
+    ],
+    "correctOptionId": "SEN-SEM-01-0",
+    "explanation": "El ámbar obliga a detenerse ante la línea de detención, salvo que el vehículo esté tan próximo que frenar pueda provocar una situación de riesgo; en ese caso puede continuarse con precaución.",
+    "categoryId": "senales",
+    "subcategoryId": "semaforos",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "semáforos"
+    ],
+    "contentHash": "b6276e2a69f40a90a24b845a193301edf26b8cad771d49de0bf3938a2455adab",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-SEM-02",
+    "question": "Una flecha verde de semáforo permite:",
+    "options": [
+      {
+        "id": "SEN-SEM-02-0",
+        "text": "Avanzar únicamente en el sentido que indica la flecha"
+      },
+      {
+        "id": "SEN-SEM-02-1",
+        "text": "Avanzar en cualquier dirección"
+      },
+      {
+        "id": "SEN-SEM-02-2",
+        "text": "Avanzar solo si el semáforo circular también está en verde"
+      }
+    ],
+    "correctOptionId": "SEN-SEM-02-0",
+    "explanation": "Cuando el semáforo muestra una flecha verde, el paso solo está permitido en el sentido indicado por la flecha, cediendo el paso a peatones y a otros vehículos que circulen legalmente.",
+    "categoryId": "senales",
+    "subcategoryId": "semaforos",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "semáforos"
+    ],
+    "contentHash": "9e7616f2910b6130eab165cc61ccb5c7da66ec743690fa732841c624db9414ff",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-SEM-03",
+    "question": "Un semáforo con luz ámbar intermitente indica:",
+    "options": [
+      {
+        "id": "SEN-SEM-03-0",
+        "text": "Que puedes pasar con precaución, cediendo el paso si procede"
+      },
+      {
+        "id": "SEN-SEM-03-1",
+        "text": "Que el cruce está cerrado al tráfico"
+      },
+      {
+        "id": "SEN-SEM-03-2",
+        "text": "Que debes detenerte igual que en rojo"
+      }
+    ],
+    "correctOptionId": "SEN-SEM-03-0",
+    "explanation": "El ámbar intermitente funciona como una advertencia de peligro: se puede circular, pero extremando la precaución y respetando las normas generales de prioridad del cruce.",
+    "categoryId": "senales",
+    "subcategoryId": "semaforos",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "semáforos"
+    ],
+    "contentHash": "abd5c987ef20874f4996a82859ef76dfac70ec372f08171a36ed9f97983b0cdd",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-AGE-01",
+    "question": "Un agente de circulación con el brazo levantado verticalmente ordena:",
+    "options": [
+      {
+        "id": "SEN-AGE-01-0",
+        "text": "Detener la marcha a quienes se aproximen, salvo que ya estén tan cerca que no puedan parar con seguridad"
+      },
+      {
+        "id": "SEN-AGE-01-1",
+        "text": "Que todos los vehículos aceleren"
+      },
+      {
+        "id": "SEN-AGE-01-2",
+        "text": "Que se ceda el paso únicamente a la izquierda"
+      }
+    ],
+    "correctOptionId": "SEN-AGE-01-0",
+    "explanation": "El brazo en alto de un agente equivale a una señal de \"atención, alto\" para quienes se acercan, salvo los conductores que por su proximidad no puedan detenerse con seguridad.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-agentes",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "agentes"
+    ],
+    "contentHash": "d2097c38a3df1e167c4702707dec3d5022c84959a3aeae82a3b1f090c1c3fa8c",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-AGE-02",
+    "question": "Las señales de un agente de circulación prevalecen sobre:",
+    "options": [
+      {
+        "id": "SEN-AGE-02-0",
+        "text": "Las señales fijas, los semáforos y las normas generales de circulación"
+      },
+      {
+        "id": "SEN-AGE-02-1",
+        "text": "Solo sobre las marcas viales"
+      },
+      {
+        "id": "SEN-AGE-02-2",
+        "text": "Nada, siempre prevalece la señal fija"
+      }
+    ],
+    "correctOptionId": "SEN-AGE-02-0",
+    "explanation": "Las indicaciones de los agentes que regulan el tráfico tienen prioridad sobre cualquier otra señalización, incluidos semáforos y señales fijas, y sobre las normas generales.",
+    "categoryId": "senales",
+    "subcategoryId": "senales-agentes",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "agentes",
+      "prioridad"
+    ],
+    "contentHash": "9104a934df38f1bde1f9942faf27ba44b81902012c8e99b319751df6198089c4",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "SEN-2025-01",
+    "question": "En 2025 el Gobierno aprobó una actualización del catálogo oficial de señales de tráfico. ¿Qué debes tener en cuenta como conductor?",
+    "options": [
+      {
+        "id": "SEN-2025-01-0",
+        "text": "Conviven señales del catálogo anterior y del nuevo mientras se renuevan de forma progresiva"
+      },
+      {
+        "id": "SEN-2025-01-1",
+        "text": "Todas las señales antiguas dejaron de tener validez el mismo día"
+      },
+      {
+        "id": "SEN-2025-01-2",
+        "text": "La actualización solo afecta a señales de otros países"
+      }
+    ],
+    "correctOptionId": "SEN-2025-01-0",
+    "explanation": "La actualización del catálogo de señales aprobada en 2025 entró en vigor de forma normativa, pero el cambio físico de las señales en las vías se realiza de forma progresiva, por lo que durante un tiempo circularán señales del catálogo antiguo (2015) y del nuevo (2025).",
+    "categoryId": "senales",
+    "subcategoryId": "senales-circunstancial",
+    "difficulty": "hard",
+    "source": {
+      "type": "derived",
+      "name": "DGT — Nota de prensa: actualización del catálogo oficial de señales",
+      "url": "https://www.dgt.es/comunicacion/notas-de-prensa/20250610-el-gobierno-aprueba-la-actualizacion-del-catalogo-oficial-de-senales-de-trafico/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "señales",
+      "catálogo 2025"
+    ],
+    "contentHash": "d77885c7480e63aa7a3866c01b97616afe8cdf73fd3f0fb2dbe27f7d47fe4539",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25",
+    "signCatalogVersion": "2025"
+  }
+]

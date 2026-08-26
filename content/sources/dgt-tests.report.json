@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-08-25T23:49:58.069Z",
+  "results": [
+    {
+      "id": "dgt-sede-test-examenes",
+      "url": "https://sede.dgt.gob.es/es/permisos-de-conducir/test-de-examenes/",
+      "reachable": true,
+      "status": 200
+    },
+    {
+      "id": "dgt-requisitos-examen",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/obtener-un-nuevo-permiso-de-conducir/requisitos-preparacion-y-presentacion-a-examen/",
+      "reachable": true,
+      "status": 200
+    }
+  ],
+  "questionsImported": 0,
+  "reason": "Both pages are interactive/informational, not a licensed bulk question export — see CONTENT_SOURCES in src/data/sources.ts. No content extracted."
+}

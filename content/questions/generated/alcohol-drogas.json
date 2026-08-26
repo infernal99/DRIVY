@@ -1,0 +1,416 @@
+[
+  {
+    "id": "ALC-TAS-01",
+    "question": "La tasa máxima de alcohol permitida para un conductor general en España es de:",
+    "options": [
+      {
+        "id": "ALC-TAS-01-0",
+        "text": "0,5 g/l en sangre o 0,25 mg/l en aire espirado"
+      },
+      {
+        "id": "ALC-TAS-01-1",
+        "text": "0,8 g/l en sangre o 0,40 mg/l en aire espirado"
+      },
+      {
+        "id": "ALC-TAS-01-2",
+        "text": "0,2 g/l en sangre en cualquier caso"
+      }
+    ],
+    "correctOptionId": "ALC-TAS-01-0",
+    "explanation": "Con carácter general, la tasa máxima permitida es de 0,5 gramos de alcohol por litro de sangre, equivalente a 0,25 miligramos por litro de aire espirado.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "alcoholemia",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "alcohol",
+      "alcoholemia"
+    ],
+    "contentHash": "cd2f55774b1ef55494bb8cb705a2ada3987357f1b676dd4ec6c6a60930db4ae4",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-TAS-02",
+    "question": "Para conductores noveles (menos de 2 años de carné) y profesionales, la tasa máxima permitida es:",
+    "options": [
+      {
+        "id": "ALC-TAS-02-0",
+        "text": "0,3 g/l en sangre o 0,15 mg/l en aire espirado"
+      },
+      {
+        "id": "ALC-TAS-02-1",
+        "text": "0,5 g/l en sangre, igual que el resto"
+      },
+      {
+        "id": "ALC-TAS-02-2",
+        "text": "0,0 g/l en sangre siempre"
+      }
+    ],
+    "correctOptionId": "ALC-TAS-02-0",
+    "explanation": "Los conductores noveles (menos de dos años de experiencia) y los profesionales tienen un límite más restrictivo: 0,3 g/l en sangre o 0,15 mg/l en aire espirado.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "alcoholemia",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "alcohol",
+      "alcoholemia",
+      "noveles"
+    ],
+    "contentHash": "86614837edd141ff53fb2739f9912467f54d5968de1b03c6d081144fca80e27d",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-TAS-03",
+    "question": "¿Puede la autoridad someter a una prueba de alcoholemia a cualquier conductor, sin necesidad de haber cometido una infracción?",
+    "options": [
+      {
+        "id": "ALC-TAS-03-0",
+        "text": "Sí, los agentes pueden someter a controles preventivos aleatorios"
+      },
+      {
+        "id": "ALC-TAS-03-1",
+        "text": "No, solo tras un accidente"
+      },
+      {
+        "id": "ALC-TAS-03-2",
+        "text": "No, hace falta una orden judicial previa"
+      }
+    ],
+    "correctOptionId": "ALC-TAS-03-0",
+    "explanation": "Los agentes de tráfico pueden someter a cualquier usuario de la vía a las pruebas para la detección de alcohol como medida preventiva, sin necesidad de que exista un accidente o una infracción previa.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "alcoholemia",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "alcohol",
+      "alcoholemia"
+    ],
+    "contentHash": "90d5e7e9bb0d15c4b2c5af7f35bd9809af6864074a5ef43da4281d6564175282",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-EFE-01",
+    "question": "¿Cómo afecta el alcohol a la conducción incluso en cantidades bajas?",
+    "options": [
+      {
+        "id": "ALC-EFE-01-0",
+        "text": "Reduce el campo visual, aumenta el tiempo de reacción y da una falsa sensación de seguridad"
+      },
+      {
+        "id": "ALC-EFE-01-1",
+        "text": "No produce ningún efecto por debajo del límite legal"
+      },
+      {
+        "id": "ALC-EFE-01-2",
+        "text": "Solo afecta a la capacidad de hablar, no a la conducción"
+      }
+    ],
+    "correctOptionId": "ALC-EFE-01-0",
+    "explanation": "Incluso con tasas bajas, el alcohol reduce el campo visual, ralentiza los reflejos, empeora la coordinación y provoca una sensación de seguridad excesiva que lleva a asumir más riesgos.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "efectos-alcohol",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "alcohol",
+      "efectos"
+    ],
+    "contentHash": "eda67a52fbe607a0193f62c995d042da121f8f684d9147d1ae9fd1d3274d17c0",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-EFE-02",
+    "question": "El alcohol se elimina del organismo principalmente:",
+    "options": [
+      {
+        "id": "ALC-EFE-02-0",
+        "text": "Con el tiempo, mediante el metabolismo del hígado; el café o una ducha fría no lo aceleran"
+      },
+      {
+        "id": "ALC-EFE-02-1",
+        "text": "Tomando café cargado"
+      },
+      {
+        "id": "ALC-EFE-02-2",
+        "text": "Con una ducha fría o haciendo ejercicio intenso"
+      }
+    ],
+    "correctOptionId": "ALC-EFE-02-0",
+    "explanation": "El hígado metaboliza el alcohol a un ritmo aproximadamente constante; ni el café, ni el ejercicio, ni una ducha fría aceleran ese proceso, solo hacen sentir \"más despierto\" sin reducir la tasa real.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "efectos-alcohol",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "alcohol",
+      "efectos"
+    ],
+    "contentHash": "27575f951562b5ff03d1649a3c65cc4ead47f9763452c70157f62b954ce0fd5c",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-DRO-01",
+    "question": "Respecto al consumo de drogas y la conducción, la ley española establece:",
+    "options": [
+      {
+        "id": "ALC-DRO-01-0",
+        "text": "Tolerancia cero: está prohibido conducir con presencia de determinadas drogas en el organismo"
+      },
+      {
+        "id": "ALC-DRO-01-1",
+        "text": "Se permite un nivel bajo, similar al del alcohol"
+      },
+      {
+        "id": "ALC-DRO-01-2",
+        "text": "Solo se sanciona si se produce un accidente"
+      }
+    ],
+    "correctOptionId": "ALC-DRO-01-0",
+    "explanation": "A diferencia del alcohol, para las drogas la normativa aplica un criterio de tolerancia cero: basta con detectar presencia de sustancias en el organismo mediante los test correspondientes para sancionar.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "drogas",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "drogas"
+    ],
+    "contentHash": "2bebe1da9d559d1b0a14d0845cb2b5597e8c10f76d82dc853e719b6fee7b44ef",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-DRO-02",
+    "question": "El consumo combinado de alcohol y otras drogas:",
+    "options": [
+      {
+        "id": "ALC-DRO-02-0",
+        "text": "Multiplica los efectos negativos sobre la capacidad de conducir"
+      },
+      {
+        "id": "ALC-DRO-02-1",
+        "text": "Neutraliza los efectos de ambas sustancias"
+      },
+      {
+        "id": "ALC-DRO-02-2",
+        "text": "Solo afecta si se combina con medicamentos"
+      }
+    ],
+    "correctOptionId": "ALC-DRO-02-0",
+    "explanation": "Combinar alcohol con otras drogas no anula sus efectos, sino que habitualmente los potencia, incrementando de forma notable el deterioro de las capacidades necesarias para conducir con seguridad.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "drogas",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "drogas",
+      "alcohol"
+    ],
+    "contentHash": "1e74cd2bf41b00f2340acad5a5baab53bb4ded9d807cbdce155352c649dcdd80",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-MED-01",
+    "question": "Antes de conducir tras tomar un medicamento nuevo debes:",
+    "options": [
+      {
+        "id": "ALC-MED-01-0",
+        "text": "Comprobar el prospecto y el pictograma de advertencia sobre la conducción"
+      },
+      {
+        "id": "ALC-MED-01-1",
+        "text": "No es necesario comprobar nada si te lo ha recetado el médico"
+      },
+      {
+        "id": "ALC-MED-01-2",
+        "text": "Solo hay que tener cuidado con los medicamentos inyectables"
+      }
+    ],
+    "correctOptionId": "ALC-MED-01-0",
+    "explanation": "Muchos medicamentos —incluidos algunos de uso común, como ciertos antihistamínicos o ansiolíticos— llevan un pictograma de advertencia que indica que pueden afectar a la capacidad de conducir; conviene revisar el prospecto antes de ponerse al volante.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "medicamentos",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "medicamentos"
+    ],
+    "contentHash": "1f0e2644e4972ac0a11464414b7dc147185cfcc6675a7f5ff693322b3976af9b",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-MED-02",
+    "question": "¿Qué tipo de medicamentos pueden afectar más frecuentemente a la conducción?",
+    "options": [
+      {
+        "id": "ALC-MED-02-0",
+        "text": "Ansiolíticos, antihistamínicos sedantes y algunos analgésicos con efecto depresor del sistema nervioso"
+      },
+      {
+        "id": "ALC-MED-02-1",
+        "text": "Los complejos vitamínicos"
+      },
+      {
+        "id": "ALC-MED-02-2",
+        "text": "Los antiácidos para el estómago"
+      }
+    ],
+    "correctOptionId": "ALC-MED-02-0",
+    "explanation": "Fármacos como los ansiolíticos, ciertos antihistamínicos con efecto sedante o algunos analgésicos pueden provocar somnolencia o reducir los reflejos, afectando a la seguridad al volante.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "medicamentos",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "medicamentos"
+    ],
+    "contentHash": "151ec3326fe1b421236c6b14cb254fa7eab317d617fafcaf01f8f31b024d5f1d",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-TRE-01",
+    "question": "El tiempo de reacción medio de un conductor ante un imprevisto suele estimarse en torno a:",
+    "options": [
+      {
+        "id": "ALC-TRE-01-0",
+        "text": "Entre 0,75 y 1,5 segundos en condiciones normales"
+      },
+      {
+        "id": "ALC-TRE-01-1",
+        "text": "5 segundos como mínimo"
+      },
+      {
+        "id": "ALC-TRE-01-2",
+        "text": "0 segundos si se está atento"
+      }
+    ],
+    "correctOptionId": "ALC-TRE-01-0",
+    "explanation": "En condiciones normales, el tiempo de reacción de un conductor —desde que percibe el peligro hasta que actúa sobre los mandos— se sitúa habitualmente entre 0,75 y 1,5 segundos.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "tiempos-reaccion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "tiempos de reacción"
+    ],
+    "contentHash": "0120389b74e679447bb2d74b491b080d43dfad2a5b9c4301d0aa1b2fd72d368e",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "ALC-TRE-02",
+    "question": "El alcohol, el sueño y el uso del móvil tienen en común que:",
+    "options": [
+      {
+        "id": "ALC-TRE-02-0",
+        "text": "Aumentan el tiempo de reacción ante un imprevisto"
+      },
+      {
+        "id": "ALC-TRE-02-1",
+        "text": "Reducen el tiempo de reacción"
+      },
+      {
+        "id": "ALC-TRE-02-2",
+        "text": "No afectan al tiempo de reacción, solo a la visión"
+      }
+    ],
+    "correctOptionId": "ALC-TRE-02-0",
+    "explanation": "Tanto el consumo de alcohol como la fatiga o el uso del teléfono móvil alargan el tiempo que tarda el conductor en percibir y reaccionar ante un peligro, aumentando la distancia total necesaria para detenerse.",
+    "categoryId": "alcohol-drogas",
+    "subcategoryId": "tiempos-reaccion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "tiempos de reacción"
+    ],
+    "contentHash": "3b0954b9dadcbc5675ec42724429d631e0ccb53673295442288a5129ed1c9c5e",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  }
+]

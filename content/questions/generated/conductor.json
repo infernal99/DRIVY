@@ -1,0 +1,500 @@
+[
+  {
+    "id": "CON-DOC-01",
+    "question": "¿Qué documentación debe llevar un conductor mientras circula?",
+    "options": [
+      {
+        "id": "CON-DOC-01-0",
+        "text": "El permiso de conducir en vigor; el resto de documentos del vehículo pueden consultarse por medios telemáticos"
+      },
+      {
+        "id": "CON-DOC-01-1",
+        "text": "Ningún documento es necesario si el coche está a su nombre"
+      },
+      {
+        "id": "CON-DOC-01-2",
+        "text": "Solo el DNI, no hace falta el permiso de conducir"
+      }
+    ],
+    "correctOptionId": "CON-DOC-01-0",
+    "explanation": "El conductor debe llevar consigo el permiso de conducir en vigor. La documentación del vehículo (ficha técnica, seguro) puede verificarse por los cuerpos policiales a través de las bases de datos, aunque es recomendable llevarla también.",
+    "categoryId": "conductor",
+    "subcategoryId": "documentacion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "documentación"
+    ],
+    "contentHash": "664df5b88191c660263f7ad9c06afefb173214a67d2f0a3e562d33968af36b51",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-DOC-02",
+    "question": "Circular sin el seguro obligatorio en vigor:",
+    "options": [
+      {
+        "id": "CON-DOC-02-0",
+        "text": "Es una infracción muy grave, además del riesgo económico ante un accidente"
+      },
+      {
+        "id": "CON-DOC-02-1",
+        "text": "Es solo una recomendación, no una obligación legal"
+      },
+      {
+        "id": "CON-DOC-02-2",
+        "text": "No tiene consecuencias si no ocurre ningún accidente"
+      }
+    ],
+    "correctOptionId": "CON-DOC-02-0",
+    "explanation": "Todo vehículo a motor debe contar con seguro obligatorio en vigor; circular sin él constituye una infracción muy grave y deja al conductor expuesto a responder personalmente de los daños causados.",
+    "categoryId": "conductor",
+    "subcategoryId": "documentacion",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "documentación",
+      "seguro"
+    ],
+    "contentHash": "9ad8df63285a81b7b76fda0b6c4ccf98ff820b6e3bd21da29ac7a42339f25ef6",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-PER-01",
+    "question": "¿A partir de qué edad se puede obtener el permiso de conducir clase B en España?",
+    "options": [
+      {
+        "id": "CON-PER-01-0",
+        "text": "18 años"
+      },
+      {
+        "id": "CON-PER-01-1",
+        "text": "16 años"
+      },
+      {
+        "id": "CON-PER-01-2",
+        "text": "21 años"
+      }
+    ],
+    "correctOptionId": "CON-PER-01-0",
+    "explanation": "La edad mínima para obtener el permiso de conducir de la clase B (turismos) en España es de 18 años.",
+    "categoryId": "conductor",
+    "subcategoryId": "permiso-conducir",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "permiso de conducir"
+    ],
+    "contentHash": "b4f311c9f70295b7f6587602c6db0c3d69e9773924e6d875a5e1731e0e29bf18",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-PER-02",
+    "question": "Un conductor se considera \"novel\" durante:",
+    "options": [
+      {
+        "id": "CON-PER-02-0",
+        "text": "Los 2 primeros años tras obtener el permiso"
+      },
+      {
+        "id": "CON-PER-02-1",
+        "text": "El primer mes"
+      },
+      {
+        "id": "CON-PER-02-2",
+        "text": "Los 5 primeros años"
+      }
+    ],
+    "correctOptionId": "CON-PER-02-0",
+    "explanation": "Se considera conductor novel a quien lleva menos de 2 años desde la obtención del permiso; durante ese periodo se le aplican límites más estrictos, como la tasa de alcoholemia reducida.",
+    "categoryId": "conductor",
+    "subcategoryId": "permiso-conducir",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "permiso de conducir",
+      "noveles"
+    ],
+    "contentHash": "b4840910d79d4f68cdac631ca7df0e686f46154e96fc93101bf89de3c7cb5a2d",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-PTO-01",
+    "question": "Un conductor con experiencia (no novel) que obtiene el permiso por primera vez comienza con:",
+    "options": [
+      {
+        "id": "CON-PTO-01-0",
+        "text": "12 puntos"
+      },
+      {
+        "id": "CON-PTO-01-1",
+        "text": "8 puntos"
+      },
+      {
+        "id": "CON-PTO-01-2",
+        "text": "20 puntos"
+      }
+    ],
+    "correctOptionId": "CON-PTO-01-0",
+    "explanation": "Con carácter general, el saldo inicial de puntos es de 12. Los conductores noveles, o quienes recuperan el permiso tras habérselo retirado, comienzan con 8 puntos.",
+    "categoryId": "conductor",
+    "subcategoryId": "puntos",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/tus-puntos-y-tus-permisos/como-funciona-el-permiso-por-puntos/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "puntos"
+    ],
+    "contentHash": "d939123571995bf377d059d183de8366c9fe0d4ce8a1c14990a7b7003a2f7361",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-PTO-02",
+    "question": "Los conductores noveles comienzan el permiso por puntos con:",
+    "options": [
+      {
+        "id": "CON-PTO-02-0",
+        "text": "8 puntos"
+      },
+      {
+        "id": "CON-PTO-02-1",
+        "text": "12 puntos"
+      },
+      {
+        "id": "CON-PTO-02-2",
+        "text": "4 puntos"
+      }
+    ],
+    "correctOptionId": "CON-PTO-02-0",
+    "explanation": "Los conductores noveles, así como quienes recuperan el permiso tras una pérdida total de puntos, inician el sistema con 8 puntos en lugar de los 12 habituales.",
+    "categoryId": "conductor",
+    "subcategoryId": "puntos",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/tus-puntos-y-tus-permisos/como-funciona-el-permiso-por-puntos/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "puntos",
+      "noveles"
+    ],
+    "contentHash": "2a513468eb2ce6ba4064a0535bbda2bb9fb3c5466012dd0d06528b30f9febac9",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-PTO-03",
+    "question": "¿Cuál es el número máximo de puntos que puede alcanzar un conductor con una conducción responsable prolongada?",
+    "options": [
+      {
+        "id": "CON-PTO-03-0",
+        "text": "15 puntos"
+      },
+      {
+        "id": "CON-PTO-03-1",
+        "text": "12 puntos"
+      },
+      {
+        "id": "CON-PTO-03-2",
+        "text": "20 puntos"
+      }
+    ],
+    "correctOptionId": "CON-PTO-03-0",
+    "explanation": "El sistema premia la conducción sin infracciones: tras 3 años sin perder puntos se pueden alcanzar 14 puntos, y tras otros 3 años más, hasta un máximo de 15 puntos.",
+    "categoryId": "conductor",
+    "subcategoryId": "puntos",
+    "difficulty": "hard",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/tus-puntos-y-tus-permisos/como-funciona-el-permiso-por-puntos/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "puntos"
+    ],
+    "contentHash": "9d54f670a0ad89852f56ccb9716b285c49207d0b746e76c292458aa2ef27549b",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-PTO-04",
+    "question": "Usar el teléfono móvil sujeto con la mano mientras se conduce conlleva actualmente la pérdida de:",
+    "options": [
+      {
+        "id": "CON-PTO-04-0",
+        "text": "6 puntos"
+      },
+      {
+        "id": "CON-PTO-04-1",
+        "text": "2 puntos"
+      },
+      {
+        "id": "CON-PTO-04-2",
+        "text": "1 punto"
+      }
+    ],
+    "correctOptionId": "CON-PTO-04-0",
+    "explanation": "Tras la reforma del reglamento de circulación, sujetar y usar el teléfono móvil con la mano mientras se conduce supone la pérdida de 6 puntos del permiso, además de la sanción económica correspondiente.",
+    "categoryId": "conductor",
+    "subcategoryId": "puntos",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/tus-puntos-y-tus-permisos/como-funciona-el-permiso-por-puntos/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "puntos",
+      "móvil"
+    ],
+    "contentHash": "a0e15a2d150f767dea5276de3993a293d8f474375c97c373b996ac82d96fe708",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-PTO-05",
+    "question": "Si un conductor se queda a 0 puntos, ¿qué ocurre con su permiso?",
+    "options": [
+      {
+        "id": "CON-PTO-05-0",
+        "text": "Pierde la vigencia del permiso y debe recuperarlo realizando un curso y superando de nuevo las pruebas"
+      },
+      {
+        "id": "CON-PTO-05-1",
+        "text": "No pasa nada mientras no reincida"
+      },
+      {
+        "id": "CON-PTO-05-2",
+        "text": "Se le añaden automáticamente 4 puntos de cortesía"
+      }
+    ],
+    "correctOptionId": "CON-PTO-05-0",
+    "explanation": "Al perder la totalidad de los puntos, el permiso pierde su vigencia. Para recuperarlo es necesario realizar un curso de sensibilización y reeducación vial y, en general, superar de nuevo las pruebas correspondientes.",
+    "categoryId": "conductor",
+    "subcategoryId": "puntos",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/tus-puntos-y-tus-permisos/como-funciona-el-permiso-por-puntos/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "puntos"
+    ],
+    "contentHash": "8480384f4ee599101ff8558653e3ddafe2049d01222e4fb56624cae7064f40c7",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-APT-01",
+    "question": "Las aptitudes psicofísicas necesarias para conducir (vista, oído, reflejos) se comprueban:",
+    "options": [
+      {
+        "id": "CON-APT-01-0",
+        "text": "En el centro de reconocimiento de conductores, al obtener y renovar el permiso"
+      },
+      {
+        "id": "CON-APT-01-1",
+        "text": "Solo una vez, al sacar el carné por primera vez"
+      },
+      {
+        "id": "CON-APT-01-2",
+        "text": "Nunca se comprueban de forma oficial"
+      }
+    ],
+    "correctOptionId": "CON-APT-01-0",
+    "explanation": "Antes de obtener el permiso, y periódicamente al renovarlo, es obligatorio pasar un reconocimiento en un centro autorizado que evalúa la vista, el oído y otras aptitudes necesarias para conducir con seguridad.",
+    "categoryId": "conductor",
+    "subcategoryId": "aptitudes",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "aptitudes"
+    ],
+    "contentHash": "2aebfd5389d2714082603ef5470d46368fe016ad7b52afea71e0fcaaec8354e0",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-APT-02",
+    "question": "Un estado emocional alterado (ira, estrés intenso, tristeza profunda) puede:",
+    "options": [
+      {
+        "id": "CON-APT-02-0",
+        "text": "Afectar a la capacidad de conducir con seguridad, igual que otros factores de riesgo"
+      },
+      {
+        "id": "CON-APT-02-1",
+        "text": "No tiene ninguna influencia en la conducción"
+      },
+      {
+        "id": "CON-APT-02-2",
+        "text": "Solo afecta si se conduce de noche"
+      }
+    ],
+    "correctOptionId": "CON-APT-02-0",
+    "explanation": "Los estados emocionales intensos pueden alterar la capacidad de concentración, la percepción del riesgo y el autocontrol al volante, aumentando la probabilidad de cometer errores.",
+    "categoryId": "conductor",
+    "subcategoryId": "aptitudes",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "aptitudes"
+    ],
+    "contentHash": "119bd01e4f011232da44ed5522cb34aff59686e81c17a75c54a34d4e4bd22864",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-COM-01",
+    "question": "La conducción defensiva se basa en:",
+    "options": [
+      {
+        "id": "CON-COM-01-0",
+        "text": "Anticiparse a los posibles errores de otros usuarios de la vía y actuar con prudencia"
+      },
+      {
+        "id": "CON-COM-01-1",
+        "text": "Circular siempre por el carril izquierdo"
+      },
+      {
+        "id": "CON-COM-01-2",
+        "text": "Ir siempre al límite de velocidad permitido"
+      }
+    ],
+    "correctOptionId": "CON-COM-01-0",
+    "explanation": "La conducción defensiva consiste en anticipar los posibles errores o imprudencias de otros usuarios y adaptar la propia conducción para reducir el riesgo, sin depender de que los demás actúen correctamente.",
+    "categoryId": "conductor",
+    "subcategoryId": "comportamiento",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "comportamiento"
+    ],
+    "contentHash": "72424cb12ccd0774bf9efb6908468ff5bb2a6b2c6bee95f2588129a2dba3781e",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "CON-COM-02",
+    "question": "Ante la actitud incorrecta de otro conductor (pitidos, adelantamientos bruscos), lo más seguro es:",
+    "options": [
+      {
+        "id": "CON-COM-02-0",
+        "text": "Mantener la calma y no entrar en una escalada de tensión (\"conducción agresiva\")"
+      },
+      {
+        "id": "CON-COM-02-1",
+        "text": "Responder de la misma manera para que aprenda"
+      },
+      {
+        "id": "CON-COM-02-2",
+        "text": "Frenar bruscamente delante de él"
+      }
+    ],
+    "correctOptionId": "CON-COM-02-0",
+    "explanation": "Responder con agresividad ante la provocación de otro conductor aumenta el riesgo para todos; lo más seguro es mantener la calma, ceder espacio si es necesario y evitar entrar en una dinámica de conducción agresiva.",
+    "categoryId": "conductor",
+    "subcategoryId": "comportamiento",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "conductor",
+      "comportamiento"
+    ],
+    "contentHash": "803af8331cf15968494d00f772f8bc7dde67acaceb21a57a36374eee4487118c",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  }
+]

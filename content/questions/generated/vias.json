@@ -1,0 +1,503 @@
+[
+  {
+    "id": "VIA-AUP-01",
+    "question": "¿Qué está prohibido en una autopista?",
+    "options": [
+      {
+        "id": "VIA-AUP-01-0",
+        "text": "Circular peatones, ciclos y vehículos que no puedan alcanzar cierta velocidad mínima"
+      },
+      {
+        "id": "VIA-AUP-01-1",
+        "text": "Adelantar en cualquier circunstancia"
+      },
+      {
+        "id": "VIA-AUP-01-2",
+        "text": "Circular con las luces de cruce encendidas"
+      }
+    ],
+    "correctOptionId": "VIA-AUP-01-0",
+    "explanation": "Las autopistas están reservadas a la circulación de determinados vehículos de motor; tienen prohibido el acceso peatones, ciclos, y vehículos que por su naturaleza no puedan alcanzar la velocidad mínima exigida.",
+    "categoryId": "vias",
+    "subcategoryId": "autopistas",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "autopistas"
+    ],
+    "contentHash": "c0e5a9f26ed7979e906b9cebbc37fb3e83535a066772d241746b093ebbe8b2c5",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-AUP-02",
+    "question": "La velocidad máxima genérica para turismos en autopista es:",
+    "options": [
+      {
+        "id": "VIA-AUP-02-0",
+        "text": "120 km/h"
+      },
+      {
+        "id": "VIA-AUP-02-1",
+        "text": "100 km/h"
+      },
+      {
+        "id": "VIA-AUP-02-2",
+        "text": "140 km/h"
+      }
+    ],
+    "correctOptionId": "VIA-AUP-02-0",
+    "explanation": "Con carácter general, la velocidad máxima para turismos en autopistas y autovías es de 120 km/h, salvo que una señal indique un límite distinto.",
+    "categoryId": "vias",
+    "subcategoryId": "autopistas",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/comunicacion/notas-de-prensa/la-dgt-y-la-femp-presentan-el-manual-de-aplicacion-de-los-nuevos-limites-de-velocidad-en-vias-urbanas/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "autopistas",
+      "velocidad"
+    ],
+    "contentHash": "e08899016e44ae8778e7e19df346e5b3ef03e5f0d302ed67d500a4ff9ea61107",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-AUV-01",
+    "question": "¿Cuál es la principal diferencia entre autopista y autovía?",
+    "options": [
+      {
+        "id": "VIA-AUV-01-0",
+        "text": "La autovía puede tener cruces a nivel y accesos directos a fincas colindantes; la autopista no"
+      },
+      {
+        "id": "VIA-AUV-01-1",
+        "text": "La autovía es siempre de peaje y la autopista gratuita"
+      },
+      {
+        "id": "VIA-AUV-01-2",
+        "text": "No existe ninguna diferencia legal"
+      }
+    ],
+    "correctOptionId": "VIA-AUV-01-0",
+    "explanation": "A diferencia de la autopista, la autovía puede presentar cruces a nivel y accesos directos a las propiedades colindantes, aunque comparte con ella la calzada única por sentido separada físicamente.",
+    "categoryId": "vias",
+    "subcategoryId": "autovias",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "autovías"
+    ],
+    "contentHash": "dcc1c72b9c16ab9ccfd648fafb5f13c457823bdf8e0905ecb535253b28493eb5",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-CAR-01",
+    "question": "La velocidad máxima genérica en una carretera convencional (sin separación física de sentidos) es:",
+    "options": [
+      {
+        "id": "VIA-CAR-01-0",
+        "text": "90 km/h"
+      },
+      {
+        "id": "VIA-CAR-01-1",
+        "text": "100 km/h"
+      },
+      {
+        "id": "VIA-CAR-01-2",
+        "text": "110 km/h"
+      }
+    ],
+    "correctOptionId": "VIA-CAR-01-0",
+    "explanation": "En carreteras convencionales sin separación física de sentidos, el límite genérico es de 90 km/h para turismos, salvo señalización específica que indique otro límite.",
+    "categoryId": "vias",
+    "subcategoryId": "carreteras-convencionales",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/comunicacion/notas-de-prensa/la-dgt-y-la-femp-presentan-el-manual-de-aplicacion-de-los-nuevos-limites-de-velocidad-en-vias-urbanas/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "carreteras convencionales",
+      "velocidad"
+    ],
+    "contentHash": "9bbdafe464c74d9b2cc9d14f641072d916050df01824de31b082ad1a99b91e37",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-CAR-02",
+    "question": "En una carretera convencional con arcén señalizado igual o superior a 1,5 m para turismos, autocaravanas o motocicletas de hasta 3.500 kg, la velocidad máxima puede llegar a:",
+    "options": [
+      {
+        "id": "VIA-CAR-02-0",
+        "text": "100 km/h si así lo indica la señal"
+      },
+      {
+        "id": "VIA-CAR-02-1",
+        "text": "130 km/h en cualquier caso"
+      },
+      {
+        "id": "VIA-CAR-02-2",
+        "text": "90 km/h siempre, sin excepción"
+      }
+    ],
+    "correctOptionId": "VIA-CAR-02-0",
+    "explanation": "Como excepción al límite genérico de 90 km/h, en carreteras convencionales con separación física de sentidos o arcén amplio, la señalización puede autorizar hasta 100 km/h para turismos, motocicletas y autocaravanas ligeras.",
+    "categoryId": "vias",
+    "subcategoryId": "carreteras-convencionales",
+    "difficulty": "hard",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/comunicacion/notas-de-prensa/la-dgt-y-la-femp-presentan-el-manual-de-aplicacion-de-los-nuevos-limites-de-velocidad-en-vias-urbanas/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "carreteras convencionales",
+      "velocidad"
+    ],
+    "contentHash": "15c0338a3588aa4d7d5cda9a85d26f0bea6b74f0deac1d3daad3d34af437e786",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-URB-01",
+    "question": "Desde la reforma de límites urbanos, ¿cuál es la velocidad máxima en una calle de un único carril por sentido?",
+    "options": [
+      {
+        "id": "VIA-URB-01-0",
+        "text": "30 km/h"
+      },
+      {
+        "id": "VIA-URB-01-1",
+        "text": "50 km/h"
+      },
+      {
+        "id": "VIA-URB-01-2",
+        "text": "20 km/h"
+      }
+    ],
+    "correctOptionId": "VIA-URB-01-0",
+    "explanation": "Las vías urbanas de un único carril por sentido de circulación tienen un límite máximo de 30 km/h, salvo que estén específicamente señalizadas con un límite distinto.",
+    "categoryId": "vias",
+    "subcategoryId": "vias-urbanas",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/comunicacion/notas-de-prensa/la-dgt-y-la-femp-presentan-el-manual-de-aplicacion-de-los-nuevos-limites-de-velocidad-en-vias-urbanas/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "urbanas",
+      "velocidad"
+    ],
+    "contentHash": "e6b42f6a60d6855241e136f58f141add869652fbcd66b76ecdd8b236ec793d25",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-URB-02",
+    "question": "En una vía urbana con plataforma única (calzada y acera al mismo nivel, sin separación), el límite es:",
+    "options": [
+      {
+        "id": "VIA-URB-02-0",
+        "text": "20 km/h"
+      },
+      {
+        "id": "VIA-URB-02-1",
+        "text": "30 km/h"
+      },
+      {
+        "id": "VIA-URB-02-2",
+        "text": "50 km/h"
+      }
+    ],
+    "correctOptionId": "VIA-URB-02-0",
+    "explanation": "Las calles de plataforma única, donde calzada y acera comparten el mismo nivel sin diferenciación, tienen un límite máximo de 20 km/h.",
+    "categoryId": "vias",
+    "subcategoryId": "vias-urbanas",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/comunicacion/notas-de-prensa/la-dgt-y-la-femp-presentan-el-manual-de-aplicacion-de-los-nuevos-limites-de-velocidad-en-vias-urbanas/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "urbanas",
+      "velocidad"
+    ],
+    "contentHash": "48b7afb94df7f118ed340abca185ee2207467ce6236e65d7f9771902634fc6f1",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-URB-03",
+    "question": "En una vía urbana con dos o más carriles por sentido, el límite genérico es:",
+    "options": [
+      {
+        "id": "VIA-URB-03-0",
+        "text": "50 km/h"
+      },
+      {
+        "id": "VIA-URB-03-1",
+        "text": "30 km/h"
+      },
+      {
+        "id": "VIA-URB-03-2",
+        "text": "70 km/h"
+      }
+    ],
+    "correctOptionId": "VIA-URB-03-0",
+    "explanation": "Cuando una vía urbana dispone de dos o más carriles por sentido de circulación, el límite genérico se mantiene en 50 km/h.",
+    "categoryId": "vias",
+    "subcategoryId": "vias-urbanas",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/comunicacion/notas-de-prensa/la-dgt-y-la-femp-presentan-el-manual-de-aplicacion-de-los-nuevos-limites-de-velocidad-en-vias-urbanas/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "urbanas",
+      "velocidad"
+    ],
+    "contentHash": "e66018aa0355e0f037c73e8fc7866d8716ee40c133a20aec37f42789a627b0d1",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-URB-04",
+    "question": "Una \"travesía\" es:",
+    "options": [
+      {
+        "id": "VIA-URB-04-0",
+        "text": "El tramo de una carretera que atraviesa una zona urbana o un poblado"
+      },
+      {
+        "id": "VIA-URB-04-1",
+        "text": "Un tipo de rotonda de doble carril"
+      },
+      {
+        "id": "VIA-URB-04-2",
+        "text": "Un carril adicional en autopista"
+      }
+    ],
+    "correctOptionId": "VIA-URB-04-0",
+    "explanation": "Se llama travesía al tramo de una carretera que discurre por dentro de un casco urbano; su límite genérico de velocidad es de 50 km/h, salvo que se indique otro por señalización.",
+    "categoryId": "vias",
+    "subcategoryId": "vias-urbanas",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "urbanas"
+    ],
+    "contentHash": "d4f0179d62dc1f3632c7677adb3396c64a62827d38ec9a1f7f601d0e5b05cf0a",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-CRR-01",
+    "question": "El carril central de una vía con tres carriles y sentido reversible se identifica habitualmente con:",
+    "options": [
+      {
+        "id": "VIA-CRR-01-0",
+        "text": "Semáforos o paneles especiales sobre el carril que indican si está abierto o cerrado"
+      },
+      {
+        "id": "VIA-CRR-01-1",
+        "text": "Ninguna señal, se usa libremente"
+      },
+      {
+        "id": "VIA-CRR-01-2",
+        "text": "Una línea amarilla continua"
+      }
+    ],
+    "correctOptionId": "VIA-CRR-01-0",
+    "explanation": "Los carriles reversibles se señalizan con paneles o semáforos específicos situados sobre el carril, que indican mediante una flecha verde o una cruz roja si puede utilizarse en ese sentido.",
+    "categoryId": "vias",
+    "subcategoryId": "carriles",
+    "difficulty": "hard",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "carriles"
+    ],
+    "contentHash": "329eb9448894055ed45935cda2ca116b63afc1bb28fe649b81f076ead411a753",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-CRR-02",
+    "question": "Un carril \"VAO\" (vehículo de alta ocupación) permite circular a:",
+    "options": [
+      {
+        "id": "VIA-CRR-02-0",
+        "text": "Vehículos con un número mínimo de ocupantes, según señalización"
+      },
+      {
+        "id": "VIA-CRR-02-1",
+        "text": "Cualquier vehículo sin restricciones"
+      },
+      {
+        "id": "VIA-CRR-02-2",
+        "text": "Solo vehículos eléctricos"
+      }
+    ],
+    "correctOptionId": "VIA-CRR-02-0",
+    "explanation": "Los carriles VAO están reservados a vehículos que circulen con un número mínimo de ocupantes (habitualmente dos o más), tal y como se indique en la señalización del carril.",
+    "categoryId": "vias",
+    "subcategoryId": "carriles",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "carriles"
+    ],
+    "contentHash": "7751802c1d078ee93e0752cede8bb8ec32b7b5345e612543e8fb77246c1d7ae5",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-ARC-01",
+    "question": "¿Se puede circular habitualmente por el arcén con un turismo?",
+    "options": [
+      {
+        "id": "VIA-ARC-01-0",
+        "text": "No, el arcén no forma parte de la calzada y solo se usa en casos excepcionales (avería, emergencia)"
+      },
+      {
+        "id": "VIA-ARC-01-1",
+        "text": "Sí, siempre que no haya tráfico denso"
+      },
+      {
+        "id": "VIA-ARC-01-2",
+        "text": "Sí, es un carril más para adelantar"
+      }
+    ],
+    "correctOptionId": "VIA-ARC-01-0",
+    "explanation": "El arcén no está destinado a la circulación habitual de vehículos; solo debe utilizarse en situaciones excepcionales como una avería, una emergencia o cuando lo indique una señal específica.",
+    "categoryId": "vias",
+    "subcategoryId": "arcenes",
+    "difficulty": "easy",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "arcén"
+    ],
+    "contentHash": "dab75be9bfcdb26032abe8635ca72ddf6bd2f07f7dbc8c54179414d50626e26a",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  },
+  {
+    "id": "VIA-ARC-02",
+    "question": "Si tu vehículo sufre una avería en autovía y debes detenerte en el arcén, debes:",
+    "options": [
+      {
+        "id": "VIA-ARC-02-0",
+        "text": "Señalizar el vehículo, ponerte el chaleco reflectante y alejarte a un lugar seguro si es posible"
+      },
+      {
+        "id": "VIA-ARC-02-1",
+        "text": "Permanecer siempre dentro del vehículo con las puertas cerradas"
+      },
+      {
+        "id": "VIA-ARC-02-2",
+        "text": "Detenerte en el carril derecho de circulación, no en el arcén"
+      }
+    ],
+    "correctOptionId": "VIA-ARC-02-0",
+    "explanation": "Ante una avería, se debe situar el vehículo en el arcén, señalizarlo (luces de emergencia y, si procede, dispositivos de señalización), ponerse el chaleco reflectante antes de salir y, si es seguro, alejarse del vehículo y de la calzada.",
+    "categoryId": "vias",
+    "subcategoryId": "arcenes",
+    "difficulty": "medium",
+    "source": {
+      "type": "derived",
+      "name": "DRIVY (elaborado a partir de fuentes oficiales DGT)",
+      "url": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+      "verified": true
+    },
+    "tags": [
+      "vías",
+      "arcén",
+      "seguridad"
+    ],
+    "contentHash": "e3bedfbd24f4187f647d3bfdfb4e5336f002ef6adb162750f9aadd2ac3dacaf8",
+    "createdAt": "2026-08-25",
+    "updatedAt": "2026-08-25",
+    "lastVerifiedAt": "2026-08-25"
+  }
+]

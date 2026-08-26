@@ -1,0 +1,29 @@
+{
+  "builtAt": "2026-08-25T23:49:58.082Z",
+  "totalQuestions": 132,
+  "bySourceType": {
+    "official": 0,
+    "derived": 132,
+    "practice": 0,
+    "needs_review": 0
+  },
+  "byCategory": {
+    "senales": 34,
+    "normas": 21,
+    "vias": 13,
+    "seguridad-vial": 15,
+    "alcohol-drogas": 11,
+    "vehiculo": 13,
+    "conductor": 13,
+    "otros-usuarios": 12
+  },
+  "validation": {
+    "clean": 132,
+    "warnings": 0,
+    "errors": 0
+  },
+  "duplicateGroups": 0,
+  "newQuestions": 0,
+  "updatedQuestions": 0,
+  "needsReview": 0
+}
