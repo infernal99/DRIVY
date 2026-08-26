@@ -13,7 +13,9 @@ const ITEMS: { to: string; label: string; icon: IconName }[] = [
 ];
 
 export function BottomNav() {
-  const hasFriendAlert = useFriendNotificationStore((s) => s.hasIncomingRequests || s.hasNewFriend);
+  const hasFriendAlert = useFriendNotificationStore(
+    (s) => s.hasIncomingRequests || s.hasNewFriend || s.hasIncomingBattles,
+  );
 
   return (
     <nav className={styles.nav} aria-label="Navegación principal">

@@ -14,10 +14,20 @@ import {
   type LeaderboardEntry,
   type MyFriendships,
 } from '../services/friendsService';
+import {
+  acceptBattleRequest,
+  cancelBattleRequest,
+  declineBattleRequest,
+  getMyBattles,
+  sendBattleRequest,
+  type ActiveBattleSummary,
+  type BattleInviteSummary,
+  type MyBattles,
+} from '../services/battlesService';
 import { useFriendNotificationStore } from '../store/friendNotificationStore';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
-import { Card } from '../components/ui/Card';
+import { Card, CardButton } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Icon } from '../components/ui/Icon';
 import { Avatar } from '../components/ui/Avatar';
@@ -32,27 +42,31 @@ export function FriendsPage() {
   const navigate = useNavigate();
   const [data, setData] = useState<MyFriendships | null>(null);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [battles, setBattles] = useState<MyBattles | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
   const ingestNotifications = useFriendNotificationStore((s) => s.ingest);
+  const ingestBattleNotifications = useFriendNotificationStore((s) => s.ingestBattles);
   const markFriendsSeen = useFriendNotificationStore((s) => s.markFriendsSeen);
 
   const refresh = useCallback(() => {
     setLoadError(null);
-    return Promise.all([getMyFriendships(), getFriendLeaderboard()])
-      .then(([friendships, board]) => {
+    return Promise.all([getMyFriendships(), getFriendLeaderboard(), getMyBattles()])
+      .then(([friendships, board, battleData]) => {
         setData(friendships);
         setLeaderboard(board);
+        setBattles(battleData);
         // Reflect this fresh fetch in the nav badge immediately, then mark
         // every currently-listed friend as seen — actually opening this page
         // is what "acknowledging" a newly-accepted friend means.
         ingestNotifications(friendships);
+        ingestBattleNotifications(battleData.incoming.length);
         markFriendsSeen(friendships.friends);
       })
       .catch((err) => setLoadError(errorMessage(err, 'No se pudo cargar la información de amigos.')));
-  }, [ingestNotifications, markFriendsSeen]);
+  }, [ingestNotifications, ingestBattleNotifications, markFriendsSeen]);
 
   useEffect(() => {
     refresh().finally(() => setLoading(false));
@@ -166,10 +180,18 @@ export function FriendsPage() {
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
                 {data.friends.map((friend) => (
-                  <FriendRow key={friend.userId} friend={friend} onRemoved={refresh} onOpen={() => navigate(`/friends/${friend.userId}`)} />
+                  <FriendRow
+                    key={friend.userId}
+                    friend={friend}
+                    onRemoved={refresh}
+                    onOpen={() => navigate(`/friends/${friend.userId}`)}
+                    onChallenged={refresh}
+                  />
                 ))}
               </div>
             )}
+
+            {battles && <BattlesSection battles={battles} onChanged={refresh} onOpenBattle={(id) => navigate(`/battles/${id}`)} />}
 
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
               Ranking semanal
@@ -326,9 +348,30 @@ function RequestsSection({
   );
 }
 
-function FriendRow({ friend, onRemoved, onOpen }: { friend: FriendSummary; onRemoved: () => void; onOpen: () => void }) {
+function FriendRow({
+  friend,
+  onRemoved,
+  onOpen,
+  onChallenged,
+}: {
+  friend: FriendSummary;
+  onRemoved: () => void;
+  onOpen: () => void;
+  onChallenged: () => void;
+}) {
   const [confirming, setConfirming] = useState(false);
   const [removing, setRemoving] = useState(false);
+  const [challenging, setChallenging] = useState(false);
+  const [challengeError, setChallengeError] = useState<string | null>(null);
+
+  function handleChallenge() {
+    setChallenging(true);
+    setChallengeError(null);
+    sendBattleRequest(friend.userId, 10)
+      .then(onChallenged)
+      .catch((err) => setChallengeError(errorMessage(err, 'No se pudo enviar el reto.')))
+      .finally(() => setChallenging(false));
+  }
 
   return (
     <Card style={{ padding: 12 }}>
@@ -344,6 +387,9 @@ function FriendRow({ friend, onRemoved, onOpen }: { friend: FriendSummary; onRem
         </button>
         <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
       </div>
+
+      {challengeError && <p style={{ fontSize: 11.5, color: 'var(--color-error)', margin: '8px 0 0' }}>{challengeError}</p>}
+
       {confirming ? (
         <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
           <Button variant="secondary" style={{ flex: 1, padding: '7px 0', fontSize: 12 }} onClick={() => setConfirming(false)} disabled={removing}>
@@ -364,14 +410,148 @@ function FriendRow({ friend, onRemoved, onOpen }: { friend: FriendSummary; onRem
           </Button>
         </div>
       ) : (
-        <button
-          type="button"
-          onClick={() => setConfirming(true)}
-          style={{ marginTop: 8, background: 'none', border: 'none', color: 'var(--color-error)', fontSize: 11.5, fontWeight: 600, cursor: 'pointer', padding: 0 }}
-        >
-          Eliminar amigo
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 }}>
+          <button
+            type="button"
+            onClick={() => setConfirming(true)}
+            style={{ background: 'none', border: 'none', color: 'var(--color-error)', fontSize: 11.5, fontWeight: 600, cursor: 'pointer', padding: 0 }}
+          >
+            Eliminar amigo
+          </button>
+          <Button
+            variant="secondary"
+            onClick={handleChallenge}
+            disabled={challenging}
+            style={{ flex: 'none', width: 'auto', padding: '6px 12px', fontSize: 11.5 }}
+          >
+            <Icon name="flag" size={13} />
+            {challenging ? 'Enviando…' : 'Retar a duelo'}
+          </Button>
+        </div>
       )}
+    </Card>
+  );
+}
+
+function BattlesSection({
+  battles,
+  onChanged,
+  onOpenBattle,
+}: {
+  battles: MyBattles;
+  onChanged: () => void;
+  onOpenBattle: (battleId: number) => void;
+}) {
+  const [busyId, setBusyId] = useState<number | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  function withBusy(id: number, action: () => Promise<void>) {
+    setBusyId(id);
+    setError(null);
+    action()
+      .then(onChanged)
+      .catch((err) => setError(errorMessage(err, 'No se pudo completar la acción.')))
+      .finally(() => setBusyId(null));
+  }
+
+  const hasAnything =
+    battles.incoming.length > 0 || battles.active.length > 0 || battles.stats.battlesPlayed > 0 || battles.history.length > 0;
+
+  return (
+    <div style={{ marginBottom: 20 }}>
+      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
+        Duelos
+      </div>
+
+      {error && <p style={{ fontSize: 12.5, color: 'var(--color-error)', margin: '0 0 10px' }}>{error}</p>}
+
+      {battles.stats.battlesPlayed > 0 && (
+        <div style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
+          <StatChip label="Victorias" value={`${battles.stats.winRatePct}%`} />
+          <StatChip label="Acierto en duelos" value={`${battles.stats.accuracyPct}%`} />
+          <StatChip label="Jugados" value={String(battles.stats.battlesPlayed)} />
+        </div>
+      )}
+
+      {battles.incoming.map((invite: BattleInviteSummary) => (
+        <Card key={invite.battleId} style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+          <Avatar name={invite.displayName} size={36} />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>{invite.displayName} te reta a un duelo</div>
+            <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)' }}>{invite.questionCount} preguntas</div>
+          </div>
+          <div style={{ display: 'flex', gap: 6 }}>
+            <Button
+              variant="success"
+              style={{ flex: 'none', width: 'auto', padding: '7px 12px', fontSize: 12 }}
+              disabled={busyId === invite.battleId}
+              onClick={() => withBusy(invite.battleId, () => acceptBattleRequest(invite.battleId, invite.questionCount))}
+            >
+              Aceptar
+            </Button>
+            <Button
+              variant="secondary"
+              style={{ flex: 'none', width: 'auto', padding: '7px 12px', fontSize: 12 }}
+              disabled={busyId === invite.battleId}
+              onClick={() => withBusy(invite.battleId, () => declineBattleRequest(invite.battleId))}
+            >
+              Rechazar
+            </Button>
+          </div>
+        </Card>
+      ))}
+
+      {battles.outgoing.map((invite: BattleInviteSummary) => (
+        <Card key={invite.battleId} style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+          <Avatar name={invite.displayName} size={36} />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>Esperando respuesta de {invite.displayName}</div>
+            <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)' }}>{invite.questionCount} preguntas</div>
+          </div>
+          <Button
+            variant="secondary"
+            style={{ flex: 'none', width: 'auto', padding: '7px 12px', fontSize: 12 }}
+            disabled={busyId === invite.battleId}
+            onClick={() => withBusy(invite.battleId, () => cancelBattleRequest(invite.battleId))}
+          >
+            Cancelar
+          </Button>
+        </Card>
+      ))}
+
+      {battles.active.map((active: ActiveBattleSummary) => (
+        <CardButton
+          key={active.battleId}
+          onClick={() => onOpenBattle(active.battleId)}
+          style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8, width: '100%' }}
+        >
+          <Avatar name={active.displayName} size={36} />
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>Duelo con {active.displayName}</div>
+            <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)' }}>
+              {active.iHaveFinished ? 'Esperando a que termine' : 'Toca para continuar'}
+            </div>
+          </div>
+          <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
+        </CardButton>
+      ))}
+
+      {!hasAnything && (
+        <EmptyState
+          icon="flag"
+          title="Reta a un amigo"
+          description="Pulsa «Retar a duelo» en la ficha de un amigo para empezar un examen rápido a la vez."
+        />
+      )}
+    </div>
+  );
+}
+
+function StatChip({ label, value }: { label: string; value: string }) {
+  return (
+    <Card style={{ padding: 10, flex: 1, textAlign: 'center' }}>
+      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, color: 'var(--color-text)' }}>{value}</div>
+      <div style={{ fontSize: 10.5, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>{label}</div>
     </Card>
   );
 }

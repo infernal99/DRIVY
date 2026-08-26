@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFriendProfile, type FriendProfile } from '../services/friendsService';
+import { getFriendBattleStats, type BattleStats } from '../services/battlesService';
 import { getAchievementById } from '../data/achievements';
 import { getCategoryById } from '../data/categories';
 import { AppShell } from '../components/layout/AppShell';
@@ -20,14 +21,18 @@ function errorMessage(err: unknown, fallback: string): string {
 export function FriendProfilePage() {
   const { userId = '' } = useParams();
   const [profile, setProfile] = useState<FriendProfile | null>(null);
+  const [battleStats, setBattleStats] = useState<BattleStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
-    getFriendProfile(userId)
-      .then(setProfile)
+    Promise.all([getFriendProfile(userId), getFriendBattleStats(userId)])
+      .then(([p, b]) => {
+        setProfile(p);
+        setBattleStats(b);
+      })
       .catch((err) => setError(errorMessage(err, 'No se pudo cargar este perfil.')))
       .finally(() => setLoading(false));
   }, [userId]);
@@ -71,6 +76,22 @@ export function FriendProfilePage() {
                 </div>
                 <div style={{ fontSize: 11, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>Mejor nota</div>
               </Card>
+              {battleStats && battleStats.battlesPlayed > 0 && (
+                <>
+                  <Card style={{ padding: 13 }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 19, color: 'var(--color-text)' }}>
+                      {battleStats.winRatePct}%
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>Victorias en duelos</div>
+                  </Card>
+                  <Card style={{ padding: 13 }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 19, color: 'var(--color-text)' }}>
+                      {battleStats.accuracyPct}%
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>Acierto en duelos</div>
+                  </Card>
+                </>
+              )}
             </div>
 
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
