@@ -1,5 +1,6 @@
 import type { Question } from '../../types';
 import { TrafficSign, type SignKey } from '../ui/TrafficSign';
+import { getPublicImageUrl } from '../../services/storageService';
 
 export function QuestionImage({ question }: { question: Question }) {
   const image = question.image;
@@ -24,14 +25,9 @@ export function QuestionImage({ question }: { question: Question }) {
       </div>
     );
   }
-  if (image.url || image.localPath) {
-    return (
-      <img
-        src={image.localPath ?? image.url}
-        alt={image.alt}
-        style={{ width: '100%', maxWidth: 240, borderRadius: 20, marginBottom: 26 }}
-      />
-    );
+  if (image.url || image.localPath || image.storagePath) {
+    const src = image.localPath ?? image.url ?? getPublicImageUrl('question-images', image.storagePath!);
+    return <img src={src} alt={image.alt} style={{ width: '100%', maxWidth: 240, borderRadius: 20, marginBottom: 26 }} />;
   }
   return null;
 }

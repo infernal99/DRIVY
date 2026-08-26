@@ -80,6 +80,20 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     icon: 'check',
     check: (s) => s.longestCorrectStreak >= 10,
   },
+  {
+    id: 'precision-90',
+    name: '90% de precisión',
+    description: 'Alcanza un 90% de aciertos tras responder al menos 50 preguntas.',
+    icon: 'target',
+    check: (s) => s.questionsAnswered >= 50 && s.accuracyPct >= 90,
+  },
+  {
+    id: 'examen-perfecto',
+    name: 'Examen perfecto',
+    description: 'Aprueba un simulacro sin ningún fallo.',
+    icon: 'flag',
+    check: (s) => s.perfectExamCount >= 1,
+  },
 ];
 
 export function getAchievementById(id: string): AchievementDef | undefined {

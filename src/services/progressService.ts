@@ -230,6 +230,10 @@ export function computeStats(progress: UserProgress): UserStats {
     (c) => c.answered >= 5 && c.correct === c.answered,
   ).length;
 
+  const perfectExamCount = progress.examResults.filter(
+    (r) => r.passed && r.correctCount === r.totalCount,
+  ).length;
+
   return {
     questionsAnswered,
     correctAnswers,
@@ -245,6 +249,7 @@ export function computeStats(progress: UserProgress): UserStats {
     totalCategories: CATEGORIES.length,
     perfectCategoryCount,
     longestCorrectStreak: progress.bestCorrectStreak,
+    perfectExamCount,
   };
 }
 

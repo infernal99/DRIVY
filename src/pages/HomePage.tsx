@@ -2,8 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { useLearnPath, useOverallProgressPct } from '../hooks/useLearnPath';
 import { getLevelInfo } from '../utils/xp';
+import { getReadinessScore, READINESS_TIER_COPY } from '../services/masteryService';
 import { Icon } from '../components/ui/Icon';
 import { ModulePath } from '../components/learn/ModulePath';
+import { DailyMissionsCard } from '../components/missions/DailyMissionsCard';
+import { DashboardHighlights } from '../components/home/DashboardHighlights';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 
@@ -12,6 +15,7 @@ export function HomePage() {
   const progress = useProgressStore((s) => s.progress);
   const modules = useLearnPath();
   const pct = useOverallProgressPct();
+  const readiness = getReadinessScore(progress);
   const { level } = getLevelInfo(progress.xp);
   const activeModule = modules.find((m) => m.status === 'active');
   const inProgressCount = modules.filter((m) => m.status !== 'locked').length;
@@ -94,6 +98,32 @@ export function HomePage() {
           </div>
         </div>
 
+        <button
+          type="button"
+          onClick={() => navigate('/progress')}
+          style={{
+            marginTop: 12,
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: '#fff',
+            border: 'none',
+            borderRadius: 14,
+            padding: '12px 14px',
+            boxShadow: 'var(--shadow-card)',
+            cursor: 'pointer',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <Icon name="shield" size={16} color={READINESS_TIER_COPY[readiness.tier].color} />
+            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>¿Estás preparado?</span>
+          </div>
+          <span style={{ fontSize: 12.5, fontWeight: 700, color: READINESS_TIER_COPY[readiness.tier].color }}>
+            {readiness.score} · {READINESS_TIER_COPY[readiness.tier].label}
+          </span>
+        </button>
+
         <div style={{ marginTop: 22, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, color: 'var(--color-text)' }}>
             Tu camino
@@ -127,6 +157,9 @@ export function HomePage() {
             CONTINUAR APRENDIENDO
           </button>
         )}
+
+        <DailyMissionsCard />
+        <DashboardHighlights progress={progress} />
       </div>
     </AppShell>
   );

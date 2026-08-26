@@ -96,6 +96,14 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </>
   ),
+  users: (
+    <>
+      <circle cx="9" cy="8" r="3" stroke="currentColor" strokeWidth="2" />
+      <path d="M3 21c0-3.6 2.7-6 6-6s6 2.4 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M16 4.8a3 3 0 0 1 0 6.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M15.5 15.2c2.6.5 4.2 2.3 4.5 5.8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </>
+  ),
 };
 
 export function Icon({

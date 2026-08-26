@@ -49,6 +49,7 @@ export function QuestionSession({
   const [index, setIndex] = useState(0);
   const [step, setStep] = useState<'question' | 'feedback' | 'done'>('question');
   const [lastCorrect, setLastCorrect] = useState(false);
+  const [lastSelectedOptionId, setLastSelectedOptionId] = useState<string | null>(null);
   const [lastXp, setLastXp] = useState(0);
   const [sessionCorrect, setSessionCorrect] = useState(0);
   const [sessionXp, setSessionXp] = useState(0);
@@ -69,6 +70,7 @@ export function QuestionSession({
     const correct = answerQuestion(question, optionId);
     const xp = correct ? 10 : 2;
     setLastCorrect(correct);
+    setLastSelectedOptionId(optionId);
     setLastXp(xp);
     setSessionXp((v) => v + xp);
     if (correct) setSessionCorrect((v) => v + 1);
@@ -106,7 +108,16 @@ export function QuestionSession({
   }
 
   if (step === 'feedback') {
-    return <FeedbackScreen question={question} correct={lastCorrect} xpGained={lastXp} isLast={isLast} onContinue={handleFeedbackContinue} />;
+    return (
+      <FeedbackScreen
+        question={question}
+        correct={lastCorrect}
+        selectedOptionId={lastSelectedOptionId}
+        xpGained={lastXp}
+        isLast={isLast}
+        onContinue={handleFeedbackContinue}
+      />
+    );
   }
 
   return (

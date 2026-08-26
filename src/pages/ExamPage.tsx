@@ -305,7 +305,7 @@ function ExamResultView({
           {result.passed ? '¡Apto! Has aprobado el simulacro' : 'No apto — sigue practicando'}
         </div>
         <div style={{ fontSize: 12.5, opacity: 0.8, marginTop: 6 }}>
-          Máximo {3} fallos para aprobar · {result.totalCount - result.correctCount} fallos cometidos
+          Máximo {EXAM_CONFIG.maxErrorsToPass} fallos para aprobar · {result.totalCount - result.correctCount} fallos cometidos
         </div>
       </div>
 

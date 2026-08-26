@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getCategoryById } from '../data/categories';
 import { getLessonsForCategory } from '../data/lessons';
 import { getQuestionsByCategory } from '../services/questionService';
+import { getCategoryMastery, MASTERY_TIER_COPY } from '../services/masteryService';
 import { useProgressStore } from '../store/progressStore';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
@@ -10,6 +11,7 @@ import { Icon } from '../components/ui/Icon';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { ProgressBar } from '../components/ui/ProgressBar';
+import { Pill } from '../components/ui/Pill';
 import { EmptyState } from '../components/ui/EmptyState';
 
 export function CategoryPage() {
@@ -20,6 +22,7 @@ export function CategoryPage() {
   const lessons = useMemo(() => getLessonsForCategory(categoryId), [categoryId]);
   const totalQuestions = useMemo(() => getQuestionsByCategory(categoryId).length, [categoryId]);
   const catStat = progress.categoryStats[categoryId];
+  const mastery = getCategoryMastery(progress, categoryId);
 
   if (!category) {
     return (
@@ -85,6 +88,16 @@ export function CategoryPage() {
 
         <div style={{ marginBottom: 22 }}>
           <ProgressBar pct={pct} />
+        </div>
+
+        <div style={{ marginBottom: 22 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>Dominio de la categoría</span>
+            <Pill bg="var(--color-bg-locked)" color={MASTERY_TIER_COPY[mastery.tier].color}>
+              {MASTERY_TIER_COPY[mastery.tier].label} · {mastery.score}%
+            </Pill>
+          </div>
+          <ProgressBar pct={mastery.score} color={MASTERY_TIER_COPY[mastery.tier].color} />
         </div>
 
         {lessonStates.map(({ lesson, done, unlocked }) => (

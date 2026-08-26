@@ -136,7 +136,7 @@ export class SupabaseProgressRepository implements ProgressRepository {
     const prevLessons = new Set(previous?.completedLessonIds ?? []);
     for (const lessonId of next.completedLessonIds) {
       if (prevLessons.has(lessonId)) continue;
-      const { error } = await supabase.rpc('fn_complete_lesson', { p_lesson_id: lessonId });
+      const { error } = await supabase.rpc('fn_complete_lesson', { p_lesson_id: lessonId, p_today: todayISO() });
       if (error) throw error;
     }
 

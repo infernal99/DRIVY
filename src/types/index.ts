@@ -40,6 +40,13 @@ export interface QuestionImage {
   /** Key into the internal <TrafficSign> illustration registry (see
    *  components/ui/TrafficSign.tsx) for our own vector drawings — not a URL. */
   signKey?: string;
+  /**
+   * Path within the `question-images` Supabase Storage bucket (see
+   * src/services/storageService.ts) — not used by any content yet. An
+   * alternative to `url`/`localPath` for once real uploaded imagery exists;
+   * resolve it with `getPublicImageUrl('question-images', storagePath)`.
+   */
+  storagePath?: string;
   alt: string;
   sourceUrl?: string;
   sourceType: QuestionSourceType;
@@ -107,7 +114,7 @@ export type IconName =
   | 'sign' | 'rules' | 'road' | 'shield' | 'parking' | 'flag'
   | 'home' | 'book' | 'target' | 'chart' | 'user' | 'check'
   | 'lock' | 'flame' | 'settings' | 'help' | 'close' | 'chevronLeft'
-  | 'chevronRight' | 'alcohol' | 'car' | 'pedestrian' | 'sources';
+  | 'chevronRight' | 'alcohol' | 'car' | 'pedestrian' | 'sources' | 'users';
 
 /**
  * Internal sign catalogue entry (section 10 of the content spec). `image`
@@ -219,6 +226,7 @@ export interface UserStats {
   totalCategories: number;
   perfectCategoryCount: number;
   longestCorrectStreak: number;
+  perfectExamCount: number;
 }
 
 export interface LevelInfo {

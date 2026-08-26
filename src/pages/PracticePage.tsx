@@ -68,7 +68,7 @@ export function PracticePage() {
           iconColor="var(--color-primary)"
           iconBg="var(--color-info-bg)"
           title="Preguntas aleatorias"
-          subtitle="10 preguntas de repaso rápido"
+          subtitle="10 preguntas al azar de todo el temario, sin repaso adaptativo"
           onClick={() => navigate('/practice/random')}
         />
         <PracticeRow

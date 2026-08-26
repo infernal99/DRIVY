@@ -1,16 +1,20 @@
 import type { Question } from '../../types';
+import { explainMistake, explainQuestion } from '../../services/aiTutorService';
 import { Button } from '../ui/Button';
 import { Icon } from '../ui/Icon';
+import { AiTutorPanel } from '../ui/AiTutorPanel';
 
 export function FeedbackScreen({
   question,
   correct,
+  selectedOptionId,
   xpGained,
   onContinue,
   isLast,
 }: {
   question: Question;
   correct: boolean;
+  selectedOptionId: string | null;
   xpGained: number;
   onContinue: () => void;
   isLast: boolean;
@@ -72,6 +76,10 @@ export function FeedbackScreen({
             Guardada en «Mis errores» para que puedas repasarla.
           </p>
         )}
+        <AiTutorPanel
+          key={question.id}
+          fetchResponse={() => (correct ? explainQuestion(question) : explainMistake(question, selectedOptionId))}
+        />
         <div
           style={{
             display: 'flex',

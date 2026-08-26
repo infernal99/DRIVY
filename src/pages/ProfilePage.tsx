@@ -21,6 +21,7 @@ export function ProfilePage() {
   const unlockedIds = new Set(progress.achievements.map((a) => a.id));
 
   const links: { name: string; icon: IconName; to: string }[] = [
+    { name: 'Amigos', icon: 'users', to: '/friends' },
     { name: 'Estadísticas', icon: 'chart', to: '/progress' },
     { name: 'Fuentes oficiales', icon: 'sources', to: '/sources' },
     { name: 'Configuración', icon: 'settings', to: '/settings' },

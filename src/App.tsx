@@ -15,8 +15,11 @@ import { RandomPracticePage } from './pages/RandomPracticePage';
 import { DailyChallengePage } from './pages/DailyChallengePage';
 import { MistakeReviewPage } from './pages/MistakeReviewPage';
 import { ExamPage } from './pages/ExamPage';
+import { ExamHistoryPage } from './pages/ExamHistoryPage';
 import { ProgressPage } from './pages/ProgressPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { FriendsPage } from './pages/FriendsPage';
+import { FriendProfilePage } from './pages/FriendProfilePage';
 import { SourcesPage } from './pages/SourcesPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { HelpPage } from './pages/HelpPage';
@@ -52,7 +55,10 @@ function App() {
           <Route path="/practice/daily" element={<DailyChallengePage />} />
           <Route path="/practice/mistakes" element={<MistakeReviewPage />} />
           <Route path="/practice/exam/:mode" element={<ExamPage />} />
+          <Route path="/exams" element={<ExamHistoryPage />} />
           <Route path="/progress" element={<ProgressPage />} />
+          <Route path="/friends" element={<FriendsPage />} />
+          <Route path="/friends/:userId" element={<FriendProfilePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/sources" element={<SourcesPage />} />
           <Route path="/settings" element={<SettingsPage />} />

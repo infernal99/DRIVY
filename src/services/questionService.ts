@@ -1,4 +1,4 @@
-import type { Question, QuestionSourceType, UserProgress } from '../types';
+import type { Difficulty, Question, QuestionSourceType, UserProgress } from '../types';
 import {
   ALL_QUESTIONS,
   getQuestionById,
@@ -13,16 +13,29 @@ import { daysSince, todayISO } from '../utils/date';
 // docs/content-pipeline.md) — that keeps the selection algorithm, exam
 // generation, and any future backend swap invisible to components.
 
+/** Small nudge toward harder questions — new ones surface slightly sooner. */
+const DIFFICULTY_INTRO_BONUS: Record<Difficulty, number> = { easy: 0, medium: 4, hard: 9 };
+
+/**
+ * Once a question is "mastered" its score gets discounted so it fades out of
+ * rotation — but a smaller discount for harder questions means they decay
+ * out more slowly than easy ones, so they keep coming back for reinforcement
+ * a bit longer even after being answered correctly a few times.
+ */
+const DIFFICULTY_MASTERY_DISCOUNT: Record<Difficulty, number> = { easy: 25, medium: 20, hard: 12 };
+
 /**
  * Lightweight priority-review algorithm (not full SM-2, but the same spirit):
  * questions get a higher score — and therefore show up sooner — when they've
  * been failed, when they've gone a long time unseen, or when they've never
  * been attempted. Mastered questions (several correct answers, no recent
- * miss) fade out of rotation without disappearing completely.
+ * miss) fade out of rotation without disappearing completely. Difficulty
+ * factors in on both ends: harder questions get a small priority bump and
+ * decay out of rotation more slowly once mastered.
  */
 function priorityScore(progress: UserProgress, question: Question): number {
   const stat = progress.questionStats[question.id];
-  if (!stat) return 100; // never seen — high priority to introduce it
+  if (!stat) return 100 + DIFFICULTY_INTRO_BONUS[question.difficulty]; // never seen — high priority to introduce it
 
   let score = stat.dueScore * 8;
 
@@ -33,8 +46,10 @@ function priorityScore(progress: UserProgress, question: Question): number {
     score += Math.min(days * 2, 30);
   }
 
+  score += DIFFICULTY_INTRO_BONUS[question.difficulty];
+
   const mastered = stat.timesCorrect >= 3 && stat.lastResult === 'correct';
-  if (mastered) score -= 25;
+  if (mastered) score -= DIFFICULTY_MASTERY_DISCOUNT[question.difficulty];
 
   return Math.max(score, 1);
 }
@@ -123,6 +138,15 @@ export function pickQuestionsForSubcategory(progress: UserProgress, subcategoryI
 /** Picks `count` questions across the whole bank, prioritizing weak spots — the "practice" mode. */
 export function pickQuestionsAdaptive(progress: UserProgress, count: number): Question[] {
   return weightedSample(progress, ALL_QUESTIONS, count);
+}
+
+/**
+ * Same weighted selection as `pickQuestionsAdaptive`, but over a caller-given
+ * pool instead of the whole bank — lets exam generation (see examService.ts)
+ * reuse the adaptive algorithm when an exam is scoped to specific categories.
+ */
+export function pickQuestionsAdaptiveFrom(progress: UserProgress, pool: Question[], count: number): Question[] {
+  return weightedSample(progress, pool, count);
 }
 
 /** "review" mode — only questions currently in the user's mistake list. */

@@ -1,14 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { useAuthStore } from '../store/authStore';
 import { changePassword, deleteOwnAccount, MIN_PASSWORD_LENGTH } from '../services/authService';
+import { getMyFriendships, updatePrivacySettings } from '../services/friendsService';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
 import { AuthField } from '../components/auth/AuthField';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
+import { Toggle } from '../components/ui/Toggle';
 
 export function SettingsPage() {
   const navigate = useNavigate();
@@ -39,6 +41,7 @@ export function SettingsPage() {
 
         {authStatus === 'authenticated' && (
           <>
+            <PrivacyCard />
             <ChangePasswordCard />
             <DeleteAccountCard />
           </>
@@ -74,6 +77,63 @@ export function SettingsPage() {
         </Card>
       </div>
     </AppShell>
+  );
+}
+
+function PrivacyCard() {
+  const [loading, setLoading] = useState(true);
+  const [searchVisibility, setSearchVisibility] = useState(true);
+  const [profileVisibility, setProfileVisibility] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getMyFriendships()
+      .then((data) => {
+        setSearchVisibility(data.searchVisibility);
+        setProfileVisibility(data.profileVisibility);
+      })
+      .catch(() => setError('No se pudo cargar tu configuración de privacidad.'))
+      .finally(() => setLoading(false));
+  }, []);
+
+  function save(nextSearch: boolean, nextProfile: boolean) {
+    setSearchVisibility(nextSearch);
+    setProfileVisibility(nextProfile);
+    setSaving(true);
+    setError(null);
+    updatePrivacySettings(nextSearch, nextProfile)
+      .catch(() => setError('No se pudo guardar el cambio.'))
+      .finally(() => setSaving(false));
+  }
+
+  if (loading) return null;
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>Privacidad y amigos</div>
+      {error && <p style={{ fontSize: 12.5, color: 'var(--color-error)', margin: '4px 0 8px' }}>{error}</p>}
+
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '10px 0' }}>
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>Aparecer en la búsqueda</div>
+          <p style={{ fontSize: 12, color: 'var(--color-text-muted-60)', margin: '2px 0 0' }}>
+            Otras personas podrán encontrarte por nombre. Tu código de amigo siempre funciona, aunque lo desactives.
+          </p>
+        </div>
+        <Toggle checked={searchVisibility} disabled={saving} onChange={(next) => save(next, profileVisibility)} />
+      </div>
+
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '10px 0' }}>
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>Compartir tu perfil con amigos</div>
+          <p style={{ fontSize: 12, color: 'var(--color-text-muted-60)', margin: '2px 0 0' }}>
+            Tus amigos podrán ver tu nivel, XP, racha, logros y estadísticas de exámenes.
+          </p>
+        </div>
+        <Toggle checked={profileVisibility} disabled={saving} onChange={(next) => save(searchVisibility, next)} />
+      </div>
+    </Card>
   );
 }
 
