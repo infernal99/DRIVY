@@ -1,8 +1,6 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { usePremiumStore } from '../store/premiumStore';
-import { startCheckout } from '../services/premiumService';
 import { useLearnPath, useOverallProgressPct } from '../hooks/useLearnPath';
 import { getLevelInfo } from '../utils/xp';
 import { getReadinessScore, READINESS_TIER_COPY } from '../services/masteryService';
@@ -10,6 +8,7 @@ import { Icon } from '../components/ui/Icon';
 import { ModulePath } from '../components/learn/ModulePath';
 import { DailyMissionsCard } from '../components/missions/DailyMissionsCard';
 import { DashboardHighlights } from '../components/home/DashboardHighlights';
+import { PremiumBanner } from '../components/premium/PremiumBanner';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 
@@ -98,7 +97,7 @@ export function HomePage() {
       </div>
 
       <div style={{ padding: '4px 20px 100px' }}>
-        {!premiumLoading && !isPremium && <PremiumBanner />}
+        {!premiumLoading && !isPremium && <PremiumBanner style={{ marginBottom: 12 }} />}
 
         <div
           style={{
@@ -216,63 +215,6 @@ export function HomePage() {
         <DashboardHighlights progress={progress} />
       </div>
     </AppShell>
-  );
-}
-
-function PremiumBanner() {
-  const [submitting, setSubmitting] = useState(false);
-
-  async function handleClick() {
-    setSubmitting(true);
-    try {
-      await startCheckout();
-    } catch {
-      setSubmitting(false);
-    }
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={handleClick}
-      disabled={submitting}
-      style={{
-        marginBottom: 12,
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 12,
-        background: 'linear-gradient(135deg,#18181b,#312e81 60%,#3f3f46)',
-        border: 'none',
-        borderRadius: 16,
-        padding: '14px 16px',
-        boxShadow: '0 8px 20px rgba(24,24,27,0.3)',
-        cursor: submitting ? 'default' : 'pointer',
-        textAlign: 'left',
-      }}
-    >
-      <div
-        style={{
-          width: 36,
-          height: 36,
-          borderRadius: '50%',
-          background: 'rgba(250,204,21,0.15)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flex: 'none',
-        }}
-      >
-        <Icon name="crown" size={17} color="#facc15" />
-      </div>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 13.5, color: '#fff' }}>Hazte Premium</div>
-        <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.75)', marginTop: 1 }}>
-          Práctica y duelos ilimitados, avatares exclusivos
-        </div>
-      </div>
-      <Icon name="chevronRight" size={14} color="#facc15" />
-    </button>
   );
 }
 

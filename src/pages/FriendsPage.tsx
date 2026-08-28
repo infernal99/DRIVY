@@ -26,6 +26,8 @@ import {
 import { useFriendNotificationStore } from '../store/friendNotificationStore';
 import { notifyPush } from '../services/pushService';
 import { PremiumUpsellModal } from '../components/premium/PremiumUpsellModal';
+import { PremiumBanner } from '../components/premium/PremiumBanner';
+import { usePremiumStore } from '../store/premiumStore';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 import { Card, CardButton } from '../components/ui/Card';
@@ -471,12 +473,24 @@ function BattlesSection({
   }
 
   const hasAnything = battles.incoming.length > 0 || battles.outgoing.length > 0 || battles.active.length > 0;
+  const isPremium = usePremiumStore((s) => s.isPremium);
+  const battlesToday = usePremiumStore((s) => s.battlesToday);
+  const battlesLimit = usePremiumStore((s) => s.battlesLimit);
 
   return (
     <div style={{ marginBottom: 20 }}>
-      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
-        Duelos
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)' }}>Duelos</div>
+        {!isPremium && battlesLimit != null && (
+          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-muted-45)' }}>
+            {Math.min(battlesToday, battlesLimit)}/{battlesLimit} hoy
+          </span>
+        )}
       </div>
+
+      {!isPremium && (
+        <PremiumBanner subtitle="Duelos ilimitados con tus amigos, avatares exclusivos" style={{ marginBottom: 12 }} />
+      )}
 
       {error && <p style={{ fontSize: 12.5, color: 'var(--color-error)', margin: '0 0 10px' }}>{error}</p>}
 
