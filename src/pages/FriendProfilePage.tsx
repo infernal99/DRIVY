@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getFriendProfile, type FriendProfile } from '../services/friendsService';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getFriendProfile, removeFriend, type FriendProfile } from '../services/friendsService';
 import { getFriendBattleStats, type BattleStats } from '../services/battlesService';
 import { getAchievementById } from '../data/achievements';
 import { getCategoryById } from '../data/categories';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
 import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
 import { Pill } from '../components/ui/Pill';
 import { Icon } from '../components/ui/Icon';
 import { Avatar } from '../components/ui/Avatar';
@@ -19,11 +20,14 @@ function errorMessage(err: unknown, fallback: string): string {
 }
 
 export function FriendProfilePage() {
+  const navigate = useNavigate();
   const { userId = '' } = useParams();
   const [profile, setProfile] = useState<FriendProfile | null>(null);
   const [battleStats, setBattleStats] = useState<BattleStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [confirmingRemove, setConfirmingRemove] = useState(false);
+  const [removing, setRemoving] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -165,6 +169,45 @@ export function FriendProfilePage() {
                     );
                   })}
               </div>
+            )}
+
+            {confirmingRemove ? (
+              <div style={{ display: 'flex', gap: 8, marginTop: 24 }}>
+                <Button variant="secondary" style={{ flex: 1 }} onClick={() => setConfirmingRemove(false)} disabled={removing}>
+                  Cancelar
+                </Button>
+                <Button
+                  variant="danger"
+                  style={{ flex: 1 }}
+                  disabled={removing}
+                  onClick={() => {
+                    setRemoving(true);
+                    removeFriend(userId)
+                      .then(() => navigate('/friends'))
+                      .catch(() => setRemoving(false));
+                  }}
+                >
+                  {removing ? 'Eliminando…' : 'Confirmar'}
+                </Button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setConfirmingRemove(true)}
+                style={{
+                  display: 'block',
+                  margin: '24px auto 0',
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--color-error)',
+                  fontSize: 12.5,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  padding: 0,
+                }}
+              >
+                Eliminar amigo
+              </button>
             )}
           </>
         )}
