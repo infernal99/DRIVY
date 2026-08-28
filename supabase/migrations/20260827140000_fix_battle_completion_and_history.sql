@@ -1,11 +1,12 @@
--- Fix fn_submit_battle_answer: the insert's ON CONFLICT (battle_id, user_id,
--- question_index) targeted battle_answers_round_idx, which is a PARTIAL
--- unique index (where question_index is not null). Postgres only infers a
--- partial index as an ON CONFLICT target when the conflict clause repeats
--- that same WHERE predicate — without it, every insert raised "there is no
--- unique or exclusion constraint matching the ON CONFLICT specification",
--- silently swallowed by the client, which is why no round ever advanced for
--- either player once the 30s timer (or a real answer) tried to record it.
+-- Fixes the bug that made the final question of a duel "do nothing":
+-- fn_check_achievements(p_user_id) only allows checking your OWN
+-- achievements (it raises 'not authorized' when auth.uid() <> p_user_id,
+-- by design — a client must never unlock achievements for someone else).
+-- fn_submit_battle_answer was calling it for the OPPONENT too, which always
+-- raised, rolling back the entire round-completion transaction (the battle
+-- never reached 'completed', XP was never awarded, nothing advanced). Back
+-- to checking only the caller's own achievements, same as the original
+-- (pre-redesign) battle code did.
 
 create or replace function public.fn_submit_battle_answer(
   p_battle_id bigint,
@@ -119,6 +120,8 @@ begin
     insert into public.xp_events (user_id, amount, reason) values (v_uid, v_my_xp, case when v_winner = v_uid then 'exam_passed' else 'exam_failed' end);
     insert into public.xp_events (user_id, amount, reason) values (v_other_id, v_other_xp, case when v_winner = v_other_id then 'exam_passed' else 'exam_failed' end);
 
+    -- Only the caller's own achievements — fn_check_achievements enforces
+    -- auth.uid() = p_user_id and would abort this whole transaction otherwise.
     perform public.fn_check_achievements(v_uid);
   else
     update public.battles set current_question_index = p_question_index + 1, question_started_at = now() where id = p_battle_id;
