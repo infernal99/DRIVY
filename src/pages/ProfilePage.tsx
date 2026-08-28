@@ -1,14 +1,11 @@
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { useAuthStore } from '../store/authStore';
 import { computeStats } from '../services/progressService';
 import { getLevelInfo } from '../utils/xp';
 import { ACHIEVEMENTS } from '../data/achievements';
-import { getMyBattles, type BattleStats } from '../services/battlesService';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
-import { Card } from '../components/ui/Card';
 import { Icon } from '../components/ui/Icon';
 import { Pill } from '../components/ui/Pill';
 import { signOut } from '../services/authService';
@@ -22,14 +19,6 @@ export function ProfilePage() {
   const stats = computeStats(progress);
   const { level } = getLevelInfo(progress.xp);
   const unlockedIds = new Set(progress.achievements.map((a) => a.id));
-
-  const [battleStats, setBattleStats] = useState<BattleStats | null>(null);
-  useEffect(() => {
-    if (authStatus !== 'authenticated') return;
-    getMyBattles()
-      .then((data) => setBattleStats(data.stats))
-      .catch(() => setBattleStats(null));
-  }, [authStatus]);
 
   const links: { name: string; icon: IconName; to: string }[] = [
     { name: 'Amigos', icon: 'users', to: '/friends' },
@@ -77,25 +66,6 @@ export function ProfilePage() {
             <div style={{ fontSize: 12, color: 'var(--color-text-muted-45)', marginTop: 8 }}>{user.email}</div>
           )}
         </div>
-
-        {battleStats && battleStats.battlesPlayed > 0 && (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
-            <Card style={{ padding: 13 }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 19, color: 'var(--color-text)' }}>
-                {battleStats.winRatePct}%
-              </div>
-              <div style={{ fontSize: 11, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>
-                Victorias en duelos ({battleStats.battlesPlayed})
-              </div>
-            </Card>
-            <Card style={{ padding: 13 }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 19, color: 'var(--color-text)' }}>
-                {battleStats.accuracyPct}%
-              </div>
-              <div style={{ fontSize: 11, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>Acierto en duelos</div>
-            </Card>
-          </div>
-        )}
 
         <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
           Logros
