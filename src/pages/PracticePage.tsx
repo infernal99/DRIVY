@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { AppShell } from '../components/layout/AppShell';
@@ -5,10 +6,26 @@ import { BottomNav } from '../components/layout/BottomNav';
 import { Icon } from '../components/ui/Icon';
 import { CardButton } from '../components/ui/Card';
 import { EXAM_CONFIG } from '../services/examService';
+import { startPracticeSession, type PracticeKind } from '../services/premiumService';
+import { PremiumUpsellModal } from '../components/premium/PremiumUpsellModal';
 
 export function PracticePage() {
   const navigate = useNavigate();
   const mistakeCount = useProgressStore((s) => s.progress.mistakeIds.length);
+  const [showUpsell, setShowUpsell] = useState(false);
+  const [starting, setStarting] = useState(false);
+
+  async function tryStartPractice(kind: PracticeKind, to: string) {
+    if (starting) return;
+    setStarting(true);
+    try {
+      const allowed = await startPracticeSession(kind);
+      if (allowed) navigate(to);
+      else setShowUpsell(true);
+    } finally {
+      setStarting(false);
+    }
+  }
 
   return (
     <AppShell nav={<BottomNav />}>
@@ -20,7 +37,7 @@ export function PracticePage() {
       <div style={{ padding: '14px 20px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         <button
           type="button"
-          onClick={() => navigate('/practice/exam/simulacro')}
+          onClick={() => tryStartPractice('simulacro', '/practice/exam/simulacro')}
           style={{
             background: 'linear-gradient(135deg,#122B57,#1E4694 60%,#2F6FED)',
             borderRadius: 18,
@@ -69,7 +86,7 @@ export function PracticePage() {
           iconBg="var(--color-info-bg)"
           title="Preguntas aleatorias"
           subtitle="10 preguntas al azar de todo el temario, sin repaso adaptativo"
-          onClick={() => navigate('/practice/random')}
+          onClick={() => tryStartPractice('random', '/practice/random')}
         />
         <PracticeRow
           icon="flame"
@@ -77,7 +94,7 @@ export function PracticePage() {
           iconBg="var(--color-streak-bg)"
           title="Reto diario"
           subtitle="5 preguntas para mantener tu racha"
-          onClick={() => navigate('/practice/daily')}
+          onClick={() => tryStartPractice('daily', '/practice/daily')}
         />
         <PracticeRow
           icon="flag"
@@ -85,9 +102,11 @@ export function PracticePage() {
           iconBg="var(--color-bg-locked)"
           title="Examen real"
           subtitle="Simulación cronometrada del examen oficial"
-          onClick={() => navigate('/practice/exam/real')}
+          onClick={() => tryStartPractice('examen_real', '/practice/exam/real')}
         />
       </div>
+
+      {showUpsell && <PremiumUpsellModal onClose={() => setShowUpsell(false)} />}
     </AppShell>
   );
 }

@@ -14,6 +14,8 @@ import {
 } from '../services/pushService';
 import { useThemeStore, type ThemePreference } from '../store/themeStore';
 import { useFeedbackSettingsStore } from '../store/feedbackSettingsStore';
+import { usePremiumStore } from '../store/premiumStore';
+import { openBillingPortal, startCheckout } from '../services/premiumService';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
 import { AuthField } from '../components/auth/AuthField';
@@ -53,6 +55,7 @@ export function SettingsPage() {
 
         {authStatus === 'authenticated' && (
           <>
+            <SubscriptionCard />
             <NotificationsCard />
             <PrivacyCard />
             <ChangePasswordCard />
@@ -148,6 +151,58 @@ function FeedbackFxCard() {
         </div>
         <Toggle checked={enabled} onChange={setEnabled} />
       </div>
+    </Card>
+  );
+}
+
+function SubscriptionCard() {
+  const isPremium = usePremiumStore((s) => s.isPremium);
+  const loading = usePremiumStore((s) => s.loading);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleClick() {
+    setSubmitting(true);
+    setError(null);
+    try {
+      if (isPremium) await openBillingPortal();
+      else await startCheckout();
+    } catch {
+      setError('No se pudo abrir la página de pago. Inténtalo de nuevo.');
+      setSubmitting(false);
+    }
+  }
+
+  if (loading) return null;
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+        <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)' }}>Suscripción</div>
+        {isPremium && (
+          <span
+            style={{
+              fontSize: 11,
+              fontWeight: 700,
+              color: '#facc15',
+              background: '#18181b',
+              padding: '3px 8px',
+              borderRadius: 6,
+            }}
+          >
+            PREMIUM
+          </span>
+        )}
+      </div>
+      <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: '0 0 12px' }}>
+        {isPremium
+          ? 'Tienes acceso ilimitado a práctica, duelos y avatares exclusivos.'
+          : 'Hazte Premium para práctica y duelos ilimitados, avatares exclusivos y más.'}
+      </p>
+      {error && <p style={{ fontSize: 12.5, color: 'var(--color-error)', margin: '0 0 8px' }}>{error}</p>}
+      <Button onClick={handleClick} disabled={submitting} style={{ width: '100%' }}>
+        {submitting ? '…' : isPremium ? 'Gestionar suscripción' : 'Hazte Premium'}
+      </Button>
     </Card>
   );
 }

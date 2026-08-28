@@ -3,6 +3,7 @@ import { SyncNoticeToast } from './components/auth/SyncNoticeToast';
 import { FriendNotificationWatcher } from './components/friends/FriendNotificationWatcher';
 import { IncomingRequestToast } from './components/friends/IncomingRequestToast';
 import { PendingFriendInviteHandler } from './components/friends/PendingFriendInviteHandler';
+import { PremiumStatusSync } from './components/premium/PremiumStatusSync';
 import { InstallBanner } from './components/pwa/InstallBanner';
 import { RequireAuth } from './components/auth/RequireAuth';
 import { RedirectIfAuthed } from './components/auth/RedirectIfAuthed';
@@ -39,6 +40,7 @@ function App() {
       <FriendNotificationWatcher />
       <IncomingRequestToast />
       <PendingFriendInviteHandler />
+      <PremiumStatusSync />
       <InstallBanner />
       <Routes>
         {/* Dev-only content curation tool (content spec §15) — never shipped in production builds. */}

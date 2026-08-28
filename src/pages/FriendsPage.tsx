@@ -25,6 +25,7 @@ import {
 } from '../services/battlesService';
 import { useFriendNotificationStore } from '../store/friendNotificationStore';
 import { notifyPush } from '../services/pushService';
+import { PremiumUpsellModal } from '../components/premium/PremiumUpsellModal';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 import { Card, CardButton } from '../components/ui/Card';
@@ -382,6 +383,7 @@ function FriendListRow({
 }) {
   const [challenging, setChallenging] = useState(false);
   const [challengeError, setChallengeError] = useState<string | null>(null);
+  const [showUpsell, setShowUpsell] = useState(false);
 
   function handleChallenge(e: MouseEvent) {
     e.stopPropagation();
@@ -392,7 +394,13 @@ function FriendListRow({
         notifyPush({ type: 'battle_request', battleId });
         onChallenged();
       })
-      .catch((err) => setChallengeError(errorMessage(err, 'No se pudo enviar el reto.')))
+      .catch((err) => {
+        if (err instanceof Error && err.message.includes('daily duel limit reached')) {
+          setShowUpsell(true);
+        } else {
+          setChallengeError(errorMessage(err, 'No se pudo enviar el reto.'));
+        }
+      })
       .finally(() => setChallenging(false));
   }
 
@@ -436,6 +444,7 @@ function FriendListRow({
       <span style={{ flex: 'none', width: 56, textAlign: 'right', fontSize: 13, fontWeight: 700, color: 'var(--color-xp-text)' }}>
         {entry.weeklyXp} XP
       </span>
+      {showUpsell && <PremiumUpsellModal onClose={() => setShowUpsell(false)} />}
     </div>
   );
 }
