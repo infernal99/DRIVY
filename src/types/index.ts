@@ -114,7 +114,7 @@ export type IconName =
   | 'sign' | 'rules' | 'road' | 'shield' | 'parking' | 'flag'
   | 'home' | 'book' | 'target' | 'chart' | 'user' | 'check'
   | 'lock' | 'flame' | 'settings' | 'help' | 'close' | 'chevronLeft'
-  | 'chevronRight' | 'alcohol' | 'car' | 'pedestrian' | 'sources' | 'users';
+  | 'chevronRight' | 'alcohol' | 'car' | 'pedestrian' | 'sources' | 'users' | 'download';
 
 /**
  * Internal sign catalogue entry (section 10 of the content spec). `image`

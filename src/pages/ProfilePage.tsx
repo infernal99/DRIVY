@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { useAuthStore } from '../store/authStore';
+import { promptInstall, useInstallPromptStore } from '../store/installPromptStore';
 import { computeStats } from '../services/progressService';
 import { getLevelInfo } from '../utils/xp';
 import { ACHIEVEMENTS } from '../data/achievements';
@@ -19,6 +21,20 @@ export function ProfilePage() {
   const stats = computeStats(progress);
   const { level } = getLevelInfo(progress.xp);
   const unlockedIds = new Set(progress.achievements.map((a) => a.id));
+
+  const deferredInstallEvent = useInstallPromptStore((s) => s.deferredEvent);
+  const appInstalled = useInstallPromptStore((s) => s.installed);
+  const isIOS = useInstallPromptStore((s) => s.isIOS);
+  const canInstall = !appInstalled && (!!deferredInstallEvent || isIOS);
+  const [showIOSInstallSteps, setShowIOSInstallSteps] = useState(false);
+
+  function handleInstallClick() {
+    if (isIOS) {
+      setShowIOSInstallSteps((v) => !v);
+      return;
+    }
+    promptInstall();
+  }
 
   const links: { name: string; icon: IconName; to: string }[] = [
     { name: 'Amigos', icon: 'users', to: '/friends' },
@@ -121,7 +137,7 @@ export function ProfilePage() {
                 alignItems: 'center',
                 gap: 12,
                 padding: '14px 16px',
-                borderBottom: i < links.length - 1 ? '1px solid var(--color-border-subtle)' : 'none',
+                borderBottom: i < links.length - 1 || canInstall ? '1px solid var(--color-border-subtle)' : 'none',
                 border: 'none',
                 borderBottomStyle: 'solid',
                 background: 'none',
@@ -137,7 +153,37 @@ export function ProfilePage() {
               <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
             </button>
           ))}
+
+          {canInstall && (
+            <button
+              type="button"
+              onClick={handleInstallClick}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
+                padding: '14px 16px',
+                border: 'none',
+                background: 'none',
+                width: '100%',
+                textAlign: 'left',
+                cursor: 'pointer',
+              }}
+            >
+              <div style={{ width: 32, height: 32, borderRadius: 9, background: 'var(--color-info-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)' }}>
+                <Icon name="download" size={16} />
+              </div>
+              <span style={{ flex: 1, fontSize: 14, fontWeight: 600, color: 'var(--color-text)' }}>Instalar aplicación</span>
+              <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
+            </button>
+          )}
         </div>
+
+        {showIOSInstallSteps && (
+          <p style={{ fontSize: 12, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: '10px 4px 0' }}>
+            Toca el icono <strong>Compartir</strong> de Safari (el cuadrado con la flecha hacia arriba) y luego <strong>«Añadir a pantalla de inicio»</strong>.
+          </p>
+        )}
 
         {authStatus === 'authenticated' && (
           <button

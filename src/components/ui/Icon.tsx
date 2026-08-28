@@ -104,6 +104,12 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M15.5 15.2c2.6.5 4.2 2.3 4.5 5.8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </>
   ),
+  download: (
+    <>
+      <path d="M12 3v12M7 10l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M4 19h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </>
+  ),
 };
 
 export function Icon({

@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
 import { initAuth } from './store/authStore'
+import './store/installPromptStore'
 
 initAuth()
 
