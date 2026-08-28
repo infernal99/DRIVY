@@ -42,6 +42,8 @@ export interface BattleHistoryEntry {
   totalCount: number;
   won: boolean;
   tied: boolean;
+  /** 'abandoned' means neither `won`/`tied` is meaningful — no winner was ever decided and nothing counted toward stats/XP. */
+  status: 'completed' | 'abandoned';
   completedAt: string;
 }
 
@@ -110,13 +112,19 @@ export function resolveBattleQuestions(questionIds: string[]): Question[] {
   return questionIds.map((id) => getQuestion(id)).filter((q): q is Question => Boolean(q));
 }
 
+/** Ends an active duel outright — counts toward neither player's stats/XP, but stays reviewable. */
+export async function abandonBattle(battleId: number): Promise<void> {
+  const { error } = await supabase.rpc('fn_abandon_battle', { p_battle_id: battleId });
+  if (error) throw error;
+}
+
 export interface BattleRoundAnswer {
   selectedOptionId: string | null;
   correct: boolean;
 }
 
 export interface BattleRoundState {
-  status: 'active' | 'completed';
+  status: 'active' | 'completed' | 'abandoned';
   currentQuestionIndex: number;
   questionStartedAt: string;
   questionCount: number;
