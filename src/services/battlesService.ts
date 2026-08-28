@@ -1,5 +1,6 @@
 import { supabase } from '../lib/supabase';
 import { getQuestion, pickRandomQuestionIds } from './questionService';
+import { shuffleQuestionOptions } from '../utils/shuffle';
 import type { Question } from '../types';
 
 // A "battle" is a synchronized round-by-round duel: both players get the
@@ -74,6 +75,20 @@ export async function getFriendBattleStats(friendUserId: string): Promise<Battle
   return data as BattleStats;
 }
 
+export interface HeadToHeadRecord {
+  myWins: number;
+  theirWins: number;
+  ties: number;
+  totalBattles: number;
+}
+
+/** Duel record against this one specific friend — not this user's overall win rate. */
+export async function getHeadToHead(friendUserId: string): Promise<HeadToHeadRecord> {
+  const { data, error } = await supabase.rpc('fn_get_head_to_head', { p_friend_user_id: friendUserId });
+  if (error) throw error;
+  return data as HeadToHeadRecord;
+}
+
 export async function sendBattleRequest(friendUserId: string, questionCount = 10): Promise<{ battleId: number }> {
   const { data, error } = await supabase.rpc('fn_send_battle_request', {
     p_friend_user_id: friendUserId,
@@ -107,9 +122,18 @@ export async function declineBattleRequest(battleId: number): Promise<void> {
   if (error) throw error;
 }
 
-/** Resolves an active battle's shared question ids to full local Question objects, in the server-given order. */
+/**
+ * Resolves an active battle's shared question ids to full local Question
+ * objects, in the server-given order. Shuffles each question's own options
+ * (same as every other mode — see questionService's weightedSample) so the
+ * correct answer isn't always sitting in whatever position the content
+ * bank happens to store it in; this is purely a per-client display detail,
+ * since correctness is always tracked by option id, never by position, so
+ * both players can shuffle independently without needing to agree on an
+ * order.
+ */
 export function resolveBattleQuestions(questionIds: string[]): Question[] {
-  return questionIds.map((id) => getQuestion(id)).filter((q): q is Question => Boolean(q));
+  return questionIds.map((id) => getQuestion(id)).filter((q): q is Question => Boolean(q)).map(shuffleQuestionOptions);
 }
 
 /** Ends an active duel outright — counts toward neither player's stats/XP, but stays reviewable. */

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getFriendProfile, removeFriend, type FriendProfile } from '../services/friendsService';
-import { getFriendBattleStats, type BattleStats } from '../services/battlesService';
+import { getFriendBattleStats, getHeadToHead, type BattleStats, type HeadToHeadRecord } from '../services/battlesService';
 import { getAchievementById } from '../data/achievements';
 import { getCategoryById } from '../data/categories';
 import { AppShell } from '../components/layout/AppShell';
@@ -24,6 +24,7 @@ export function FriendProfilePage() {
   const { userId = '' } = useParams();
   const [profile, setProfile] = useState<FriendProfile | null>(null);
   const [battleStats, setBattleStats] = useState<BattleStats | null>(null);
+  const [headToHead, setHeadToHead] = useState<HeadToHeadRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [confirmingRemove, setConfirmingRemove] = useState(false);
@@ -32,10 +33,11 @@ export function FriendProfilePage() {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    Promise.all([getFriendProfile(userId), getFriendBattleStats(userId)])
-      .then(([p, b]) => {
+    Promise.all([getFriendProfile(userId), getFriendBattleStats(userId), getHeadToHead(userId)])
+      .then(([p, b, h2h]) => {
         setProfile(p);
         setBattleStats(b);
+        setHeadToHead(h2h);
       })
       .catch((err) => setError(errorMessage(err, 'No se pudo cargar este perfil.')))
       .finally(() => setLoading(false));
@@ -97,6 +99,34 @@ export function FriendProfilePage() {
                 </>
               )}
             </div>
+
+            {headToHead && headToHead.totalBattles > 0 && (
+              <Card style={{ padding: 16, marginBottom: 20, textAlign: 'center' }}>
+                <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--color-text-muted-45)', textTransform: 'uppercase', letterSpacing: 0.3, marginBottom: 8 }}>
+                  Historial de duelos
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 28, color: 'var(--color-primary)' }}>
+                      {headToHead.myWins}
+                    </div>
+                    <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-50)', fontWeight: 600 }}>Tú</div>
+                  </div>
+                  <div style={{ fontSize: 15, color: 'var(--color-text-muted-40)', fontWeight: 700 }}>—</div>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 28, color: 'var(--color-text)' }}>
+                      {headToHead.theirWins}
+                    </div>
+                    <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-50)', fontWeight: 600 }}>{profile.displayName}</div>
+                  </div>
+                </div>
+                {headToHead.ties > 0 && (
+                  <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)', marginTop: 8 }}>
+                    {headToHead.ties} {headToHead.ties === 1 ? 'empate' : 'empates'}
+                  </div>
+                )}
+              </Card>
+            )}
 
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
               Logros
