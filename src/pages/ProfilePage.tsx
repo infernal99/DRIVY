@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { useAuthStore } from '../store/authStore';
 import { promptInstall, useInstallPromptStore } from '../store/installPromptStore';
 import { computeStats } from '../services/progressService';
+import { getMyAvatarId } from '../services/avatarService';
 import { getLevelInfo } from '../utils/xp';
 import { ACHIEVEMENTS } from '../data/achievements';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 import { Icon } from '../components/ui/Icon';
 import { Pill } from '../components/ui/Pill';
+import { Avatar } from '../components/ui/Avatar';
+import { AvatarPickerModal } from '../components/profile/AvatarPickerModal';
 import { signOut } from '../services/authService';
 import type { IconName } from '../types';
 
@@ -21,6 +24,16 @@ export function ProfilePage() {
   const stats = computeStats(progress);
   const { level } = getLevelInfo(progress.xp);
   const unlockedIds = new Set(progress.achievements.map((a) => a.id));
+
+  const [avatarId, setAvatarId] = useState<string | null>(null);
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
+
+  useEffect(() => {
+    if (authStatus !== 'authenticated') return;
+    getMyAvatarId()
+      .then(setAvatarId)
+      .catch(() => setAvatarId(null));
+  }, [authStatus]);
 
   const deferredInstallEvent = useInstallPromptStore((s) => s.deferredEvent);
   const appInstalled = useInstallPromptStore((s) => s.installed);
@@ -48,24 +61,35 @@ export function ProfilePage() {
     <AppShell nav={<BottomNav />}>
       <div style={{ flex: 1, overflowY: 'auto', padding: '20px 20px 20px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: 20 }}>
-          <div
-            style={{
-              width: 76,
-              height: 76,
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg,#2F6FED,#5B8CF5)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-display)',
-              fontWeight: 600,
-              color: '#fff',
-              fontSize: 28,
-              boxShadow: '0 8px 20px rgba(47,111,237,0.3)',
-            }}
+          <button
+            type="button"
+            onClick={() => authStatus === 'authenticated' && setShowAvatarPicker(true)}
+            aria-label="Cambiar avatar"
+            style={{ position: 'relative', background: 'none', border: 'none', padding: 0, cursor: authStatus === 'authenticated' ? 'pointer' : 'default' }}
           >
-            {progress.userName.charAt(0).toUpperCase()}
-          </div>
+            <div style={{ borderRadius: '50%', boxShadow: '0 8px 20px rgba(47,111,237,0.3)' }}>
+              <Avatar name={progress.userName} size={76} avatarId={avatarId} />
+            </div>
+            {authStatus === 'authenticated' && (
+              <div
+                style={{
+                  position: 'absolute',
+                  right: -2,
+                  bottom: -2,
+                  width: 26,
+                  height: 26,
+                  borderRadius: '50%',
+                  background: 'var(--color-primary)',
+                  border: '2px solid var(--color-bg-screen)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Icon name="settings" size={12} color="#fff" />
+              </div>
+            )}
+          </button>
           <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 18, color: 'var(--color-text)', marginTop: 10 }}>
             {progress.userName}
           </div>
@@ -208,6 +232,15 @@ export function ProfilePage() {
           </button>
         )}
       </div>
+
+      {showAvatarPicker && (
+        <AvatarPickerModal
+          currentXp={progress.xp}
+          selectedAvatarId={avatarId}
+          onClose={() => setShowAvatarPicker(false)}
+          onSelected={setAvatarId}
+        />
+      )}
     </AppShell>
   );
 }

@@ -320,7 +320,7 @@ function SearchSection({ onSent }: { onSent: () => void }) {
           ) : (
             results.map((r) => (
               <Card key={r.friendCode} style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-                <Avatar name={r.displayName} size={36} />
+                <Avatar name={r.displayName} size={36} avatarId={r.avatarUrl} />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>{r.displayName}</div>
                   <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)' }}>{r.friendCode}</div>
@@ -359,7 +359,7 @@ function RequestsSection({
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {requests.map((req) => (
           <Card key={req.requestId} style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10 }}>
-            <Avatar name={req.displayName} size={36} />
+            <Avatar name={req.displayName} size={36} avatarId={req.avatarUrl} />
             <span style={{ flex: 1, fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>{req.displayName}</span>
             <div style={{ display: 'flex', gap: 6 }}>{renderActions(req)}</div>
           </Card>
@@ -412,7 +412,7 @@ function FriendListRow({
       }}
     >
       <span style={{ width: 20, textAlign: 'center', fontWeight: 700, fontSize: 13, color: 'var(--color-text-muted-45)' }}>{rank}</span>
-      <Avatar name={entry.displayName} size={32} />
+      <Avatar name={entry.displayName} size={32} avatarId={entry.avatarUrl} />
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>
           {entry.displayName}
@@ -473,7 +473,7 @@ function BattlesSection({
 
       {battles.incoming.map((invite: BattleInviteSummary) => (
         <Card key={invite.battleId} style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-          <Avatar name={invite.displayName} size={36} />
+          <Avatar name={invite.displayName} size={36} avatarId={invite.avatarUrl} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>{invite.displayName} te reta a un duelo</div>
             <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)' }}>{invite.questionCount} preguntas</div>
@@ -513,7 +513,7 @@ function BattlesSection({
 
       {battles.outgoing.map((invite: BattleInviteSummary) => (
         <Card key={invite.battleId} style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-          <Avatar name={invite.displayName} size={36} />
+          <Avatar name={invite.displayName} size={36} avatarId={invite.avatarUrl} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>Esperando respuesta de {invite.displayName}</div>
             <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)' }}>{invite.questionCount} preguntas</div>
@@ -535,7 +535,7 @@ function BattlesSection({
           onClick={() => onOpenBattle(active.battleId)}
           style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8, width: '100%' }}
         >
-          <Avatar name={active.displayName} size={36} />
+          <Avatar name={active.displayName} size={36} avatarId={active.avatarUrl} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>Duelo con {active.displayName}</div>
             <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)' }}>
@@ -562,7 +562,7 @@ function BattlesSection({
               onClick={() => onOpenBattle(entry.battleId)}
               style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10, width: '100%' }}
             >
-              <Avatar name={entry.displayName} size={36} />
+              <Avatar name={entry.displayName} size={36} avatarId={entry.avatarUrl} />
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>
                   {entry.status === 'abandoned'

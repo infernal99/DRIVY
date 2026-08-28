@@ -78,7 +78,7 @@ export function IncomingRequestToast() {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <Avatar name={item.displayName} size={36} />
+        <Avatar name={item.displayName} size={36} avatarId={item.avatarUrl} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--color-text)' }}>{title}</div>
           <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-60)', marginTop: 1 }}>{subtitle}</div>
