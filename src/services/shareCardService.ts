@@ -18,17 +18,35 @@ export interface ResultCardData {
 const WIDTH = 1080;
 const HEIGHT = 1350;
 
+let fontsPreloaded: Promise<void> | null = null;
+
+/**
+ * Kicks off font loading — call this as soon as a result screen mounts
+ * (before the user has tapped anything), not lazily inside
+ * generateResultCardImage. Safari's "was this triggered by a user
+ * gesture" window for navigator.share() is short-lived and doesn't
+ * survive arbitrary async work; waiting on font loading *after* the tap
+ * was enough delay to make iOS silently refuse the share sheet.
+ */
+export function preloadShareCardFonts(): void {
+  if (fontsPreloaded) return;
+  fontsPreloaded = Promise.all([
+    document.fonts.load('700 100px Fredoka'),
+    document.fonts.load('600 40px "Plus Jakarta Sans"'),
+    document.fonts.load('500 32px "Plus Jakarta Sans"'),
+  ])
+    .then(() => document.fonts.ready)
+    .then(() => undefined)
+    .catch(() => undefined);
+}
+
 async function ensureFontsLoaded() {
-  try {
-    await Promise.all([
-      document.fonts.load('700 100px Fredoka'),
-      document.fonts.load('600 40px "Plus Jakarta Sans"'),
-      document.fonts.load('500 32px "Plus Jakarta Sans"'),
-    ]);
-    await document.fonts.ready;
-  } catch {
-    // Falls back to the canvas default font — still legible, just not on-brand.
-  }
+  preloadShareCardFonts();
+  await fontsPreloaded;
+}
+
+function isIOS(): boolean {
+  return /iphone|ipad|ipod/i.test(navigator.userAgent);
 }
 
 export async function generateResultCardImage(data: ResultCardData): Promise<Blob> {
@@ -122,6 +140,17 @@ export async function shareResultCard(data: ResultCardData): Promise<ShareOutcom
     }
 
     const url = URL.createObjectURL(blob);
+
+    if (isIOS()) {
+      // The `download` attribute is unreliable on iOS Safari (it often
+      // just navigates instead of saving) — open the image in a new tab
+      // so the user can long-press it → "Add to Photos" instead, which
+      // always works there.
+      window.open(url, '_blank');
+      setTimeout(() => URL.revokeObjectURL(url), 60_000);
+      return 'downloaded';
+    }
+
     const a = document.createElement('a');
     a.href = url;
     a.download = 'drivy-resultado.png';
