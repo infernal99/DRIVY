@@ -1,5 +1,19 @@
-/** Same initial-letter circle used on Home/Profile — DRIVY has no avatar upload feature, so this is the only avatar rendering there is. */
-export function Avatar({ name, size = 44 }: { name: string; size?: number }) {
+import { isAvatarId } from '../../data/avatars';
+import { AvatarIcon } from './AvatarIcon';
+
+/**
+ * Same circle used everywhere a person is shown (Home, Profile, Friends).
+ * Renders their chosen catalog avatar (see src/data/avatars.ts) when
+ * `avatarId` is a real catalog id — profiles.avatar_url stores one of
+ * those ids once a user picks one — falling back to the original
+ * initial-letter circle otherwise (nobody's picked one yet, or the value
+ * isn't a recognized id).
+ */
+export function Avatar({ name, size = 44, avatarId }: { name: string; size?: number; avatarId?: string | null }) {
+  if (isAvatarId(avatarId)) {
+    return <AvatarIcon avatarId={avatarId} size={size} />;
+  }
+
   return (
     <div
       style={{

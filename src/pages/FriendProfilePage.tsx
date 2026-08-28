@@ -54,7 +54,7 @@ export function FriendProfilePage() {
         ) : (
           <>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: 20 }}>
-              <Avatar name={profile.displayName} size={76} />
+              <Avatar name={profile.displayName} size={76} avatarId={profile.avatarUrl} />
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 18, color: 'var(--color-text)', marginTop: 10 }}>
                 {profile.displayName}
               </div>
