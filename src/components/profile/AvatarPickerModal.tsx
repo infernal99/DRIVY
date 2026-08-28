@@ -90,11 +90,28 @@ export function AvatarPickerModal({
                   cursor: unlocked ? 'pointer' : 'default',
                 }}
               >
-                <div style={{ position: 'relative', opacity: unlocked ? 1 : 0.35 }}>
-                  <AvatarIcon avatarId={entry.id} size={56} />
+                <div style={{ position: 'relative' }}>
+                  <div style={{ opacity: unlocked ? 1 : 0.4, filter: unlocked ? 'none' : 'grayscale(0.5)' }}>
+                    <AvatarIcon avatarId={entry.id} size={56} />
+                  </div>
                   {!unlocked && (
-                    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Icon name="lock" size={20} color="#fff" />
+                    <div
+                      style={{
+                        position: 'absolute',
+                        right: -3,
+                        bottom: -3,
+                        width: 22,
+                        height: 22,
+                        borderRadius: '50%',
+                        background: 'var(--color-text)',
+                        border: '2px solid var(--color-bg-card)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: 'var(--shadow-card)',
+                      }}
+                    >
+                      <Icon name="lock" size={11} color="var(--color-bg-card)" />
                     </div>
                   )}
                 </div>
