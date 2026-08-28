@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { SyncNoticeToast } from './components/auth/SyncNoticeToast';
 import { FriendNotificationWatcher } from './components/friends/FriendNotificationWatcher';
 import { IncomingRequestToast } from './components/friends/IncomingRequestToast';
+import { PendingFriendInviteHandler } from './components/friends/PendingFriendInviteHandler';
 import { InstallBanner } from './components/pwa/InstallBanner';
 import { RequireAuth } from './components/auth/RequireAuth';
 import { RedirectIfAuthed } from './components/auth/RedirectIfAuthed';
@@ -29,6 +30,7 @@ import { SettingsPage } from './pages/SettingsPage';
 import { HelpPage } from './pages/HelpPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { AdminContentPage } from './pages/AdminContentPage';
+import { InviteFriendPage } from './pages/InviteFriendPage';
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
       <SyncNoticeToast />
       <FriendNotificationWatcher />
       <IncomingRequestToast />
+      <PendingFriendInviteHandler />
       <InstallBanner />
       <Routes>
         {/* Dev-only content curation tool (content spec §15) — never shipped in production builds. */}
@@ -50,6 +53,7 @@ function App() {
         {/* Public regardless of auth state — see RedirectIfAuthed's comment for why. */}
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/invite/:code" element={<InviteFriendPage />} />
 
         {/* Everything else requires a signed-in account — no guest mode. */}
         <Route element={<RequireAuth />}>

@@ -46,6 +46,7 @@ export function FriendsPage() {
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [shareNote, setShareNote] = useState<string | null>(null);
 
   const ingestNotifications = useFriendNotificationStore((s) => s.ingest);
   const ingestBattleNotifications = useFriendNotificationStore((s) => s.ingestBattles);
@@ -108,6 +109,29 @@ export function FriendsPage() {
       .catch(() => {});
   }
 
+  async function shareInviteLink(friendCode: string) {
+    const url = `${window.location.origin}/invite/${friendCode}`;
+    const text = 'Únete a DRIVY conmigo y practiquemos juntos el examen del carnet:';
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'DRIVY', text, url });
+        return;
+      } catch (err) {
+        if ((err as Error).name === 'AbortError') return;
+        // Fall through to the clipboard fallback below.
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(url);
+      setShareNote('ENLACE COPIADO');
+      setTimeout(() => setShareNote(null), 2000);
+    } catch {
+      // Nothing more we can do without either API.
+    }
+  }
+
   return (
     <AppShell nav={<BottomNav />}>
       <div style={{ padding: '20px 20px 4px' }}>
@@ -143,9 +167,17 @@ export function FriendsPage() {
                   {copied ? 'COPIADO' : 'COPIAR'}
                 </Button>
               </div>
-              <p style={{ fontSize: 12, color: 'var(--color-text-muted-45)', margin: '8px 0 0' }}>
-                Compártelo para que otras personas puedan añadirte.
+              <p style={{ fontSize: 12, color: 'var(--color-text-muted-45)', margin: '8px 0 0 0' }}>
+                Compártelo para que otras personas puedan añadirte, o envía el enlace: quien lo abra se añadirá automáticamente.
               </p>
+              <Button
+                variant="secondary"
+                onClick={() => shareInviteLink(data.myFriendCode)}
+                style={{ marginTop: 10, padding: '9px 0', fontSize: 12.5 }}
+              >
+                <Icon name="users" size={13} />
+                {shareNote ?? 'COMPARTIR ENLACE'}
+              </Button>
             </Card>
 
             <SearchSection onSent={refresh} />
