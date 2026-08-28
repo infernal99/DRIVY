@@ -24,6 +24,7 @@ import {
   type MyBattles,
 } from '../services/battlesService';
 import { useFriendNotificationStore } from '../store/friendNotificationStore';
+import { notifyPush } from '../services/pushService';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 import { Card, CardButton } from '../components/ui/Card';
@@ -158,7 +159,11 @@ export function FriendsPage() {
                     <Button
                       variant="success"
                       style={{ flex: 'none', width: 'auto', padding: '7px 12px', fontSize: 12 }}
-                      onClick={() => respondFriendRequest(req.requestId, true).then(refresh)}
+                      onClick={() =>
+                        respondFriendRequest(req.requestId, true)
+                          .then(() => notifyPush({ type: 'friend_accept', requestId: req.requestId }))
+                          .then(refresh)
+                      }
                     >
                       Aceptar
                     </Button>
@@ -242,6 +247,7 @@ function SearchSection({ onSent }: { onSent: () => void }) {
     sendFriendRequest(code)
       .then(() => {
         setSentCodes((prev) => new Set(prev).add(code));
+        notifyPush({ type: 'friend_request', friendCode: code });
         onSent();
       })
       .catch((err) => setSearchError(errorMessage(err, 'No se pudo enviar la solicitud.')))
@@ -350,7 +356,10 @@ function FriendListRow({
     setChallenging(true);
     setChallengeError(null);
     sendBattleRequest(entry.userId, 10)
-      .then(onChallenged)
+      .then(({ battleId }) => {
+        notifyPush({ type: 'battle_request', battleId });
+        onChallenged();
+      })
       .catch((err) => setChallengeError(errorMessage(err, 'No se pudo enviar el reto.')))
       .finally(() => setChallenging(false));
   }
@@ -446,7 +455,10 @@ function BattlesSection({
                 setBusyId(invite.battleId);
                 setError(null);
                 acceptBattleRequest(invite.battleId, invite.questionCount)
-                  .then(() => onOpenBattle(invite.battleId))
+                  .then(() => {
+                    notifyPush({ type: 'battle_accept', battleId: invite.battleId });
+                    onOpenBattle(invite.battleId);
+                  })
                   .catch((err) => {
                     setError(errorMessage(err, 'No se pudo aceptar el duelo.'));
                     setBusyId(null);

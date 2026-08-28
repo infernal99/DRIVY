@@ -5,6 +5,13 @@ import { useProgressStore } from '../store/progressStore';
 import { useAuthStore } from '../store/authStore';
 import { changePassword, deleteOwnAccount, MIN_PASSWORD_LENGTH } from '../services/authService';
 import { getMyFriendships, updatePrivacySettings } from '../services/friendsService';
+import {
+  disablePushNotifications,
+  enablePushNotifications,
+  getNotificationPermission,
+  hasActivePushSubscription,
+  isPushSupported,
+} from '../services/pushService';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
 import { AuthField } from '../components/auth/AuthField';
@@ -41,6 +48,7 @@ export function SettingsPage() {
 
         {authStatus === 'authenticated' && (
           <>
+            <NotificationsCard />
             <PrivacyCard />
             <ChangePasswordCard />
             <DeleteAccountCard />
@@ -77,6 +85,66 @@ export function SettingsPage() {
         </Card>
       </div>
     </AppShell>
+  );
+}
+
+function NotificationsCard() {
+  const [loading, setLoading] = useState(true);
+  const [enabled, setEnabled] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const supported = isPushSupported();
+  const permission = getNotificationPermission();
+
+  useEffect(() => {
+    if (!supported) {
+      setLoading(false);
+      return;
+    }
+    hasActivePushSubscription()
+      .then(setEnabled)
+      .finally(() => setLoading(false));
+    // Runs once on mount — `supported` doesn't change during a session.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function toggle(next: boolean) {
+    setSaving(true);
+    setError(null);
+    const ok = next ? await enablePushNotifications() : await (disablePushNotifications().then(() => true));
+    setSaving(false);
+    if (!ok) {
+      setError(
+        permission === 'denied'
+          ? 'Has bloqueado las notificaciones para DRIVY. Actívalas desde los ajustes de tu navegador.'
+          : 'No se pudieron activar las notificaciones.',
+      );
+      return;
+    }
+    setEnabled(next);
+  }
+
+  if (loading) return null;
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>Notificaciones</div>
+      {error && <p style={{ fontSize: 12.5, color: 'var(--color-error)', margin: '4px 0 8px' }}>{error}</p>}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '10px 0' }}>
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>Solicitudes y duelos</div>
+          <p style={{ fontSize: 12, color: 'var(--color-text-muted-60)', margin: '2px 0 0' }}>
+            Te avisamos cuando alguien te envía una solicitud de amistad, un duelo, o acepta el tuyo.
+          </p>
+        </div>
+        <Toggle checked={enabled} disabled={saving || !supported} onChange={toggle} />
+      </div>
+      {!supported && (
+        <p style={{ fontSize: 12, color: 'var(--color-text-muted-45)', margin: '4px 0 0' }}>
+          Tu navegador no soporta notificaciones push.
+        </p>
+      )}
+    </Card>
   );
 }
 
