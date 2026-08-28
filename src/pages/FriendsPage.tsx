@@ -355,9 +355,6 @@ function FriendListRow({
         </div>
         {challengeError && <div style={{ fontSize: 11, color: 'var(--color-error)', marginTop: 2 }}>{challengeError}</div>}
       </div>
-      <span style={{ flex: 'none', width: 56, textAlign: 'right', fontSize: 13, fontWeight: 700, color: 'var(--color-xp-text)' }}>
-        {entry.weeklyXp} XP
-      </span>
       <div style={{ flex: 'none', width: 74 }}>
         {!entry.isMe && (
           <Button
@@ -371,6 +368,9 @@ function FriendListRow({
           </Button>
         )}
       </div>
+      <span style={{ flex: 'none', width: 56, textAlign: 'right', fontSize: 13, fontWeight: 700, color: 'var(--color-xp-text)' }}>
+        {entry.weeklyXp} XP
+      </span>
     </div>
   );
 }
