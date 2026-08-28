@@ -554,18 +554,23 @@ begin
   where b.status = 'active' and (b.challenger_id = v_uid or b.opponent_id = v_uid);
 
   select coalesce(jsonb_agg(jsonb_build_object(
-    'battleId', b.id, 'friendUserId', p.user_id, 'displayName', p.display_name,
-    'avatarUrl', p.avatar_url, 'myCorrectCount', me.correct_count, 'opponentCorrectCount', opp.correct_count,
-    'totalCount', b.question_count, 'won', b.winner_id = v_uid, 'tied', b.winner_id is null, 'completedAt', b.completed_at
-  ) order by b.completed_at desc), '[]'::jsonb)
+    'battleId', h.id, 'friendUserId', h.friend_user_id, 'displayName', h.display_name,
+    'avatarUrl', h.avatar_url, 'myCorrectCount', h.my_correct_count, 'opponentCorrectCount', h.opponent_correct_count,
+    'totalCount', h.question_count, 'won', h.won, 'tied', h.tied, 'completedAt', h.completed_at
+  ) order by h.completed_at desc), '[]'::jsonb)
   into v_history
-  from public.battles b
-  join public.battle_participants me on me.battle_id = b.id and me.user_id = v_uid
-  join public.battle_participants opp on opp.battle_id = b.id and opp.user_id <> v_uid
-  join public.profiles p on p.user_id = opp.user_id
-  where b.status = 'completed' and (b.challenger_id = v_uid or b.opponent_id = v_uid)
-  order by b.completed_at desc
-  limit 20;
+  from (
+    select b.id, opp.user_id as friend_user_id, p.display_name, p.avatar_url,
+           me.correct_count as my_correct_count, opp.correct_count as opponent_correct_count,
+           b.question_count, b.winner_id = v_uid as won, b.winner_id is null as tied, b.completed_at
+    from public.battles b
+    join public.battle_participants me on me.battle_id = b.id and me.user_id = v_uid
+    join public.battle_participants opp on opp.battle_id = b.id and opp.user_id <> v_uid
+    join public.profiles p on p.user_id = opp.user_id
+    where b.status = 'completed' and (b.challenger_id = v_uid or b.opponent_id = v_uid)
+    order by b.completed_at desc
+    limit 20
+  ) h;
 
   select battles_played, battles_won, total_questions_answered, total_questions_correct
   into v_stats
