@@ -1,16 +1,14 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, type MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   cancelFriendRequest,
   getFriendLeaderboard,
   getMyFriendships,
-  removeFriend,
   respondFriendRequest,
   searchProfiles,
   sendFriendRequest,
   type FriendRequestSummary,
   type FriendSearchResult,
-  type FriendSummary,
   type LeaderboardEntry,
   type MyFriendships,
 } from '../services/friendsService';
@@ -168,60 +166,21 @@ export function FriendsPage() {
               />
             )}
 
+            {battles && <BattlesSection battles={battles} onChanged={refresh} onOpenBattle={(id) => navigate(`/battles/${id}`)} />}
+
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
-              Tus amigos
+              Lista de amigos
             </div>
-            {data.friends.length === 0 ? (
+            {leaderboard.length <= 1 ? (
               <EmptyState
                 icon="users"
                 title="Busca a tus amigos y empezad a competir"
                 description="Comparte tu código o busca por nombre para añadir a tu primer amigo."
               />
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
-                {data.friends.map((friend) => (
-                  <FriendRow
-                    key={friend.userId}
-                    friend={friend}
-                    onRemoved={refresh}
-                    onOpen={() => navigate(`/friends/${friend.userId}`)}
-                    onChallenged={refresh}
-                  />
-                ))}
-              </div>
-            )}
-
-            {battles && <BattlesSection battles={battles} onChanged={refresh} onOpenBattle={(id) => navigate(`/battles/${id}`)} />}
-
-            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
-              Ranking semanal
-            </div>
-            {leaderboard.length <= 1 ? (
-              <EmptyState icon="chart" title="Añade amigos para ver el ranking" description="El ranking compara tu XP de esta semana con el de tus amigos." />
-            ) : (
               <Card style={{ padding: 6 }}>
                 {leaderboard.map((entry, i) => (
-                  <div
-                    key={entry.userId}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 12,
-                      padding: '10px 10px',
-                      borderRadius: 12,
-                      background: entry.isMe ? 'var(--color-info-bg)' : 'transparent',
-                    }}
-                  >
-                    <span style={{ width: 20, textAlign: 'center', fontWeight: 700, fontSize: 13, color: 'var(--color-text-muted-45)' }}>
-                      {i + 1}
-                    </span>
-                    <Avatar name={entry.displayName} size={32} />
-                    <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>
-                      {entry.displayName}
-                      {entry.isMe ? ' (tú)' : ''}
-                    </span>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-xp-text)' }}>{entry.weeklyXp} XP</span>
-                  </div>
+                  <FriendListRow key={entry.userId} entry={entry} rank={i + 1} onOpen={() => navigate(`/friends/${entry.userId}`)} onChallenged={refresh} />
                 ))}
               </Card>
             )}
@@ -348,88 +307,67 @@ function RequestsSection({
   );
 }
 
-function FriendRow({
-  friend,
-  onRemoved,
+function FriendListRow({
+  entry,
+  rank,
   onOpen,
   onChallenged,
 }: {
-  friend: FriendSummary;
-  onRemoved: () => void;
+  entry: LeaderboardEntry;
+  rank: number;
   onOpen: () => void;
   onChallenged: () => void;
 }) {
-  const [confirming, setConfirming] = useState(false);
-  const [removing, setRemoving] = useState(false);
   const [challenging, setChallenging] = useState(false);
   const [challengeError, setChallengeError] = useState<string | null>(null);
 
-  function handleChallenge() {
+  function handleChallenge(e: MouseEvent) {
+    e.stopPropagation();
     setChallenging(true);
     setChallengeError(null);
-    sendBattleRequest(friend.userId, 10)
+    sendBattleRequest(entry.userId, 10)
       .then(onChallenged)
       .catch((err) => setChallengeError(errorMessage(err, 'No se pudo enviar el reto.')))
       .finally(() => setChallenging(false));
   }
 
   return (
-    <Card style={{ padding: 12 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <button type="button" onClick={onOpen} style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 1, minWidth: 0, background: 'none', border: 'none', textAlign: 'left', cursor: 'pointer', padding: 0 }}>
-          <Avatar name={friend.displayName} size={40} />
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>{friend.displayName}</div>
-            <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)', marginTop: 1 }}>
-              Nivel {friend.level} · {friend.xp} XP · {friend.currentStreak} días de racha
-            </div>
-          </div>
-        </button>
-        <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
+    <div
+      role={entry.isMe ? undefined : 'button'}
+      tabIndex={entry.isMe ? undefined : 0}
+      onClick={entry.isMe ? undefined : onOpen}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        padding: '10px 10px',
+        borderRadius: 12,
+        background: entry.isMe ? 'var(--color-info-bg)' : 'transparent',
+        cursor: entry.isMe ? 'default' : 'pointer',
+      }}
+    >
+      <span style={{ width: 20, textAlign: 'center', fontWeight: 700, fontSize: 13, color: 'var(--color-text-muted-45)' }}>{rank}</span>
+      <Avatar name={entry.displayName} size={32} />
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>
+          {entry.displayName}
+          {entry.isMe ? ' (tú)' : ''}
+        </div>
+        {challengeError && <div style={{ fontSize: 11, color: 'var(--color-error)', marginTop: 2 }}>{challengeError}</div>}
       </div>
-
-      {challengeError && <p style={{ fontSize: 11.5, color: 'var(--color-error)', margin: '8px 0 0' }}>{challengeError}</p>}
-
-      {confirming ? (
-        <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
-          <Button variant="secondary" style={{ flex: 1, padding: '7px 0', fontSize: 12 }} onClick={() => setConfirming(false)} disabled={removing}>
-            Cancelar
-          </Button>
-          <Button
-            variant="danger"
-            style={{ flex: 1, padding: '7px 0', fontSize: 12 }}
-            disabled={removing}
-            onClick={() => {
-              setRemoving(true);
-              removeFriend(friend.userId)
-                .then(onRemoved)
-                .finally(() => setRemoving(false));
-            }}
-          >
-            {removing ? 'Eliminando…' : 'Confirmar'}
-          </Button>
-        </div>
-      ) : (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 8 }}>
-          <button
-            type="button"
-            onClick={() => setConfirming(true)}
-            style={{ background: 'none', border: 'none', color: 'var(--color-error)', fontSize: 11.5, fontWeight: 600, cursor: 'pointer', padding: 0 }}
-          >
-            Eliminar amigo
-          </button>
-          <Button
-            variant="secondary"
-            onClick={handleChallenge}
-            disabled={challenging}
-            style={{ flex: 'none', width: 'auto', padding: '6px 12px', fontSize: 11.5 }}
-          >
-            <Icon name="flag" size={13} />
-            {challenging ? 'Enviando…' : 'Retar a duelo'}
-          </Button>
-        </div>
+      <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-xp-text)' }}>{entry.weeklyXp} XP</span>
+      {!entry.isMe && (
+        <Button
+          variant="secondary"
+          onClick={handleChallenge}
+          disabled={challenging}
+          style={{ flex: 'none', width: 'auto', padding: '6px 10px', fontSize: 11 }}
+        >
+          <Icon name="flag" size={12} />
+          {challenging ? '…' : 'Duelo'}
+        </Button>
       )}
-    </Card>
+    </div>
   );
 }
 
