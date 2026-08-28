@@ -20,6 +20,20 @@ export async function getMyPremiumStatus(): Promise<PremiumStatus> {
   };
 }
 
+export interface PremiumPrice {
+  amount: number | null;
+  currency: string;
+  interval: string;
+}
+
+/** Reads the live Stripe price so it's never hardcoded/stale in the UI. */
+export async function getPremiumPrice(): Promise<PremiumPrice> {
+  const res = await fetch('/api/get-premium-price');
+  const body = await res.json();
+  if (!res.ok) throw new Error(body.error ?? 'could not load price');
+  return body as PremiumPrice;
+}
+
 export type PracticeKind = 'simulacro' | 'examen_real' | 'random' | 'daily';
 
 /** Authoritative gate — inserts a practice_sessions row and returns whether this attempt is allowed under the free-tier daily cap. */
@@ -39,9 +53,9 @@ async function callBillingEndpoint(path: string): Promise<string> {
     method: 'POST',
     headers: { Authorization: `Bearer ${session.access_token}` },
   });
-  if (!res.ok) throw new Error('billing request failed');
-  const { url } = await res.json();
-  return url as string;
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error ?? 'billing request failed');
+  return body.url as string;
 }
 
 /** Redirects to Stripe Checkout for a new subscription. */

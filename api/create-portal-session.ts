@@ -48,10 +48,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const origin = req.headers.origin ?? `https://${req.headers.host}`;
-  const portalSession = await stripe.billingPortal.sessions.create({
-    customer: sub.stripe_customer_id,
-    return_url: `${origin}/settings`,
-  });
 
-  res.status(200).json({ url: portalSession.url });
+  try {
+    const portalSession = await stripe.billingPortal.sessions.create({
+      customer: sub.stripe_customer_id,
+      return_url: `${origin}/settings`,
+    });
+    res.status(200).json({ url: portalSession.url });
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'stripe error' });
+  }
 }
