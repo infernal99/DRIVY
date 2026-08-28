@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
+import { usePremiumStore } from '../store/premiumStore';
+import { startCheckout } from '../services/premiumService';
 import { useLearnPath, useOverallProgressPct } from '../hooks/useLearnPath';
 import { getLevelInfo } from '../utils/xp';
 import { getReadinessScore, READINESS_TIER_COPY } from '../services/masteryService';
@@ -19,6 +22,8 @@ export function HomePage() {
   const { level } = getLevelInfo(progress.xp);
   const activeModule = modules.find((m) => m.status === 'active');
   const inProgressCount = modules.filter((m) => m.status !== 'locked').length;
+  const isPremium = usePremiumStore((s) => s.isPremium);
+  const premiumLoading = usePremiumStore((s) => s.loading);
 
   return (
     <AppShell nav={<BottomNav />}>
@@ -60,6 +65,25 @@ export function HomePage() {
               Nivel {level}
             </div>
           </div>
+          {isPremium && (
+            <span
+              style={{
+                fontSize: 10.5,
+                fontWeight: 700,
+                color: '#facc15',
+                background: '#18181b',
+                padding: '3px 8px',
+                borderRadius: 6,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 4,
+                marginLeft: 4,
+              }}
+            >
+              <Icon name="crown" size={10} color="#facc15" />
+              PREMIUM
+            </span>
+          )}
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <HeaderChip>
@@ -74,6 +98,8 @@ export function HomePage() {
       </div>
 
       <div style={{ padding: '4px 20px 100px' }}>
+        {!premiumLoading && !isPremium && <PremiumBanner />}
+
         <div
           style={{
             background: 'linear-gradient(135deg,#122B57,#1E4694 60%,#2F6FED)',
@@ -190,6 +216,63 @@ export function HomePage() {
         <DashboardHighlights progress={progress} />
       </div>
     </AppShell>
+  );
+}
+
+function PremiumBanner() {
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleClick() {
+    setSubmitting(true);
+    try {
+      await startCheckout();
+    } catch {
+      setSubmitting(false);
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleClick}
+      disabled={submitting}
+      style={{
+        marginBottom: 12,
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        background: 'linear-gradient(135deg,#18181b,#312e81 60%,#3f3f46)',
+        border: 'none',
+        borderRadius: 16,
+        padding: '14px 16px',
+        boxShadow: '0 8px 20px rgba(24,24,27,0.3)',
+        cursor: submitting ? 'default' : 'pointer',
+        textAlign: 'left',
+      }}
+    >
+      <div
+        style={{
+          width: 36,
+          height: 36,
+          borderRadius: '50%',
+          background: 'rgba(250,204,21,0.15)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flex: 'none',
+        }}
+      >
+        <Icon name="crown" size={17} color="#facc15" />
+      </div>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 13.5, color: '#fff' }}>Hazte Premium</div>
+        <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.75)', marginTop: 1 }}>
+          Práctica y duelos ilimitados, avatares exclusivos
+        </div>
+      </div>
+      <Icon name="chevronRight" size={14} color="#facc15" />
+    </button>
   );
 }
 

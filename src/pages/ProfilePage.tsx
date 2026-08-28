@@ -96,6 +96,14 @@ export function ProfilePage() {
             {progress.userName}
           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
+            {isPremium && (
+              <Pill bg="#18181b" color="#facc15">
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                  <Icon name="crown" size={11} color="#facc15" />
+                  PREMIUM
+                </span>
+              </Pill>
+            )}
             <Pill>Nivel {level}</Pill>
             <Pill bg="var(--color-xp-bg)" color="var(--color-xp-text)">
               {stats.xp.toLocaleString('es-ES')} XP
