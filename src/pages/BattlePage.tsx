@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
+  abandonBattle,
   getBattleReview,
   getBattleRound,
   getMyBattles,
@@ -21,7 +22,7 @@ import { ContentProvenanceNote } from '../components/ui/ContentProvenanceNote';
 import { OptionRow, QuestionImage } from '../components/lesson/QuestionCard';
 import type { Question } from '../types';
 
-type Phase = 'loading' | 'playing' | 'reveal' | 'result' | 'review' | 'not-found';
+type Phase = 'loading' | 'playing' | 'reveal' | 'result' | 'abandoned' | 'review' | 'not-found';
 
 const ROUND_SECONDS = 30;
 const POLL_MS = 1300;
@@ -44,6 +45,8 @@ export function BattlePage() {
   const [revealIsFinal, setRevealIsFinal] = useState(false);
   const [result, setResult] = useState<BattleHistoryEntry | null>(null);
   const [review, setReview] = useState<BattleReviewEntry[] | null>(null);
+  const [abandonedByMe, setAbandonedByMe] = useState(false);
+  const [reviewReturnPhase, setReviewReturnPhase] = useState<'result' | 'abandoned'>('result');
 
   // Refs mirror the state above so interval callbacks always see the latest
   // value without needing to be recreated (and re-poll from scratch) every
@@ -72,11 +75,21 @@ export function BattlePage() {
     const data = await getMyBattles();
     const historyMatch = data.history.find((b) => b.battleId === numericId);
     setResult(historyMatch ?? null);
-    setPhase(historyMatch ? 'result' : 'not-found');
+    if (!historyMatch) {
+      setPhase('not-found');
+    } else {
+      setPhase(historyMatch.status === 'abandoned' ? 'abandoned' : 'result');
+    }
   }, [numericId]);
 
   const applyRoundState = useCallback(
     (state: BattleRoundState) => {
+      if (state.status === 'abandoned') {
+        setAbandonedByMe(false);
+        setPhase('abandoned');
+        return;
+      }
+
       if (state.status === 'completed') {
         if (state.lastRound && state.lastRound.index === currentIndexRef.current && !pendingNextRef.current) {
           pendingNextRef.current = { index: -1, startedAt: '' }; // marker: "finish" is the pending action
@@ -175,12 +188,32 @@ export function BattlePage() {
     const historyMatch = data.history.find((b) => b.battleId === numericId);
     if (historyMatch) {
       setResult(historyMatch);
-      setPhase('result');
+      setPhase(historyMatch.status === 'abandoned' ? 'abandoned' : 'result');
       return;
     }
 
     setPhase('not-found');
   }, [numericId]);
+
+  async function handleAbandon() {
+    if (!confirm('¿Salir del duelo? Terminará para los dos y no contará para las estadísticas de ninguno.')) return;
+    try {
+      await abandonBattle(numericId);
+    } catch {
+      // Best effort — even if the call fails, leave locally; the battle
+      // will still show as active for the opponent until it times out.
+    }
+    setAbandonedByMe(true);
+    setPhase('abandoned');
+  }
+
+  async function openReview() {
+    if (Number.isNaN(numericId)) return;
+    setReviewReturnPhase(phase === 'abandoned' ? 'abandoned' : 'result');
+    const entries = await getBattleReview(numericId);
+    setReview(entries);
+    setPhase('review');
+  }
 
   useEffect(() => {
     if (Number.isNaN(numericId)) {
@@ -224,13 +257,6 @@ export function BattlePage() {
     }, POLL_MS);
     return () => clearInterval(id);
   }, [phase, numericId, applyRoundState]);
-
-  async function openReview() {
-    if (Number.isNaN(numericId)) return;
-    const entries = await getBattleReview(numericId);
-    setReview(entries);
-    setPhase('review');
-  }
 
   if (phase === 'loading') {
     return (
@@ -336,11 +362,46 @@ export function BattlePage() {
     );
   }
 
-  if (phase === 'review' && review && result) {
+  if (phase === 'abandoned') {
+    return (
+      <AppShell>
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100%', alignItems: 'center', justifyContent: 'center', padding: '30px 30px 0', textAlign: 'center' }}>
+          <div
+            style={{
+              width: 80,
+              height: 80,
+              borderRadius: '50%',
+              background: 'var(--color-bg-locked)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: 20,
+            }}
+          >
+            <Icon name="close" size={30} color="var(--color-text-muted-45)" />
+          </div>
+          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, color: 'var(--color-text)', marginBottom: 8 }}>
+            {abandonedByMe ? 'Has salido del duelo' : `${battle?.displayName ?? result?.displayName ?? 'Tu rival'} ha salido del duelo`}
+          </div>
+          <p style={{ fontSize: 13.5, color: 'var(--color-text-muted-60)', marginBottom: 24 }}>
+            No cuenta como victoria ni afecta a las estadísticas de ninguno de los dos.
+          </p>
+          <div style={{ width: '100%', maxWidth: 280, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <Button variant="secondary" onClick={openReview}>
+              REVISAR PREGUNTAS
+            </Button>
+            <Button onClick={() => navigate('/friends')}>VOLVER A AMIGOS</Button>
+          </div>
+        </div>
+      </AppShell>
+    );
+  }
+
+  if (phase === 'review' && review) {
     return (
       <AppShell>
         <div style={{ padding: '18px 20px 10px', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <BackButton onClick={() => setPhase('result')} />
+          <BackButton onClick={() => setPhase(reviewReturnPhase)} />
           <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 17, color: 'var(--color-text)' }}>
             Revisión del duelo
           </span>
@@ -365,7 +426,7 @@ export function BattlePage() {
                     color: entry.opponentCorrect ? 'var(--color-success)' : 'var(--color-error)',
                   }}
                 >
-                  {result.displayName}: {entry.opponentSelectedOptionId ? q.options.find((o) => o.id === entry.opponentSelectedOptionId)?.text : 'Sin responder'}
+                  {result?.displayName ?? battle?.displayName ?? 'Tu rival'}: {entry.opponentSelectedOptionId ? q.options.find((o) => o.id === entry.opponentSelectedOptionId)?.text : 'Sin responder'}
                 </div>
 
                 {!entry.myCorrect && (
@@ -396,7 +457,7 @@ export function BattlePage() {
     <AppShell>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff' }}>
         <div style={{ padding: '16px 20px 10px', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <BackButton onClick={() => (confirm('¿Salir del duelo? El contador no se detiene.') ? navigate('/friends') : null)} />
+          <BackButton onClick={handleAbandon} />
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--color-text-muted-45)' }}>
               Duelo vs {battle?.displayName} · Pregunta {currentIndex + 1} / {questions.length}
