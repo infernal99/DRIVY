@@ -37,15 +37,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const origin = req.headers.origin ?? `https://${req.headers.host}`;
 
-  const session = await stripe.checkout.sessions.create({
-    mode: 'subscription',
-    line_items: [{ price: process.env.STRIPE_PRICE_ID as string, quantity: 1 }],
-    client_reference_id: caller.id,
-    customer_email: caller.email,
-    subscription_data: { metadata: { supabase_user_id: caller.id } },
-    success_url: `${origin}/settings?checkout=success`,
-    cancel_url: `${origin}/settings?checkout=cancel`,
-  });
-
-  res.status(200).json({ url: session.url });
+  try {
+    const session = await stripe.checkout.sessions.create({
+      mode: 'subscription',
+      line_items: [{ price: process.env.STRIPE_PRICE_ID as string, quantity: 1 }],
+      client_reference_id: caller.id,
+      customer_email: caller.email,
+      subscription_data: { metadata: { supabase_user_id: caller.id } },
+      success_url: `${origin}/settings?checkout=success`,
+      cancel_url: `${origin}/settings?checkout=cancel`,
+    });
+    res.status(200).json({ url: session.url });
+  } catch (err) {
+    res.status(500).json({ error: err instanceof Error ? err.message : 'stripe error' });
+  }
 }

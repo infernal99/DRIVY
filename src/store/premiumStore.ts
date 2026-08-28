@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { getMyPremiumStatus } from '../services/premiumService';
+import { getMyPremiumStatus, getPremiumPrice, type PremiumPrice } from '../services/premiumService';
 
 interface PremiumState {
   isPremium: boolean;
@@ -8,16 +8,19 @@ interface PremiumState {
   battlesToday: number;
   battlesLimit: number | null;
   loading: boolean;
+  price: PremiumPrice | null;
   refresh: () => Promise<void>;
+  loadPrice: () => Promise<void>;
 }
 
-export const usePremiumStore = create<PremiumState>((set) => ({
+export const usePremiumStore = create<PremiumState>((set, get) => ({
   isPremium: false,
   practiceToday: 0,
   practiceLimit: null,
   battlesToday: 0,
   battlesLimit: null,
   loading: true,
+  price: null,
 
   refresh: async () => {
     try {
@@ -25,6 +28,16 @@ export const usePremiumStore = create<PremiumState>((set) => ({
       set({ ...status, loading: false });
     } catch {
       set({ loading: false });
+    }
+  },
+
+  loadPrice: async () => {
+    if (get().price) return;
+    try {
+      const price = await getPremiumPrice();
+      set({ price });
+    } catch {
+      // Leaves price null — the UI just omits the amount if it can't load.
     }
   },
 }));
