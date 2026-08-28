@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState, type MouseEvent } from 'react';
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   cancelFriendRequest,
@@ -49,6 +49,12 @@ export function FriendsPage() {
   const ingestBattleNotifications = useFriendNotificationStore((s) => s.ingestBattles);
   const markFriendsSeen = useFriendNotificationStore((s) => s.markFriendsSeen);
 
+  // Tracks which battle ids were outgoing invites as of the last fetch, so
+  // that when one of them shows up in `active` instead (the friend accepted
+  // it) we can jump the challenger straight into the duel too, with no
+  // button for them to press — see the pending outgoing/active diff below.
+  const prevOutgoingIdsRef = useRef<Set<number>>(new Set());
+
   const refresh = useCallback(() => {
     setLoadError(null);
     return Promise.all([getMyFriendships(), getFriendLeaderboard(), getMyBattles()])
@@ -62,15 +68,29 @@ export function FriendsPage() {
         ingestNotifications(friendships);
         ingestBattleNotifications(battleData.incoming.length);
         markFriendsSeen(friendships.friends);
+
+        const justAccepted = battleData.active.find((a) => prevOutgoingIdsRef.current.has(a.battleId));
+        prevOutgoingIdsRef.current = new Set(battleData.outgoing.map((o) => o.battleId));
+        if (justAccepted) {
+          navigate(`/battles/${justAccepted.battleId}`);
+        }
       })
       .catch((err) => setLoadError(errorMessage(err, 'No se pudo cargar la información de amigos.')));
-  }, [ingestNotifications, ingestBattleNotifications, markFriendsSeen]);
+  }, [ingestNotifications, ingestBattleNotifications, markFriendsSeen, navigate]);
 
   useEffect(() => {
     refresh().finally(() => setLoading(false));
     // Runs once on mount — `refresh` is stable — so the `useState(true)`
     // initial value already covers "loading" without a redundant setState here.
   }, [refresh]);
+
+  // While a challenge you sent is still pending, poll for the friend
+  // accepting it so you get pulled into the duel automatically too.
+  useEffect(() => {
+    if (!battles || battles.outgoing.length === 0) return;
+    const id = setInterval(refresh, 3000);
+    return () => clearInterval(id);
+  }, [battles, refresh]);
 
   function copyCode() {
     if (!data) return;
@@ -418,7 +438,16 @@ function BattlesSection({
               variant="success"
               style={{ flex: 'none', width: 'auto', padding: '7px 12px', fontSize: 12 }}
               disabled={busyId === invite.battleId}
-              onClick={() => withBusy(invite.battleId, () => acceptBattleRequest(invite.battleId, invite.questionCount))}
+              onClick={() => {
+                setBusyId(invite.battleId);
+                setError(null);
+                acceptBattleRequest(invite.battleId, invite.questionCount)
+                  .then(() => onOpenBattle(invite.battleId))
+                  .catch((err) => {
+                    setError(errorMessage(err, 'No se pudo aceptar el duelo.'));
+                    setBusyId(null);
+                  });
+              }}
             >
               Aceptar
             </Button>
@@ -462,7 +491,7 @@ function BattlesSection({
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>Duelo con {active.displayName}</div>
             <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)' }}>
-              {active.iHaveFinished ? 'Esperando a que termine' : 'Toca para continuar'}
+              Pregunta {active.currentQuestionIndex + 1} / {active.questionCount} · Toca para continuar
             </div>
           </div>
           <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />

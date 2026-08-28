@@ -2,11 +2,14 @@ import { supabase } from '../lib/supabase';
 import { getQuestion, pickRandomQuestionIds } from './questionService';
 import type { Question } from '../types';
 
-// A "battle" is an async-but-shared duel, not a millisecond-synced live
-// session: both players get the exact same question ids and can answer at
-// their own pace while it's open. See the migration
-// (20260827090000_mission_rotation_and_battles.sql) for the full design
-// rationale and the server-side rules this client only ever asks for.
+// A "battle" is a synchronized round-by-round duel: both players get the
+// same question ids, and each round (one question) is open for exactly 30
+// seconds — tracked server-side via `questionStartedAt` so both clients
+// count down from the same instant. A round only advances once both
+// players have an answer for it (a real one, or a forced "no answer" once
+// the deadline passes — see fn_submit_battle_answer). See the migration
+// (20260827110000_synchronized_battle_rounds.sql) for the full server-side
+// design rationale.
 
 export interface BattleInviteSummary {
   battleId: number;
@@ -25,8 +28,8 @@ export interface ActiveBattleSummary {
   questionCount: number;
   questionIds: string[];
   amIChallenger: boolean;
-  iHaveFinished: boolean;
-  opponentHasFinished: boolean;
+  currentQuestionIndex: number;
+  questionStartedAt: string;
 }
 
 export interface BattleHistoryEntry {
@@ -107,22 +110,57 @@ export function resolveBattleQuestions(questionIds: string[]): Question[] {
   return questionIds.map((id) => getQuestion(id)).filter((q): q is Question => Boolean(q));
 }
 
-export interface SubmitBattleAnswersResult {
-  waitingForOpponent: boolean;
-  correctCount: number;
-  totalCount: number;
-  opponentCorrectCount?: number;
-  winnerId?: string | null;
+export interface BattleRoundAnswer {
+  selectedOptionId: string | null;
+  correct: boolean;
 }
 
-export async function submitBattleAnswers(
+export interface BattleRoundState {
+  status: 'active' | 'completed';
+  currentQuestionIndex: number;
+  questionStartedAt: string;
+  questionCount: number;
+  myAnsweredThisRound: boolean;
+  opponentAnsweredThisRound: boolean;
+  lastRound: { index: number; myAnswer: BattleRoundAnswer; opponentAnswer: BattleRoundAnswer } | null;
+  winnerId: string | null;
+}
+
+export async function getBattleRound(battleId: number): Promise<BattleRoundState> {
+  const { data, error } = await supabase.rpc('fn_get_battle_round', { p_battle_id: battleId });
+  if (error) throw error;
+  return data as BattleRoundState;
+}
+
+/** Submits (or re-submits, idempotently) this player's answer for exactly one round. */
+export async function submitBattleAnswer(
   battleId: number,
-  answers: { questionId: string; selectedOptionId: string | null; correct: boolean }[],
-): Promise<SubmitBattleAnswersResult> {
-  const { data, error } = await supabase.rpc('fn_submit_battle_answers', {
+  questionIndex: number,
+  questionId: string,
+  selectedOptionId: string | null,
+  correct: boolean,
+): Promise<BattleRoundState> {
+  const { data, error } = await supabase.rpc('fn_submit_battle_answer', {
     p_battle_id: battleId,
-    p_answers: answers,
+    p_question_index: questionIndex,
+    p_question_id: questionId,
+    p_selected_option_id: selectedOptionId,
+    p_correct: correct,
   });
   if (error) throw error;
-  return data as SubmitBattleAnswersResult;
+  return data as BattleRoundState;
+}
+
+export interface BattleReviewEntry {
+  questionId: string;
+  mySelectedOptionId: string | null;
+  myCorrect: boolean;
+  opponentSelectedOptionId: string | null;
+  opponentCorrect: boolean;
+}
+
+export async function getBattleReview(battleId: number): Promise<BattleReviewEntry[]> {
+  const { data, error } = await supabase.rpc('fn_get_battle_review', { p_battle_id: battleId });
+  if (error) throw error;
+  return (data ?? []) as BattleReviewEntry[];
 }
