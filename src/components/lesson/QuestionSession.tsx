@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Question } from '../../types';
 import { useProgressStore } from '../../store/progressStore';
+import { playAnswerFeedback } from '../../services/feedbackEffects';
 import { OptionRow, QuestionImage } from './QuestionCard';
 import { FeedbackScreen } from './FeedbackScreen';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
@@ -68,6 +69,7 @@ export function QuestionSession({
 
   function handleSelect(optionId: string) {
     const correct = answerQuestion(question, optionId);
+    playAnswerFeedback(correct);
     const xp = correct ? 10 : 2;
     setLastCorrect(correct);
     setLastSelectedOptionId(optionId);

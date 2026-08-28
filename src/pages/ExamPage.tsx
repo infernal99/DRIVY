@@ -11,6 +11,7 @@ import { QuestionImage } from '../components/lesson/QuestionCard';
 import { AchievementUnlockModal } from '../components/achievements/AchievementUnlockModal';
 import { ContentProvenanceNote } from '../components/ui/ContentProvenanceNote';
 import { AiTutorPanel } from '../components/ui/AiTutorPanel';
+import { ShareResultButton } from '../components/ui/ShareResultButton';
 import { explainMistake } from '../services/aiTutorService';
 
 type Phase = 'exam' | 'review' | 'result';
@@ -88,7 +89,13 @@ export function ExamPage() {
   if (phase === 'result' && result) {
     return (
       <AppShell>
-        <ExamResultView title={title} result={result} questions={questions} onExit={() => navigate('/practice', { replace: true })} />
+        <ExamResultView
+          title={title}
+          result={result}
+          questions={questions}
+          userName={progress.userName}
+          onExit={() => navigate('/practice', { replace: true })}
+        />
         {lastUnlocked.length > 0 && <AchievementUnlockModal achievements={lastUnlocked} onClose={clearAchievementQueue} />}
       </AppShell>
     );
@@ -277,11 +284,13 @@ function ExamResultView({
   title,
   result,
   questions,
+  userName,
   onExit,
 }: {
   title: string;
   result: ExamResult;
   questions: Question[];
+  userName: string;
   onExit: () => void;
 }) {
   const wrongAnswers = result.answers
@@ -343,7 +352,16 @@ function ExamResultView({
           </>
         )}
       </div>
-      <div style={{ padding: '16px 20px 26px', background: 'var(--color-bg-card)', boxShadow: 'var(--shadow-topbar)' }}>
+      <div style={{ padding: '16px 20px 26px', background: 'var(--color-bg-card)', boxShadow: 'var(--shadow-topbar)', display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <ShareResultButton
+          data={{
+            title: result.passed ? '¡Apto! Simulacro superado' : 'No apto — a seguir practicando',
+            scoreLine: `${result.correctCount}/${result.totalCount}`,
+            subtitle: title,
+            userName,
+            positive: result.passed,
+          }}
+        />
         <Button onClick={onExit}>VOLVER A PRACTICAR</Button>
       </div>
     </div>
