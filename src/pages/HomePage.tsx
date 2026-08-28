@@ -124,6 +124,34 @@ export function HomePage() {
           </span>
         </button>
 
+        {progress.mistakeIds.length > 0 && (
+          <button
+            type="button"
+            onClick={() => navigate('/practice/mistakes')}
+            style={{
+              marginTop: 10,
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 10,
+              background: 'var(--color-error-bg)',
+              border: 'none',
+              borderRadius: 14,
+              padding: '12px 14px',
+              cursor: 'pointer',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <Icon name="target" size={16} color="var(--color-error)" />
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)', textAlign: 'left' }}>
+                Repaso inteligente: {progress.mistakeIds.length} {progress.mistakeIds.length === 1 ? 'pregunta' : 'preguntas'} pendientes
+              </span>
+            </div>
+            <Icon name="chevronRight" size={13} color="var(--color-error)" />
+          </button>
+        )}
+
         <div style={{ marginTop: 22, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, color: 'var(--color-text)' }}>
             Tu camino

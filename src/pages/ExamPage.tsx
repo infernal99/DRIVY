@@ -10,6 +10,8 @@ import { OptionRow } from '../components/lesson/QuestionCard';
 import { QuestionImage } from '../components/lesson/QuestionCard';
 import { AchievementUnlockModal } from '../components/achievements/AchievementUnlockModal';
 import { ContentProvenanceNote } from '../components/ui/ContentProvenanceNote';
+import { AiTutorPanel } from '../components/ui/AiTutorPanel';
+import { explainMistake } from '../services/aiTutorService';
 
 type Phase = 'exam' | 'review' | 'result';
 
@@ -332,7 +334,8 @@ function ExamResultView({
                   <div style={{ fontSize: 12.5, color: 'var(--color-success)', fontWeight: 600, marginBottom: 6 }}>
                     Correcta: {question.options.find((o) => o.id === question.correctOptionId)?.text}
                   </div>
-                  <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: 0 }}>{question.explanation}</p>
+                  <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: '0 0 8px' }}>{question.explanation}</p>
+                  <AiTutorPanel key={question.id} fetchResponse={() => explainMistake(question, answer.selectedOptionId)} />
                   <ContentProvenanceNote source={question.source} />
                 </div>
               ))}

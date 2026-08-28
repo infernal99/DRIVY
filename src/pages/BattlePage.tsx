@@ -19,6 +19,8 @@ import { Icon } from '../components/ui/Icon';
 import { LoadingScreen } from '../components/ui/Loading';
 import { EmptyState } from '../components/ui/EmptyState';
 import { ContentProvenanceNote } from '../components/ui/ContentProvenanceNote';
+import { AiTutorPanel } from '../components/ui/AiTutorPanel';
+import { explainMistake } from '../services/aiTutorService';
 import { OptionRow, QuestionImage } from '../components/lesson/QuestionCard';
 import type { Question } from '../types';
 
@@ -454,7 +456,8 @@ export function BattlePage() {
                     Correcta: {q.options.find((o) => o.id === q.correctOptionId)?.text}
                   </div>
                 )}
-                {q.explanation && <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: 0 }}>{q.explanation}</p>}
+                {q.explanation && <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: '0 0 8px' }}>{q.explanation}</p>}
+                {!entry.myCorrect && <AiTutorPanel key={q.id} fetchResponse={() => explainMistake(q, entry.mySelectedOptionId)} />}
                 <ContentProvenanceNote source={q.source} />
               </div>
             );
