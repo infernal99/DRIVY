@@ -454,8 +454,7 @@ function BattlesSection({
       .finally(() => setBusyId(null));
   }
 
-  const hasAnything =
-    battles.incoming.length > 0 || battles.active.length > 0 || battles.stats.battlesPlayed > 0 || battles.history.length > 0;
+  const hasAnything = battles.incoming.length > 0 || battles.outgoing.length > 0 || battles.active.length > 0;
 
   return (
     <div style={{ marginBottom: 20 }}>
@@ -464,14 +463,6 @@ function BattlesSection({
       </div>
 
       {error && <p style={{ fontSize: 12.5, color: 'var(--color-error)', margin: '0 0 10px' }}>{error}</p>}
-
-      {battles.stats.battlesPlayed > 0 && (
-        <div style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
-          <StatChip label="Victorias" value={`${battles.stats.winRatePct}%`} />
-          <StatChip label="Acierto en duelos" value={`${battles.stats.accuracyPct}%`} />
-          <StatChip label="Jugados" value={String(battles.stats.battlesPlayed)} />
-        </div>
-      )}
 
       {battles.incoming.map((invite: BattleInviteSummary) => (
         <Card key={invite.battleId} style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
@@ -544,14 +535,5 @@ function BattlesSection({
         />
       )}
     </div>
-  );
-}
-
-function StatChip({ label, value }: { label: string; value: string }) {
-  return (
-    <Card style={{ padding: 10, flex: 1, textAlign: 'center' }}>
-      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 16, color: 'var(--color-text)' }}>{value}</div>
-      <div style={{ fontSize: 10.5, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>{label}</div>
-    </Card>
   );
 }
