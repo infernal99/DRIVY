@@ -210,7 +210,7 @@ begin
 
   insert into public.battle_answers (battle_id, user_id, question_index, question_id, selected_option_id, correct)
   values (p_battle_id, v_uid, p_question_index, p_question_id, p_selected_option_id, coalesce(p_correct, false))
-  on conflict (battle_id, user_id, question_index) do nothing;
+  on conflict (battle_id, user_id, question_index) where question_index is not null do nothing;
 
   if now() >= v_deadline then
     insert into public.battle_answers (battle_id, user_id, question_index, question_id, selected_option_id, correct)
