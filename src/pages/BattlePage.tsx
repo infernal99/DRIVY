@@ -25,6 +25,7 @@ import type { Question } from '../types';
 type Phase = 'loading' | 'playing' | 'reveal' | 'result' | 'abandoned' | 'review' | 'not-found';
 
 const ROUND_SECONDS = 30;
+const REVEAL_SECONDS = 10;
 const POLL_MS = 1300;
 
 export function BattlePage() {
@@ -43,6 +44,7 @@ export function BattlePage() {
   const [opponentAnswered, setOpponentAnswered] = useState(false);
   const [revealFor, setRevealFor] = useState<BattleRoundState['lastRound']>(null);
   const [revealIsFinal, setRevealIsFinal] = useState(false);
+  const [revealSecondsLeft, setRevealSecondsLeft] = useState(REVEAL_SECONDS);
   const [result, setResult] = useState<BattleHistoryEntry | null>(null);
   const [review, setReview] = useState<BattleReviewEntry[] | null>(null);
   const [abandonedByMe, setAbandonedByMe] = useState(false);
@@ -91,13 +93,11 @@ export function BattlePage() {
       }
 
       if (state.status === 'completed') {
-        if (state.lastRound && state.lastRound.index === currentIndexRef.current && !pendingNextRef.current) {
+        if (!pendingNextRef.current) {
           pendingNextRef.current = { index: -1, startedAt: '' }; // marker: "finish" is the pending action
           setRevealFor(state.lastRound);
           setRevealIsFinal(true);
           setPhase('reveal');
-        } else if (phase !== 'reveal' && phase !== 'result') {
-          finishToResult();
         }
         return;
       }
@@ -115,7 +115,7 @@ export function BattlePage() {
       setOpponentAnswered(state.opponentAnsweredThisRound);
       setMyAnswered(state.myAnsweredThisRound);
     },
-    [finishToResult, phase],
+    [],
   );
 
   const submitRound = useCallback(
@@ -140,7 +140,7 @@ export function BattlePage() {
     submitRound(optionId);
   }
 
-  function handleContinue() {
+  const handleContinue = useCallback(() => {
     const pending = pendingNextRef.current;
     pendingNextRef.current = null;
     setRevealFor(null);
@@ -155,7 +155,7 @@ export function BattlePage() {
     setCurrentIndex(pending.index);
     setQuestionStartedAt(pending.startedAt);
     setPhase('playing');
-  }
+  }, [revealIsFinal, finishToResult]);
 
   const load = useCallback(async () => {
     const data = await getMyBattles();
@@ -242,6 +242,26 @@ export function BattlePage() {
     return () => clearInterval(id);
   }, [phase, questionStartedAt, submitRound]);
 
+  // The reveal screen always lasts exactly 10s and then auto-advances —
+  // fixed, local, and identical for both players, so neither can race ahead
+  // of the other into the next question (or the result screen).
+  useEffect(() => {
+    if (phase !== 'reveal') return;
+    let fired = false;
+    setRevealSecondsLeft(REVEAL_SECONDS);
+    const start = Date.now();
+    const tick = () => {
+      const left = Math.max(0, REVEAL_SECONDS - Math.floor((Date.now() - start) / 1000));
+      setRevealSecondsLeft(left);
+      if (left === 0 && !fired) {
+        fired = true;
+        handleContinue();
+      }
+    };
+    const id = setInterval(tick, 300);
+    return () => clearInterval(id);
+  }, [phase, handleContinue]);
+
   // Polls the round state so a round that resolves purely from the
   // opponent's side (they answered, or their own timeout forced mine) is
   // still noticed by this client.
@@ -311,9 +331,9 @@ export function BattlePage() {
             )}
           </div>
 
-          <Button onClick={handleContinue} style={{ marginTop: 16 }}>
-            {revealIsFinal ? 'VER RESULTADO' : 'SIGUIENTE PREGUNTA'}
-          </Button>
+          <div style={{ textAlign: 'center', fontSize: 12.5, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 16 }}>
+            {revealIsFinal ? 'Viendo el resultado' : 'Siguiente pregunta'} en {revealSecondsLeft}s…
+          </div>
         </div>
       </AppShell>
     );

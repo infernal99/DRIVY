@@ -19,6 +19,7 @@ import {
   getMyBattles,
   sendBattleRequest,
   type ActiveBattleSummary,
+  type BattleHistoryEntry,
   type BattleInviteSummary,
   type MyBattles,
 } from '../services/battlesService';
@@ -498,12 +499,50 @@ function BattlesSection({
         </CardButton>
       ))}
 
-      {!hasAnything && (
+      {!hasAnything && battles.history.length === 0 && (
         <EmptyState
           icon="flag"
           title="Reta a un amigo"
           description="Pulsa «Retar a duelo» en la ficha de un amigo para empezar un examen rápido a la vez."
         />
+      )}
+
+      {battles.history.length > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: hasAnything ? 8 : 0 }}>
+          {battles.history.map((entry: BattleHistoryEntry) => (
+            <CardButton
+              key={entry.battleId}
+              onClick={() => onOpenBattle(entry.battleId)}
+              style={{ padding: 12, display: 'flex', alignItems: 'center', gap: 10, width: '100%' }}
+            >
+              <Avatar name={entry.displayName} size={36} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 13.5, fontWeight: 600, color: 'var(--color-text)' }}>
+                  {entry.status === 'abandoned'
+                    ? `Duelo abandonado con ${entry.displayName}`
+                    : `${entry.myCorrectCount} - ${entry.opponentCorrectCount} vs ${entry.displayName}`}
+                </div>
+                <div
+                  style={{
+                    fontSize: 11.5,
+                    fontWeight: 600,
+                    color:
+                      entry.status === 'abandoned'
+                        ? 'var(--color-text-muted-45)'
+                        : entry.won
+                          ? 'var(--color-success)'
+                          : entry.tied
+                            ? 'var(--color-text-muted-45)'
+                            : 'var(--color-error)',
+                  }}
+                >
+                  {entry.status === 'abandoned' ? 'Toca para revisar las preguntas' : entry.won ? 'Ganado' : entry.tied ? 'Empate' : 'Perdido'}
+                </div>
+              </div>
+              <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
+            </CardButton>
+          ))}
+        </div>
       )}
     </div>
   );

@@ -281,7 +281,6 @@ begin
     insert into public.xp_events (user_id, amount, reason) values (v_other_id, v_other_xp, case when v_winner = v_other_id then 'exam_passed' else 'exam_failed' end);
 
     perform public.fn_check_achievements(v_uid);
-    perform public.fn_check_achievements(v_other_id);
   else
     update public.battles set current_question_index = p_question_index + 1, question_started_at = now() where id = p_battle_id;
   end if;
