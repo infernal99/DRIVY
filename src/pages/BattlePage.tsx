@@ -13,6 +13,8 @@ import {
   type BattleRoundState,
 } from '../services/battlesService';
 import { getQuestion } from '../services/questionService';
+import { playAnswerFeedback } from '../services/feedbackEffects';
+import { useProgressStore } from '../store/progressStore';
 import { AppShell } from '../components/layout/AppShell';
 import { Button } from '../components/ui/Button';
 import { Icon } from '../components/ui/Icon';
@@ -21,6 +23,7 @@ import { EmptyState } from '../components/ui/EmptyState';
 import { ContentProvenanceNote } from '../components/ui/ContentProvenanceNote';
 import { AiTutorPanel } from '../components/ui/AiTutorPanel';
 import { explainMistake } from '../services/aiTutorService';
+import { ShareResultButton } from '../components/ui/ShareResultButton';
 import { OptionRow, QuestionImage } from '../components/lesson/QuestionCard';
 import type { Question } from '../types';
 
@@ -34,6 +37,7 @@ export function BattlePage() {
   const { battleId } = useParams();
   const navigate = useNavigate();
   const numericId = battleId ? Number(battleId) : NaN;
+  const userName = useProgressStore((s) => s.progress.userName);
 
   const [phase, setPhase] = useState<Phase>('loading');
   const [battle, setBattle] = useState<ActiveBattleSummary | null>(null);
@@ -61,6 +65,10 @@ export function BattlePage() {
   const myAnsweredRef = useRef(false);
   const timeoutFiredForRef = useRef<number | null>(null);
   const pendingNextRef = useRef<{ index: number; startedAt: string } | null>(null);
+
+  useEffect(() => {
+    if (revealFor) playAnswerFeedback(revealFor.myAnswer.correct);
+  }, [revealFor]);
 
   useEffect(() => {
     currentIndexRef.current = currentIndex;
@@ -375,6 +383,15 @@ export function BattlePage() {
           </p>
         </div>
         <div style={{ padding: '16px 20px 26px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <ShareResultButton
+            data={{
+              title: tied ? 'Empate en el duelo' : won ? '¡Has ganado el duelo!' : 'Has perdido este duelo',
+              scoreLine: `${result.myCorrectCount}-${result.opponentCorrectCount}`,
+              subtitle: `Duelo vs ${result.displayName}`,
+              userName,
+              positive: won || tied,
+            }}
+          />
           <Button variant="secondary" onClick={openReview}>
             REVISAR PREGUNTAS
           </Button>

@@ -13,6 +13,7 @@ import {
   isPushSupported,
 } from '../services/pushService';
 import { useThemeStore, type ThemePreference } from '../store/themeStore';
+import { useFeedbackSettingsStore } from '../store/feedbackSettingsStore';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
 import { AuthField } from '../components/auth/AuthField';
@@ -32,6 +33,7 @@ export function SettingsPage() {
       <ScreenHeader title="Configuración" />
       <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 30px', display: 'flex', flexDirection: 'column', gap: 16 }}>
         <AppearanceCard />
+        <FeedbackFxCard />
 
         <Card style={{ padding: 16 }}>
           <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>Nombre</div>
@@ -126,6 +128,25 @@ function AppearanceCard() {
             {opt.label}
           </button>
         ))}
+      </div>
+    </Card>
+  );
+}
+
+function FeedbackFxCard() {
+  const enabled = useFeedbackSettingsStore((s) => s.enabled);
+  const setEnabled = useFeedbackSettingsStore((s) => s.setEnabled);
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+        <div>
+          <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)' }}>Sonidos y vibración</div>
+          <p style={{ fontSize: 12, color: 'var(--color-text-muted-60)', margin: '2px 0 0' }}>
+            Un aviso corto al acertar o fallar una pregunta.
+          </p>
+        </div>
+        <Toggle checked={enabled} onChange={setEnabled} />
       </div>
     </Card>
   );
