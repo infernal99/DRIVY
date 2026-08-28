@@ -121,7 +121,7 @@ export function ProgressPage() {
             <div style={{ fontWeight: 600, fontSize: 13.5, color: 'var(--color-text)' }}>Mis exámenes</div>
             <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-50)', marginTop: 1 }}>Historial, mejor nota y evolución</div>
           </div>
-          <Icon name="chevronRight" size={14} color="rgba(16,25,46,0.3)" />
+          <Icon name="chevronRight" size={14} color="var(--color-text-muted-30)" />
         </CardButton>
 
         <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>

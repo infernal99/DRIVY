@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-around;
   padding: 10px 8px calc(14px + env(safe-area-inset-bottom, 0px));
-  background: #fff;
+  background: var(--color-bg-card);
   box-shadow: var(--shadow-topbar);
   flex: none;
   z-index: 30;

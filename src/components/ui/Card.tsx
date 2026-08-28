@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, HTMLAttributes } from 'react';
 
 const baseStyle: React.CSSProperties = {
-  background: '#fff',
+  background: 'var(--color-bg-card)',
   borderRadius: 'var(--radius-lg)',
   boxShadow: 'var(--shadow-card)',
 };

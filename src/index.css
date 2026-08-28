@@ -16,7 +16,11 @@ body {
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color-scheme: light;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
 }
 
 #root {

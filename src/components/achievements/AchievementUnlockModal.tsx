@@ -28,7 +28,7 @@ export function AchievementUnlockModal({
       style={{
         position: 'fixed',
         inset: 0,
-        background: 'rgba(16,25,46,0.55)',
+        background: 'var(--color-text-muted-55)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -41,7 +41,7 @@ export function AchievementUnlockModal({
         className="anim-pop-in"
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: '#fff',
+          background: 'var(--color-bg-card)',
           borderRadius: 24,
           padding: '32px 24px 24px',
           maxWidth: 320,

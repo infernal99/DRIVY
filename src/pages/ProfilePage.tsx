@@ -97,7 +97,7 @@ export function ProfilePage() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   gap: 8,
-                  background: '#fff',
+                  background: 'var(--color-bg-card)',
                   borderRadius: 14,
                   padding: '16px 10px',
                   textAlign: 'center',
@@ -126,7 +126,7 @@ export function ProfilePage() {
           })}
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 2, background: '#fff', borderRadius: 16, boxShadow: 'var(--shadow-card)', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 2, background: 'var(--color-bg-card)', borderRadius: 16, boxShadow: 'var(--shadow-card)', overflow: 'hidden' }}>
           {links.map((link, i) => (
             <button
               key={link.name}
@@ -150,7 +150,7 @@ export function ProfilePage() {
                 <Icon name={link.icon} size={16} />
               </div>
               <span style={{ flex: 1, fontSize: 14, fontWeight: 600, color: 'var(--color-text)' }}>{link.name}</span>
-              <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
+              <Icon name="chevronRight" size={13} color="var(--color-text-muted-30)" />
             </button>
           ))}
 
@@ -174,7 +174,7 @@ export function ProfilePage() {
                 <Icon name="download" size={16} />
               </div>
               <span style={{ flex: 1, fontSize: 14, fontWeight: 600, color: 'var(--color-text)' }}>Instalar aplicación</span>
-              <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
+              <Icon name="chevronRight" size={13} color="var(--color-text-muted-30)" />
             </button>
           )}
         </div>
@@ -195,7 +195,7 @@ export function ProfilePage() {
               padding: '14px 16px',
               border: 'none',
               borderRadius: 16,
-              background: '#fff',
+              background: 'var(--color-bg-card)',
               boxShadow: 'var(--shadow-card)',
               color: 'var(--color-error)',
               fontWeight: 700,

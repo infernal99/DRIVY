@@ -271,7 +271,7 @@ function SearchSection({ onSent }: { onSent: () => void }) {
             borderRadius: 12,
             border: '1px solid var(--color-border-subtle)',
             fontSize: 13.5,
-            background: '#fff',
+            background: 'var(--color-bg-card)',
           }}
         />
         <Button onClick={handleSearch} disabled={searching} style={{ flex: 'none', width: 'auto', padding: '0 18px' }}>
@@ -510,7 +510,7 @@ function BattlesSection({
               Pregunta {active.currentQuestionIndex + 1} / {active.questionCount} · Toca para continuar
             </div>
           </div>
-          <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
+          <Icon name="chevronRight" size={13} color="var(--color-text-muted-30)" />
         </CardButton>
       ))}
 
@@ -554,7 +554,7 @@ function BattlesSection({
                   {entry.status === 'abandoned' ? 'Toca para revisar las preguntas' : entry.won ? 'Ganado' : entry.tied ? 'Empate' : 'Perdido'}
                 </div>
               </div>
-              <Icon name="chevronRight" size={13} color="rgba(16,25,46,0.3)" />
+              <Icon name="chevronRight" size={13} color="var(--color-text-muted-30)" />
             </CardButton>
           ))}
         </div>

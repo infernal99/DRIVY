@@ -71,7 +71,7 @@ export function IncomingRequestToast() {
         zIndex: 210,
         maxWidth: 380,
         margin: '0 auto',
-        background: '#fff',
+        background: 'var(--color-bg-card)',
         borderRadius: 16,
         boxShadow: 'var(--shadow-elevated)',
         padding: 14,

@@ -30,13 +30,13 @@ export function BottomNav() {
             end={item.to === '/'}
             className={styles.item}
             style={({ isActive }) => ({
-              color: isActive ? 'var(--color-primary)' : 'rgba(16,25,46,0.4)',
+              color: isActive ? 'var(--color-primary)' : 'var(--color-text-muted-40)',
             })}
           >
             {({ isActive }) => (
               <>
                 <span className={styles.iconWrap}>
-                  <Icon name={item.icon} size={22} color={isActive ? 'var(--color-primary)' : 'rgba(16,25,46,0.4)'} />
+                  <Icon name={item.icon} size={22} color={isActive ? 'var(--color-primary)' : 'var(--color-text-muted-40)'} />
                   {showDot && (
                     <span className={styles.dot} role="status" aria-label="Tienes novedades de amigos" />
                   )}
