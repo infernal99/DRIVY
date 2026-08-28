@@ -166,8 +166,6 @@ export function FriendsPage() {
               />
             )}
 
-            {battles && <BattlesSection battles={battles} onChanged={refresh} onOpenBattle={(id) => navigate(`/battles/${id}`)} />}
-
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
               Lista de amigos
             </div>
@@ -178,12 +176,14 @@ export function FriendsPage() {
                 description="Comparte tu código o busca por nombre para añadir a tu primer amigo."
               />
             ) : (
-              <Card style={{ padding: 6 }}>
+              <Card style={{ padding: 6, marginBottom: 20 }}>
                 {leaderboard.map((entry, i) => (
                   <FriendListRow key={entry.userId} entry={entry} rank={i + 1} onOpen={() => navigate(`/friends/${entry.userId}`)} onChallenged={refresh} />
                 ))}
               </Card>
             )}
+
+            {battles && <BattlesSection battles={battles} onChanged={refresh} onOpenBattle={(id) => navigate(`/battles/${id}`)} />}
           </>
         ) : null}
       </div>
@@ -355,18 +355,22 @@ function FriendListRow({
         </div>
         {challengeError && <div style={{ fontSize: 11, color: 'var(--color-error)', marginTop: 2 }}>{challengeError}</div>}
       </div>
-      <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--color-xp-text)' }}>{entry.weeklyXp} XP</span>
-      {!entry.isMe && (
-        <Button
-          variant="secondary"
-          onClick={handleChallenge}
-          disabled={challenging}
-          style={{ flex: 'none', width: 'auto', padding: '6px 10px', fontSize: 11 }}
-        >
-          <Icon name="flag" size={12} />
-          {challenging ? '…' : 'Duelo'}
-        </Button>
-      )}
+      <span style={{ flex: 'none', width: 56, textAlign: 'right', fontSize: 13, fontWeight: 700, color: 'var(--color-xp-text)' }}>
+        {entry.weeklyXp} XP
+      </span>
+      <div style={{ flex: 'none', width: 74 }}>
+        {!entry.isMe && (
+          <Button
+            variant="secondary"
+            onClick={handleChallenge}
+            disabled={challenging}
+            style={{ flex: 'none', width: '100%', padding: '6px 8px', fontSize: 11 }}
+          >
+            <Icon name="flag" size={12} />
+            {challenging ? '…' : 'Duelo'}
+          </Button>
+        )}
+      </div>
     </div>
   );
 }
