@@ -11,7 +11,7 @@ export function QuestionImage({ question }: { question: Question }) {
         style={{
           width: 150,
           height: 150,
-          background: '#F5F7FB',
+          background: 'var(--color-bg-screen)',
           borderRadius: 24,
           display: 'flex',
           alignItems: 'center',
@@ -44,7 +44,7 @@ export function OptionRow({
   disabled: boolean;
 }) {
   const styleByState: Record<typeof state, React.CSSProperties> = {
-    idle: { border: '2px solid #EEF1F7', background: '#fff' },
+    idle: { border: '2px solid #EEF1F7', background: 'var(--color-bg-card)' },
     selected: { border: '2px solid var(--color-primary)', background: 'var(--color-info-bg)' },
     correct: { border: '2px solid var(--color-success)', background: 'var(--color-success-bg)' },
     wrong: { border: '2px solid var(--color-error)', background: 'var(--color-error-bg)' },

@@ -118,7 +118,7 @@ export function FriendProfilePage() {
                         flexDirection: 'column',
                         alignItems: 'center',
                         gap: 8,
-                        background: '#fff',
+                        background: 'var(--color-bg-card)',
                         borderRadius: 14,
                         padding: '16px 10px',
                         textAlign: 'center',

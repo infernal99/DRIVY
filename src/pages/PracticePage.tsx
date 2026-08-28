@@ -116,7 +116,7 @@ function PracticeRow({
         <div style={{ fontWeight: 600, fontSize: 14.5, color: 'var(--color-text)' }}>{title}</div>
         <div style={{ fontSize: 12, color: 'var(--color-text-muted-50)', marginTop: 1 }}>{subtitle}</div>
       </div>
-      <Icon name="chevronRight" size={14} color="rgba(16,25,46,0.3)" />
+      <Icon name="chevronRight" size={14} color="var(--color-text-muted-30)" />
     </CardButton>
   );
 }

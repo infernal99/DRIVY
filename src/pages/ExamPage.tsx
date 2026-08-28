@@ -118,7 +118,7 @@ export function ExamPage() {
 
   return (
     <AppShell>
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg-card)' }}>
         <div style={{ padding: '16px 20px 10px', display: 'flex', alignItems: 'center', gap: 12 }}>
           <Button
             variant="secondary"
@@ -190,7 +190,7 @@ export function ExamPage() {
           </div>
         </div>
 
-        <div style={{ padding: '12px 20px 24px', display: 'flex', gap: 10, background: '#fff', boxShadow: 'var(--shadow-topbar)' }}>
+        <div style={{ padding: '12px 20px 24px', display: 'flex', gap: 10, background: 'var(--color-bg-card)', boxShadow: 'var(--shadow-topbar)' }}>
           <Button variant="secondary" disabled={safeIndex === 0} onClick={() => setIndex((i) => Math.max(i - 1, 0))} style={{ flex: 1 }}>
             Anterior
           </Button>
@@ -229,7 +229,7 @@ function ExamReviewView({
 }) {
   const unanswered = answers.filter((a) => a === null).length;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg-card)' }}>
       <div style={{ padding: '18px 20px 10px' }}>
         <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 18, color: 'var(--color-text)' }}>
           Revisar antes de enviar
@@ -261,7 +261,7 @@ function ExamReviewView({
           ))}
         </div>
       </div>
-      <div style={{ padding: '16px 20px 26px', display: 'flex', gap: 10, background: '#fff', boxShadow: 'var(--shadow-topbar)' }}>
+      <div style={{ padding: '16px 20px 26px', display: 'flex', gap: 10, background: 'var(--color-bg-card)', boxShadow: 'var(--shadow-topbar)' }}>
         <Button variant="secondary" onClick={onBack} style={{ flex: 1 }}>
           Seguir respondiendo
         </Button>
@@ -323,7 +323,7 @@ function ExamResultView({
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {wrongAnswers.map(({ answer, question }) => (
-                <div key={question.id} style={{ background: '#fff', borderRadius: 14, padding: 14, boxShadow: 'var(--shadow-card)' }}>
+                <div key={question.id} style={{ background: 'var(--color-bg-card)', borderRadius: 14, padding: 14, boxShadow: 'var(--shadow-card)' }}>
                   <div style={{ fontWeight: 600, fontSize: 13.5, color: 'var(--color-text)', marginBottom: 6 }}>{question.question}</div>
                   <div style={{ fontSize: 12.5, color: 'var(--color-error)', fontWeight: 600, marginBottom: 4 }}>
                     Tu respuesta:{' '}
@@ -343,7 +343,7 @@ function ExamResultView({
           </>
         )}
       </div>
-      <div style={{ padding: '16px 20px 26px', background: '#fff', boxShadow: 'var(--shadow-topbar)' }}>
+      <div style={{ padding: '16px 20px 26px', background: 'var(--color-bg-card)', boxShadow: 'var(--shadow-topbar)' }}>
         <Button onClick={onExit}>VOLVER A PRACTICAR</Button>
       </div>
     </div>

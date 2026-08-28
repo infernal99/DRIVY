@@ -9,7 +9,7 @@
   width: 36px;
   height: 36px;
   border-radius: var(--radius-sm);
-  background: #fff;
+  background: var(--color-bg-card);
   box-shadow: var(--shadow-card);
   display: flex;
   align-items: center;

@@ -64,7 +64,7 @@ export function LessonCompleteScreen({
         </div>
 
         {nextLessonName && (
-          <div style={{ background: '#fff', borderRadius: 16, padding: '14px 16px', boxShadow: 'var(--shadow-card)', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ background: 'var(--color-bg-card)', borderRadius: 16, padding: '14px 16px', boxShadow: 'var(--shadow-card)', display: 'flex', alignItems: 'center', gap: 12 }}>
             <div style={{ width: 40, height: 40, borderRadius: 12, background: 'var(--color-info-bg)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ width: 18, height: 18, border: '2.5px solid var(--color-primary)', borderRadius: '50%' }} />
             </div>
@@ -85,7 +85,7 @@ export function LessonCompleteScreen({
 
 function StatBox({ value, label, color }: { value: React.ReactNode; label: string; color: string }) {
   return (
-    <div style={{ flex: 1, background: '#fff', borderRadius: 16, padding: 14, boxShadow: 'var(--shadow-card)', textAlign: 'center' }}>
+    <div style={{ flex: 1, background: 'var(--color-bg-card)', borderRadius: 16, padding: 14, boxShadow: 'var(--shadow-card)', textAlign: 'center' }}>
       <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 19, color }}>{value}</div>
       <div style={{ fontSize: 11, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>{label}</div>
     </div>

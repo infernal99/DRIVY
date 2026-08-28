@@ -12,6 +12,7 @@ import {
   hasActivePushSubscription,
   isPushSupported,
 } from '../services/pushService';
+import { useThemeStore, type ThemePreference } from '../store/themeStore';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
 import { AuthField } from '../components/auth/AuthField';
@@ -30,6 +31,8 @@ export function SettingsPage() {
     <AppShell>
       <ScreenHeader title="Configuración" />
       <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 30px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <AppearanceCard />
+
         <Card style={{ padding: 16 }}>
           <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>Nombre</div>
           <p style={{ fontSize: 13, color: 'var(--color-text-muted-60)', margin: 0 }}>{userName}</p>
@@ -85,6 +88,46 @@ export function SettingsPage() {
         </Card>
       </div>
     </AppShell>
+  );
+}
+
+const THEME_OPTIONS: { value: ThemePreference; label: string }[] = [
+  { value: 'system', label: 'Sistema' },
+  { value: 'light', label: 'Claro' },
+  { value: 'dark', label: 'Oscuro' },
+];
+
+function AppearanceCard() {
+  const preference = useThemeStore((s) => s.preference);
+  const setPreference = useThemeStore((s) => s.setPreference);
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 10 }}>Apariencia</div>
+      <div style={{ display: 'flex', gap: 6, background: 'var(--color-bg-screen)', borderRadius: 12, padding: 4 }}>
+        {THEME_OPTIONS.map((opt) => (
+          <button
+            key={opt.value}
+            type="button"
+            onClick={() => setPreference(opt.value)}
+            style={{
+              flex: 1,
+              padding: '8px 0',
+              border: 'none',
+              borderRadius: 9,
+              background: preference === opt.value ? 'var(--color-bg-card)' : 'transparent',
+              color: preference === opt.value ? 'var(--color-primary)' : 'var(--color-text-muted-60)',
+              boxShadow: preference === opt.value ? 'var(--shadow-card)' : 'none',
+              fontWeight: 700,
+              fontSize: 12.5,
+              cursor: 'pointer',
+            }}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+    </Card>
   );
 }
 

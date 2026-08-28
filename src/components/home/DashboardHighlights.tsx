@@ -34,7 +34,7 @@ function HighlightCard({
         flex: '0 0 auto',
         width: 158,
         textAlign: 'left',
-        background: '#fff',
+        background: 'var(--color-bg-card)',
         border: 'none',
         borderRadius: 16,
         padding: 14,

@@ -32,7 +32,7 @@ export function Toggle({
           width: 20,
           height: 20,
           borderRadius: '50%',
-          background: '#fff',
+          background: 'var(--color-bg-card)',
           transform: checked ? 'translateX(18px)' : 'translateX(0)',
           transition: 'transform .2s ease',
           boxShadow: '0 1px 3px rgba(0,0,0,0.2)',

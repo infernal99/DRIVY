@@ -433,7 +433,7 @@ export function BattlePage() {
             const q = getQuestion(entry.questionId);
             if (!q) return null;
             return (
-              <div key={entry.questionId} style={{ background: '#fff', borderRadius: 14, padding: 14, boxShadow: 'var(--shadow-card)' }}>
+              <div key={entry.questionId} style={{ background: 'var(--color-bg-card)', borderRadius: 14, padding: 14, boxShadow: 'var(--shadow-card)' }}>
                 <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)', fontWeight: 700, marginBottom: 4 }}>PREGUNTA {i + 1}</div>
                 <div style={{ fontWeight: 600, fontSize: 13.5, color: 'var(--color-text)', marginBottom: 8 }}>{q.question}</div>
 
@@ -478,7 +478,7 @@ export function BattlePage() {
 
   return (
     <AppShell>
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg-card)' }}>
         <div style={{ padding: '16px 20px 10px', display: 'flex', alignItems: 'center', gap: 12 }}>
           <BackButton onClick={handleAbandon} />
           <div style={{ flex: 1 }}>

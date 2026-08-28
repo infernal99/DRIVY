@@ -236,7 +236,7 @@ function QuestionDetail({ question, onReviewChange }: { question: Question; onRe
               clearReviewState(question.id);
               onReviewChange();
             }}
-            style={{ padding: '6px 10px', borderRadius: 6, border: '1px solid #ccc', background: '#fff', cursor: 'pointer' }}
+            style={{ padding: '6px 10px', borderRadius: 6, border: '1px solid #ccc', background: 'var(--color-bg-card)', cursor: 'pointer' }}
           >
             Quitar marca
           </button>
