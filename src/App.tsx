@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { SyncNoticeToast } from './components/auth/SyncNoticeToast';
 import { FriendNotificationWatcher } from './components/friends/FriendNotificationWatcher';
+import { IncomingRequestToast } from './components/friends/IncomingRequestToast';
 import { InstallBanner } from './components/pwa/InstallBanner';
 import { RequireAuth } from './components/auth/RequireAuth';
 import { RedirectIfAuthed } from './components/auth/RedirectIfAuthed';
@@ -34,6 +35,7 @@ function App() {
     <>
       <SyncNoticeToast />
       <FriendNotificationWatcher />
+      <IncomingRequestToast />
       <InstallBanner />
       <Routes>
         {/* Dev-only content curation tool (content spec §15) — never shipped in production builds. */}

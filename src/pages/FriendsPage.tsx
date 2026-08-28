@@ -68,7 +68,7 @@ export function FriendsPage() {
         // every currently-listed friend as seen — actually opening this page
         // is what "acknowledging" a newly-accepted friend means.
         ingestNotifications(friendships);
-        ingestBattleNotifications(battleData.incoming.length);
+        ingestBattleNotifications(battleData);
         markFriendsSeen(friendships.friends);
 
         const justAccepted = battleData.active.find((a) => prevOutgoingIdsRef.current.has(a.battleId));
