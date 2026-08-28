@@ -8,13 +8,22 @@ import { todayISO } from '../utils/date';
 // fn_advance_daily_missions credits, or a client could see one set of
 // missions but earn progress toward a different set.
 
-export type DailyMissionMetric = 'questions_answered' | 'lessons_completed' | 'mistakes_practiced' | 'xp_earned';
+export type DailyMissionMetric =
+  | 'questions_answered'
+  | 'lessons_completed'
+  | 'mistakes_practiced'
+  | 'xp_earned'
+  | 'exams_taken'
+  | 'battles_played'
+  | 'battles_won';
 
 export interface DailyMissionProgress {
   id: string;
   description: string;
   metric: DailyMissionMetric;
   targetAmount: number;
+  /** Bonus XP awarded once, the moment this mission is first completed for the day. */
+  xpReward: number;
   progress: number;
   completed: boolean;
 }
@@ -24,6 +33,7 @@ interface DailyMissionApiRow {
   description: string;
   metric: DailyMissionMetric;
   targetAmount: number;
+  xpReward: number;
   progress: number;
   completed: boolean;
 }
