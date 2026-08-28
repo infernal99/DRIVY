@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { createClient } from '@supabase/supabase-js';
-import webpush from 'web-push';
+import { sendPushToUser, supabaseAdmin } from './_push';
 
 // Sends a web push notification for one specific, known event — never a
 // free-form "notify this user_id" endpoint. Each `type` below re-derives its
@@ -17,51 +17,10 @@ type SendPushBody =
   | { type: 'battle_request'; battleId: number }
   | { type: 'battle_accept'; battleId: number };
 
-webpush.setVapidDetails(
-  'mailto:drivy-app@example.com',
-  process.env.VITE_VAPID_PUBLIC_KEY as string,
-  process.env.VAPID_PRIVATE_KEY as string,
-);
-
-// Reuses the same VITE_SUPABASE_URL already configured in Vercel for the
-// frontend build — the VITE_ prefix only controls what Vite inlines into
-// the client bundle, it doesn't restrict what a serverless function can
-// read from process.env at runtime.
-function admin() {
-  return createClient(process.env.VITE_SUPABASE_URL as string, process.env.SUPABASE_SERVICE_ROLE_KEY as string, {
-    auth: { autoRefreshToken: false, persistSession: false },
-  });
-}
-
 function anon() {
   return createClient(process.env.VITE_SUPABASE_URL as string, process.env.VITE_SUPABASE_PUBLISHABLE_KEY as string, {
     auth: { autoRefreshToken: false, persistSession: false },
   });
-}
-
-async function sendToUser(
-  db: ReturnType<typeof admin>,
-  targetUserId: string,
-  payload: { title: string; body: string; url: string },
-) {
-  const { data: subs } = await db.from('push_subscriptions').select('id, endpoint, p256dh, auth').eq('user_id', targetUserId);
-  if (!subs || subs.length === 0) return;
-
-  await Promise.all(
-    subs.map(async (sub) => {
-      try {
-        await webpush.sendNotification(
-          { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth } },
-          JSON.stringify(payload),
-        );
-      } catch (err) {
-        const statusCode = (err as { statusCode?: number }).statusCode;
-        if (statusCode === 404 || statusCode === 410) {
-          await db.from('push_subscriptions').delete().eq('id', sub.id);
-        }
-      }
-    }),
-  );
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -84,7 +43,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const db = admin();
+  const db = supabaseAdmin();
   const body = req.body as SendPushBody;
 
   const { data: callerProfile } = await db.from('profiles').select('display_name').eq('user_id', caller.id).single();
@@ -103,7 +62,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           .eq('status', 'pending')
           .maybeSingle();
         if (!friendship) break;
-        await sendToUser(db, target.user_id, {
+        await sendPushToUser(db, target.user_id, {
           title: 'Nueva solicitud de amistad',
           body: `${callerName} quiere ser tu amigo en DRIVY`,
           url: '/friends',
@@ -117,7 +76,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           .eq('id', body.requestId)
           .single();
         if (!friendship || friendship.addressee_id !== caller.id || friendship.status !== 'accepted') break;
-        await sendToUser(db, friendship.requester_id, {
+        await sendPushToUser(db, friendship.requester_id, {
           title: 'Solicitud aceptada',
           body: `${callerName} ha aceptado tu solicitud de amistad`,
           url: '/friends',
@@ -131,7 +90,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           .eq('id', body.battleId)
           .single();
         if (!battle || battle.challenger_id !== caller.id || battle.status !== 'pending') break;
-        await sendToUser(db, battle.opponent_id, {
+        await sendPushToUser(db, battle.opponent_id, {
           title: 'Nuevo duelo',
           body: `${callerName} te ha retado a un duelo`,
           url: '/friends',
@@ -145,7 +104,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           .eq('id', body.battleId)
           .single();
         if (!battle || battle.opponent_id !== caller.id || battle.status !== 'active') break;
-        await sendToUser(db, battle.challenger_id, {
+        await sendPushToUser(db, battle.challenger_id, {
           title: '¡Duelo en marcha!',
           body: `${callerName} ha aceptado tu duelo`,
           url: `/battles/${body.battleId}`,
