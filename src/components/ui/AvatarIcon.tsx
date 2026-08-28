@@ -93,6 +93,27 @@ const AVATAR_STYLE: Record<AvatarId, { gradient: string; glyph: React.ReactNode 
       </>
     ),
   },
+  vip: {
+    gradient: 'linear-gradient(135deg,#18181b,#3f3f46)',
+    glyph: (
+      <path
+        d="M12 3.5l2.47 5.01 5.53.8-4 3.9.94 5.5L12 15.98l-4.94 2.73.94-5.5-4-3.9 5.53-.8L12 3.5z"
+        fill="#facc15"
+        stroke="#facc15"
+        strokeWidth="0.4"
+        strokeLinejoin="round"
+      />
+    ),
+  },
+  cometa: {
+    gradient: 'linear-gradient(135deg,#0ea5e9,#312e81)',
+    glyph: (
+      <>
+        <circle cx="15" cy="9" r="3" fill="#fff" />
+        <path d="M13 11 5 19M11 9 3 13M13 7 7 5" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
+      </>
+    ),
+  },
 };
 
 export function AvatarIcon({ avatarId, size = 44 }: { avatarId: AvatarId; size?: number }) {

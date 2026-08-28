@@ -1,15 +1,29 @@
 // Display catalog for avatars — id, name and unlock XP. Mirrors the
 // `avatars` table in supabase/migrations/20260829110000_avatar_catalog.sql
-// (the actual unlock check happens server-side against that table; this
-// copy exists purely for rendering — same split this codebase already uses
-// for achievements). Keep both in sync by hand if this list changes.
+// and 20260830090000_premium_subscriptions.sql (the actual unlock check
+// happens server-side against that table; this copy exists purely for
+// rendering — same split this codebase already uses for achievements).
+// Keep both in sync by hand if this list changes.
 
-export type AvatarId = 'volante' | 'semaforo' | 'stop' | 'casco' | 'coche' | 'rayo' | 'trofeo' | 'corona' | 'diamante';
+export type AvatarId =
+  | 'volante'
+  | 'semaforo'
+  | 'stop'
+  | 'casco'
+  | 'coche'
+  | 'rayo'
+  | 'trofeo'
+  | 'corona'
+  | 'diamante'
+  | 'vip'
+  | 'cometa';
 
 export interface AvatarCatalogEntry {
   id: AvatarId;
   name: string;
   xpRequired: number;
+  /** Premium-exclusive — unlocked by an active subscription (or the dev bypass) regardless of XP. */
+  requiresPremium?: boolean;
 }
 
 export const AVATAR_CATALOG: AvatarCatalogEntry[] = [
@@ -22,6 +36,8 @@ export const AVATAR_CATALOG: AvatarCatalogEntry[] = [
   { id: 'trofeo', name: 'Trofeo', xpRequired: 1800 },
   { id: 'corona', name: 'Corona', xpRequired: 2500 },
   { id: 'diamante', name: 'Diamante', xpRequired: 3500 },
+  { id: 'vip', name: 'VIP', xpRequired: 0, requiresPremium: true },
+  { id: 'cometa', name: 'Cometa', xpRequired: 0, requiresPremium: true },
 ];
 
 export function isAvatarId(value: string | null | undefined): value is AvatarId {

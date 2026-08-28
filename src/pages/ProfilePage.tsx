@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { useAuthStore } from '../store/authStore';
 import { promptInstall, useInstallPromptStore } from '../store/installPromptStore';
+import { usePremiumStore } from '../store/premiumStore';
 import { computeStats } from '../services/progressService';
 import { getMyAvatarId } from '../services/avatarService';
 import { getLevelInfo } from '../utils/xp';
@@ -27,6 +28,7 @@ export function ProfilePage() {
 
   const [avatarId, setAvatarId] = useState<string | null>(null);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
+  const isPremium = usePremiumStore((s) => s.isPremium);
 
   useEffect(() => {
     if (authStatus !== 'authenticated') return;
@@ -236,6 +238,7 @@ export function ProfilePage() {
       {showAvatarPicker && (
         <AvatarPickerModal
           currentXp={progress.xp}
+          isPremium={isPremium}
           selectedAvatarId={avatarId}
           onClose={() => setShowAvatarPicker(false)}
           onSelected={setAvatarId}

@@ -6,11 +6,13 @@ import { Icon } from '../ui/Icon';
 
 export function AvatarPickerModal({
   currentXp,
+  isPremium,
   selectedAvatarId,
   onClose,
   onSelected,
 }: {
   currentXp: number;
+  isPremium: boolean;
   selectedAvatarId: string | null;
   onClose: () => void;
   onSelected: (avatarId: string) => void;
@@ -70,7 +72,7 @@ export function AvatarPickerModal({
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
           {AVATAR_CATALOG.map((entry) => {
-            const unlocked = currentXp >= entry.xpRequired;
+            const unlocked = currentXp >= entry.xpRequired && (!entry.requiresPremium || isPremium);
             const isSelected = selectedAvatarId === entry.id;
             return (
               <button
@@ -123,7 +125,13 @@ export function AvatarPickerModal({
                     color: unlocked ? 'var(--color-success)' : 'var(--color-text-muted-45)',
                   }}
                 >
-                  {unlocked ? (isSelected ? 'Seleccionado' : 'Disponible') : `${entry.xpRequired} XP`}
+                  {unlocked
+                    ? isSelected
+                      ? 'Seleccionado'
+                      : 'Disponible'
+                    : entry.requiresPremium && currentXp >= entry.xpRequired
+                      ? 'Premium'
+                      : `${entry.xpRequired} XP`}
                 </span>
               </button>
             );

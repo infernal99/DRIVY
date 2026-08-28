@@ -25,6 +25,14 @@ const PATHS: Record<IconName, React.ReactNode> = {
     </>
   ),
   flag: <path d="M5 21V4M5 4h14l-3.5 3.5L19 11H5" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />,
+  crown: (
+    <path
+      d="M4 18l-1.6-9 5 3.3L12 5l4.6 7.3 5-3.3L20 18H4z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinejoin="round"
+    />
+  ),
   home: <path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />,
   book: (
     <>
