@@ -16,6 +16,8 @@ export function BottomNav() {
   const hasFriendAlert = useFriendNotificationStore(
     (s) => s.hasIncomingRequests || s.hasNewFriend || s.hasIncomingBattles,
   );
+  // Background refresh for this badge lives in FriendNotificationWatcher,
+  // mounted once in App.tsx — no need to duplicate a poll here.
 
   return (
     <nav className={styles.nav} aria-label="Navegación principal">

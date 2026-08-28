@@ -85,11 +85,14 @@ export function FriendsPage() {
     // initial value already covers "loading" without a redundant setState here.
   }, [refresh]);
 
-  // While a challenge you sent is still pending, poll for the friend
-  // accepting it so you get pulled into the duel automatically too.
+  // Silent background refresh so incoming friend/duel requests show up on
+  // their own while this page is open — no spinner, no visible reload (see
+  // `refresh` above: it never touches `loading`, only the first mount does).
+  // Polls faster while a challenge you sent is still pending, since getting
+  // pulled into the duel the instant it's accepted matters more there.
   useEffect(() => {
-    if (!battles || battles.outgoing.length === 0) return;
-    const id = setInterval(refresh, 3000);
+    const hasPendingOutgoing = !!battles && battles.outgoing.length > 0;
+    const id = setInterval(refresh, hasPendingOutgoing ? 3000 : 15000);
     return () => clearInterval(id);
   }, [battles, refresh]);
 
