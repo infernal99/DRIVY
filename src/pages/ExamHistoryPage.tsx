@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { getExamHistorySummary } from '../services/examService';
+import { startPracticeSession } from '../services/premiumService';
+import { PremiumUpsellModal } from '../components/premium/PremiumUpsellModal';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
 import { StatTile } from '../components/ui/StatTile';
@@ -22,6 +25,13 @@ export function ExamHistoryPage() {
   const summary = getExamHistorySummary(progress);
   const recent = summary.attempts.slice(-RECENT_EVOLUTION_COUNT);
   const mostRecentFirst = [...summary.attempts].reverse();
+  const [showUpsell, setShowUpsell] = useState(false);
+
+  async function startSimulacro() {
+    const allowed = await startPracticeSession('simulacro');
+    if (allowed) navigate('/practice/exam/simulacro');
+    else setShowUpsell(true);
+  }
 
   return (
     <AppShell>
@@ -32,7 +42,7 @@ export function ExamHistoryPage() {
             icon="flag"
             title="Tu primer simulacro te espera"
             description="Haz un simulacro o un examen real para empezar a ver aquí tu historial y tu evolución."
-            action={<Button onClick={() => navigate('/practice/exam/simulacro')}>HACER UN SIMULACRO</Button>}
+            action={<Button onClick={startSimulacro}>HACER UN SIMULACRO</Button>}
           />
         ) : (
           <>
@@ -100,6 +110,8 @@ export function ExamHistoryPage() {
           </>
         )}
       </div>
+
+      {showUpsell && <PremiumUpsellModal onClose={() => setShowUpsell(false)} />}
     </AppShell>
   );
 }

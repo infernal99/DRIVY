@@ -45,6 +45,14 @@ const PATHS: Record<IconName, React.ReactNode> = {
     </>
   ),
   flag: <path d="M5 21V4M5 4h14l-3.5 3.5L19 11H5" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />,
+  crown: (
+    <path
+      d="M4 18l-1.6-9 5 3.3L12 5l4.6 7.3 5-3.3L20 18H4z"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinejoin="round"
+    />
+  ),
   home: <path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1v-9z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />,
   book: (
     <>
@@ -122,6 +130,12 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M3 21c0-3.6 2.7-6 6-6s6 2.4 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       <path d="M16 4.8a3 3 0 0 1 0 6.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       <path d="M15.5 15.2c2.6.5 4.2 2.3 4.5 5.8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </>
+  ),
+  download: (
+    <>
+      <path d="M12 3v12M7 10l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M4 19h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </>
   ),
 };

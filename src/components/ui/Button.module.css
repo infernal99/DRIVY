@@ -42,7 +42,7 @@
 }
 
 .secondary {
-  background: #fff;
+  background: var(--color-bg-card);
   color: var(--color-text);
   box-shadow: var(--shadow-card);
 }

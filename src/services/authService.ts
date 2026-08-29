@@ -60,7 +60,15 @@ export async function signUpWithEmail(name: string, email: string, password: str
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: { data: { full_name: name } },
+      options: {
+        data: { full_name: name },
+        // Uses whatever origin the signup happened from (localhost during
+        // dev, the deployed domain in prod) instead of the project's fixed
+        // Auth "Site URL" — that origin must still be added to Supabase's
+        // Redirect URLs allowlist (Dashboard → Authentication → URL
+        // Configuration) or the confirmation link is rejected regardless.
+        emailRedirectTo: `${window.location.origin}/`,
+      },
     });
     if (error) return { ok: false, error: translateAuthError(error) };
 

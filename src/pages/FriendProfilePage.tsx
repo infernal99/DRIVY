@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getFriendProfile, type FriendProfile } from '../services/friendsService';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getFriendProfile, removeFriend, type FriendProfile } from '../services/friendsService';
+import { getFriendBattleStats, getHeadToHead, type BattleStats, type HeadToHeadRecord } from '../services/battlesService';
 import { getAchievementById } from '../data/achievements';
 import { getCategoryById } from '../data/categories';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
 import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
 import { Pill } from '../components/ui/Pill';
 import { Icon } from '../components/ui/Icon';
 import { Avatar } from '../components/ui/Avatar';
@@ -18,16 +20,25 @@ function errorMessage(err: unknown, fallback: string): string {
 }
 
 export function FriendProfilePage() {
+  const navigate = useNavigate();
   const { userId = '' } = useParams();
   const [profile, setProfile] = useState<FriendProfile | null>(null);
+  const [battleStats, setBattleStats] = useState<BattleStats | null>(null);
+  const [headToHead, setHeadToHead] = useState<HeadToHeadRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [confirmingRemove, setConfirmingRemove] = useState(false);
+  const [removing, setRemoving] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
-    getFriendProfile(userId)
-      .then(setProfile)
+    Promise.all([getFriendProfile(userId), getFriendBattleStats(userId), getHeadToHead(userId)])
+      .then(([p, b, h2h]) => {
+        setProfile(p);
+        setBattleStats(b);
+        setHeadToHead(h2h);
+      })
       .catch((err) => setError(errorMessage(err, 'No se pudo cargar este perfil.')))
       .finally(() => setLoading(false));
   }, [userId]);
@@ -43,7 +54,7 @@ export function FriendProfilePage() {
         ) : (
           <>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', marginBottom: 20 }}>
-              <Avatar name={profile.displayName} size={76} />
+              <Avatar name={profile.displayName} size={76} avatarId={profile.avatarUrl} />
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 18, color: 'var(--color-text)', marginTop: 10 }}>
                 {profile.displayName}
               </div>
@@ -71,7 +82,51 @@ export function FriendProfilePage() {
                 </div>
                 <div style={{ fontSize: 11, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>Mejor nota</div>
               </Card>
+              {battleStats && battleStats.battlesPlayed > 0 && (
+                <>
+                  <Card style={{ padding: 13 }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 19, color: 'var(--color-text)' }}>
+                      {battleStats.winRatePct}%
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>Victorias en duelos</div>
+                  </Card>
+                  <Card style={{ padding: 13 }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 19, color: 'var(--color-text)' }}>
+                      {battleStats.accuracyPct}%
+                    </div>
+                    <div style={{ fontSize: 11, color: 'var(--color-text-muted-50)', fontWeight: 600, marginTop: 2 }}>Acierto en duelos</div>
+                  </Card>
+                </>
+              )}
             </div>
+
+            {headToHead && headToHead.totalBattles > 0 && (
+              <Card style={{ padding: 16, marginBottom: 20, textAlign: 'center' }}>
+                <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--color-text-muted-45)', textTransform: 'uppercase', letterSpacing: 0.3, marginBottom: 8 }}>
+                  Historial de duelos
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 28, color: 'var(--color-primary)' }}>
+                      {headToHead.myWins}
+                    </div>
+                    <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-50)', fontWeight: 600 }}>Tú</div>
+                  </div>
+                  <div style={{ fontSize: 15, color: 'var(--color-text-muted-40)', fontWeight: 700 }}>—</div>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 28, color: 'var(--color-text)' }}>
+                      {headToHead.theirWins}
+                    </div>
+                    <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-50)', fontWeight: 600 }}>{profile.displayName}</div>
+                  </div>
+                </div>
+                {headToHead.ties > 0 && (
+                  <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-45)', marginTop: 8 }}>
+                    {headToHead.ties} {headToHead.ties === 1 ? 'empate' : 'empates'}
+                  </div>
+                )}
+              </Card>
+            )}
 
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
               Logros
@@ -93,7 +148,7 @@ export function FriendProfilePage() {
                         flexDirection: 'column',
                         alignItems: 'center',
                         gap: 8,
-                        background: '#fff',
+                        background: 'var(--color-bg-card)',
                         borderRadius: 14,
                         padding: '16px 10px',
                         textAlign: 'center',
@@ -144,6 +199,45 @@ export function FriendProfilePage() {
                     );
                   })}
               </div>
+            )}
+
+            {confirmingRemove ? (
+              <div style={{ display: 'flex', gap: 8, marginTop: 24 }}>
+                <Button variant="secondary" style={{ flex: 1 }} onClick={() => setConfirmingRemove(false)} disabled={removing}>
+                  Cancelar
+                </Button>
+                <Button
+                  variant="danger"
+                  style={{ flex: 1 }}
+                  disabled={removing}
+                  onClick={() => {
+                    setRemoving(true);
+                    removeFriend(userId)
+                      .then(() => navigate('/friends'))
+                      .catch(() => setRemoving(false));
+                  }}
+                >
+                  {removing ? 'Eliminando…' : 'Confirmar'}
+                </Button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setConfirmingRemove(true)}
+                style={{
+                  display: 'block',
+                  margin: '24px auto 0',
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--color-error)',
+                  fontSize: 12.5,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  padding: 0,
+                }}
+              >
+                Eliminar amigo
+              </button>
             )}
           </>
         )}

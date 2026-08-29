@@ -94,3 +94,57 @@
   --app-max-width: 480px;
   --nav-height: 64px;
 }
+
+/*
+  Dark palette — applied only via the explicit data-theme="dark" attribute
+  on <html>, set by src/store/themeStore.ts (including for the "system"
+  preference, which themeStore resolves through window.matchMedia in JS
+  rather than an @media block here). That's deliberate, not just a style
+  choice: an @media (prefers-color-scheme: dark) block combined with this
+  attribute selector made Vite's CSS minifier (lightningcss) emit broken
+  --lightningcss-light/-dark bookkeeping properties that silently kept
+  body's background on the light value — see the git history for this file
+  if that's ever worth re-attempting once lightningcss fixes it upstream.
+*/
+:root[data-theme='dark'] {
+  --color-primary: #558bff;
+  --color-primary-light: #7ea4ff;
+  --color-primary-dark: #3f6fe0;
+  --color-primary-navy: #0c1730;
+  --color-primary-navy-mid: #142a5c;
+
+  --color-text: #eef1f7;
+  --color-text-muted-85: rgba(238, 241, 247, 0.85);
+  --color-text-muted-60: rgba(238, 241, 247, 0.6);
+  --color-text-muted-55: rgba(238, 241, 247, 0.55);
+  --color-text-muted-50: rgba(238, 241, 247, 0.5);
+  --color-text-muted-45: rgba(238, 241, 247, 0.45);
+  --color-text-muted-40: rgba(238, 241, 247, 0.4);
+  --color-text-muted-30: rgba(238, 241, 247, 0.3);
+
+  --color-bg-app: #0a0f1c;
+  --color-bg-screen: #0e1526;
+  --color-bg-card: #161f36;
+  --color-bg-locked: #212c47;
+  --color-border-subtle: #263153;
+  --color-divider: #1c2743;
+
+  --color-success: #4ecb84;
+  --color-success-bg: rgba(78, 203, 132, 0.16);
+  --color-error: #ff6b6f;
+  --color-error-bg: rgba(255, 107, 111, 0.16);
+  --color-xp: #ffc53d;
+  --color-xp-text: #ffcf5c;
+  --color-xp-bg: rgba(255, 197, 61, 0.14);
+  --color-streak: #ff9a54;
+  --color-streak-text: #ffab6e;
+  --color-streak-bg: rgba(255, 138, 61, 0.16);
+  --color-info: #558bff;
+  --color-info-bg: rgba(85, 139, 255, 0.16);
+
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.25);
+  --shadow-card-lg: 0 4px 16px rgba(0, 0, 0, 0.28);
+  --shadow-elevated: 0 8px 20px rgba(0, 0, 0, 0.35);
+  --shadow-hero: 0 10px 28px rgba(0, 0, 0, 0.45);
+  --shadow-topbar: 0 -4px 16px rgba(0, 0, 0, 0.3);
+}

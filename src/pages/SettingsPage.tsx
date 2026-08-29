@@ -5,6 +5,16 @@ import { useProgressStore } from '../store/progressStore';
 import { useAuthStore } from '../store/authStore';
 import { changePassword, deleteOwnAccount, MIN_PASSWORD_LENGTH } from '../services/authService';
 import { getMyFriendships, updatePrivacySettings } from '../services/friendsService';
+import {
+  disablePushNotifications,
+  enablePushNotifications,
+  getNotificationPermission,
+  hasActivePushSubscription,
+  isPushSupported,
+} from '../services/pushService';
+import { useThemeStore, type ThemePreference } from '../store/themeStore';
+import { useFeedbackSettingsStore } from '../store/feedbackSettingsStore';
+import { PremiumPricingCard } from '../components/premium/PremiumPricingCard';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
 import { AuthField } from '../components/auth/AuthField';
@@ -23,6 +33,10 @@ export function SettingsPage() {
     <AppShell>
       <ScreenHeader title="Configuración" />
       <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 30px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+        {authStatus === 'authenticated' && <PremiumPricingCard />}
+        <AppearanceCard />
+        <FeedbackFxCard />
+
         <Card style={{ padding: 16 }}>
           <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>Nombre</div>
           <p style={{ fontSize: 13, color: 'var(--color-text-muted-60)', margin: 0 }}>{userName}</p>
@@ -41,6 +55,7 @@ export function SettingsPage() {
 
         {authStatus === 'authenticated' && (
           <>
+            <NotificationsCard />
             <PrivacyCard />
             <ChangePasswordCard />
             <DeleteAccountCard />
@@ -77,6 +92,125 @@ export function SettingsPage() {
         </Card>
       </div>
     </AppShell>
+  );
+}
+
+const THEME_OPTIONS: { value: ThemePreference; label: string }[] = [
+  { value: 'system', label: 'Sistema' },
+  { value: 'light', label: 'Claro' },
+  { value: 'dark', label: 'Oscuro' },
+];
+
+function AppearanceCard() {
+  const preference = useThemeStore((s) => s.preference);
+  const setPreference = useThemeStore((s) => s.setPreference);
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 10 }}>Apariencia</div>
+      <div style={{ display: 'flex', gap: 6, background: 'var(--color-bg-screen)', borderRadius: 12, padding: 4 }}>
+        {THEME_OPTIONS.map((opt) => (
+          <button
+            key={opt.value}
+            type="button"
+            onClick={() => setPreference(opt.value)}
+            style={{
+              flex: 1,
+              padding: '8px 0',
+              border: 'none',
+              borderRadius: 9,
+              background: preference === opt.value ? 'var(--color-bg-card)' : 'transparent',
+              color: preference === opt.value ? 'var(--color-primary)' : 'var(--color-text-muted-60)',
+              boxShadow: preference === opt.value ? 'var(--shadow-card)' : 'none',
+              fontWeight: 700,
+              fontSize: 12.5,
+              cursor: 'pointer',
+            }}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
+function FeedbackFxCard() {
+  const enabled = useFeedbackSettingsStore((s) => s.enabled);
+  const setEnabled = useFeedbackSettingsStore((s) => s.setEnabled);
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+        <div>
+          <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)' }}>Sonidos y vibración</div>
+          <p style={{ fontSize: 12, color: 'var(--color-text-muted-60)', margin: '2px 0 0' }}>
+            Un aviso corto al acertar o fallar una pregunta.
+          </p>
+        </div>
+        <Toggle checked={enabled} onChange={setEnabled} />
+      </div>
+    </Card>
+  );
+}
+
+function NotificationsCard() {
+  const [loading, setLoading] = useState(true);
+  const [enabled, setEnabled] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const supported = isPushSupported();
+  const permission = getNotificationPermission();
+
+  useEffect(() => {
+    if (!supported) {
+      setLoading(false);
+      return;
+    }
+    hasActivePushSubscription()
+      .then(setEnabled)
+      .finally(() => setLoading(false));
+    // Runs once on mount — `supported` doesn't change during a session.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function toggle(next: boolean) {
+    setSaving(true);
+    setError(null);
+    const ok = next ? await enablePushNotifications() : await (disablePushNotifications().then(() => true));
+    setSaving(false);
+    if (!ok) {
+      setError(
+        permission === 'denied'
+          ? 'Has bloqueado las notificaciones para DRIVY. Actívalas desde los ajustes de tu navegador.'
+          : 'No se pudieron activar las notificaciones.',
+      );
+      return;
+    }
+    setEnabled(next);
+  }
+
+  if (loading) return null;
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>Notificaciones</div>
+      {error && <p style={{ fontSize: 12.5, color: 'var(--color-error)', margin: '4px 0 8px' }}>{error}</p>}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '10px 0' }}>
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>Solicitudes y duelos</div>
+          <p style={{ fontSize: 12, color: 'var(--color-text-muted-60)', margin: '2px 0 0' }}>
+            Te avisamos cuando alguien te envía una solicitud de amistad, un duelo, o acepta el tuyo.
+          </p>
+        </div>
+        <Toggle checked={enabled} disabled={saving || !supported} onChange={toggle} />
+      </div>
+      {!supported && (
+        <p style={{ fontSize: 12, color: 'var(--color-text-muted-45)', margin: '4px 0 0' }}>
+          Tu navegador no soporta notificaciones push.
+        </p>
+      )}
+    </Card>
   );
 }
 

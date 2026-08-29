@@ -1,26 +1,57 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
+import { usePremiumStore } from '../store/premiumStore';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 import { Icon } from '../components/ui/Icon';
 import { CardButton } from '../components/ui/Card';
 import { EXAM_CONFIG } from '../services/examService';
+import { startPracticeSession, type PracticeKind } from '../services/premiumService';
+import { PremiumUpsellModal } from '../components/premium/PremiumUpsellModal';
+import { PremiumBanner } from '../components/premium/PremiumBanner';
 
 export function PracticePage() {
   const navigate = useNavigate();
   const mistakeCount = useProgressStore((s) => s.progress.mistakeIds.length);
+  const isPremium = usePremiumStore((s) => s.isPremium);
+  const practiceToday = usePremiumStore((s) => s.practiceToday);
+  const practiceLimit = usePremiumStore((s) => s.practiceLimit);
+  const [showUpsell, setShowUpsell] = useState(false);
+  const [starting, setStarting] = useState(false);
+
+  async function tryStartPractice(kind: PracticeKind, to: string) {
+    if (starting) return;
+    setStarting(true);
+    try {
+      const allowed = await startPracticeSession(kind);
+      if (allowed) navigate(to);
+      else setShowUpsell(true);
+    } finally {
+      setStarting(false);
+    }
+  }
 
   return (
     <AppShell nav={<BottomNav />}>
-      <div style={{ padding: '20px 20px 4px' }}>
+      <div style={{ padding: '20px 20px 4px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 19, color: 'var(--color-text)' }}>
           Practicar
         </span>
+        {!isPremium && practiceLimit != null && (
+          <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--color-text-muted-45)' }}>
+            {Math.min(practiceToday, practiceLimit)}/{practiceLimit} hoy
+          </span>
+        )}
       </div>
       <div style={{ padding: '14px 20px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {!isPremium && (
+          <PremiumBanner subtitle="Práctica y simulacros ilimitados, avatares exclusivos" style={{ marginBottom: 4 }} />
+        )}
+
         <button
           type="button"
-          onClick={() => navigate('/practice/exam/simulacro')}
+          onClick={() => tryStartPractice('simulacro', '/practice/exam/simulacro')}
           style={{
             background: 'var(--gradient-hero)',
             borderRadius: 18,
@@ -69,7 +100,7 @@ export function PracticePage() {
           iconBg="var(--color-info-bg)"
           title="Preguntas aleatorias"
           subtitle="10 preguntas al azar de todo el temario, sin repaso adaptativo"
-          onClick={() => navigate('/practice/random')}
+          onClick={() => tryStartPractice('random', '/practice/random')}
         />
         <PracticeRow
           icon="flame"
@@ -77,7 +108,7 @@ export function PracticePage() {
           iconBg="var(--color-streak-bg)"
           title="Reto diario"
           subtitle="5 preguntas para mantener tu racha"
-          onClick={() => navigate('/practice/daily')}
+          onClick={() => tryStartPractice('daily', '/practice/daily')}
         />
         <PracticeRow
           icon="flag"
@@ -85,9 +116,11 @@ export function PracticePage() {
           iconBg="var(--color-bg-locked)"
           title="Examen real"
           subtitle="Simulación cronometrada del examen oficial"
-          onClick={() => navigate('/practice/exam/real')}
+          onClick={() => tryStartPractice('examen_real', '/practice/exam/real')}
         />
       </div>
+
+      {showUpsell && <PremiumUpsellModal onClose={() => setShowUpsell(false)} />}
     </AppShell>
   );
 }
@@ -116,7 +149,7 @@ function PracticeRow({
         <div style={{ fontWeight: 600, fontSize: 14.5, color: 'var(--color-text)' }}>{title}</div>
         <div style={{ fontSize: 12, color: 'var(--color-text-muted-50)', marginTop: 1 }}>{subtitle}</div>
       </div>
-      <Icon name="chevronRight" size={14} color="rgba(16,25,46,0.3)" />
+      <Icon name="chevronRight" size={14} color="var(--color-text-muted-30)" />
     </CardButton>
   );
 }

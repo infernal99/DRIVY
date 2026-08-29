@@ -115,6 +115,7 @@ export type IconName =
   | 'home' | 'book' | 'target' | 'chart' | 'user' | 'check'
   | 'lock' | 'flame' | 'settings' | 'help' | 'close' | 'chevronLeft'
   | 'chevronRight' | 'alcohol' | 'car' | 'pedestrian' | 'sources' | 'users'
+  | 'download' | 'crown'
   | 'mail' | 'eye' | 'eyeOff' | 'arrowRight' | 'bolt';
 
 /**

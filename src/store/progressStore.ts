@@ -38,6 +38,7 @@ interface ProgressState {
   completeLesson: (lessonId: string) => void;
   unlockCategory: (categoryId: string) => void;
   submitExam: (result: ExamResult, questions: Question[]) => void;
+  unlockAchievement: (id: string) => void;
   clearAnswerFeedback: () => void;
   clearAchievementQueue: () => void;
   resetProgress: () => void;
@@ -114,6 +115,18 @@ export const useProgressStore = create<ProgressState>((set, get) => ({
     const { progress, newlyUnlockedAchievements } = recordExamResultService(get().progress, result, questions);
     persist(progress);
     set({ progress, lastExamResult: result, lastUnlockedAchievements: newlyUnlockedAchievements });
+  },
+
+  // Unlocks an achievement directly, bypassing the generic ACHIEVEMENTS
+  // check(stats) loop — for achievements like "miembro-premium" that aren't
+  // derived from UserStats but from an external signal (premium status).
+  unlockAchievement: (id) => {
+    const progress = get().progress;
+    if (progress.achievements.some((a) => a.id === id)) return;
+    const unlocked: UnlockedAchievement = { id, unlockedAt: new Date().toISOString() };
+    const next = { ...progress, achievements: [...progress.achievements, unlocked] };
+    persist(next);
+    set({ progress: next, lastUnlockedAchievements: [unlocked] });
   },
 
   clearAnswerFeedback: () => set({ lastAnswerFeedback: null }),

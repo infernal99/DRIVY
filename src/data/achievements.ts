@@ -94,6 +94,16 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     icon: 'flag',
     check: (s) => s.perfectExamCount >= 1,
   },
+  {
+    id: 'miembro-premium',
+    name: 'Miembro Premium',
+    description: 'Hazte Premium.',
+    icon: 'crown',
+    // Never auto-unlocked through this check — premium status isn't part
+    // of UserStats. It's unlocked directly via progressStore.unlockAchievement
+    // from PremiumStatusSync when the user's subscription becomes active.
+    check: () => false,
+  },
 ];
 
 export function getAchievementById(id: string): AchievementDef | undefined {

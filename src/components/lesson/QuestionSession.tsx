@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Question } from '../../types';
 import { useProgressStore } from '../../store/progressStore';
+import { playAnswerFeedback } from '../../services/feedbackEffects';
 import { OptionRow, QuestionImage } from './QuestionCard';
 import { FeedbackScreen } from './FeedbackScreen';
 import { LessonCompleteScreen } from './LessonCompleteScreen';
@@ -56,7 +57,7 @@ export function QuestionSession({
 
   if (questions.length === 0) {
     return (
-      <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: '#fff' }}>
+      <div style={{ height: '100%', display: 'flex', flexDirection: 'column', background: 'var(--color-bg-card)' }}>
         <SessionHeader onClose={() => navigate(exitTo, { replace: true })} progressPct={0} counter="" />
         <EmptyState title={emptyTitle} description={emptyDescription} icon="target" />
       </div>
@@ -68,6 +69,7 @@ export function QuestionSession({
 
   function handleSelect(optionId: string) {
     const correct = answerQuestion(question, optionId);
+    playAnswerFeedback(correct);
     const xp = correct ? 10 : 2;
     setLastCorrect(correct);
     setLastSelectedOptionId(optionId);
@@ -121,7 +123,7 @@ export function QuestionSession({
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg-card)' }}>
       <SessionHeader
         onClose={() => navigate(exitTo, { replace: true })}
         progressPct={(index / questions.length) * 100}

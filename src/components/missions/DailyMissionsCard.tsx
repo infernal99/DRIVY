@@ -11,6 +11,9 @@ const METRIC_ICON: Record<DailyMissionMetric, IconName> = {
   lessons_completed: 'book',
   mistakes_practiced: 'check',
   xp_earned: 'chart',
+  exams_taken: 'flag',
+  battles_played: 'users',
+  battles_won: 'flame',
 };
 
 export function DailyMissionsCard() {
@@ -57,7 +60,10 @@ export function DailyMissionsCard() {
                 >
                   <Icon name={mission.completed ? 'check' : METRIC_ICON[mission.metric]} size={15} />
                 </div>
-                <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>{mission.description}</span>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)' }}>{mission.description}</div>
+                  <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--color-xp-text)', marginTop: 1 }}>+{mission.xpReward} XP</div>
+                </div>
               </div>
               <span
                 style={{

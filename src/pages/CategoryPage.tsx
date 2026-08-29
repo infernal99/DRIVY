@@ -110,7 +110,7 @@ export function CategoryPage() {
               display: 'flex',
               alignItems: 'center',
               gap: 12,
-              background: '#fff',
+              background: 'var(--color-bg-card)',
               border: 'none',
               width: '100%',
               textAlign: 'left',
@@ -146,7 +146,7 @@ export function CategoryPage() {
           </button>
         ))}
       </div>
-      <div style={{ padding: '16px 20px 26px', background: '#fff', boxShadow: 'var(--shadow-topbar)' }}>
+      <div style={{ padding: '16px 20px 26px', background: 'var(--color-bg-card)', boxShadow: 'var(--shadow-topbar)' }}>
         <Button
           disabled={!nextLesson}
           onClick={() => nextLesson && navigate(`/learn/${categoryId}/lesson/${nextLesson.id.split('::')[1]}`)}

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
+import { usePremiumStore } from '../store/premiumStore';
 import { useLearnPath, useOverallProgressPct } from '../hooks/useLearnPath';
 import { getLevelInfo } from '../utils/xp';
 import { getReadinessScore, READINESS_TIER_COPY } from '../services/masteryService';
@@ -7,6 +8,7 @@ import { Icon } from '../components/ui/Icon';
 import { ModulePath } from '../components/learn/ModulePath';
 import { DailyMissionsCard } from '../components/missions/DailyMissionsCard';
 import { DashboardHighlights } from '../components/home/DashboardHighlights';
+import { PremiumBanner } from '../components/premium/PremiumBanner';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 
@@ -19,6 +21,8 @@ export function HomePage() {
   const { level } = getLevelInfo(progress.xp);
   const activeModule = modules.find((m) => m.status === 'active');
   const inProgressCount = modules.filter((m) => m.status !== 'locked').length;
+  const isPremium = usePremiumStore((s) => s.isPremium);
+  const premiumLoading = usePremiumStore((s) => s.loading);
 
   return (
     <AppShell nav={<BottomNav />}>
@@ -60,6 +64,25 @@ export function HomePage() {
               Nivel {level}
             </div>
           </div>
+          {isPremium && (
+            <span
+              style={{
+                fontSize: 10.5,
+                fontWeight: 700,
+                color: '#facc15',
+                background: '#18181b',
+                padding: '3px 8px',
+                borderRadius: 6,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 4,
+                marginLeft: 4,
+              }}
+            >
+              <Icon name="crown" size={10} color="#facc15" />
+              PREMIUM
+            </span>
+          )}
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <HeaderChip>
@@ -74,6 +97,8 @@ export function HomePage() {
       </div>
 
       <div style={{ padding: '4px 20px 100px' }}>
+        {!premiumLoading && !isPremium && <PremiumBanner style={{ marginBottom: 12 }} />}
+
         <div
           style={{
             background: 'var(--gradient-hero)',
@@ -107,7 +132,7 @@ export function HomePage() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            background: '#fff',
+            background: 'var(--color-bg-card)',
             border: 'none',
             borderRadius: 14,
             padding: '12px 14px',
@@ -123,6 +148,34 @@ export function HomePage() {
             {readiness.score} · {READINESS_TIER_COPY[readiness.tier].label}
           </span>
         </button>
+
+        {progress.mistakeIds.length > 0 && (
+          <button
+            type="button"
+            onClick={() => navigate('/practice/mistakes')}
+            style={{
+              marginTop: 10,
+              width: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 10,
+              background: 'var(--color-error-bg)',
+              border: 'none',
+              borderRadius: 14,
+              padding: '12px 14px',
+              cursor: 'pointer',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <Icon name="target" size={16} color="var(--color-error)" />
+              <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-text)', textAlign: 'left' }}>
+                Repaso inteligente: {progress.mistakeIds.length} {progress.mistakeIds.length === 1 ? 'pregunta' : 'preguntas'} pendientes
+              </span>
+            </div>
+            <Icon name="chevronRight" size={13} color="var(--color-error)" />
+          </button>
+        )}
 
         <div style={{ marginTop: 22, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 16, color: 'var(--color-text)' }}>
@@ -172,7 +225,7 @@ function HeaderChip({ children }: { children: React.ReactNode }) {
         display: 'flex',
         alignItems: 'center',
         gap: 5,
-        background: '#fff',
+        background: 'var(--color-bg-card)',
         padding: '6px 10px',
         borderRadius: 999,
         boxShadow: 'var(--shadow-card)',

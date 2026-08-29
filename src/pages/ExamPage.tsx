@@ -10,6 +10,9 @@ import { OptionRow } from '../components/lesson/QuestionCard';
 import { QuestionImage } from '../components/lesson/QuestionCard';
 import { AchievementUnlockModal } from '../components/achievements/AchievementUnlockModal';
 import { ContentProvenanceNote } from '../components/ui/ContentProvenanceNote';
+import { AiTutorPanel } from '../components/ui/AiTutorPanel';
+import { ShareResultButton } from '../components/ui/ShareResultButton';
+import { explainMistake } from '../services/aiTutorService';
 
 type Phase = 'exam' | 'review' | 'result';
 
@@ -86,7 +89,13 @@ export function ExamPage() {
   if (phase === 'result' && result) {
     return (
       <AppShell>
-        <ExamResultView title={title} result={result} questions={questions} onExit={() => navigate('/practice', { replace: true })} />
+        <ExamResultView
+          title={title}
+          result={result}
+          questions={questions}
+          userName={progress.userName}
+          onExit={() => navigate('/practice', { replace: true })}
+        />
         {lastUnlocked.length > 0 && <AchievementUnlockModal achievements={lastUnlocked} onClose={clearAchievementQueue} />}
       </AppShell>
     );
@@ -116,7 +125,7 @@ export function ExamPage() {
 
   return (
     <AppShell>
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg-card)' }}>
         <div style={{ padding: '16px 20px 10px', display: 'flex', alignItems: 'center', gap: 12 }}>
           <Button
             variant="secondary"
@@ -188,7 +197,7 @@ export function ExamPage() {
           </div>
         </div>
 
-        <div style={{ padding: '12px 20px 24px', display: 'flex', gap: 10, background: '#fff', boxShadow: 'var(--shadow-topbar)' }}>
+        <div style={{ padding: '12px 20px 24px', display: 'flex', gap: 10, background: 'var(--color-bg-card)', boxShadow: 'var(--shadow-topbar)' }}>
           <Button variant="secondary" disabled={safeIndex === 0} onClick={() => setIndex((i) => Math.max(i - 1, 0))} style={{ flex: 1 }}>
             Anterior
           </Button>
@@ -227,7 +236,7 @@ function ExamReviewView({
 }) {
   const unanswered = answers.filter((a) => a === null).length;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg-card)' }}>
       <div style={{ padding: '18px 20px 10px' }}>
         <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 18, color: 'var(--color-text)' }}>
           Revisar antes de enviar
@@ -259,7 +268,7 @@ function ExamReviewView({
           ))}
         </div>
       </div>
-      <div style={{ padding: '16px 20px 26px', display: 'flex', gap: 10, background: '#fff', boxShadow: 'var(--shadow-topbar)' }}>
+      <div style={{ padding: '16px 20px 26px', display: 'flex', gap: 10, background: 'var(--color-bg-card)', boxShadow: 'var(--shadow-topbar)' }}>
         <Button variant="secondary" onClick={onBack} style={{ flex: 1 }}>
           Seguir respondiendo
         </Button>
@@ -275,11 +284,13 @@ function ExamResultView({
   title,
   result,
   questions,
+  userName,
   onExit,
 }: {
   title: string;
   result: ExamResult;
   questions: Question[];
+  userName: string;
   onExit: () => void;
 }) {
   const wrongAnswers = result.answers
@@ -321,7 +332,7 @@ function ExamResultView({
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {wrongAnswers.map(({ answer, question }) => (
-                <div key={question.id} style={{ background: '#fff', borderRadius: 14, padding: 14, boxShadow: 'var(--shadow-card)' }}>
+                <div key={question.id} style={{ background: 'var(--color-bg-card)', borderRadius: 14, padding: 14, boxShadow: 'var(--shadow-card)' }}>
                   <div style={{ fontWeight: 600, fontSize: 13.5, color: 'var(--color-text)', marginBottom: 6 }}>{question.question}</div>
                   <div style={{ fontSize: 12.5, color: 'var(--color-error)', fontWeight: 600, marginBottom: 4 }}>
                     Tu respuesta:{' '}
@@ -332,7 +343,8 @@ function ExamResultView({
                   <div style={{ fontSize: 12.5, color: 'var(--color-success)', fontWeight: 600, marginBottom: 6 }}>
                     Correcta: {question.options.find((o) => o.id === question.correctOptionId)?.text}
                   </div>
-                  <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: 0 }}>{question.explanation}</p>
+                  <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: '0 0 8px' }}>{question.explanation}</p>
+                  <AiTutorPanel key={question.id} fetchResponse={() => explainMistake(question, answer.selectedOptionId)} />
                   <ContentProvenanceNote source={question.source} />
                 </div>
               ))}
@@ -340,7 +352,16 @@ function ExamResultView({
           </>
         )}
       </div>
-      <div style={{ padding: '16px 20px 26px', background: '#fff', boxShadow: 'var(--shadow-topbar)' }}>
+      <div style={{ padding: '16px 20px 26px', background: 'var(--color-bg-card)', boxShadow: 'var(--shadow-topbar)', display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <ShareResultButton
+          data={{
+            title: result.passed ? '¡Apto! Simulacro superado' : 'No apto — a seguir practicando',
+            scoreLine: `${result.correctCount}/${result.totalCount}`,
+            subtitle: title,
+            userName,
+            positive: result.passed,
+          }}
+        />
         <Button onClick={onExit}>VOLVER A PRACTICAR</Button>
       </div>
     </div>

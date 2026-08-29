@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
+import { useAuthStore } from '../store/authStore';
 import { computeStats } from '../services/progressService';
 import { getAllCategoryMastery, getReadinessScore, MASTERY_TIER_COPY, READINESS_DISCLAIMER, READINESS_TIER_COPY } from '../services/masteryService';
 import { getCategoryById } from '../data/categories';
+import { getMyBattles, type BattleStats } from '../services/battlesService';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 import { StatTile } from '../components/ui/StatTile';
@@ -20,7 +23,16 @@ const MIN_ANSWERED_TO_RANK = 3;
 export function ProgressPage() {
   const navigate = useNavigate();
   const progress = useProgressStore((s) => s.progress);
+  const authStatus = useAuthStore((s) => s.status);
   const stats = computeStats(progress);
+
+  const [battleStats, setBattleStats] = useState<BattleStats | null>(null);
+  useEffect(() => {
+    if (authStatus !== 'authenticated') return;
+    getMyBattles()
+      .then((data) => setBattleStats(data.stats))
+      .catch(() => setBattleStats(null));
+  }, [authStatus]);
   const readiness = getReadinessScore(progress);
   const categoryMastery = getAllCategoryMastery(progress);
   const weakestCategories = categoryMastery
@@ -85,6 +97,19 @@ export function ProgressPage() {
           ))}
         </div>
 
+        {battleStats && battleStats.battlesPlayed > 0 && (
+          <>
+            <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>
+              Duelos
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 20 }}>
+              <StatTile value={`${battleStats.winRatePct}%`} label="Victorias" />
+              <StatTile value={`${battleStats.accuracyPct}%`} label="Acierto en duelos" />
+              <StatTile value={battleStats.battlesPlayed} label="Jugados" />
+            </div>
+          </>
+        )}
+
         <CardButton
           onClick={() => navigate('/exams')}
           style={{ padding: 14, display: 'flex', alignItems: 'center', gap: 10, width: '100%', marginBottom: 20 }}
@@ -96,7 +121,7 @@ export function ProgressPage() {
             <div style={{ fontWeight: 600, fontSize: 13.5, color: 'var(--color-text)' }}>Mis exámenes</div>
             <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-50)', marginTop: 1 }}>Historial, mejor nota y evolución</div>
           </div>
-          <Icon name="chevronRight" size={14} color="rgba(16,25,46,0.3)" />
+          <Icon name="chevronRight" size={14} color="var(--color-text-muted-30)" />
         </CardButton>
 
         <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, color: 'var(--color-text)', marginBottom: 12 }}>

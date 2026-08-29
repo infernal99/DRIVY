@@ -97,6 +97,18 @@ export async function removeFriend(otherUserId: string): Promise<void> {
   if (error) throw error;
 }
 
+export interface AcceptedInvite {
+  friendUserId: string;
+  displayName: string;
+}
+
+/** Invite-link add: immediately 'accepted', no pending step — see the migration for why that's safe here. */
+export async function acceptFriendInvite(friendCode: string): Promise<AcceptedInvite> {
+  const { data, error } = await supabase.rpc('fn_accept_friend_invite', { p_friend_code: friendCode });
+  if (error) throw error;
+  return data as AcceptedInvite;
+}
+
 export async function updatePrivacySettings(searchVisibility: boolean, profileVisibility: boolean): Promise<void> {
   const { error } = await supabase.rpc('fn_update_privacy_settings', {
     p_search_visibility: searchVisibility,

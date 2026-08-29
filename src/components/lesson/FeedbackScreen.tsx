@@ -20,7 +20,7 @@ export function FeedbackScreen({
   isLast: boolean;
 }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#fff' }} className="anim-fade-up">
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg-card)' }} className="anim-fade-up">
       <div
         style={{
           flex: 1,

@@ -85,7 +85,7 @@ function ModuleNode({ status, icon }: { status: ModuleInfo['status']; icon: Modu
           boxShadow: 'inset 0 2px 4px rgba(11,30,61,0.08)',
         }}
       >
-        <Icon name="lock" size={20} color="rgba(16,25,46,0.3)" />
+        <Icon name="lock" size={20} color="var(--color-text-muted-30)" />
       </div>
     );
   }
@@ -101,7 +101,7 @@ function ModuleNode({ status, icon }: { status: ModuleInfo['status']; icon: Modu
           alignItems: 'center',
           justifyContent: 'center',
           boxShadow: 'var(--shadow-node-active)',
-          border: '4px solid #fff',
+          border: '4px solid var(--color-bg-card)',
         }}
       >
         <Icon name={icon} size={26} color="#fff" />
@@ -114,7 +114,7 @@ function ModuleNode({ status, icon }: { status: ModuleInfo['status']; icon: Modu
         width: 58,
         height: 58,
         borderRadius: '50%',
-        background: '#fff',
+        background: 'var(--color-bg-card)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

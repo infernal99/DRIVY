@@ -13,7 +13,11 @@ const ITEMS: { to: string; label: string; icon: IconName }[] = [
 ];
 
 export function BottomNav() {
-  const hasFriendAlert = useFriendNotificationStore((s) => s.hasIncomingRequests || s.hasNewFriend);
+  const hasFriendAlert = useFriendNotificationStore(
+    (s) => s.hasIncomingRequests || s.hasNewFriend || s.hasIncomingBattles,
+  );
+  // Background refresh for this badge lives in FriendNotificationWatcher,
+  // mounted once in App.tsx — no need to duplicate a poll here.
 
   return (
     <nav className={styles.nav} aria-label="Navegación principal">
@@ -26,13 +30,13 @@ export function BottomNav() {
             end={item.to === '/'}
             className={styles.item}
             style={({ isActive }) => ({
-              color: isActive ? 'var(--color-primary)' : 'rgba(16,25,46,0.4)',
+              color: isActive ? 'var(--color-primary)' : 'var(--color-text-muted-40)',
             })}
           >
             {({ isActive }) => (
               <>
                 <span className={styles.iconWrap}>
-                  <Icon name={item.icon} size={22} color={isActive ? 'var(--color-primary)' : 'rgba(16,25,46,0.4)'} />
+                  <Icon name={item.icon} size={22} color={isActive ? 'var(--color-primary)' : 'var(--color-text-muted-40)'} />
                   {showDot && (
                     <span className={styles.dot} role="status" aria-label="Tienes novedades de amigos" />
                   )}
