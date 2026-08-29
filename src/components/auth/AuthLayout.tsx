@@ -68,29 +68,6 @@ export function AuthLayout({ title, tagline, children }: { title: string; taglin
           {children}
         </div>
 
-        <div className={styles.features}>
-          <div className={styles.feature}>
-            <span className={styles.featureIcon} style={{ background: 'rgba(139, 92, 246, 0.14)' }}>
-              <Icon name="book" size={17} color="var(--color-primary)" />
-            </span>
-            <span className={styles.featureTitle}>Tests actualizados</span>
-            <span className={styles.featureText}>preguntas oficiales</span>
-          </div>
-          <div className={styles.feature}>
-            <span className={styles.featureIcon} style={{ background: 'rgba(255, 138, 61, 0.16)' }}>
-              <Icon name="target" size={17} color="var(--color-streak)" />
-            </span>
-            <span className={styles.featureTitle}>Prácticas reales</span>
-            <span className={styles.featureText}>simulacros de examen</span>
-          </div>
-          <div className={styles.feature}>
-            <span className={styles.featureIcon} style={{ background: 'rgba(58, 178, 110, 0.16)' }}>
-              <Icon name="flame" size={17} color="var(--color-success)" />
-            </span>
-            <span className={styles.featureTitle}>Logros y rachas</span>
-            <span className={styles.featureText}>mantén tu motivación</span>
-          </div>
-        </div>
       </div>
     </div>
   );

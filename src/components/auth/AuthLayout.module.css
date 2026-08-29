@@ -33,8 +33,8 @@
 }
 
 /* flex-shrink:0 es imprescindible: sin él los hijos se comprimen para caber en
-   la altura del contenedor en vez de desbordar, y la tira de features se corta
-   en pantallas bajas en lugar de dejar hacer scroll. */
+   la altura del contenedor en vez de desbordar, y en pantallas bajas el
+   contenido se corta en lugar de dejar hacer scroll. */
 .column > * {
   flex-shrink: 0;
 }
@@ -251,54 +251,6 @@
   margin-bottom: 22px;
 }
 
-/* --- Tira de features ---------------------------------------------------- */
-.features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 20px;
-  padding: 14px 10px;
-  border-radius: var(--radius-xl);
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  transform: translateZ(0);
-}
-
-.feature {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 5px;
-}
-
-.featureIcon {
-  width: 34px;
-  height: 34px;
-  border-radius: 11px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.featureTitle {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  color: var(--color-text);
-  line-height: 1.2;
-  text-wrap: balance;
-}
-
-.featureText {
-  font-size: 9.5px;
-  color: var(--color-text-muted-50);
-  line-height: 1.25;
-  text-wrap: balance;
-}
-
 /* --- Tema oscuro ---------------------------------------------------------
    Esta pantalla se diseñó antes de que existiera el modo oscuro y llevaba el
    pastel y los cristales con colores fijos. Con el tema oscuro activo eso
@@ -324,11 +276,6 @@
   background: rgba(28, 23, 48, 0.6);
   border-color: rgba(255, 255, 255, 0.09);
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-}
-
-:root[data-theme='dark'] .features {
-  background: rgba(28, 23, 48, 0.5);
-  border-color: rgba(255, 255, 255, 0.08);
 }
 
 :root[data-theme='dark'] .backBtn {
