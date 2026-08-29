@@ -1,4 +1,4 @@
-// Core domain types for DRIVY. Keep this file free of UI/React concerns —
+// Core domain types for Roady. Keep this file free of UI/React concerns —
 // components consume these types but never define them.
 //
 // Content provenance model (see docs/content-pipeline.md and
@@ -69,7 +69,7 @@ export interface Question {
   /**
    * The explanation's own provenance. Defaults to the question's `source`
    * when omitted (in this bank, the same authoring pass writes both), but
-   * can diverge — e.g. an official question with a DRIVY-authored (derived)
+   * can diverge — e.g. an official question with a Roady-authored (derived)
    * explanation, which must never be presented as an official explanation.
    */
   explanationSource?: QuestionSource;
@@ -114,7 +114,8 @@ export type IconName =
   | 'sign' | 'rules' | 'road' | 'shield' | 'parking' | 'flag'
   | 'home' | 'book' | 'target' | 'chart' | 'user' | 'check'
   | 'lock' | 'flame' | 'settings' | 'help' | 'close' | 'chevronLeft'
-  | 'chevronRight' | 'alcohol' | 'car' | 'pedestrian' | 'sources' | 'users';
+  | 'chevronRight' | 'alcohol' | 'car' | 'pedestrian' | 'sources' | 'users'
+  | 'mail' | 'eye' | 'eyeOff' | 'arrowRight' | 'bolt';
 
 /**
  * Internal sign catalogue entry (section 10 of the content spec). `image`

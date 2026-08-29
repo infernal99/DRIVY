@@ -37,7 +37,7 @@ export function ProfilePage() {
               width: 76,
               height: 76,
               borderRadius: '50%',
-              background: 'linear-gradient(135deg,#2F6FED,#5B8CF5)',
+              background: 'var(--gradient-brand)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -45,7 +45,7 @@ export function ProfilePage() {
               fontWeight: 600,
               color: '#fff',
               fontSize: 28,
-              boxShadow: '0 8px 20px rgba(47,111,237,0.3)',
+              boxShadow: 'var(--shadow-btn-primary)',
             }}
           >
             {progress.userName.charAt(0).toUpperCase()}

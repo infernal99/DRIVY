@@ -10,7 +10,7 @@ import {
 } from '../services/contentAdminService';
 
 // Dev-only content curation tool (content spec §15/§16/§17). Not part of the
-// learner-facing product — no BottomNav, no DRIVY chrome, functional over
+// learner-facing product — no BottomNav, no Roady chrome, functional over
 // pretty. Registered in App.tsx only when import.meta.env.DEV.
 
 const SOURCE_TYPES: (QuestionSourceType | 'all')[] = ['all', 'official', 'derived', 'practice', 'needs_review'];
@@ -27,7 +27,7 @@ export function AdminContentPage() {
 
   return (
     <div style={{ fontFamily: 'system-ui, sans-serif', padding: 24, maxWidth: 1100, margin: '0 auto', color: '#10192e' }}>
-      <h1 style={{ fontSize: 22, marginBottom: 4 }}>DRIVY — Panel de contenido (dev)</h1>
+      <h1 style={{ fontSize: 22, marginBottom: 4 }}>Roady — Panel de contenido (dev)</h1>
       <p style={{ fontSize: 13, color: '#666', marginBottom: 20 }}>
         Herramienta interna de curación de contenido. No forma parte de la experiencia del alumno. Los conteos de
         abajo son reales, calculados en tiempo de ejecución sobre el banco de preguntas actual.

@@ -96,7 +96,7 @@ function ModuleNode({ status, icon }: { status: ModuleInfo['status']; icon: Modu
           width: 66,
           height: 66,
           borderRadius: '50%',
-          background: 'linear-gradient(135deg,#2F6FED,#5B8CF5)',
+          background: 'var(--gradient-brand)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

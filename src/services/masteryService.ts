@@ -44,7 +44,7 @@ export const READINESS_TIER_COPY: Record<TierId, { label: string; color: string 
 
 /** Always shown next to the readiness score — this is an estimate, not a guarantee. */
 export const READINESS_DISCLAIMER =
-  'Estimación interna de DRIVY basada en tu actividad. No es una predicción oficial ni garantiza aprobar el examen real de la DGT.';
+  'Estimación interna de Roady basada en tu actividad. No es una predicción oficial ni garantiza aprobar el examen real de la DGT.';
 
 // ---------------------------------------------------------------------------
 // Category mastery: accuracy + coverage (repetition) + recency + difficulty

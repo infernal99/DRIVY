@@ -1,7 +1,7 @@
-# DRIVY — Preparación del teórico del permiso B
+# Roady — Preparación del teórico del permiso B
 
 Aplicación web (React + TypeScript + Vite) para aprender y practicar de cara al examen teórico del
-permiso B en España. El diseño visual es el del prototipo original `DRIVY.dc.html`; este repositorio
+permiso B en España. El diseño visual es el del prototipo original `Roady.dc.html`; este repositorio
 implementa la funcionalidad real sobre esa misma base visual (colores, tipografías, cards, navegación).
 
 > **¿Vas a colaborar en este repo (o eres una sesión de Claude Code leyéndolo)?** Lee primero

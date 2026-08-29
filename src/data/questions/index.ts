@@ -51,5 +51,5 @@ export function getQuestionsBySubcategory(subcategoryId: string): Question[] {
 // directly by the Node/tsx content pipeline scripts, so guard it.
 const isViteDev = typeof import.meta.env !== 'undefined' && import.meta.env.DEV;
 if (isViteDev && byId.size !== ALL_QUESTIONS.length) {
-  console.error('DRIVY: duplicate question ids detected in the question bank.');
+  console.error('Roady: duplicate question ids detected in the question bank.');
 }

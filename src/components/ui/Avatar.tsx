@@ -1,4 +1,4 @@
-/** Same initial-letter circle used on Home/Profile — DRIVY has no avatar upload feature, so this is the only avatar rendering there is. */
+/** Same initial-letter circle used on Home/Profile — Roady has no avatar upload feature, so this is the only avatar rendering there is. */
 export function Avatar({ name, size = 44 }: { name: string; size?: number }) {
   return (
     <div
@@ -6,7 +6,7 @@ export function Avatar({ name, size = 44 }: { name: string; size?: number }) {
         width: size,
         height: size,
         borderRadius: size / 2.8,
-        background: 'linear-gradient(135deg,#2F6FED,#5B8CF5)',
+        background: 'var(--gradient-brand)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

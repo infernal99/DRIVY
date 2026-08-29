@@ -22,7 +22,7 @@ export function PracticePage() {
           type="button"
           onClick={() => navigate('/practice/exam/simulacro')}
           style={{
-            background: 'linear-gradient(135deg,#122B57,#1E4694 60%,#2F6FED)',
+            background: 'var(--gradient-hero)',
             borderRadius: 18,
             padding: 18,
             color: '#fff',

@@ -24,7 +24,8 @@ export function LessonCompleteScreen({
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        background: 'linear-gradient(180deg,#122B57,#1E4694 45%,#F5F7FB 45%)',
+        background:
+          'linear-gradient(180deg,var(--color-primary-navy),var(--color-primary-navy-mid) 45%,var(--color-bg-screen) 45%)',
       }}
     >
       <div className="anim-pop-in" style={{ flex: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '36px 24px 24px', textAlign: 'center' }}>

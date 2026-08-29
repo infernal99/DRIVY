@@ -71,12 +71,12 @@ export class SupabaseProgressRepository implements ProgressRepository {
     try {
       const { data, error } = await supabase.rpc('fn_migrate_guest_progress', { p_payload: local });
       if (error) {
-        console.error('DRIVY: guest progress migration failed', error);
+        console.error('Roady: guest progress migration failed', error);
         return { migrated: false, error: error.message };
       }
       return { migrated: Boolean((data as { migrated?: boolean } | null)?.migrated) };
     } catch (err) {
-      console.error('DRIVY: guest progress migration threw', err);
+      console.error('Roady: guest progress migration threw', err);
       return { migrated: false, error: String(err) };
     }
   }
@@ -93,7 +93,7 @@ export class SupabaseProgressRepository implements ProgressRepository {
     this.pending = this.pending
       .then(() => this.syncDelta(previous, next))
       .catch((err) => {
-        console.error('DRIVY: failed to sync progress to Supabase', err);
+        console.error('Roady: failed to sync progress to Supabase', err);
       });
   }
 
@@ -106,7 +106,7 @@ export class SupabaseProgressRepository implements ProgressRepository {
         if (error) throw error;
       })
       .catch((err) => {
-        console.error('DRIVY: failed to reset cloud progress', err);
+        console.error('Roady: failed to reset cloud progress', err);
       });
   }
 

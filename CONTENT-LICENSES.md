@@ -4,7 +4,7 @@
 > `src/data/sources.ts`; regenerate with `npm run content:sources`
 > (part of `npm run content:update`).
 
-This documents, for every source DRIVY's content pipeline has looked at,
+This documents, for every source Roady's content pipeline has looked at,
 what we can and cannot reuse from it — per the content spec's rule: "no
 asumir que 'público en internet' significa 'libre para reutilizar'".
 
@@ -159,7 +159,7 @@ Nada de aquí se usa como base de contenido `official` ni `derived`. Ver
 - **Qué podemos reutilizar**: 
   - Entender el formato del test oficial (ya reflejado en EXAM_CONFIG)
 - **Qué NO podemos reutilizar**: 
-  - Ejecutar el scraper contra la DGT en producción (uso no comercial exigido por su licencia; DRIVY no ha decidido su modelo de uso, y el sitio objetivo cambió)
+  - Ejecutar el scraper contra la DGT en producción (uso no comercial exigido por su licencia; Roady no ha decidido su modelo de uso, y el sitio objetivo cambió)
   - Redistribuir cualquier pregunta/imagen que este script extraiga, dado que la propia DGT no otorga licencia sobre ese contenido
 - **Atribución requerida**: alvarolozano.dev (exigido por la licencia del código, si se reutilizara el script)
 - **Notas**: scripts/import-dgt-test-downloader.ts documenta esto y solo permite una importación LOCAL de un export ya obtenido legalmente por un administrador — nunca un scraping automático, y todo lo importado se etiqueta needs_review.
@@ -175,7 +175,7 @@ Nada de aquí se usa como base de contenido `official` ni `derived`. Ver
 - **Qué podemos reutilizar**: 
   - Usarlo como referencia externa de temas cubiertos (prioridad 4, nunca como fuente de verdad)
 - **Qué NO podemos reutilizar**: 
-  - Importar sus preguntas o imágenes a DRIVY: no hay cadena de procedencia verificable ni licencia clara del contenido
+  - Importar sus preguntas o imágenes a Roady: no hay cadena de procedencia verificable ni licencia clara del contenido
   - Presentar nada de este mazo como contenido oficial de la DGT
 - **Notas**: scripts/import-anki.ts documenta esto y solo permite una importación LOCAL de un export .apkg ya revisado manualmente — nunca automática, y todo lo importado se etiqueta needs_review.
 

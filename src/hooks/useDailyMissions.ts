@@ -29,7 +29,7 @@ export function useDailyMissions() {
     fetchTodayMissions(userId)
       .then(setMissions)
       .catch((err) => {
-        console.error('DRIVY: failed to load daily missions', err);
+        console.error('Roady: failed to load daily missions', err);
         setMissions([]);
       })
       .finally(() => setLoading(false));
