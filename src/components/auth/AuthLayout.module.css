@@ -298,3 +298,45 @@
   line-height: 1.25;
   text-wrap: balance;
 }
+
+/* --- Tema oscuro ---------------------------------------------------------
+   Esta pantalla se diseñó antes de que existiera el modo oscuro y llevaba el
+   pastel y los cristales con colores fijos. Con el tema oscuro activo eso
+   dejaba texto casi blanco sobre fondo claro: ilegible. Las superficies de
+   cristal no pueden ser var(--color-bg-card) porque necesitan alfa. */
+:root[data-theme='dark'] .page {
+  background:
+    radial-gradient(70% 50% at 8% 70%, rgba(150, 62, 30, 0.5), transparent 72%),
+    radial-gradient(65% 48% at 96% 46%, rgba(24, 105, 82, 0.5), transparent 72%),
+    radial-gradient(75% 52% at 18% 8%, rgba(88, 52, 168, 0.65), transparent 72%),
+    radial-gradient(70% 50% at 92% 92%, rgba(140, 44, 96, 0.5), transparent 72%),
+    radial-gradient(60% 40% at 50% 100%, rgba(40, 60, 130, 0.45), transparent 70%),
+    linear-gradient(180deg, #0d0a17, #140f22);
+}
+
+:root[data-theme='dark'] .card {
+  background: rgba(28, 23, 48, 0.72);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+}
+
+:root[data-theme='dark'] .pill {
+  background: rgba(28, 23, 48, 0.6);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+:root[data-theme='dark'] .features {
+  background: rgba(28, 23, 48, 0.5);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme='dark'] .backBtn {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* En claro el wordmark es morado profundo; en oscuro eso sería casi negro
+   sobre fondo negro. */
+:root[data-theme='dark'] .wordmark {
+  color: var(--color-text);
+}
