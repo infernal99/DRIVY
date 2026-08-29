@@ -1,29 +1,106 @@
-.wrap {
-  min-height: 100%;
+/* Fondo a sangre: ocupa toda la ventana, no el marco de 480px de AppShell.
+   Si se limita al marco, el degradado se corta en seco y la banda lisa de
+   alrededor parece otra página por debajo. */
+/* OJO: aquí NO puede ir `overflow: hidden`. Safari tiene un fallo conocido por
+   el que un elemento con backdrop-filter dentro de un ancestro con overflow
+   hidden muestrea el fondo desde el sitio equivocado y pinta una copia del
+   contenido — se ve literalmente una doble página. El recorte de los objetos
+   decorativos vive en .decorLayer, que no envuelve a ningún cristal. */
+.page {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  isolation: isolate;
+  background:
+    radial-gradient(70% 50% at 8% 70%, rgba(255, 156, 96, 0.75), transparent 72%),
+    radial-gradient(65% 48% at 96% 46%, rgba(112, 224, 176, 0.7), transparent 72%),
+    radial-gradient(75% 52% at 18% 8%, rgba(186, 150, 255, 0.8), transparent 72%),
+    radial-gradient(70% 50% at 92% 92%, rgba(255, 160, 205, 0.7), transparent 72%),
+    radial-gradient(60% 40% at 50% 100%, rgba(150, 190, 255, 0.5), transparent 70%),
+    linear-gradient(180deg, #e9ecfa, #f4eff5);
+}
+
+/* El contenido sí se limita al ancho de la app; el fondo no. */
+.column {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--app-max-width);
   display: flex;
   flex-direction: column;
+  padding: 16px 18px 28px;
 }
 
-.hero {
-  position: relative;
-  overflow: hidden;
+/* flex-shrink:0 es imprescindible: sin él los hijos se comprimen para caber en
+   la altura del contenedor en vez de desbordar, y la tira de features se corta
+   en pantallas bajas en lugar de dejar hacer scroll. */
+.column > * {
   flex-shrink: 0;
-  padding: 20px 22px 44px;
-  background: linear-gradient(135deg, #122b57, #1e4694 60%, #2f6fed);
-  color: #fff;
 }
 
-.heroDecor {
+/* --- Objetos decorativos del fondo --------------------------------------
+   Posicionados sobre .page (toda la ventana): en móvil asoman por los bordes
+   detrás de la tarjeta, y en pantallas anchas caen solos en los márgenes
+   laterales, como en el diseño original. Los renders ya traen su propia
+   iluminación; el drop-shadow solo les da contacto con el fondo. */
+/* Capa que recorta los objetos para que no generen scroll horizontal. Está
+   aislada a propósito: no contiene ningún backdrop-filter. */
+.decorLayer {
   position: absolute;
-  right: -30px;
-  top: -30px;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.decor {
+  position: absolute;
+  pointer-events: none;
+  height: auto;
+  filter: drop-shadow(0 10px 16px rgba(45, 20, 85, 0.18));
+}
+
+.decorKeys {
+  width: 96px;
+  top: 15%;
+  left: -14px;
+  transform: rotate(-12deg);
+}
+
+.decorLight {
+  width: 78px;
+  top: 24%;
+  right: -14px;
+  transform: rotate(4deg);
+}
+
+.decorCone {
+  width: 104px;
+  bottom: 4%;
+  left: -14px;
+  transform: rotate(-5deg);
+}
+
+/* A partir de aquí hay márgenes reales fuera de la columna de 480px, así que
+   los objetos se separan y crecen en vez de esconderse tras la tarjeta. */
+@media (min-width: 700px) {
+  .decorKeys {
+    width: 140px;
+    left: calc(50% - 240px - 130px);
+  }
+  .decorLight {
+    width: 120px;
+    right: calc(50% - 240px - 110px);
+  }
+  .decorCone {
+    width: 160px;
+    left: calc(50% - 240px - 150px);
+  }
 }
 
 .backBtn {
+  align-self: flex-start;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,49 +108,193 @@
   height: 34px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
 }
 
-.brand {
+/* --- Píldoras flotantes -------------------------------------------------
+   En el mockup flanquean el logo, pero a 375px de ancho eso lo pisa. Van en
+   fila por encima de la marca, que aguanta cualquier ancho sin recolocarse. */
+.pills {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.pill {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
+  padding: 9px 12px 9px 9px;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 22px rgba(48, 24, 88, 0.12);
+  flex: 1 1 0;
+  min-width: 0;
 }
 
-.logoMark {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.14);
+/* El translateZ(0) va en cada variante, no en .pill: estas reglas definen su
+   propia rotación y sobrescribirían un transform declarado más arriba. Fuerza
+   una capa de composición propia, que es lo que evita el fantasma en Safari. */
+.pillLeft {
+  transform: rotate(-3deg) translateZ(0);
+}
+
+.pillRight {
+  transform: rotate(3deg) translateZ(0);
+}
+
+.pillIcon {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.pillIconBrand {
+  background: var(--gradient-brand);
+}
+
+.pillIconMint {
+  background: linear-gradient(135deg, #5ec9a0, #8fe0c0);
+}
+
+.pillTitle {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 18px;
+  font-size: 12.5px;
+  color: var(--color-text);
+}
+
+.pillText {
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: var(--color-text-muted-55);
+}
+
+/* --- Marca -------------------------------------------------------------- */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 14px 0 20px;
+}
+
+/* El logo va suelto sobre el fondo, sin contenedor: el PNG DEBE tener fondo
+   transparente o se verá un cuadrado blanco sobre el degradado pastel. */
+/* El PNG es 400x312 (no cuadrado). Los atributos width/height del <img> llevan
+   el tamaño intrínseco para que el navegador reserve el hueco y no haya salto
+   de layout; aquí solo se fija el ancho y la altura sale sola. */
+.logoMark {
+  width: 88px;
+  height: auto;
+  filter: drop-shadow(0 10px 22px rgba(139, 92, 246, 0.4));
+}
+
+.wordmark {
+  font-family: var(--font-wordmark);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 48px;
+  letter-spacing: -0.03em;
+  color: var(--color-primary-navy);
+  margin-top: 10px;
+  line-height: 1.05;
+}
+
+.slogan {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted-85);
+  margin-top: 6px;
+}
+
+.sloganAccent {
+  color: var(--color-primary);
+}
+
+/* --- Tarjeta de cristal -------------------------------------------------- */
+.card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transform: translateZ(0);
+  border-radius: var(--radius-2xl);
+  padding: 26px 20px 24px;
+  box-shadow: 0 22px 50px rgba(45, 20, 85, 0.13);
 }
 
 .title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 22px;
+  text-align: center;
+  color: var(--color-text);
 }
 
 .tagline {
-  font-size: 13px;
-  opacity: 0.8;
-  margin-top: 4px;
-  max-width: 260px;
-  line-height: 1.4;
+  font-size: 13.5px;
+  text-align: center;
+  color: var(--color-text-muted-55);
+  margin-top: 5px;
+  margin-bottom: 22px;
 }
 
-.sheet {
-  flex: 1;
-  background: var(--color-bg-screen);
-  border-radius: 26px 26px 0 0;
-  margin-top: -22px;
-  padding: 26px 22px 40px;
-  position: relative;
+/* --- Tira de features ---------------------------------------------------- */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 20px;
+  padding: 14px 10px;
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transform: translateZ(0);
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+}
+
+.featureIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featureTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--color-text);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.featureText {
+  font-size: 9.5px;
+  color: var(--color-text-muted-50);
+  line-height: 1.25;
+  text-wrap: balance;
 }

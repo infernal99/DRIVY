@@ -5,6 +5,26 @@ import type { IconName } from '../../types';
 // screens the prototype didn't cover.
 const PATHS: Record<IconName, React.ReactNode> = {
   sign: <path d="M12 2L2 20h20L12 2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />,
+  mail: (
+    <>
+      <rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="currentColor" strokeWidth="2" />
+      <path d="M3.5 7l8.5 6 8.5-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  ),
+  eye: (
+    <>
+      <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <circle cx="12" cy="12" r="2.75" stroke="currentColor" strokeWidth="2" />
+    </>
+  ),
+  eyeOff: (
+    <>
+      <path d="M10.6 6.1A8.9 8.9 0 0 1 12 6c6.4 0 10 6 10 6a17 17 0 0 1-3.2 3.9M6.2 8.2A17 17 0 0 0 2 12s3.6 6 10 6a9.4 9.4 0 0 0 3.6-.7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M3 3l18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </>
+  ),
+  arrowRight: <path d="M5 12h13m-5.5-5.5L18.5 12l-6 5.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />,
+  bolt: <path d="M13.5 2L5 13.5h5.5L10 22l8.5-11.5H13L13.5 2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />,
   rules: (
     <>
       <rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" strokeWidth="2" />

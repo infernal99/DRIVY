@@ -4,7 +4,7 @@ import { AppShell } from '../layout/AppShell';
 import { LoadingScreen } from '../ui/Loading';
 
 /**
- * Gate for every screen of the actual app: DRIVY now requires an account
+ * Gate for every screen of the actual app: Roady now requires an account
  * (no guest mode) per an explicit product decision, so anything under this
  * guard bounces to /login until `authStore.status` is 'authenticated'.
  * `status === 'loading'` covers the brief window while the Supabase client
