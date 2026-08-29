@@ -42,12 +42,15 @@
 /* --- Carretera animada del fondo ----------------------------------------
    Capa aislada a propósito: no contiene ningún backdrop-filter, por el fallo
    de composición de Safari descrito arriba. */
+/* La opacidad baja es deliberada: esto es fondo de una pantalla donde hay que
+   leer y escribir. A plena intensidad competia con el formulario. */
 .roadLayer {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  opacity: 0.55;
 }
 
 .roadSvg {
@@ -89,13 +92,15 @@
   filter: drop-shadow(0 3px 5px rgba(30, 15, 60, 0.3));
 }
 
+
+/* 44x44 es el objetivo tactil minimo recomendado; antes eran 34x34. */
 .backBtn {
   align-self: flex-start;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: none;
   background: rgba(255, 255, 255, 0.6);

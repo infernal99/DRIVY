@@ -60,21 +60,24 @@
   padding: 0;
 }
 
+/* -40 daba 3.48:1 sobre la tarjeta y el minimo para texto es 4.5. El
+   placeholder cuenta como texto, no como elemento decorativo. */
 .input::placeholder {
-  color: var(--color-text-muted-40);
+  color: var(--color-text-muted-55);
 }
 
+/* 44x44 es el objetivo tactil minimo recomendado; antes eran 34x34. */
 .reveal {
   flex: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   border: none;
   border-radius: 50%;
   background: transparent;
-  color: var(--color-text-muted-40);
+  color: var(--color-text-muted-55);
   transition: color 0.15s ease, background 0.15s ease;
 }
 

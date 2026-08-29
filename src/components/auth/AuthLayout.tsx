@@ -24,7 +24,14 @@ export function AuthLayout({ title, tagline, children }: { title: string; taglin
       <AuthRoad />
 
       <div className={styles.column}>
-        <button type="button" className={styles.backBtn} onClick={() => navigate(-1)} aria-label="Volver">
+        {/* navigate(-1) a secas dejaba el boton muerto para quien entra
+            directo a /login (sin historial previo): ahi cae a la portada. */}
+        <button
+          type="button"
+          className={styles.backBtn}
+          onClick={() => (window.history.length > 1 ? navigate(-1) : navigate('/'))}
+          aria-label="Volver"
+        >
           <Icon name="chevronLeft" size={16} color="currentColor" />
         </button>
 
@@ -36,12 +43,13 @@ export function AuthLayout({ title, tagline, children }: { title: string; taglin
           </p>
         </header>
 
-        <div className={styles.card}>
+        {/* <main> para que haya un landmark real: sin él, quien navegue con
+            lector de pantalla no tiene forma de saltar directo al formulario. */}
+        <main className={styles.card}>
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.tagline}>{tagline}</p>
           {children}
-        </div>
-
+        </main>
       </div>
     </div>
   );
