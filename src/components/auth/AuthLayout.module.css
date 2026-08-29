@@ -39,14 +39,10 @@
   flex-shrink: 0;
 }
 
-/* --- Objetos decorativos del fondo --------------------------------------
-   Posicionados sobre .page (toda la ventana): en móvil asoman por los bordes
-   detrás de la tarjeta, y en pantallas anchas caen solos en los márgenes
-   laterales, como en el diseño original. Los renders ya traen su propia
-   iluminación; el drop-shadow solo les da contacto con el fondo. */
-/* Capa que recorta los objetos para que no generen scroll horizontal. Está
-   aislada a propósito: no contiene ningún backdrop-filter. */
-.decorLayer {
+/* --- Carretera animada del fondo ----------------------------------------
+   Capa aislada a propósito: no contiene ningún backdrop-filter, por el fallo
+   de composición de Safari descrito arriba. */
+.roadLayer {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -54,49 +50,43 @@
   pointer-events: none;
 }
 
-.decor {
-  position: absolute;
-  pointer-events: none;
-  height: auto;
-  filter: drop-shadow(0 10px 16px rgba(45, 20, 85, 0.18));
+.roadSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.decorKeys {
-  width: 96px;
-  top: 15%;
-  left: -14px;
-  transform: rotate(-12deg);
+.roadAsphalt {
+  stroke: rgba(38, 26, 62, 0.34);
 }
 
-.decorLight {
-  width: 78px;
-  top: 24%;
-  right: -14px;
-  transform: rotate(4deg);
+.roadEdge {
+  stroke: rgba(38, 26, 62, 0.24);
 }
 
-.decorCone {
-  width: 104px;
-  bottom: 4%;
-  left: -14px;
-  transform: rotate(-5deg);
+.roadDashes {
+  stroke: rgba(255, 255, 255, 0.6);
 }
 
-/* A partir de aquí hay márgenes reales fuera de la columna de 480px, así que
-   los objetos se separan y crecen en vez de esconderse tras la tarjeta. */
-@media (min-width: 700px) {
-  .decorKeys {
-    width: 140px;
-    left: calc(50% - 240px - 130px);
-  }
-  .decorLight {
-    width: 120px;
-    right: calc(50% - 240px - 110px);
-  }
-  .decorCone {
-    width: 160px;
-    left: calc(50% - 240px - 150px);
-  }
+.carBody {
+  fill: #f6f4fb;
+}
+
+.carGlass {
+  fill: rgba(50, 34, 84, 0.55);
+}
+
+/* El cartel de autoescuela en el techo. */
+.carRoofSign {
+  fill: var(--color-primary);
+}
+
+.carWheel {
+  fill: rgba(30, 20, 50, 0.75);
+}
+
+.car {
+  filter: drop-shadow(0 3px 5px rgba(30, 15, 60, 0.3));
 }
 
 .backBtn {
@@ -276,6 +266,24 @@
   background: rgba(28, 23, 48, 0.6);
   border-color: rgba(255, 255, 255, 0.09);
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+}
+
+/* En oscuro el asfalto oscuro sobre fondo oscuro no se veria: la carretera se
+   dibuja levantando luz en vez de sombra. */
+:root[data-theme='dark'] .roadAsphalt {
+  stroke: rgba(255, 255, 255, 0.09);
+}
+
+:root[data-theme='dark'] .roadEdge {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+
+:root[data-theme='dark'] .roadDashes {
+  stroke: rgba(255, 255, 255, 0.35);
+}
+
+:root[data-theme='dark'] .carBody {
+  fill: #e6e1f2;
 }
 
 :root[data-theme='dark'] .backBtn {

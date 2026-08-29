@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '../ui/Icon';
-import { AuthDecor } from './AuthDecor';
+import { AuthRoad } from './AuthRoad';
 import styles from './AuthLayout.module.css';
 
 /**
@@ -21,7 +21,7 @@ export function AuthLayout({ title, tagline, children }: { title: string; taglin
 
   return (
     <div className={styles.page}>
-      <AuthDecor />
+      <AuthRoad />
 
       <div className={styles.column}>
         <button type="button" className={styles.backBtn} onClick={() => navigate(-1)} aria-label="Volver">
