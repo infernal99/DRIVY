@@ -28,32 +28,6 @@ export function AuthLayout({ title, tagline, children }: { title: string; taglin
           <Icon name="chevronLeft" size={16} color="currentColor" />
         </button>
 
-        <div className={styles.pills} aria-hidden="true">
-          <div className={`${styles.pill} ${styles.pillLeft}`}>
-            <span className={`${styles.pillIcon} ${styles.pillIconBrand}`}>
-              <Icon name="bolt" size={15} color="#fff" />
-            </span>
-            <span style={{ minWidth: 0 }}>
-              <span className={styles.pillTitle}>Prepárate</span>
-              <span className={styles.pillText} style={{ display: 'block' }}>
-                Aprueba tu teórico
-              </span>
-            </span>
-          </div>
-
-          <div className={`${styles.pill} ${styles.pillRight}`}>
-            <span className={`${styles.pillIcon} ${styles.pillIconMint}`}>
-              <Icon name="chart" size={15} color="#fff" />
-            </span>
-            <span style={{ minWidth: 0 }}>
-              <span className={styles.pillTitle}>Progreso</span>
-              <span className={styles.pillText} style={{ display: 'block' }}>
-                Mejora cada día
-              </span>
-            </span>
-          </div>
-        </div>
-
         <header className={styles.brand}>
           <img src="/logo.png" alt="Roady" className={styles.logoMark} width={400} height={312} />
           <div className={styles.wordmark}>Roady</div>

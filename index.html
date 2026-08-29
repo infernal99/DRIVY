@@ -1,22 +1,11 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <script>
-      // Resolves and applies the theme before the stylesheet paints, so
-      // there's never a flash of the other theme — including for "system"
-      // preference, which is resolved here via matchMedia rather than a
-      // prefers-color-scheme media query in theme.css (see themeStore.ts
-      // for why: that combination broke under Vite's CSS minifier).
-      //
-      // La clave sigue siendo `drivy.theme.v1` pese al rebrand: renombrarla
-      // haria que todo el mundo perdiera su preferencia de tema.
-      try {
-        var t = localStorage.getItem('drivy.theme.v1');
-        var isDark = t === 'dark' || (t !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      } catch (e) {}
-    </script>
+    <!-- La app es solo modo oscuro: el atributo va fijo en el propio HTML, así
+         que se aplica antes del primer pintado sin necesidad de script.
+         El selector claro/oscuro sigue existiendo en src/store/themeStore.ts
+         pero no se importa desde main.tsx — ver el comentario de ahí. -->
     <link rel="icon" type="image/png" href="/favicon.png" />
     <!-- OJO: los iconos de /icons/ siguen siendo los de la marca antigua
          (azules, DRIVY). Hay que regenerarlos desde el logo de Roady. -->
