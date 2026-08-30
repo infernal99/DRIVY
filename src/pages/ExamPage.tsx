@@ -304,7 +304,7 @@ function ExamResultView({
         style={{
           padding: '36px 24px 26px',
           textAlign: 'center',
-          background: result.passed ? 'linear-gradient(135deg,#122B57,#1E4694 60%,#2F6FED)' : 'linear-gradient(135deg,#5b1f22,#7a2a2f)',
+          background: result.passed ? 'var(--gradient-hero)' : 'linear-gradient(135deg,#5b1f22,#7a2a2f)',
           color: '#fff',
         }}
       >

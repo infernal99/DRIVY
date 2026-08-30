@@ -1,5 +1,5 @@
 /**
- * `npm run content:update` — the single entry point for refreshing DRIVY's
+ * `npm run content:update` — the single entry point for refreshing Roady's
  * content. Runs: check sources (best-effort) → export source docs → build
  * (normalize/validate/dedupe/classify) → print a human summary.
  *
@@ -16,7 +16,7 @@ import { isMainEntry } from './lib/isMainEntry';
 const log = createLogger('content-update');
 
 export async function runContentUpdate() {
-  console.log('\nDRIVY CONTENT UPDATE\n');
+  console.log('\nRoady CONTENT UPDATE\n');
 
   let sourcesChecked = 0;
   try {

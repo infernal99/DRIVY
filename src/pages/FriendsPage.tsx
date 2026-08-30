@@ -299,7 +299,7 @@ function SearchSection({ onSent }: { onSent: () => void }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-          placeholder="Nombre o código DRIVY-XXXXX"
+          placeholder="Nombre o código ROADY-XXXXX"
           style={{
             flex: 1,
             padding: '11px 14px',

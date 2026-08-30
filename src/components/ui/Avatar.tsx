@@ -20,7 +20,7 @@ export function Avatar({ name, size = 44, avatarId }: { name: string; size?: num
         width: size,
         height: size,
         borderRadius: size / 2.8,
-        background: 'linear-gradient(135deg,#2F6FED,#5B8CF5)',
+        background: 'var(--gradient-brand)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

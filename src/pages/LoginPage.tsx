@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthLayout } from '../components/auth/AuthLayout';
 import { AuthField } from '../components/auth/AuthField';
 import { Button } from '../components/ui/Button';
+import { Icon } from '../components/ui/Icon';
 import { signInWithEmail } from '../services/authService';
 
 export function LoginPage() {
@@ -34,7 +35,7 @@ export function LoginPage() {
   }
 
   return (
-    <AuthLayout title="Iniciar sesión" tagline="Continúa tu preparación donde la dejaste.">
+    <AuthLayout title="¡Bienvenido de vuelta!" tagline="Inicia sesión y continúa tu camino.">
       <form onSubmit={handleSubmit} noValidate>
         {formError && (
           <div
@@ -57,6 +58,7 @@ export function LoginPage() {
           id="email"
           label="Email"
           type="email"
+          icon="mail"
           autoComplete="email"
           placeholder="tu@email.com"
           value={email}
@@ -66,6 +68,7 @@ export function LoginPage() {
           id="password"
           label="Contraseña"
           type="password"
+          icon="lock"
           autoComplete="current-password"
           placeholder="Tu contraseña"
           value={password}
@@ -73,13 +76,14 @@ export function LoginPage() {
         />
 
         <div style={{ textAlign: 'right', marginTop: -6, marginBottom: 20 }}>
-          <Link to="/forgot-password" style={{ fontSize: 12.5, fontWeight: 600, color: 'var(--color-text-muted-55)' }}>
+          <Link to="/forgot-password" style={{ fontSize: 12.5, fontWeight: 600, color: 'var(--color-primary)' }}>
             ¿Has olvidado tu contraseña?
           </Link>
         </div>
 
-        <Button type="submit" disabled={submitting}>
+        <Button type="submit" variant="dark" disabled={submitting}>
           {submitting ? 'Entrando…' : 'Iniciar sesión'}
+          {!submitting && <Icon name="arrowRight" size={18} color="currentColor" />}
         </Button>
 
         <p style={{ textAlign: 'center', fontSize: 13.5, color: 'var(--color-text-muted-60)', marginTop: 18 }}>

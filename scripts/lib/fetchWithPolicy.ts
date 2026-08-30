@@ -70,7 +70,7 @@ export async function fetchWithPolicy(
 
     try {
       const res = await fetch(url, {
-        headers: { 'User-Agent': 'DRIVY-content-pipeline/1.0 (+study app; contact via project README)' },
+        headers: { 'User-Agent': 'Roady-content-pipeline/1.0 (+study app; contact via project README)' },
       });
       const body = await res.text();
       const entry: CacheEntry = { url, fetchedAt: Date.now(), status: res.status, body };

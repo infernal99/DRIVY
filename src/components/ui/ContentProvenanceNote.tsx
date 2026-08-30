@@ -4,8 +4,8 @@ import type { QuestionSource } from '../../types';
 // authorship for content we wrote ourselves, and never bury the distinction.
 const COPY: Record<QuestionSource['type'], string> = {
   official: 'Contenido oficial de la DGT.',
-  derived: 'Elaborada por DRIVY a partir de normativa oficial de la DGT.',
-  practice: 'Pregunta creada por DRIVY para practicar — no es contenido oficial.',
+  derived: 'Elaborada por Roady a partir de normativa oficial de la DGT.',
+  practice: 'Pregunta creada por Roady para practicar — no es contenido oficial.',
   needs_review: 'Procedencia pendiente de revisión — no se presenta como contenido oficial.',
 };
 

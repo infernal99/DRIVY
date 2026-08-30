@@ -1,4 +1,4 @@
-# DRIVY — PHASE 2 PROMPT: gaps + improvements from the full-MVP spec
+# Roady — PHASE 2 PROMPT: gaps + improvements from the full-MVP spec
 
 > Generated after auditing the current codebase against the "FULL MVP
 > IMPLEMENTATION" prompt. This is a **pruned, re-scoped version** of that
@@ -11,7 +11,7 @@
 
 - Stack is Vite + React 19 + TypeScript + React Router + Zustand. **Do not
   migrate to Next.js.**
-- Respect the existing architecture and DRIVY's existing visual design
+- Respect the existing architecture and Roady's existing visual design
   system (`src/styles/theme.css`, `src/components/ui/*`). Don't introduce a
   second design language.
 - Consult current official Supabase docs before implementing anything new;
@@ -101,7 +101,7 @@ accuracy (`getWeakPoints`), not a proper mastery score.
 3. Build **"¿Estoy preparado?"**: a readiness score combining recent
    accuracy, category mastery, recent exam results/consistency, and mistake
    count, mapped to the four bands in the original spec (§13). Make the
-   copy explicit that this is a DRIVY-internal estimate, not a guarantee of
+   copy explicit that this is a Roady-internal estimate, not a guarantee of
    passing the real exam. Surface it somewhere visible (Home dashboard
    and/or Progress page).
 
@@ -152,7 +152,7 @@ get wrong:
 - **No global leaderboard, ever.** Ranking is friends-only (current user +
   accepted friends).
 - **Never expose the Supabase `auth.users` UUID as a public identifier.**
-  Generate a short public `friend_code` (e.g. `DRIVY-8K4P2`) at profile
+  Generate a short public `friend_code` (e.g. `Roady-8K4P2`) at profile
   creation time (extend `fn_handle_new_user`, the trigger that already
   creates the `profiles` row on signup) — unique, human-readable, safe to
   display, distinct from any internal id.
@@ -172,7 +172,7 @@ Suggested breakdown:
    or friend_code and returns only what's safe to show publicly (respecting
    the privacy settings from point 5) — paginated, indexed, not a
    `select *` over `profiles`.
-3. **`/friends` page**: search bar (name or DRIVY ID), pending
+3. **`/friends` page**: search bar (name or Roady ID), pending
    incoming/outgoing requests, accepted friends list, remove-friend action.
    Add it to navigation.
 4. **Friend profile view**: display name, avatar, level, XP, streak,

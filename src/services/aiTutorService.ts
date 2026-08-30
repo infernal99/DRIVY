@@ -2,7 +2,7 @@ import type { Question } from '../types';
 
 // Phase H: AI tutor abstraction — MOCK ONLY. No provider (OpenAI/Anthropic/
 // Gemini/etc.) is wired in, no API key exists anywhere in this repo. Every
-// function below returns template-based text built from data DRIVY already
+// function below returns template-based text built from data Roady already
 // has (the question's own `explanation`), wrapped in a resolved Promise so
 // callers already code against the shape a real network call would have.
 // The rest of the app depends on this interface, not a concrete provider —
@@ -23,7 +23,7 @@ function correctOptionText(question: Question): string {
 export async function explainQuestion(question: Question): Promise<AiTutorResponse> {
   const base = question.explanation?.trim();
   const text = base
-    ? `${base}\n\nEsta es la explicación registrada de DRIVY para esta pregunta. Un tutor con IA real podría además adaptarse a tus dudas concretas.`
+    ? `${base}\n\nEsta es la explicación registrada de Roady para esta pregunta. Un tutor con IA real podría además adaptarse a tus dudas concretas.`
     : `Todavía no hay una explicación redactada para esta pregunta. La opción correcta es: «${correctOptionText(question)}».`;
   return { text, isPlaceholder: true };
 }
@@ -47,7 +47,7 @@ export async function askWhy(question: Question, prompt: string): Promise<AiTuto
   }
   const base = question.explanation?.trim() ?? 'Sin explicación disponible para esta pregunta todavía.';
   return {
-    text: `Todavía no hay un tutor con IA conectado, así que no puedo responder a «${trimmed}» con detalle. Mientras tanto, aquí tienes la explicación de DRIVY para esta pregunta:\n\n${base}`,
+    text: `Todavía no hay un tutor con IA conectado, así que no puedo responder a «${trimmed}» con detalle. Mientras tanto, aquí tienes la explicación de Roady para esta pregunta:\n\n${base}`,
     isPlaceholder: true,
   };
 }

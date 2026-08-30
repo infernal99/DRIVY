@@ -69,7 +69,7 @@ export function ProfilePage() {
             aria-label="Cambiar avatar"
             style={{ position: 'relative', background: 'none', border: 'none', padding: 0, cursor: authStatus === 'authenticated' ? 'pointer' : 'default' }}
           >
-            <div style={{ borderRadius: '50%', boxShadow: '0 8px 20px rgba(47,111,237,0.3)' }}>
+            <div style={{ borderRadius: '50%', boxShadow: 'var(--shadow-btn-primary)' }}>
               <Avatar name={progress.userName} size={76} avatarId={avatarId} />
             </div>
             {authStatus === 'authenticated' && (

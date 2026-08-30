@@ -1,8 +1,8 @@
-# DRIVY content pipeline
+# Roady content pipeline
 
-This documents how DRIVY's question bank is authored, validated, deduplicated,
+This documents how Roady's question bank is authored, validated, deduplicated,
 and kept traceable back to a real source — the system built to satisfy the
-"DRIVY debe saber exactamente de dónde procede cada pieza de contenido"
+"Roady debe saber exactamente de dónde procede cada pieza de contenido"
 requirement. Read [`CONTENT-LICENSES.md`](../CONTENT-LICENSES.md) alongside
 this for what we can/can't reuse from each source we looked at.
 
@@ -74,7 +74,7 @@ left `undefined` where we couldn't (never guessed).
 ## 3. Pipeline
 
 ```
-Official Sources → Fetcher → Parser → Normalizer → Validator → Deduplicator → Classifier → License/Source Check → Question Database → DRIVY
+Official Sources → Fetcher → Parser → Normalizer → Validator → Deduplicator → Classifier → License/Source Check → Question Database → Roady
 ```
 
 Mapped onto this repo:
@@ -89,7 +89,7 @@ Mapped onto this repo:
 | Classifier | Author-assigned `categoryId`/`subcategoryId`, cross-checked against `src/data/categories.ts` during validation |
 | License/Source check | `scripts/lib/validate.ts` (missing source/license → error/warning) + manual review via `/admin/content` |
 | Question Database | `content/questions/generated/*.json` (build artifact) — see below |
-| DRIVY | `src/data/questions/*.ts`, imported at runtime |
+| Roady | `src/data/questions/*.ts`, imported at runtime |
 
 **Important adaptation**: this is a Vite/React SPA, not a service with its
 own database. `src/data/questions/*.ts` (written with the `q()` helper) is

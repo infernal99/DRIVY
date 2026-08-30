@@ -9,7 +9,7 @@ import { supabase } from '../lib/supabase';
 
 export type ImageBucket = 'question-images' | 'sign-images' | 'illustrations' | 'avatars';
 
-/** Public CDN URL for an object already in one of DRIVY's (all-public-read) image buckets. */
+/** Public CDN URL for an object already in one of Roady's (all-public-read) image buckets. */
 export function getPublicImageUrl(bucket: ImageBucket, path: string): string {
   return supabase.storage.from(bucket).getPublicUrl(path).data.publicUrl;
 }

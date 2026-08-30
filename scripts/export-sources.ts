@@ -55,7 +55,7 @@ export function exportSources() {
 > \`src/data/sources.ts\`; regenerate with \`npm run content:sources\`
 > (part of \`npm run content:update\`).
 
-This documents, for every source DRIVY's content pipeline has looked at,
+This documents, for every source Roady's content pipeline has looked at,
 what we can and cannot reuse from it — per the content spec's rule: "no
 asumir que 'público en internet' significa 'libre para reutilizar'".
 

@@ -52,7 +52,7 @@ export function CategoryPage() {
             width: 64,
             height: 64,
             borderRadius: 18,
-            background: 'linear-gradient(135deg,#2F6FED,#5B8CF5)',
+            background: 'var(--gradient-brand)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
