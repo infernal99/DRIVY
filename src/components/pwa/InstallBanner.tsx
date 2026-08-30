@@ -90,7 +90,7 @@ export function InstallBanner() {
           <Icon name="download" size={17} />
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--color-text)' }}>Instala DRIVY</div>
+          <div style={{ fontSize: 13.5, fontWeight: 700, color: 'var(--color-text)' }}>Instala Roady</div>
           <div style={{ fontSize: 11.5, color: 'var(--color-text-muted-60)', marginTop: 1 }}>Úsala como una app, incluso sin conexión.</div>
         </div>
         <button

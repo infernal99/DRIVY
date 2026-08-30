@@ -144,7 +144,7 @@ function NotificationsCard() {
     if (!ok) {
       setError(
         permission === 'denied'
-          ? 'Has bloqueado las notificaciones para DRIVY. Actívalas desde los ajustes de tu navegador.'
+          ? 'Has bloqueado las notificaciones para Roady. Actívalas desde los ajustes de tu navegador.'
           : 'No se pudieron activar las notificaciones.',
       );
       return;

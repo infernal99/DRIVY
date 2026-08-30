@@ -78,7 +78,7 @@ export function PremiumPricingCard() {
           <Icon name="crown" size={18} color="#facc15" />
         </div>
         <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 17 }}>
-          {isPremium ? 'DRIVY Premium activo' : 'DRIVY Premium'}
+          {isPremium ? 'Roady Premium activo' : 'Roady Premium'}
         </div>
       </div>
 

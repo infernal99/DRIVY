@@ -21,7 +21,7 @@ import webpush from 'web-push';
 // to both files.
 
 webpush.setVapidDetails(
-  'mailto:drivy-app@example.com',
+  'mailto:roady-app@example.com',
   process.env.VITE_VAPID_PUBLIC_KEY as string,
   process.env.VAPID_PRIVATE_KEY as string,
 );

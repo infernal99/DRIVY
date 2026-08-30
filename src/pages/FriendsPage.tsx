@@ -114,11 +114,11 @@ export function FriendsPage() {
 
   async function shareInviteLink(friendCode: string) {
     const url = `${window.location.origin}/invite/${friendCode}`;
-    const text = 'Únete a DRIVY conmigo y practiquemos juntos el examen del carnet:';
+    const text = 'Únete a Roady conmigo y practiquemos juntos el examen del carnet:';
 
     if (navigator.share) {
       try {
-        await navigator.share({ title: 'DRIVY', text, url });
+        await navigator.share({ title: 'Roady', text, url });
         return;
       } catch (err) {
         if ((err as Error).name === 'AbortError') return;
