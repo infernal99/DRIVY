@@ -25,7 +25,7 @@ export function SourcesPage() {
       <ScreenHeader title="Fuentes oficiales" />
       <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 30px' }}>
         <p style={{ fontSize: 13, color: 'var(--color-text-muted-60)', lineHeight: 1.55, margin: '0 0 8px' }}>
-          DRIVY no es una aplicación oficial de la DGT ni garantiza exámenes oficiales. Practica el teórico del permiso
+          Roady no es una aplicación oficial de la DGT ni garantiza exámenes oficiales. Practica el teórico del permiso
           B con contenido basado en fuentes oficiales de la DGT: cada pregunta indica su procedencia exacta.
         </p>
         <p style={{ fontSize: 13, color: 'var(--color-text-muted-60)', lineHeight: 1.55, margin: '0 0 18px' }}>

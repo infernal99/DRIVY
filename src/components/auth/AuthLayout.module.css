@@ -1,79 +1,228 @@
-.wrap {
-  min-height: 100%;
+/* Fondo a sangre: ocupa toda la ventana, no el marco de 480px de AppShell.
+   Si se limita al marco, el degradado se corta en seco y la banda lisa de
+   alrededor parece otra página por debajo. */
+/* OJO: aquí NO puede ir `overflow: hidden`. Safari tiene un fallo conocido por
+   el que un elemento con backdrop-filter dentro de un ancestro con overflow
+   hidden muestrea el fondo desde el sitio equivocado y pinta una copia del
+   contenido — se ve literalmente una doble página. El recorte de los objetos
+   decorativos vive en .decorLayer, que no envuelve a ningún cristal. */
+.page {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  isolation: isolate;
+  background:
+    radial-gradient(70% 50% at 8% 70%, rgba(255, 156, 96, 0.75), transparent 72%),
+    radial-gradient(65% 48% at 96% 46%, rgba(112, 224, 176, 0.7), transparent 72%),
+    radial-gradient(75% 52% at 18% 8%, rgba(186, 150, 255, 0.8), transparent 72%),
+    radial-gradient(70% 50% at 92% 92%, rgba(255, 160, 205, 0.7), transparent 72%),
+    radial-gradient(60% 40% at 50% 100%, rgba(150, 190, 255, 0.5), transparent 70%),
+    linear-gradient(180deg, #e9ecfa, #f4eff5);
+}
+
+/* El contenido sí se limita al ancho de la app; el fondo no. */
+.column {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--app-max-width);
   display: flex;
   flex-direction: column;
+  padding: 16px 18px 28px;
 }
 
-.hero {
-  position: relative;
-  overflow: hidden;
+/* flex-shrink:0 es imprescindible: sin él los hijos se comprimen para caber en
+   la altura del contenedor en vez de desbordar, y en pantallas bajas el
+   contenido se corta en lugar de dejar hacer scroll. */
+.column > * {
   flex-shrink: 0;
-  padding: 20px 22px 44px;
-  background: linear-gradient(135deg, #122b57, #1e4694 60%, #2f6fed);
-  color: #fff;
 }
 
-.heroDecor {
+/* --- Carretera animada del fondo ----------------------------------------
+   Capa aislada a propósito: no contiene ningún backdrop-filter, por el fallo
+   de composición de Safari descrito arriba. */
+/* La opacidad baja es deliberada: esto es fondo de una pantalla donde hay que
+   leer y escribir. A plena intensidad competia con el formulario. */
+.roadLayer {
   position: absolute;
-  right: -30px;
-  top: -30px;
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.55;
 }
 
+.roadSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.roadAsphalt {
+  stroke: rgba(38, 26, 62, 0.34);
+}
+
+.roadEdge {
+  stroke: rgba(38, 26, 62, 0.24);
+}
+
+.roadDashes {
+  stroke: rgba(255, 255, 255, 0.6);
+}
+
+.carBody {
+  fill: #f6f4fb;
+}
+
+.carGlass {
+  fill: rgba(50, 34, 84, 0.55);
+}
+
+/* El cartel de autoescuela en el techo. */
+.carRoofSign {
+  fill: var(--color-primary);
+}
+
+.carWheel {
+  fill: rgba(30, 20, 50, 0.75);
+}
+
+.car {
+  filter: drop-shadow(0 3px 5px rgba(30, 15, 60, 0.3));
+}
+
+
+/* 44x44 es el objetivo tactil minimo recomendado; antes eran 34x34. */
 .backBtn {
+  align-self: flex-start;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
 }
 
+/* --- Marca -------------------------------------------------------------- */
 .brand {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
+  text-align: center;
+  padding: 14px 0 20px;
 }
 
+/* El logo va suelto sobre el fondo, sin contenedor: el PNG DEBE tener fondo
+   transparente o se verá un cuadrado blanco sobre el degradado pastel. */
+/* El PNG es 400x312 (no cuadrado). Los atributos width/height del <img> llevan
+   el tamaño intrínseco para que el navegador reserve el hueco y no haya salto
+   de layout; aquí solo se fija el ancho y la altura sale sola. */
 .logoMark {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.14);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
+  width: 88px;
+  height: auto;
+  filter: drop-shadow(0 10px 22px rgba(139, 92, 246, 0.4));
+}
+
+.wordmark {
+  font-family: var(--font-wordmark);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 48px;
+  letter-spacing: -0.03em;
+  color: var(--color-primary-navy);
+  margin-top: 10px;
+  line-height: 1.05;
+}
+
+.slogan {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-muted-85);
+  margin-top: 6px;
+}
+
+.sloganAccent {
+  color: var(--color-primary);
+}
+
+/* --- Tarjeta de cristal -------------------------------------------------- */
+.card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transform: translateZ(0);
+  border-radius: var(--radius-2xl);
+  padding: 26px 20px 24px;
+  box-shadow: 0 22px 50px rgba(45, 20, 85, 0.13);
 }
 
 .title {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 22px;
+  text-align: center;
+  color: var(--color-text);
 }
 
 .tagline {
-  font-size: 13px;
-  opacity: 0.8;
-  margin-top: 4px;
-  max-width: 260px;
-  line-height: 1.4;
+  font-size: 13.5px;
+  text-align: center;
+  color: var(--color-text-muted-55);
+  margin-top: 5px;
+  margin-bottom: 22px;
 }
 
-.sheet {
-  flex: 1;
-  background: var(--color-bg-screen);
-  border-radius: 26px 26px 0 0;
-  margin-top: -22px;
-  padding: 26px 22px 40px;
-  position: relative;
+/* --- Tema oscuro ---------------------------------------------------------
+   Esta pantalla se diseñó antes de que existiera el modo oscuro y llevaba el
+   pastel y los cristales con colores fijos. Con el tema oscuro activo eso
+   dejaba texto casi blanco sobre fondo claro: ilegible. Las superficies de
+   cristal no pueden ser var(--color-bg-card) porque necesitan alfa. */
+:root[data-theme='dark'] .page {
+  background:
+    radial-gradient(70% 50% at 8% 70%, rgba(150, 62, 30, 0.5), transparent 72%),
+    radial-gradient(65% 48% at 96% 46%, rgba(24, 105, 82, 0.5), transparent 72%),
+    radial-gradient(75% 52% at 18% 8%, rgba(88, 52, 168, 0.65), transparent 72%),
+    radial-gradient(70% 50% at 92% 92%, rgba(140, 44, 96, 0.5), transparent 72%),
+    radial-gradient(60% 40% at 50% 100%, rgba(40, 60, 130, 0.45), transparent 70%),
+    linear-gradient(180deg, #0d0a17, #140f22);
+}
+
+:root[data-theme='dark'] .card {
+  background: rgba(28, 23, 48, 0.72);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.45);
+}
+
+/* En oscuro el asfalto oscuro sobre fondo oscuro no se veria: la carretera se
+   dibuja levantando luz en vez de sombra. */
+:root[data-theme='dark'] .roadAsphalt {
+  stroke: rgba(255, 255, 255, 0.09);
+}
+
+:root[data-theme='dark'] .roadEdge {
+  stroke: rgba(255, 255, 255, 0.05);
+}
+
+:root[data-theme='dark'] .roadDashes {
+  stroke: rgba(255, 255, 255, 0.35);
+}
+
+:root[data-theme='dark'] .carBody {
+  fill: #e6e1f2;
+}
+
+:root[data-theme='dark'] .backBtn {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* En claro el wordmark es morado profundo; en oscuro eso sería casi negro
+   sobre fondo negro. */
+:root[data-theme='dark'] .wordmark {
+  color: var(--color-text);
 }

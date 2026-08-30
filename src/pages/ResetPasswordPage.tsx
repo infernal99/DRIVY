@@ -50,8 +50,8 @@ export function ResetPasswordPage() {
 
   if (done) {
     return (
-      <AuthLayout title="Contraseña actualizada" tagline="Ya puedes continuar usando DRIVY con normalidad.">
-        <Button onClick={() => navigate('/')}>Ir a DRIVY</Button>
+      <AuthLayout title="Contraseña actualizada" tagline="Ya puedes continuar usando Roady con normalidad.">
+        <Button onClick={() => navigate('/')}>Ir a Roady</Button>
       </AuthLayout>
     );
   }

@@ -1,5 +1,5 @@
 /**
- * Canonical registry of every source consulted while building DRIVY's
+ * Canonical registry of every source consulted while building Roady's
  * content. This is the single source of truth: `scripts/export-sources.ts`
  * regenerates content/sources/*.json and CONTENT-LICENSES.md from this file
  * — edit here, not there.
@@ -183,7 +183,7 @@ export const CONTENT_SOURCES: ContentSource[] = [
     reviewStatus: 'needs_review',
     canReuse: ['Entender el formato del test oficial (ya reflejado en EXAM_CONFIG)'],
     cannotReuse: [
-      'Ejecutar el scraper contra la DGT en producción (uso no comercial exigido por su licencia; DRIVY no ha decidido su modelo de uso, y el sitio objetivo cambió)',
+      'Ejecutar el scraper contra la DGT en producción (uso no comercial exigido por su licencia; Roady no ha decidido su modelo de uso, y el sitio objetivo cambió)',
       'Redistribuir cualquier pregunta/imagen que este script extraiga, dado que la propia DGT no otorga licencia sobre ese contenido',
     ],
     attribution: 'alvarolozano.dev (exigido por la licencia del código, si se reutilizara el script)',
@@ -203,7 +203,7 @@ export const CONTENT_SOURCES: ContentSource[] = [
     reviewStatus: 'needs_review',
     canReuse: ['Usarlo como referencia externa de temas cubiertos (prioridad 4, nunca como fuente de verdad)'],
     cannotReuse: [
-      'Importar sus preguntas o imágenes a DRIVY: no hay cadena de procedencia verificable ni licencia clara del contenido',
+      'Importar sus preguntas o imágenes a Roady: no hay cadena de procedencia verificable ni licencia clara del contenido',
       'Presentar nada de este mazo como contenido oficial de la DGT',
     ],
     consultedAt: '2026-08-26',

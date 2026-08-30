@@ -1,31 +1,27 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <script>
-      // Resolves and applies the theme before the stylesheet paints, so
-      // there's never a flash of the other theme — including for "system"
-      // preference, which is resolved here via matchMedia rather than a
-      // prefers-color-scheme media query in theme.css (see themeStore.ts
-      // for why: that combination broke under Vite's CSS minifier).
-      try {
-        var t = localStorage.getItem('drivy.theme.v1');
-        var isDark = t === 'dark' || (t !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      } catch (e) {}
-    </script>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- La app es solo modo oscuro: el atributo va fijo en el propio HTML, así
+         que se aplica antes del primer pintado sin necesidad de script.
+         El selector claro/oscuro sigue existiendo en src/store/themeStore.ts
+         pero no se importa desde main.tsx — ver el comentario de ahí. -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- OJO: los iconos de /icons/ siguen siendo los de la marca antigua
+         (azules, DRIVY). Hay que regenerarlos desde el logo de Roady. -->
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#2F6FED" />
-    <meta name="description" content="DRIVY — Aprende y practica el examen teórico del permiso B con contenido basado en fuentes oficiales de la DGT." />
+    <meta name="theme-color" content="#8B5CF6" />
+    <meta name="description" content="Roady — Aprende y practica el examen teórico del permiso B con contenido basado en fuentes oficiales de la DGT." />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="DRIVY" />
+    <meta name="apple-mobile-web-app-title" content="Roady" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <title>DRIVY — Permiso B</title>
+    <!-- Solo para el wordmark del logotipo. El resto de la interfaz usa la
+         fuente del sistema y no descarga nada. Un único peso: 800 itálica. -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800&display=swap" rel="stylesheet" />
+    <title>Roady — Permiso B</title>
   </head>
   <body>
     <div id="root"></div>

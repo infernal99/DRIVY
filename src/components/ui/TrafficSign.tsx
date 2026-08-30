@@ -75,7 +75,7 @@ function Octagon() {
         stroke="#fff"
         strokeWidth="3"
       />
-      <text x="50" y="62" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontWeight={700} fontSize="26" fill="#fff">
+      <text x="50" y="62" textAnchor="middle" style={{ fontFamily: 'var(--font-display)' }} fontWeight={700} fontSize="26" fill="#fff">
         STOP
       </text>
     </svg>
@@ -98,17 +98,17 @@ const registry: Record<SignKey, () => React.ReactNode> = {
   ),
   'limite-velocidad-50': () => (
     <Circle>
-      <text x="50" y="64" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontWeight={700} fontSize="34" fill={DARK}>50</text>
+      <text x="50" y="64" textAnchor="middle" style={{ fontFamily: 'var(--font-display)' }} fontWeight={700} fontSize="34" fill={DARK}>50</text>
     </Circle>
   ),
   'limite-velocidad-90': () => (
     <Circle>
-      <text x="50" y="64" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontWeight={700} fontSize="30" fill={DARK}>90</text>
+      <text x="50" y="64" textAnchor="middle" style={{ fontFamily: 'var(--font-display)' }} fontWeight={700} fontSize="30" fill={DARK}>90</text>
     </Circle>
   ),
   'fin-limite-velocidad': () => (
     <Circle border="#9aa3b5">
-      <text x="50" y="64" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontWeight={700} fontSize="30" fill="#9aa3b5">50</text>
+      <text x="50" y="64" textAnchor="middle" style={{ fontFamily: 'var(--font-display)' }} fontWeight={700} fontSize="30" fill="#9aa3b5">50</text>
       <line x1="18" y1="82" x2="82" y2="18" stroke="#9aa3b5" strokeWidth="5" />
     </Circle>
   ),
@@ -152,13 +152,13 @@ const registry: Record<SignKey, () => React.ReactNode> = {
   ),
   'prohibido-aparcar': () => (
     <Circle bg={BLUE} border={RED}>
-      <text x="50" y="64" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontWeight={700} fontSize="34" fill="#fff">P</text>
+      <text x="50" y="64" textAnchor="middle" style={{ fontFamily: 'var(--font-display)' }} fontWeight={700} fontSize="34" fill="#fff">P</text>
       <line x1="18" y1="82" x2="82" y2="18" stroke={RED} strokeWidth="7" />
     </Circle>
   ),
   aparcamiento: () => (
     <Square>
-      <text x="50" y="66" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontWeight={700} fontSize="42" fill="#fff">P</text>
+      <text x="50" y="66" textAnchor="middle" style={{ fontFamily: 'var(--font-display)' }} fontWeight={700} fontSize="42" fill="#fff">P</text>
     </Square>
   ),
   autopista: () => (
@@ -203,7 +203,7 @@ const registry: Record<SignKey, () => React.ReactNode> = {
   ),
   'velocidad-minima-40': () => (
     <Circle bg={BLUE} border={BLUE}>
-      <text x="50" y="64" textAnchor="middle" fontFamily="Fredoka, sans-serif" fontWeight={700} fontSize="30" fill="#fff">40</text>
+      <text x="50" y="64" textAnchor="middle" style={{ fontFamily: 'var(--font-display)' }} fontWeight={700} fontSize="30" fill="#fff">40</text>
     </Circle>
   ),
   'carril-bici': () => (

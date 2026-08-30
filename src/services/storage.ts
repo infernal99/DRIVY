@@ -21,7 +21,7 @@ export class LocalStorageProgressRepository implements ProgressRepository {
       if (!raw) return null;
       return JSON.parse(raw) as UserProgress;
     } catch (err) {
-      console.error('DRIVY: failed to read progress from localStorage', err);
+      console.error('Roady: failed to read progress from localStorage', err);
       return null;
     }
   }
@@ -30,7 +30,7 @@ export class LocalStorageProgressRepository implements ProgressRepository {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
     } catch (err) {
-      console.error('DRIVY: failed to persist progress to localStorage', err);
+      console.error('Roady: failed to persist progress to localStorage', err);
     }
   }
 

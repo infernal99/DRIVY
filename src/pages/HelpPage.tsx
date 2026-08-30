@@ -9,7 +9,7 @@ const FAQ = [
   },
   {
     q: '¿Son preguntas oficiales de examen?',
-    a: 'No. Ninguna pregunta de DRIVY se presenta como pregunta oficial de la DGT. Todo el banco está marcado internamente como contenido de práctica, redactado por nosotros a partir de la normativa oficial vigente.',
+    a: 'No. Ninguna pregunta de Roady se presenta como pregunta oficial de la DGT. Todo el banco está marcado internamente como contenido de práctica, redactado por nosotros a partir de la normativa oficial vigente.',
   },
   {
     q: '¿Cómo funciona el repaso de errores?',

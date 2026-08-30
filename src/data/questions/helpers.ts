@@ -8,7 +8,7 @@ import { getSignById } from '../signs';
 // DGT exam bank to redistribute) and more specific than generic `practice`
 // (every question here cites a real DGT source, see each file's SRC const).
 const DEFAULT_SOURCE_TYPE: QuestionSourceType = 'derived';
-const DEFAULT_SOURCE_NAME = 'DRIVY (elaborado a partir de fuentes oficiales DGT)';
+const DEFAULT_SOURCE_NAME = 'Roady (elaborado a partir de fuentes oficiales DGT)';
 // DGT's informational pages are public but publish no explicit reuse
 // license (see src/data/sources.ts) — documenting that plainly here beats
 // leaving `license` empty, which the validator would otherwise (correctly,
@@ -63,7 +63,7 @@ export function q(input: QuestionInput): Question {
   const options = input.options.map((text, i) => ({ id: `${id}-${i}`, text }));
   const correctOptionId = options[input.correctAnswer]?.id;
   if (!correctOptionId) {
-    throw new Error(`DRIVY content: question ${id} has correctAnswer index out of range`);
+    throw new Error(`Roady content: question ${id} has correctAnswer index out of range`);
   }
 
   const source: QuestionSource = {

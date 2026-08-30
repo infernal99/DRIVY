@@ -33,7 +33,7 @@ export function HomePage() {
               width: 44,
               height: 44,
               borderRadius: 14,
-              background: 'linear-gradient(135deg,#2F6FED,#5B8CF5)',
+              background: 'var(--gradient-brand)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -101,7 +101,7 @@ export function HomePage() {
 
         <div
           style={{
-            background: 'linear-gradient(135deg,#122B57,#1E4694 60%,#2F6FED)',
+            background: 'var(--gradient-hero)',
             borderRadius: 22,
             padding: 22,
             color: '#fff',
