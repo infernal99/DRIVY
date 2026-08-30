@@ -44,7 +44,7 @@ export function InviteFriendPage() {
   }
 
   return (
-    <AuthLayout title="Te han invitado" tagline="Alguien quiere añadirte como amigo en DRIVY.">
+    <AuthLayout title="Te han invitado" tagline="Alguien quiere añadirte como amigo en Roady.">
       <div style={{ textAlign: 'center', padding: '10px 4px 0' }}>
         <p style={{ fontSize: 14, color: 'var(--color-text-muted-60)', lineHeight: 1.6, margin: '0 0 24px' }}>
           Crea una cuenta o inicia sesión para aceptar la invitación — os añadiréis como amigos automáticamente.

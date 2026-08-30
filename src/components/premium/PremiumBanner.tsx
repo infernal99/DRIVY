@@ -66,7 +66,7 @@ export function PremiumBanner({
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="DRIVY Premium"
+          aria-label="Roady Premium"
           style={{
             position: 'fixed',
             inset: 0,

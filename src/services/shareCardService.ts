@@ -81,7 +81,7 @@ export async function generateResultCardImage(data: ResultCardData): Promise<Blo
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'left';
   ctx.font = '700 52px Fredoka, sans-serif';
-  ctx.fillText('DRIVY', 70, 130);
+  ctx.fillText('Roady', 70, 130);
 
   ctx.textAlign = 'center';
   ctx.font = '600 44px "Plus Jakarta Sans", sans-serif';
@@ -126,12 +126,12 @@ export type ShareOutcome = 'shared' | 'downloaded' | 'cancelled' | 'failed';
 export async function shareResultCard(data: ResultCardData): Promise<ShareOutcome> {
   try {
     const blob = await generateResultCardImage(data);
-    const file = new File([blob], 'drivy-resultado.png', { type: 'image/png' });
+    const file = new File([blob], 'roady-resultado.png', { type: 'image/png' });
 
     const nav = navigator as Navigator & { canShare?: (data?: ShareData) => boolean };
     if (nav.canShare?.({ files: [file] })) {
       try {
-        await navigator.share({ files: [file], title: 'DRIVY', text: data.title });
+        await navigator.share({ files: [file], title: 'Roady', text: data.title });
         return 'shared';
       } catch (err) {
         if ((err as Error).name === 'AbortError') return 'cancelled';
@@ -153,7 +153,7 @@ export async function shareResultCard(data: ResultCardData): Promise<ShareOutcom
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'drivy-resultado.png';
+    a.download = 'roady-resultado.png';
     document.body.appendChild(a);
     a.click();
     a.remove();
