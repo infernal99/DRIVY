@@ -120,6 +120,31 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M12 9v6M12 9l-4 2M12 9l4 2M12 15l-3 6M12 15l3 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </>
   ),
+  motorcycle: (
+    <>
+      <circle cx="6" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
+      <circle cx="18" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
+      <path d="M6 17l4-7h5l3 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11 10l2-3h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M15 15h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </>
+  ),
+  truck: (
+    <>
+      <path d="M2 7h10v9H2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M12 11h4l3 3v2h-7z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <circle cx="6" cy="16" r="1.5" fill="currentColor" />
+      <circle cx="17" cy="16" r="1.5" fill="currentColor" />
+    </>
+  ),
+  bus: (
+    <>
+      <rect x="2" y="6" width="18" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
+      <line x1="2" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="2" />
+      <circle cx="6.5" cy="16" r="1.6" fill="currentColor" />
+      <circle cx="16.5" cy="16" r="1.6" fill="currentColor" />
+    </>
+  ),
   sources: (
     <>
       <path d="M4 4h16v16H4z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
