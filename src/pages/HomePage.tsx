@@ -11,9 +11,12 @@ import { DashboardHighlights } from '../components/home/DashboardHighlights';
 import { PremiumBanner } from '../components/premium/PremiumBanner';
 import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
+import { OnboardingTutorial } from '../components/onboarding/OnboardingTutorial';
+import { useOnboarding } from '../hooks/useOnboarding';
 
 export function HomePage() {
   const navigate = useNavigate();
+  const { shouldShow: showOnboarding, complete: completeOnboarding } = useOnboarding();
   const progress = useProgressStore((s) => s.progress);
   const modules = useLearnPath();
   const pct = useOverallProgressPct();
@@ -214,6 +217,8 @@ export function HomePage() {
         <DailyMissionsCard />
         <DashboardHighlights progress={progress} />
       </div>
+
+      {showOnboarding && <OnboardingTutorial onFinish={completeOnboarding} />}
     </AppShell>
   );
 }
