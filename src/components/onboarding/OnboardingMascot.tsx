@@ -1,24 +1,24 @@
 import styles from './OnboardingTutorial.module.css';
 
 /**
- * "El profe" — la mascota del tutorial. Reutiliza los tokens de marca
- * (--color-primary, --color-accent-pink, --color-primary-navy) en vez de
- * hexadecimales sueltos, a diferencia de los objetos decorativos del fondo
- * de auth: aquella era ilustración de ambiente, esta es un elemento de marca
- * que va a reaparecer (botón "ver tutorial de nuevo" en Ayuda), así que sí
- * debe seguir la paleta si algún día cambia.
+ * "El profe" — la mascota y protagonista del onboarding. Un personaje propio
+ * de Roady, no una copia del búho de Duolingo: cuerpo redondeado con gorro
+ * de graduación (para leerse como "profesor" sin texto) y un volante en la
+ * mano (referencia directa a "profe de autoescuela", que es literalmente lo
+ * que representa).
  *
- * Sin IA real detrás — como aiTutorService, todo el texto que "dice" está
- * escrito a mano, no generado. El gorro de graduación es lo único que lo
- * marca como "profesor" sin necesidad de un dibujo más complejo.
+ * Reutiliza los tokens de marca (--color-primary, --color-accent-pink,
+ * --color-primary-navy) en vez de hex sueltos: esta mascota va a reaparecer
+ * en muchos sitios (perfil, "ver tutorial de nuevo"...) y debe seguir la
+ * paleta si cambia.
  */
-export function OnboardingMascot({ size = 96 }: { size?: number }) {
+export function OnboardingMascot({ size = 180 }: { size?: number }) {
   return (
     <svg
       className={styles.mascotBob}
       width={size}
       height={size}
-      viewBox="0 0 120 120"
+      viewBox="0 0 200 200"
       fill="none"
       aria-hidden="true"
       focusable="false"
@@ -31,33 +31,67 @@ export function OnboardingMascot({ size = 96 }: { size?: number }) {
       </defs>
 
       {/* Sombra de contacto */}
-      <ellipse cx="60" cy="112" rx="30" ry="5" fill="rgba(0,0,0,0.28)" />
+      <ellipse cx="100" cy="186" rx="50" ry="8" fill="rgba(0,0,0,0.28)" />
 
-      {/* Borla del birrete */}
-      <line x1="90" y1="18" x2="95" y2="35" stroke="var(--color-accent-pink)" strokeWidth="2.5" strokeLinecap="round" />
-      <circle cx="95" cy="35" r="3.2" fill="var(--color-accent-pink)" />
+      {/* Pies, dibujados antes que el cuerpo para que asomen por debajo */}
+      <ellipse cx="78" cy="178" rx="15" ry="9" fill="var(--color-primary-navy)" />
+      <ellipse cx="122" cy="178" rx="15" ry="9" fill="var(--color-primary-navy)" />
 
-      {/* Birrete: plato romboidal + banda */}
-      <rect x="48" y="15" width="24" height="11" rx="5.5" fill="var(--color-primary-navy)" />
-      <polygon points="60,4 92,18 60,32 28,18" fill="var(--color-primary-navy)" />
+      {/* Brazo izquierdo, relajado */}
+      <path d="M38 112 Q16 130 21 156" stroke="url(#mascotBodyGrad)" strokeWidth="22" strokeLinecap="round" fill="none" />
 
-      {/* Cuerpo */}
-      <rect x="14" y="26" width="92" height="86" rx="38" fill="url(#mascotBodyGrad)" />
+      {/* Brazo derecho, levantado sujetando el volante */}
+      <path d="M163 102 Q189 72 183 40" stroke="url(#mascotBodyGrad)" strokeWidth="22" strokeLinecap="round" fill="none" />
+
+      {/* Cuerpo. rx=46, no más: con un radio mayor el techo plano de la
+          cabeza mide menos que la banda del gorro (40px) y el gorro queda
+          flotando con un hueco visible por encima — pasó en el primer
+          intento, comprobado con una copia ampliada del SVG. */}
+      <rect x="30" y="48" width="140" height="130" rx="46" fill="url(#mascotBodyGrad)" />
+
+      {/* Brillo superior — sensación de volumen sin sombreado complejo */}
+      <ellipse cx="66" cy="76" rx="30" ry="20" fill="#fff" opacity="0.2" transform="rotate(-18 66 76)" />
+      {/* Sombra interior inferior */}
+      <ellipse cx="118" cy="152" rx="46" ry="22" fill="#000" opacity="0.08" />
 
       {/* Mofletes */}
-      <circle cx="35" cy="76" r="6" fill="var(--color-accent-pink)" opacity="0.4" />
-      <circle cx="85" cy="76" r="6" fill="var(--color-accent-pink)" opacity="0.4" />
+      <circle cx="58" cy="118" r="8" fill="var(--color-accent-pink)" opacity="0.4" />
+      <circle cx="142" cy="118" r="8" fill="var(--color-accent-pink)" opacity="0.4" />
 
       {/* Ojos */}
-      <circle cx="44" cy="62" r="9.5" fill="#fff" />
-      <circle cx="76" cy="62" r="9.5" fill="#fff" />
-      <circle cx="46.5" cy="64.5" r="4.6" fill="var(--color-primary-navy)" />
-      <circle cx="78.5" cy="64.5" r="4.6" fill="var(--color-primary-navy)" />
-      <circle cx="48.5" cy="61" r="1.7" fill="#fff" />
-      <circle cx="80.5" cy="61" r="1.7" fill="#fff" />
+      <circle cx="78" cy="100" r="15" fill="#fff" />
+      <circle cx="122" cy="100" r="15" fill="#fff" />
+      <circle cx="81.5" cy="104" r="7.2" fill="var(--color-primary-navy)" />
+      <circle cx="125.5" cy="104" r="7.2" fill="var(--color-primary-navy)" />
+      <circle cx="84.5" cy="99.5" r="2.6" fill="#fff" />
+      <circle cx="128.5" cy="99.5" r="2.6" fill="#fff" />
+
+      {/* Cejas — el toque que da expresividad de "explicando algo" */}
+      <path d="M67 82q11-7 21 0" stroke="var(--color-primary-navy)" strokeWidth="3.2" strokeLinecap="round" fill="none" />
+      <path d="M112 82q11-7 21 0" stroke="var(--color-primary-navy)" strokeWidth="3.2" strokeLinecap="round" fill="none" />
 
       {/* Sonrisa */}
-      <path d="M46 82 Q60 93 74 82" stroke="var(--color-primary-navy)" strokeWidth="4" strokeLinecap="round" fill="none" />
+      <path d="M76 128q24 17 48 0" stroke="var(--color-primary-navy)" strokeWidth="5" strokeLinecap="round" fill="none" />
+
+      {/* Volante en la mano derecha */}
+      <circle cx="182" cy="38" r="16" stroke="var(--color-primary-navy)" strokeWidth="4" fill="#fff" />
+      <circle cx="182" cy="38" r="4.5" fill="var(--color-primary-navy)" />
+      <path
+        d="M182 38V23M182 38l-13 8M182 38l13 8"
+        stroke="var(--color-primary-navy)"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+      />
+
+      {/* Borla del birrete */}
+      <line x1="128" y1="36" x2="138" y2="64" stroke="var(--color-accent-pink)" strokeWidth="3" strokeLinecap="round" />
+      <circle cx="138" cy="64" r="4" fill="var(--color-accent-pink)" />
+
+      {/* Birrete: banda + plato romboidal, unos px más abajo que en el primer
+          intento para que se solape con la cabeza en vez de quedar encima
+          sin tocarla. */}
+      <rect x="80" y="38" width="40" height="17" rx="8.5" fill="var(--color-primary-navy)" />
+      <polygon points="100,16 148,36 100,56 52,36" fill="var(--color-primary-navy)" />
     </svg>
   );
 }

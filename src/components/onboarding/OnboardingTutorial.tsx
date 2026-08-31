@@ -126,6 +126,7 @@ export function OnboardingTutorial({ onFinish }: { onFinish: () => void }) {
 
   const selectedValue = step.kind === 'choice' ? profile[step.field] : null;
   const canContinue = step.kind === 'info' || selectedValue !== null;
+  const progressPct = Math.round(((index + 1) / steps.length) * 100);
 
   useEffect(() => {
     dialogRef.current?.focus();
@@ -140,85 +141,89 @@ export function OnboardingTutorial({ onFinish }: { onFinish: () => void }) {
   }, [onFinish]);
 
   return (
-    <div className={styles.overlay} role="dialog" aria-modal="true" aria-labelledby={titleId} ref={dialogRef} tabIndex={-1}>
-      <button type="button" className={styles.skip} onClick={onFinish}>
-        Saltar
-      </button>
-
-      {step.kind === 'info' && (
-        <div className={styles.mascotWrap}>
-          <OnboardingMascot />
+    <div className={styles.page} role="dialog" aria-modal="true" aria-labelledby={titleId} ref={dialogRef} tabIndex={-1}>
+      <div className={styles.topBar}>
+        {/* En el paso 0 no hay "atrás" real al que volver dentro del tutorial
+            — la flecha actúa como salir, igual que "Saltar". */}
+        <button
+          type="button"
+          className={styles.backBtn}
+          onClick={() => (index > 0 ? setIndex((i) => i - 1) : onFinish())}
+          aria-label={index > 0 ? 'Paso anterior' : 'Salir del tutorial'}
+        >
+          <Icon name="chevronLeft" size={18} color="currentColor" />
+        </button>
+        <div className={styles.progressTrack} role="progressbar" aria-valuenow={progressPct} aria-valuemin={0} aria-valuemax={100}>
+          <div className={styles.progressFill} style={{ width: `${progressPct}%` }} />
         </div>
-      )}
+        <button type="button" className={styles.skip} onClick={onFinish}>
+          Saltar
+        </button>
+      </div>
 
       {/* key=index reinicia la entrada anim-pop-in en cada paso, para que se
-          note el cambio de tarjeta y no un simple parpadeo de texto. */}
-      <div className={`${styles.card} ${step.kind === 'choice' ? styles.cardWide : ''} anim-pop-in`} key={index}>
-        {step.kind === 'info' && (
-          <div className={styles.stepIcon}>
-            <Icon name={step.icon} size={20} color="var(--color-primary)" />
+          note el cambio y no un simple parpadeo de texto. */}
+      <div className={`${styles.content} anim-pop-in`} key={index}>
+        {step.kind === 'choice' ? (
+          <>
+            <div className={styles.choiceHeader}>
+              <div className={styles.choiceMascot}>
+                <OnboardingMascot size={64} />
+              </div>
+              <div className={styles.bubble} id={titleId}>
+                {step.title}
+              </div>
+            </div>
+            <p className={styles.choiceSubtext}>{step.body}</p>
+
+            <div className={styles.options} role="radiogroup" aria-labelledby={titleId}>
+              {step.options.map((opt) => {
+                const selected = selectedValue === opt.id;
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    disabled={!opt.available}
+                    className={`${styles.option} ${selected ? styles.optionSelected : ''}`}
+                    onClick={() => save({ [step.field]: opt.id })}
+                  >
+                    <span className={styles.optionIcon}>{opt.render()}</span>
+                    <span className={styles.optionText}>
+                      <span className={styles.optionTitle}>{opt.title}</span>
+                      <span className={styles.optionSubtitle}>{opt.subtitle}</span>
+                    </span>
+                    {!opt.available && (
+                      <span className={styles.optionLock}>
+                        <Icon name="lock" size={14} color="var(--color-text-muted-40)" />
+                      </span>
+                    )}
+                    {selected && (
+                      <span className={styles.optionCheck}>
+                        <Icon name="check" size={13} color="#fff" />
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          <div className={styles.infoHero}>
+            <OnboardingMascot size={170} />
+            <h2 id={titleId} className={styles.title}>
+              {step.title}
+            </h2>
+            <p className={styles.body}>{step.body}</p>
           </div>
         )}
-        <h2 id={titleId} className={styles.title}>
-          {step.title}
-        </h2>
-        <p className={styles.body}>{step.body}</p>
+      </div>
 
-        {step.kind === 'choice' && (
-          <div className={styles.options} role="radiogroup" aria-labelledby={titleId}>
-            {step.options.map((opt) => {
-              const selected = selectedValue === opt.id;
-              return (
-                <button
-                  key={opt.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={selected}
-                  disabled={!opt.available}
-                  className={`${styles.option} ${selected ? styles.optionSelected : ''}`}
-                  onClick={() => save({ [step.field]: opt.id })}
-                >
-                  <span className={styles.optionIcon}>{opt.render()}</span>
-                  <span className={styles.optionText}>
-                    <span className={styles.optionTitle}>{opt.title}</span>
-                    <span className={styles.optionSubtitle}>{opt.subtitle}</span>
-                  </span>
-                  {!opt.available && (
-                    <span className={styles.optionLock}>
-                      <Icon name="lock" size={14} color="var(--color-text-muted-40)" />
-                    </span>
-                  )}
-                  {selected && (
-                    <span className={styles.optionCheck}>
-                      <Icon name="check" size={13} color="#fff" />
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        )}
-
-        <div className={styles.dots} aria-hidden="true">
-          {steps.map((_, i) => (
-            <span key={i} className={`${styles.dot} ${i === index ? styles.dotActive : ''}`} />
-          ))}
-        </div>
-
-        <div className={styles.actions}>
-          {index > 0 && (
-            <Button variant="secondary" style={{ flex: 1 }} onClick={() => setIndex((i) => i - 1)}>
-              Atrás
-            </Button>
-          )}
-          <Button
-            style={{ flex: 1 }}
-            disabled={!canContinue}
-            onClick={() => (isLast ? onFinish() : setIndex((i) => i + 1))}
-          >
-            {isLast ? 'Empezar' : 'Continuar'}
-          </Button>
-        </div>
+      <div className={styles.bottomBar}>
+        <Button disabled={!canContinue} onClick={() => (isLast ? onFinish() : setIndex((i) => i + 1))}>
+          {isLast ? 'Empezar' : 'Continuar'}
+        </Button>
       </div>
     </div>
   );
