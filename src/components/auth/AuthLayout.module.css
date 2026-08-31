@@ -75,8 +75,17 @@
   fill: #f6f4fb;
 }
 
+/* Tono ligeramente distinto al zocalo: el efecto "dos tonos" de un coche real. */
+.carRoof {
+  fill: #e3ddf5;
+}
+
 .carGlass {
   fill: rgba(50, 34, 84, 0.55);
+}
+
+.carGlassShine {
+  stroke: rgba(255, 255, 255, 0.45);
 }
 
 /* El cartel de autoescuela en el techo. */
@@ -84,8 +93,28 @@
   fill: var(--color-primary);
 }
 
+.carSeam {
+  stroke: rgba(20, 10, 40, 0.16);
+}
+
+.carHeadlight {
+  fill: #ffe6a3;
+}
+
+.carTaillight {
+  fill: #ff5f66;
+}
+
 .carWheel {
-  fill: rgba(30, 20, 50, 0.75);
+  fill: rgba(30, 20, 50, 0.8);
+}
+
+.carHub {
+  fill: rgba(255, 255, 255, 0.55);
+}
+
+.carSpoke {
+  fill: rgba(255, 255, 255, 0.8);
 }
 
 .car {
@@ -215,6 +244,10 @@
 
 :root[data-theme='dark'] .carBody {
   fill: #e6e1f2;
+}
+
+:root[data-theme='dark'] .carRoof {
+  fill: #d3cbe8;
 }
 
 :root[data-theme='dark'] .backBtn {
