@@ -53,11 +53,11 @@
   box-shadow: none;
 }
 
-/* Botón oscuro tipo píldora de la pantalla de auth: el halo morado lo separa
-   del fondo pastel, que es demasiado claro para un botón sólido de marca. */
+/* Botón oscuro tipo píldora de la pantalla de auth. Sin sombra a propósito:
+   con el fondo ahora siempre oscuro (la carretera), el halo morado quedaba
+   como una mancha de luz alrededor del botón en vez de dar profundidad. */
 .dark {
   background: var(--color-primary-navy);
   color: #fff;
   border-radius: var(--radius-pill);
-  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.45);
 }
