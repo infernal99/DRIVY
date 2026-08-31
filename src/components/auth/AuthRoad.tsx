@@ -53,15 +53,51 @@ export function AuthRoad() {
             carretera: quieto se coloca a mano sobre una curva. */}
         <g className={styles.car} transform={reducedMotion ? 'translate(78,300) rotate(100)' : undefined}>
           {/* Dibujado apuntando a +X: animateMotion con rotate="auto" alinea
-              ese eje con la direccion de la curva. */}
-          <g transform="translate(-17,-11)">
-            <rect x="0" y="0" width="34" height="22" rx="7" className={styles.carBody} />
-            <rect x="19" y="3.5" width="9" height="15" rx="3" className={styles.carGlass} />
-            <rect x="7" y="5" width="8" height="12" rx="2.5" className={styles.carRoofSign} />
-            <rect x="-2" y="3" width="5" height="4" rx="1.5" className={styles.carWheel} />
-            <rect x="-2" y="15" width="5" height="4" rx="1.5" className={styles.carWheel} />
-            <rect x="26" y="3" width="5" height="4" rx="1.5" className={styles.carWheel} />
-            <rect x="26" y="15" width="5" height="4" rx="1.5" className={styles.carWheel} />
+              ese eje con la direccion de la curva. El anchor (-22,-13) es el
+              centro real de la caja del coche (x:2-42, y:3-23.4), no un
+              numero redondo — recalcularlo si cambian las siluetas de abajo. */}
+          <g transform="translate(-22,-13)">
+            {/* Zocalo/carroceria: banda redondeada de parachoques a parachoques. */}
+            <rect x="2" y="12" width="40" height="7" rx="3.5" className={styles.carBody} />
+            {/* Cabina: cupula suave sobre el zocalo, un pelin mas fria de tono
+                para dar el efecto de dos tonos de un coche real. */}
+            <path d="M12 12 C13 5 17 3 22 3 L28 3 C33 3 35 6 35 12 Z" className={styles.carRoof} />
+            {/* Cristales separados por el pilar B (el hueco entre ambos paths). */}
+            <path d="M14.4 11 C15.2 6.6 18 5.3 21.7 5.3 L22.3 5.3 L22.3 11 Z" className={styles.carGlass} />
+            <path d="M23.7 5.3 L28.3 5.3 C32.4 5.3 33.9 7.3 34.2 11 L23.7 11 Z" className={styles.carGlass} />
+            {/* Reflejo diagonal sobre el cristal delantero — el toque que más
+                vende "cristal" en vez de "rectangulo relleno". */}
+            <line x1="25" y1="6.4" x2="32" y2="9.8" className={styles.carGlassShine} strokeWidth="0.9" strokeLinecap="round" />
+            {/* Cartel de autoescuela en el techo. */}
+            <rect x="18" y="1" width="8" height="2.4" rx="1.2" className={styles.carRoofSign} />
+            {/* Retrovisor. */}
+            <rect x="33.6" y="9.5" width="2.1" height="1.3" rx="0.65" className={styles.carBody} />
+            {/* Junta de puerta, sutil. */}
+            <line x1="23" y1="12" x2="23" y2="19" className={styles.carSeam} strokeWidth="0.8" />
+            {/* Faro y piloto trasero. */}
+            <rect x="39.8" y="13.4" width="3" height="2.4" rx="1.2" className={styles.carHeadlight} />
+            <rect x="2.2" y="13.5" width="2.4" height="2.2" rx="1.1" className={styles.carTaillight} />
+
+            {/* Ruedas con llanta y un radio que gira de verdad (animateTransform
+                SMIL, no CSS): sin el radio, una rueda rotando seria un circulo
+                identico a si mismo en cada frame, invisible. */}
+            {[11, 34].map((cx) => (
+              <g key={cx}>
+                <circle cx={cx} cy="19" r="4.4" className={styles.carWheel} />
+                <rect x={cx - 0.7} y="15.1" width="1.4" height="3.5" rx="0.7" className={styles.carSpoke} />
+                <circle cx={cx} cy="19" r="1.9" className={styles.carHub} />
+                {!reducedMotion && (
+                  <animateTransform
+                    attributeName="transform"
+                    type="rotate"
+                    from={`0 ${cx} 19`}
+                    to={`360 ${cx} 19`}
+                    dur="0.6s"
+                    repeatCount="indefinite"
+                  />
+                )}
+              </g>
+            ))}
           </g>
 
           {!reducedMotion && (

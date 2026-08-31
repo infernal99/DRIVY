@@ -1,0 +1,215 @@
+/* z-index 200 iguala al de AchievementUnlockModal (mismo nivel de "modal
+   sobre toda la app"); no hay ningún otro overlay por encima con el que
+   pudiera competir en la práctica. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(5, 3, 12, 0.72);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 20px;
+}
+
+/* min-height 44px: el objetivo táctil mínimo recomendado, ya aplicado al
+   resto de botones pequeños de la app (ver AuthLayout/AuthField). */
+.skip {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top));
+  right: 16px;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  background: none;
+  border: none;
+  color: var(--color-text-muted-60);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.skip:hover {
+  color: var(--color-text);
+}
+
+.mascotWrap {
+  margin-bottom: 4px;
+}
+
+/* El bob es deliberadamente sutil (4px) y lento (3.4s): es una mascota que
+   acompaña un texto que hay que leer, no debe competir por la atención. */
+.mascotBob {
+  animation: mascot-bob 3.4s ease-in-out infinite;
+}
+
+@keyframes mascot-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascotBob {
+    animation: none;
+  }
+}
+
+.card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-2xl);
+  padding: 24px 22px 22px;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Los pasos de elección (país/carné/nivel) necesitan más ancho para la
+   lista de opciones que los pasos informativos con solo texto y mascota. */
+.cardWide {
+  max-width: 380px;
+}
+
+/* Solo la LISTA hace scroll, no la tarjeta entera: con 7 categorías de
+   carné, título+cuerpo+puntos+botones deben seguir visibles sin desplazar
+   el botón "Continuar" fuera de la pantalla en un móvil bajo. */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: min(38vh, 320px);
+  overflow-y: auto;
+  margin-bottom: 16px;
+  padding-right: 2px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-border-subtle);
+  background: var(--color-bg-screen);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.option:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.option:not(:disabled):hover {
+  border-color: var(--color-primary);
+}
+
+.optionSelected {
+  border-color: var(--color-primary);
+  background: var(--color-info-bg);
+}
+
+.optionIcon {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--color-bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.optionText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.optionTitle {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* -55, no -50: sobre el fondo teñido de una opción seleccionada
+   (--color-info-bg) el -50 bajaba a 4.11:1, por debajo del mínimo 4.5. */
+.optionSubtitle {
+  font-size: 11.5px;
+  color: var(--color-text-muted-55);
+}
+
+.optionLock,
+.optionCheck {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.optionCheck {
+  background: var(--color-primary);
+}
+
+.stepIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--color-info-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.body {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-muted-60);
+  margin-bottom: 20px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-bg-locked);
+  transition: background 0.2s ease, width 0.2s ease;
+}
+
+.dotActive {
+  width: 18px;
+  border-radius: 3px;
+  background: var(--color-primary);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}

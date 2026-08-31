@@ -14,7 +14,11 @@ import { Icon } from '../components/ui/Icon';
 import { Pill } from '../components/ui/Pill';
 import { Avatar } from '../components/ui/Avatar';
 import { AvatarPickerModal } from '../components/profile/AvatarPickerModal';
+import { OnboardingFlag, type FlagCode } from '../components/onboarding/OnboardingFlag';
 import { signOut } from '../services/authService';
+import { useOnboardingProfile } from '../hooks/useOnboardingProfile';
+import { LICENSE_CATEGORIES } from '../data/licenseCategories';
+import { ONBOARDING_COUNTRIES } from '../data/onboardingCountries';
 import type { IconName } from '../types';
 
 export function ProfilePage() {
@@ -29,6 +33,12 @@ export function ProfilePage() {
   const [avatarId, setAvatarId] = useState<string | null>(null);
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const isPremium = usePremiumStore((s) => s.isPremium);
+
+  // Solo se pinta si respondió al onboarding: los usuarios que ya existían
+  // antes de esta funcionalidad no tienen nada guardado bajo esta clave.
+  const { profile: onboardingProfile } = useOnboardingProfile();
+  const onboardingLicense = LICENSE_CATEGORIES.find((c) => c.id === onboardingProfile.licenseCategoryId);
+  const onboardingCountry = ONBOARDING_COUNTRIES.find((c) => c.id === onboardingProfile.countryId);
 
   useEffect(() => {
     if (authStatus !== 'authenticated') return;
@@ -95,6 +105,21 @@ export function ProfilePage() {
           <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 18, color: 'var(--color-text)', marginTop: 10 }}>
             {progress.userName}
           </div>
+          {onboardingLicense && onboardingCountry && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+                marginTop: 4,
+                fontSize: 12.5,
+                color: 'var(--color-text-muted-55)',
+              }}
+            >
+              <OnboardingFlag code={onboardingCountry.code as FlagCode} size={16} />
+              Preparando el carné {onboardingLicense.code} ({onboardingLicense.name.toLowerCase()}) en {onboardingCountry.name}
+            </div>
+          )}
           <div style={{ display: 'flex', gap: 8, marginTop: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
             {isPremium && (
               <Pill bg="#18181b" color="#facc15">

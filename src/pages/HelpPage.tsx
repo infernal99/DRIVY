@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { AppShell } from '../components/layout/AppShell';
 import { ScreenHeader } from '../components/layout/ScreenHeader';
-import { Card } from '../components/ui/Card';
+import { Card, CardButton } from '../components/ui/Card';
+import { Icon } from '../components/ui/Icon';
+import { useOnboarding } from '../hooks/useOnboarding';
 
 const FAQ = [
   {
@@ -30,10 +33,41 @@ const FAQ = [
 ];
 
 export function HelpPage() {
+  const navigate = useNavigate();
+  const { reset: resetOnboarding } = useOnboarding();
+
   return (
     <AppShell>
       <ScreenHeader title="Ayuda" />
       <div style={{ flex: 1, overflowY: 'auto', padding: '0 20px 30px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <CardButton
+          style={{ padding: 16, display: 'flex', alignItems: 'center', gap: 12 }}
+          onClick={() => {
+            resetOnboarding();
+            navigate('/');
+          }}
+        >
+          <div
+            style={{
+              width: 38,
+              height: 38,
+              borderRadius: 11,
+              background: 'var(--color-info-bg)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flex: 'none',
+            }}
+          >
+            <Icon name="bolt" size={18} color="var(--color-primary)" />
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)' }}>Ver el tutorial de nuevo</div>
+            <div style={{ fontSize: 12, color: 'var(--color-text-muted-50)', marginTop: 2 }}>El repaso guiado de cómo funciona Roady</div>
+          </div>
+          <Icon name="chevronRight" size={16} color="var(--color-text-muted-40)" />
+        </CardButton>
+
         {FAQ.map((item) => (
           <Card key={item.q} style={{ padding: 16 }}>
             <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 6 }}>{item.q}</div>

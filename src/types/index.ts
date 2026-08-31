@@ -116,7 +116,8 @@ export type IconName =
   | 'lock' | 'flame' | 'settings' | 'help' | 'close' | 'chevronLeft'
   | 'chevronRight' | 'alcohol' | 'car' | 'pedestrian' | 'sources' | 'users'
   | 'download' | 'crown'
-  | 'mail' | 'eye' | 'eyeOff' | 'arrowRight' | 'bolt';
+  | 'mail' | 'eye' | 'eyeOff' | 'arrowRight' | 'bolt'
+  | 'motorcycle' | 'truck' | 'bus';
 
 /**
  * Internal sign catalogue entry (section 10 of the content spec). `image`

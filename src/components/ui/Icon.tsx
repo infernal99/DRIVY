@@ -7,8 +7,8 @@ const PATHS: Record<IconName, React.ReactNode> = {
   sign: <path d="M12 2L2 20h20L12 2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />,
   mail: (
     <>
-      <rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="currentColor" strokeWidth="2" />
-      <path d="M3.5 7l8.5 6 8.5-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="2" y="4.5" width="20" height="15" rx="3.5" stroke="currentColor" strokeWidth="2" />
+      <path d="M3 6.5l8.2 6.6a1.3 1.3 0 0 0 1.6 0L21 6.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </>
   ),
   eye: (
@@ -77,8 +77,10 @@ const PATHS: Record<IconName, React.ReactNode> = {
   check: <path d="M5 13l4 4 10-10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />,
   lock: (
     <>
-      <rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" strokeWidth="2" />
-      <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" strokeWidth="2" />
+      <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <rect x="5" y="10.5" width="14" height="9.5" rx="3" stroke="currentColor" strokeWidth="2" />
+      <circle cx="12" cy="14.3" r="1.35" fill="currentColor" />
+      <rect x="11.3" y="15.1" width="1.4" height="2.4" rx="0.6" fill="currentColor" />
     </>
   ),
   flame: <path d="M12 3c1 3-3 4-3 8a3 3 0 1 0 6 0c0-1.5-1-2-1-3 1.5 1 3 3 3 5.5A5 5 0 1 1 7 13.5C7 9 12 7 12 3z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />,
@@ -116,6 +118,31 @@ const PATHS: Record<IconName, React.ReactNode> = {
     <>
       <circle cx="12" cy="5" r="2.2" stroke="currentColor" strokeWidth="2" />
       <path d="M12 9v6M12 9l-4 2M12 9l4 2M12 15l-3 6M12 15l3 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  ),
+  motorcycle: (
+    <>
+      <circle cx="6" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
+      <circle cx="18" cy="17" r="3" stroke="currentColor" strokeWidth="2" />
+      <path d="M6 17l4-7h5l3 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M11 10l2-3h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M15 15h3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </>
+  ),
+  truck: (
+    <>
+      <path d="M2 7h10v9H2z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <path d="M12 11h4l3 3v2h-7z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+      <circle cx="6" cy="16" r="1.5" fill="currentColor" />
+      <circle cx="17" cy="16" r="1.5" fill="currentColor" />
+    </>
+  ),
+  bus: (
+    <>
+      <rect x="2" y="6" width="18" height="10" rx="2" stroke="currentColor" strokeWidth="2" />
+      <line x1="2" y1="10" x2="20" y2="10" stroke="currentColor" strokeWidth="2" />
+      <circle cx="6.5" cy="16" r="1.6" fill="currentColor" />
+      <circle cx="16.5" cy="16" r="1.6" fill="currentColor" />
     </>
   ),
   sources: (
