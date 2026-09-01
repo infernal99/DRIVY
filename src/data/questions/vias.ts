@@ -2,6 +2,7 @@ import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
 const SPEED_SRC = 'https://www.dgt.es/comunicacion/notas-de-prensa/la-dgt-y-la-femp-presentan-el-manual-de-aplicacion-de-los-nuevos-limites-de-velocidad-en-vias-urbanas/';
+const RGC_BASE = 'https://www.boe.es/buscar/act.php?id=BOE-A-2003-23514';
 
 export const viasQuestions = [
   q({
@@ -53,6 +54,26 @@ export const viasQuestions = [
       'A diferencia de la autopista, la autovía puede presentar cruces a nivel y accesos directos a las propiedades colindantes, aunque comparte con ella la calzada única por sentido separada físicamente.',
     tags: ['vías', 'autovías'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
+  }),
+  q({
+    id: 'VIA-AUV-02',
+    categoryId: 'vias',
+    subcategoryId: 'autovias',
+    question: 'Los ciclistas mayores de 14 años, a diferencia de las bicicletas en general en autopistas y autovías:',
+    options: [
+      'Pueden circular por el arcén de una autovía, salvo que una señal lo prohíba expresamente por seguridad',
+      'Tienen prohibido circular por cualquier parte de una autovía, sin excepción',
+      'Pueden circular por cualquier carril de la autovía, igual que un turismo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Aunque las bicicletas tienen prohibido, con carácter general, circular por autopistas y autovías, existe una excepción para los ciclistas mayores de 14 años, que sí pueden usar el arcén de una autovía salvo que la señalización lo prohíba por razones justificadas de seguridad vial.',
+    difficulty: 'hard',
+    tags: ['vías', 'autovías', 'ciclistas'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 38',
     verificationStatus: 'verified',
     lastVerifiedAt: '2026-09-01',
   }),
@@ -187,6 +208,31 @@ export const viasQuestions = [
     explanation:
       'Los carriles VAO están reservados a vehículos que circulen con un número mínimo de ocupantes (habitualmente dos o más), tal y como se indique en la señalización del carril.',
     tags: ['vías', 'carriles'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
+  }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 8): situación práctica
+  // de elección de carril mediante flechas pintadas, distinta de la
+  // pregunta abstracta ya existente sobre esas mismas flechas
+  // (SEN-...528, "carácter obligatorio") — aquí se aplica a un caso
+  // concreto con imagen, no se repite la definición.
+  q({
+    id: 'VIA-CRR-03',
+    categoryId: 'vias',
+    subcategoryId: 'carriles',
+    question: 'Te acercas a una vía de dos carriles en tu sentido: el izquierdo tiene pintada una flecha de giro a la izquierda, y el derecho una flecha recta. Si quieres continuar recto, debes:',
+    image: 'diagram:eleccion-carril-flechas',
+    options: [
+      'Circular por el carril derecho, el único que permite continuar recto',
+      'Circular por el carril que prefieras, ya que ambos lo permiten',
+      'Circular por el izquierdo y cambiar de carril en el último momento',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Las flechas pintadas en el carril tienen carácter obligatorio: marcan la única dirección permitida para quien circule por ese carril, así que para seguir recto hay que situarse con antelación en el carril marcado con la flecha recta.',
+    difficulty: 'medium',
+    tags: ['vías', 'carriles', 'marcas viales'],
     sourceUrl: SRC,
     verificationStatus: 'verified',
     lastVerifiedAt: '2026-09-01',

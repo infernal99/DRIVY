@@ -26,7 +26,10 @@ export type DiagramKey =
   | 'adelantamiento-curva-prohibido'
   | 'carril-reversible'
   | 'carril-vao'
-  | 'peaton-cruce-no-senalizado';
+  | 'peaton-cruce-no-senalizado'
+  | 'ciclista-distancia-lateral'
+  | 'peaton-paso-senalizado-cruzando'
+  | 'eleccion-carril-flechas';
 
 const ASPHALT = '#3a4150';
 const WHITE = '#ffffff';
@@ -225,6 +228,53 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       <path d="M78 26 L82 34 L74 34 Z" fill={AMBER} />
       <line x1="78" y1="29" x2="78" y2="31.5" stroke={HOUSING} strokeWidth="1.4" strokeLinecap="round" />
       <circle cx="78" cy="33" r="0.9" fill={HOUSING} />
+    </RoadTopDown>
+  ),
+  // Overtaking a cyclist: the minimum 1.5 m lateral gap, shown as a
+  // measured double-headed arrow between the bike and the passing car.
+  'ciclista-distancia-lateral': () => (
+    <RoadTopDown>
+      <line x1="50" y1="4" x2="50" y2="96" stroke={WHITE} strokeWidth="3" strokeDasharray="10 8" opacity="0.5" />
+      <g transform="translate(70 50)">
+        <circle cx="0" cy="-16" r="7" fill="#8b93a3" />
+        <circle cx="-6" cy="14" r="7" fill="none" stroke={WHITE} strokeWidth="2.5" />
+        <circle cx="6" cy="14" r="7" fill="none" stroke={WHITE} strokeWidth="2.5" />
+        <line x1="-6" y1="14" x2="0" y2="-6" stroke={WHITE} strokeWidth="2.5" />
+        <line x1="6" y1="14" x2="0" y2="-6" stroke={WHITE} strokeWidth="2.5" />
+        <line x1="0" y1="-6" x2="0" y2="-9" stroke={WHITE} strokeWidth="2.5" />
+      </g>
+      <Car x={30} y={50} rotate={0} color={PRIORITY_CAR} />
+      <line x1="38" y1="50" x2="60" y2="50" stroke={AMBER} strokeWidth="2" />
+      <polygon points="38,50 43,47 43,53" fill={AMBER} />
+      <polygon points="60,50 55,47 55,53" fill={AMBER} />
+    </RoadTopDown>
+  ),
+  // Pedestrian already crossing at a marked, striped crossing: the waiting
+  // (yielding) car must let them finish crossing.
+  'peaton-paso-senalizado-cruzando': () => (
+    <RoadTopDown>
+      <rect x="10" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="26" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="42" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="58" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="74" y="42" width="10" height="16" fill={WHITE} />
+      <circle cx="50" cy="34" r="6" fill={SKIN} />
+      <rect x="45" y="40" width="10" height="18" rx="4" fill={HOUSING} />
+      <Car x={50} y={82} rotate={0} color={YIELD_CAR} />
+    </RoadTopDown>
+  ),
+  // Lane-choice at a straight/left-turn split: painted arrows dictate
+  // which lane the car must be in to continue straight ahead.
+  'eleccion-carril-flechas': () => (
+    <RoadTopDown>
+      <line x1="50" y1="4" x2="50" y2="96" stroke={WHITE} strokeWidth="2.5" opacity="0.6" />
+      <g transform="translate(28 30)">
+        <line x1="0" y1="14" x2="0" y2="-10" stroke={WHITE} strokeWidth="4" strokeLinecap="round" />
+        <line x1="0" y1="-10" x2="-10" y2="-10" stroke={WHITE} strokeWidth="4" strokeLinecap="round" />
+        <polygon points="-10,-16 -10,-4 -18,-10" fill={WHITE} />
+      </g>
+      <polygon points="72,10 78,24 74,24 74,34 70,34 70,24 66,24" fill={WHITE} />
+      <Car x={72} y={70} rotate={0} color={PRIORITY_CAR} />
     </RoadTopDown>
   ),
 };
