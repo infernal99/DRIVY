@@ -7,6 +7,7 @@ const SRC_HIELO = 'https://www.dgt.es/comunicacion/noticias/hielo-y-nieve-con-la
 const SRC_VIENTO = 'https://www.dgt.es/comunicacion/noticias/conducir-con-el-viento-en-contra/';
 const SRC_NOCHE = 'https://www.dgt.es/comunicacion/noticias/consejos-para-conducir-de-noche/';
 const SRC_DIST = 'https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/distracciones-al-conducir/';
+const SRC_VIAJE = 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/como-planificar-un-viaje-seguro-por-carretera/';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -830,6 +831,68 @@ export const seguridadVialQuestions = [
     difficulty: 'hard',
     tags: ['seguridad vial', 'conducción nocturna'],
     sourceUrl: SRC_NOCHE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 11): preparación del
+  // viaje, hueco detectado en el índice temático de un test público de
+  // terceros (solo títulos). Verificado contra "DGT - Cómo planificar un
+  // viaje seguro por carretera"; distinto de fatiga/somnolencia (que
+  // tratan el estado del conductor durante la marcha), este bloque trata
+  // la preparación previa del vehículo y de la ruta.
+  q({
+    id: 'SEG-VIA-01',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'preparacion-viaje',
+    question: 'Antes de emprender un viaje largo, entre las revisiones recomendadas del vehículo está comprobar:',
+    options: [
+      'Los niveles de aceite, líquido refrigerante y líquido de frenos',
+      'Únicamente el nivel de combustible',
+      'Solo es necesario revisar el vehículo si tiene más de 10 años',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La DGT recomienda revisar antes de un viaje largo el nivel de aceite (con el motor frío), el líquido refrigerante y el líquido de frenos, además del estado de neumáticos y luces, para reducir el riesgo de avería durante el trayecto.',
+    difficulty: 'easy',
+    tags: ['seguridad vial', 'preparación del viaje'],
+    sourceUrl: SRC_VIAJE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-VIA-02',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'preparacion-viaje',
+    question: 'Antes de un viaje por carretera de montaña en invierno, la DGT recomienda:',
+    options: [
+      'Comprobar las condiciones climáticas de los puertos y llevar cadenas si es necesario',
+      'No hace falta ninguna precaución adicional respecto a un viaje en verano',
+      'Solo comprobar el estado de los puertos si ya está nevando en el momento de salir',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Antes de circular por puertos de montaña en invierno conviene informarse con antelación de las condiciones climáticas previstas y llevar cadenas si existe riesgo de nieve o hielo, en lugar de esperar a comprobarlo sobre la marcha.',
+    tags: ['seguridad vial', 'preparación del viaje'],
+    sourceUrl: SRC_VIAJE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-VIA-03',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'preparacion-viaje',
+    question: 'Para un viaje largo, entre las recomendaciones de la DGT está:',
+    options: [
+      'Planificarlo por etapas y evitar comidas copiosas antes de conducir',
+      'Hacerlo del tirón, sin paradas, para llegar antes',
+      'Comer abundante antes de salir para no tener que parar a comer por el camino',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La DGT recomienda dividir los trayectos largos en etapas y evitar las comidas copiosas antes de conducir, ya que una digestión pesada reduce el estado de alerta y favorece la somnolencia al volante.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'preparación del viaje'],
+    sourceUrl: SRC_VIAJE,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),

@@ -74,6 +74,7 @@ export const CATEGORIES: Category[] = [
       { id: 'conduccion-eficiente', name: 'Conducción eficiente' },
       { id: 'condiciones-meteorologicas', name: 'Condiciones meteorológicas' },
       { id: 'conduccion-nocturna', name: 'Conducción nocturna' },
+      { id: 'preparacion-viaje', name: 'Preparación del viaje' },
     ],
   },
   {

@@ -506,6 +506,23 @@
     "consultedAt": "2026-09-01"
   },
   {
+    "id": "dgt-planificar-viaje-seguro",
+    "name": "DGT — Cómo planificar un viaje seguro por carretera",
+    "description": "Revisiones del vehículo antes de un viaje largo (aceite, refrigerante, frenos, neumáticos, luces), planificación por etapas, condiciones climáticas en puertos de montaña, y consejos sobre comidas antes de conducir.",
+    "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/como-planificar-un-viaje-seguro-por-carretera/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
     "id": "dgt-manual-permiso-b-lectura-facil",
     "name": "DGT — Manual básico del permiso B (Lectura Fácil)",
     "description": "Manual oficial de la DGT sobre los contenidos del permiso B.",
