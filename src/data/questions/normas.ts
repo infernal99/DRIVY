@@ -26,6 +26,7 @@ export const normasQuestions = [
     categoryId: 'normas',
     subcategoryId: 'prioridad',
     question: 'En una intersección sin señalizar, si dos vehículos llegan a la vez, tiene prioridad:',
+    image: 'diagram:cruce-prioridad-derecha',
     options: [
       'El que circula por la derecha del otro',
       'El que circula más deprisa',
@@ -45,6 +46,7 @@ export const normasQuestions = [
     categoryId: 'normas',
     subcategoryId: 'prioridad',
     question: 'En una glorieta sin semáforo ni señal de STOP/ceda el paso, tiene preferencia:',
+    image: 'diagram:rotonda-prioridad-interior',
     options: [
       'El vehículo que ya circula dentro de la glorieta',
       'El vehículo que se incorpora',
@@ -63,6 +65,7 @@ export const normasQuestions = [
     categoryId: 'normas',
     subcategoryId: 'prioridad',
     question: 'Cuando dos vehículos van a cruzarse en un tramo estrecho en pendiente, tiene preferencia:',
+    image: 'diagram:pendiente-estrecha-prioridad',
     options: [
       'El que sube, como norma general',
       'El que baja, siempre',
@@ -100,6 +103,7 @@ export const normasQuestions = [
     categoryId: 'normas',
     subcategoryId: 'adelantamientos',
     question: 'Antes de iniciar un adelantamiento debes comprobar que:',
+    image: 'diagram:adelantamiento-espacio-seguro',
     options: [
       'Dispones de espacio y visibilidad suficientes y nadie te está adelantando a ti',
       'Solo hace falta poner el intermitente',
@@ -152,6 +156,7 @@ export const normasQuestions = [
     categoryId: 'normas',
     subcategoryId: 'adelantamientos',
     question: 'Adelantar en una curva sin visibilidad o cerca de la cima de un puerto:',
+    image: 'diagram:adelantamiento-curva-prohibido',
     options: [
       'Está prohibido por el riesgo de colisión frontal',
       'Está permitido si tu vehículo es rápido',
