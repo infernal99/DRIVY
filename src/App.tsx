@@ -32,6 +32,7 @@ import { HelpPage } from './pages/HelpPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { AdminContentPage } from './pages/AdminContentPage';
 import { DevOnboardingPreviewPage } from './pages/DevOnboardingPreviewPage';
+import { DevMascotPreviewPage } from './pages/DevMascotPreviewPage';
 import { InviteFriendPage } from './pages/InviteFriendPage';
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
         {/* Dev-only: previsualizar el tutorial de onboarding sin necesitar login
             (vive detrás de RequireAuth en el uso real). */}
         {import.meta.env.DEV && <Route path="/dev/onboarding" element={<DevOnboardingPreviewPage />} />}
+        {/* Dev-only: probar todos los estados de la mascota (celebrating,
+            sleeping, thinking sostenido...) sin depender de una lección real. */}
+        {import.meta.env.DEV && <Route path="/dev/mascot" element={<DevMascotPreviewPage />} />}
 
         {/* Public, unauthenticated-only: bounce a signed-in user back to "/". */}
         <Route element={<RedirectIfAuthed />}>

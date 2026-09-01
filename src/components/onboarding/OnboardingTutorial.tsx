@@ -5,7 +5,7 @@ import { Button } from '../ui/Button';
 import { LICENSE_CATEGORIES } from '../../data/licenseCategories';
 import { ONBOARDING_COUNTRIES } from '../../data/onboardingCountries';
 import { useOnboardingProfile } from '../../hooks/useOnboardingProfile';
-import { OnboardingMascot } from './OnboardingMascot';
+import { Mascot, useMascot } from '../mascot';
 import { OnboardingFlag, type FlagCode } from './OnboardingFlag';
 import styles from './OnboardingTutorial.module.css';
 
@@ -127,6 +127,11 @@ export function OnboardingTutorial({ onFinish }: { onFinish: () => void }) {
   const selectedValue = step.kind === 'choice' ? profile[step.field] : null;
   const canContinue = step.kind === 'info' || selectedValue !== null;
   const progressPct = Math.round(((index + 1) / steps.length) * 100);
+  // Un único controller para todo el tutorial: saluda al entrar, y su
+  // estado (idle/hover/click...) sigue vivo entre pasos en vez de
+  // reiniciarse cada vez que cambia el paso — igual que un personaje real
+  // no "olvida" lo que estaba haciendo solo porque cambiaste de pantalla.
+  const mascot = useMascot({ autoGreet: true });
 
   useEffect(() => {
     dialogRef.current?.focus();
@@ -168,7 +173,10 @@ export function OnboardingTutorial({ onFinish }: { onFinish: () => void }) {
           <>
             <div className={styles.choiceHeader}>
               <div className={styles.choiceMascot}>
-                <OnboardingMascot size={64} />
+                {/* bubblePosition="top": aquí al lado ya hay otra burbuja (el
+                    título de la pregunta) — si la reacción también saliera
+                    "side" chocarían. */}
+                <Mascot controller={mascot} size={64} bubblePosition="top" />
               </div>
               <div className={styles.bubble} id={titleId}>
                 {step.title}
@@ -211,7 +219,7 @@ export function OnboardingTutorial({ onFinish }: { onFinish: () => void }) {
           </>
         ) : (
           <div className={styles.infoHero}>
-            <OnboardingMascot size={170} />
+            <Mascot controller={mascot} size={170} />
             <h2 id={titleId} className={styles.title}>
               {step.title}
             </h2>

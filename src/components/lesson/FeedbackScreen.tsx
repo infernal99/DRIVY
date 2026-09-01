@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import type { Question } from '../../types';
 import { explainMistake, explainQuestion } from '../../services/aiTutorService';
 import { Button } from '../ui/Button';
 import { Icon } from '../ui/Icon';
 import { AiTutorPanel } from '../ui/AiTutorPanel';
+import { Mascot, useMascot } from '../mascot';
 
 export function FeedbackScreen({
   question,
@@ -19,6 +21,18 @@ export function FeedbackScreen({
   onContinue: () => void;
   isLast: boolean;
 }) {
+  const mascot = useMascot();
+
+  // Sin `key` por pregunta en el padre (QuestionSession), este componente
+  // se ACTUALIZA en vez de remontarse entre preguntas — por eso el efecto
+  // depende de question.id, si no solo reaccionaría una vez en toda la
+  // lección. Reacción normal, no "big": un acierto de una pregunta suelta
+  // no es un hito, así que sin confeti — eso se reserva para logros/rachas.
+  const { react: reactMascot } = mascot;
+  useEffect(() => {
+    reactMascot(correct ? 'correct' : 'incorrect');
+  }, [question.id, correct, reactMascot]);
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: 'var(--color-bg-card)' }} className="anim-fade-up">
       <div
@@ -33,6 +47,7 @@ export function FeedbackScreen({
           overflowY: 'auto',
         }}
       >
+        <Mascot controller={mascot} size={72} />
         <div
           className="anim-pop-in"
           style={{
