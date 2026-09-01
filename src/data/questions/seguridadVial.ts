@@ -183,6 +183,31 @@ export const seguridadVialQuestions = [
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 12): peso relativo de
+  // los tres grandes factores de accidente (humano, vía, vehículo), hueco
+  // detectado en el índice temático de un test público de terceros (solo
+  // títulos). Formulada de forma comparativa/razonada, sin una cifra
+  // exacta memorística, porque las fuentes independientes consultadas
+  // sitúan el factor humano en una horquilla amplia (70-90%) según el
+  // estudio, no en un único porcentaje cerrado.
+  q({
+    id: 'SEG-RIE-03',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'riesgos',
+    question: 'Comparando los tres grandes factores que intervienen en un accidente de tráfico (el conductor, la vía y el vehículo), los estudios coinciden en que el que más peso tiene, con diferencia, es:',
+    options: [
+      'El factor humano, presente en la gran mayoría de los accidentes',
+      'El estado de la vía, muy por encima de los otros dos',
+      'Los tres factores pesan siempre por igual, en cualquier accidente',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Aunque la vía y el vehículo también influyen, los estudios sobre causalidad de accidentes coinciden en que el factor humano (distracciones, velocidad inadecuada, alcohol, fatiga, malas decisiones) está presente en la gran mayoría de los siniestros, muy por encima del peso de los otros dos factores.',
+    tags: ['seguridad vial', 'riesgos'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
   q({
     id: 'SEG-FAT-01',
     categoryId: 'seguridad-vial',
