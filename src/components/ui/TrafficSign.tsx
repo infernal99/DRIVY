@@ -230,8 +230,38 @@ const registry: Record<SignKey, () => React.ReactNode> = {
   ),
 };
 
-/** Renders one of our own sign illustrations. Falls back to nothing for unknown keys. */
+// Real vector recreations (public/signs/<key>.svg), vendored from Wikimedia
+// Commons — public domain, no-conditions dedications, individually checked
+// against the current (post-2025-reform) catalogue during the 2026-09-01
+// content-quality audit (see docs/content-pipeline.md). Deliberately a small
+// allowlist, not "use the real file whenever one exists": several Commons
+// files for this series turned out to be CC-BY-SA (attribution owed, a
+// different author) or superseded by a "2023 set" redesign whose own
+// license rests on the same unresolved art. 13 LPI question flagged in
+// src/data/sources.ts — those were left on the hand-drawn registry below
+// rather than risk an uncleared or outdated image. Extend this list only
+// after the same two checks (license + currency), not just because a file
+// exists on Commons.
+const REAL_SIGN_KEYS = new Set<SignKey>([
+  'ceda-el-paso',
+  'paso-nivel',
+  'obras',
+  'prohibido-adelantar',
+  'circulacion-prohibida-ambos-sentidos',
+  'prohibido-aparcar',
+  'animales-sueltos',
+]);
+
+/** Renders a real vendored sign image where one is cleared for use, otherwise our own illustration. Falls back to nothing for unknown keys. */
 export function TrafficSign({ signKey, size = 96, style }: { signKey: SignKey; size?: number; style?: CSSProperties }) {
+  if (REAL_SIGN_KEYS.has(signKey)) {
+    return (
+      <div style={{ width: size, height: size, ...style }}>
+        <img src={`/signs/${signKey}.svg`} width={size} height={size} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
+    );
+  }
+
   const render = registry[signKey];
   if (!render) return null;
   return (

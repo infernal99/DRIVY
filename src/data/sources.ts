@@ -147,7 +147,29 @@ export const CONTENT_SOURCES: ContentSource[] = [
     ],
     consultedAt: '2026-09-01',
     notes:
-      'Dos argumentos en tensión, ninguno concluyente: (1) A FAVOR — el art. 13 del TRLPI (RDLeg 1/1996) excluye de propiedad intelectual "las disposiciones legales o reglamentarias"; la propia Wikipedia en español se apoya en este artículo para alojar libremente textos legales españoles y afirma (página "Recursos libres/Artículo 13") que la exclusión alcanza a "anexos, gráficos, etc." de esas disposiciones — y el Anexo I del RD 465/2025 no es una ilustración decorativa añadida a la norma, es la norma misma (el decreto define el pictograma oficial dibujándolo). (2) EN CONTRA — la licencia de reutilización que el propio BOE publica en su aviso legal excluye expresamente "el diseño del portal, así como sus elementos gráficos"; no está claro si esa frase se refiere solo al diseño de la web boe.es o también a las imágenes incrustadas en los documentos que aloja, y no encontré jurisprudencia ni doctrina que resuelva específicamente este caso (catálogos técnicos/pictogramas de un reglamento). Conclusión: mantener needs_review y NO tocar la política actual (SVG propios en TrafficSign.tsx, nunca artwork DGT/BOE) hasta que un abogado de propiedad intelectual lo confirme — el coste de equivocarse (retirar contenido, quedar mal con Stripe/premium ya en producción) supera el beneficio estético de un pictograma más fiel.',
+      'Dos argumentos en tensión, ninguno concluyente: (1) A FAVOR — el art. 13 del TRLPI (RDLeg 1/1996) excluye de propiedad intelectual "las disposiciones legales o reglamentarias"; la propia Wikipedia en español se apoya en este artículo para alojar libremente textos legales españoles y afirma (página "Recursos libres/Artículo 13") que la exclusión alcanza a "anexos, gráficos, etc." de esas disposiciones — y el Anexo I del RD 465/2025 no es una ilustración decorativa añadida a la norma, es la norma misma (el decreto define el pictograma oficial dibujándolo). (2) EN CONTRA — la licencia de reutilización que el propio BOE publica en su aviso legal excluye expresamente "el diseño del portal, así como sus elementos gráficos"; no está claro si esa frase se refiere solo al diseño de la web boe.es o también a las imágenes incrustadas en los documentos que aloja, y no encontré jurisprudencia ni doctrina que resuelva específicamente este caso (catálogos técnicos/pictogramas de un reglamento). Conclusión: mantener needs_review y NO reproducir artwork DGT/BOE hasta que un abogado de propiedad intelectual lo confirme — el coste de equivocarse (retirar contenido, quedar mal con Stripe/premium ya en producción) supera el beneficio estético de un pictograma más fiel. Nota posterior (mismo día): esta vía sigue cerrada, pero se encontró una vía distinta y sí resuelta — ver la fuente `wikimedia-commons-spain-traffic-signals`.',
+  },
+  {
+    id: 'wikimedia-commons-spain-traffic-signals',
+    name: 'Wikimedia Commons — serie "Spain traffic signal *.svg" (recreaciones independientes de señales españolas)',
+    description:
+      'Catálogo de la comunidad de Wikimedia Commons con recreaciones vectoriales independientes de señales de tráfico españolas (no el artwork oficial de la DGT/BOE). Investigado como alternativa a los SVG dibujados a mano de TrafficSign.tsx, después de que un usuario detectara que el icono de "Obras" era ilegible (parecía un peatón).',
+    url: 'https://commons.wikimedia.org/wiki/Category:SVG_road_signs_in_Spain',
+    owner: 'Comunidad de Wikimedia Commons (mayormente el usuario Benedicto16, cesión individual por archivo)',
+    license: 'Variable por archivo — NUNCA asumir dominio público solo por estar en Commons; ver notes.',
+    contentType: 'Recreaciones vectoriales de señales de tráfico (contenido de terceros, no gubernamental)',
+    reviewStatus: 'needs_review',
+    canReuse: [
+      'Los archivos de Benedicto16 explícitamente liberados a dominio público ("for any purpose, without any conditions"), verificados individualmente y sin sustituto "2023 set" conocido — ya usados en signs.ts para 7 señales (R-1, P-11, P-18, R-305, R-100, R-308, P-24)',
+    ],
+    cannotReuse: [
+      'Archivos de otros autores (p.ej. Gigillo83) licenciados CC BY-SA/GFDL sin añadir la atribución correspondiente en la app — no usados por ahora',
+      'Archivos con un "2023 set" o equivalente más reciente (p.ej. R-2/STOP, S-13/paso de peatones): su licencia se basa en el mismo argumento del art. 13 LPI sobre artwork gubernamental que sigue sin resolver (ver `boe-reutilizacion-anexos-graficos-rd465-2025`), y/o el archivo antiguo podría estar desfasado',
+      'Cualquier archivo de esta serie sin comprobar individualmente licencia + vigencia — no extrapolar "esta serie es toda de dominio público" solo porque varias muestras lo fueron',
+    ],
+    consultedAt: '2026-09-01',
+    notes:
+      'La serie "Spain traffic signal X.svg" no es homogénea: mismo patrón de nombres, pero distintos autores y licencias mezclados en el mismo árbol de categorías. Confirmado dominio público (mismo texto de cesión, mismo autor Benedicto16, sin sustituto posterior) para: r1, p11, p18, r305, r100, r308, p24. Confirmado NO dominio público (CC BY-SA/GFDL, autor Gigillo83): r400a, r402, r501 — no usados. Confirmado con sustituto "2023 set" de origen gubernamental (misma incertidumbre legal que el Anexo del RD 465/2025): r2 (STOP), s13 (paso de peatones) — no usados, se mantiene el dibujo propio. p13a (curva peligrosa) es del "set histórico de 1992" sin confirmar vigencia — no usado por precaución. Quedan sin investigar: r301 (límites de velocidad numerados), r400a-alternativas, r407a, r411, s1, s2, s17 — cualquiera de estos podría añadirse en una futura pasada con la misma metodología (licencia + vigencia, nunca solo "existe en Commons").',
   },
   {
     id: 'dgt-manual-permiso-b-lectura-facil',
