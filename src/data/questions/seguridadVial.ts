@@ -6,6 +6,7 @@ const SRC_ECO = 'https://www.dgt.es/muevete-con-seguridad/conviertete-en-un-buen
 const SRC_HIELO = 'https://www.dgt.es/comunicacion/noticias/hielo-y-nieve-con-la-adherencia-al-limite/';
 const SRC_VIENTO = 'https://www.dgt.es/comunicacion/noticias/conducir-con-el-viento-en-contra/';
 const SRC_NOCHE = 'https://www.dgt.es/comunicacion/noticias/consejos-para-conducir-de-noche/';
+const SRC_DIST = 'https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/distracciones-al-conducir/';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -250,6 +251,80 @@ export const seguridadVialQuestions = [
     difficulty: 'hard',
     tags: ['seguridad vial', 'distracciones'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 7): amplía
+  // distracciones más allá del móvil, verificado contra la página oficial
+  // "DGT - Distracciones al conducir".
+  q({
+    id: 'SEG-DIST-03',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'distracciones',
+    question: '¿Cuándo debe configurarse el navegador GPS antes de un trayecto?',
+    options: [
+      'Con el vehículo parado, antes de iniciar la marcha',
+      'En marcha, aprovechando los semáforos en rojo',
+      'Da igual el momento, siempre que se use el dedo índice',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El navegador debe programarse con el vehículo parado, antes de salir; manipularlo en marcha es una distracción visual y manual comparable a la de escribir un mensaje.',
+    difficulty: 'easy',
+    tags: ['seguridad vial', 'distracciones'],
+    sourceUrl: SRC_DIST,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-DIST-04',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'distracciones',
+    question: 'Según datos de la DGT, marcar un número de teléfono mientras circulas a 100 km/h puede aumentar la distancia necesaria para detener el vehículo desde unos 28 metros hasta:',
+    options: ['Unos 155 metros', 'Unos 35 metros', 'No varía: la distancia de frenada no depende de la atención del conductor'],
+    correctAnswer: 0,
+    explanation:
+      'La DGT cifra en unos 28 metros la distancia de frenado a 100 km/h sin distracciones, frente a los aproximadamente 155 metros que se necesitan si el conductor está marcando un número de teléfono: más de cinco veces más espacio.',
+    difficulty: 'hard',
+    tags: ['seguridad vial', 'distracciones'],
+    sourceUrl: SRC_DIST,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-DIST-05',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'distracciones',
+    question: 'Si necesitas comer o beber algo durante un trayecto largo, lo correcto es:',
+    options: [
+      'Parar en un lugar seguro, ya que ambas manos deben permanecer en el volante mientras conduces',
+      'Hacerlo con una mano en los tramos rectos, sin curvas',
+      'Pedirle al copiloto que te dé de comer mientras conduces',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Comer o beber mientras se conduce obliga a soltar al menos una mano del volante, lo que reduce el control del vehículo; lo correcto es aprovechar una parada para hacerlo con seguridad.',
+    difficulty: 'easy',
+    tags: ['seguridad vial', 'distracciones'],
+    sourceUrl: SRC_DIST,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-DIST-06',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'distracciones',
+    question: 'Respecto a viajar con pasajeros, entre las recomendaciones de la DGT para evitar distracciones está:',
+    options: [
+      'Evitar conversaciones que exalten al conductor y mantener tranquilos a los niños en el interior',
+      'Pedir siempre silencio absoluto durante todo el trayecto',
+      'No llevar nunca más de un pasajero, sea cual sea el vehículo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Una conversación acalorada o los niños inquietos en el vehículo desvían la atención del conductor de la vía; la DGT recomienda evitar discusiones al volante y mantener tranquilo el ambiente dentro del habitáculo.',
+    tags: ['seguridad vial', 'distracciones'],
+    sourceUrl: SRC_DIST,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),

@@ -3,6 +3,7 @@ import { q } from './helpers';
 const SRC = 'https://www.dgt.es/nuestros-servicios/permisos-de-conducir/tus-puntos-y-tus-permisos/como-funciona-el-permiso-por-puntos/';
 const DOC_SRC = 'https://www.dgt.es/nuestros-servicios/permisos-de-conducir/';
 const LEY_TRAFICO = 'https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722';
+const SRC_65 = 'https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permiso-de-conducir-para-mayores-de-65-anos/';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -48,6 +49,60 @@ export const conductorQuestions = [
       'Todo vehículo a motor debe contar con seguro obligatorio en vigor; circular sin él constituye una infracción muy grave y deja al conductor expuesto a responder personalmente de los daños causados.',
     tags: ['conductor', 'documentación', 'seguro'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 7): vigencia del
+  // permiso de conducir según la edad, hueco detectado comparando el
+  // índice temático de un test público de terceros (solo títulos de tema)
+  // contra nuestra cobertura. Verificado contra la página oficial "DGT -
+  // Permiso de conducir para mayores de 65 años".
+  q({
+    id: 'CON-DOC-03',
+    categoryId: 'conductor',
+    subcategoryId: 'documentacion',
+    question: 'Con carácter general, y hasta los 65 años, ¿cada cuánto tiempo hay que renovar el permiso de conducir clase B?',
+    options: ['Cada 10 años', 'Cada 5 años', 'Cada 15 años'],
+    correctAnswer: 0,
+    explanation:
+      'Hasta los 65 años, el permiso de conducir clase B tiene una vigencia general de 10 años, tras los cuales debe renovarse superando el reconocimiento médico correspondiente.',
+    difficulty: 'easy',
+    tags: ['conductor', 'documentación', 'vigencia'],
+    sourceUrl: SRC_65,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'CON-DOC-04',
+    categoryId: 'conductor',
+    subcategoryId: 'documentacion',
+    question: 'A partir de los 65 años, la vigencia del permiso de conducir clase B se reduce a:',
+    options: ['5 años', '10 años, igual que antes', '2 años'],
+    correctAnswer: 0,
+    explanation:
+      'Para asegurar que se mantiene intacta la capacidad de conducir, a partir de los 65 años el permiso clase B (y otros permisos generales) pasa a renovarse cada 5 años, en lugar de cada 10.',
+    difficulty: 'medium',
+    tags: ['conductor', 'documentación', 'vigencia'],
+    sourceUrl: SRC_65,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'CON-DOC-05',
+    categoryId: 'conductor',
+    subcategoryId: 'documentacion',
+    question: '¿Existe en España una edad máxima a partir de la cual ya no se puede conducir?',
+    options: [
+      'No, no existe límite de edad; lo que cambia con la edad es la frecuencia de las revisiones médicas',
+      'Sí, a partir de los 80 años se retira el permiso automáticamente',
+      'Sí, a partir de los 70 años solo se puede conducir en vías urbanas',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'En España no existe un límite de edad para seguir conduciendo; el reconocimiento médico y los criterios que evalúa son los mismos a cualquier edad, aunque la frecuencia de esas revisiones aumenta según se cumplen años.',
+    difficulty: 'medium',
+    tags: ['conductor', 'documentación', 'vigencia'],
+    sourceUrl: SRC_65,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),

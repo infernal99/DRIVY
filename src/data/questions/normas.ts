@@ -1,6 +1,7 @@
 import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
+const RGC_BASE = 'https://www.boe.es/buscar/act.php?id=BOE-A-2003-23514';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -289,6 +290,112 @@ export const normasQuestions = [
       'Está prohibido adelantar en curvas, cambios de rasante y demás lugares con visibilidad insuficiente, ya que no se puede garantizar que no venga tráfico en sentido contrario.',
     tags: ['normas', 'adelantamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 7): profundiza
+  // adelantamientos con casos que el banco no cubría (túneles,
+  // intersecciones, paso a nivel/vía ciclista, deberes del adelantado y la
+  // excepción de vehículos inmovilizados/ciclos/peatones lentos).
+  // Verificado contra el articulado (arts. 84, 86, 87 y 88 RGC), citando
+  // la cita literal de cada fuente, no una paráfrasis de blog.
+  q({
+    id: 'NOR-ADE-05',
+    categoryId: 'normas',
+    subcategoryId: 'adelantamientos',
+    question: 'Como norma general, ¿está permitido adelantar dentro de un túnel?',
+    options: [
+      'No, salvo que el túnel disponga de dos o más carriles para el mismo sentido de circulación',
+      'Sí, siempre que se circule con las luces de cruce encendidas',
+      'Sí, sin ninguna restricción adicional respecto a una vía normal',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El adelantamiento está prohibido en túneles, pasos inferiores y tramos señalizados con la señal de Túnel (S-5) que tengan un único carril por sentido; solo se permite cuando el túnel dispone de dos o más carriles para el mismo sentido de circulación.',
+    difficulty: 'medium',
+    tags: ['normas', 'adelantamiento', 'túnel'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 87',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-ADE-06',
+    categoryId: 'normas',
+    subcategoryId: 'adelantamientos',
+    question: 'Como norma general, adelantar en una intersección está prohibido. ¿En cuál de estos casos sí está permitido?',
+    options: [
+      'En una glorieta, o cuando la calzada por la que circulas goza de prioridad expresamente señalizada',
+      'Siempre que no vengan vehículos de frente en ese preciso instante',
+      'Siempre que la intersección esté en una vía urbana, nunca en carretera',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El reglamento prohíbe adelantar en intersecciones salvo excepciones tasadas: entre ellas, que se trate de una glorieta o que la vía por la que circulas tenga prioridad señalizada expresamente sobre la que corta, entre otros supuestos concretos.',
+    difficulty: 'hard',
+    tags: ['normas', 'adelantamiento', 'intersección'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 87',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-ADE-07',
+    categoryId: 'normas',
+    subcategoryId: 'adelantamientos',
+    question: 'Adelantar en una intersección con una vía ciclista, o en un paso a nivel y sus proximidades:',
+    options: [
+      'Está prohibido, igual que en un paso de peatones señalizado',
+      'Está permitido si no hay ciclistas ni trenes a la vista en ese momento',
+      'Solo está prohibido en el propio paso, pero no en sus proximidades',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El reglamento prohíbe adelantar en los pasos de peatones señalizados, en las intersecciones con vías ciclistas y en los pasos a nivel, así como en sus proximidades, precisamente por el riesgo que supone para estos usuarios especialmente vulnerables.',
+    difficulty: 'medium',
+    tags: ['normas', 'adelantamiento'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 87',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-ADE-08',
+    categoryId: 'normas',
+    subcategoryId: 'adelantamientos',
+    question: 'Si adviertes que otro vehículo está intentando adelantarte, tú, como conductor del vehículo adelantado, tienes prohibido:',
+    options: [
+      'Aumentar la velocidad o hacer maniobras que impidan o dificulten el adelantamiento',
+      'Ceñirte al borde derecho de la calzada',
+      'Reducir la velocidad si la maniobra entraña algún peligro',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El reglamento prohíbe expresamente al conductor que va a ser adelantado aumentar la velocidad o realizar maniobras que dificulten el adelantamiento; al contrario, debe ceñirse al borde derecho y reducir la velocidad si la situación se vuelve peligrosa.',
+    difficulty: 'medium',
+    tags: ['normas', 'adelantamiento'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 86',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-ADE-09',
+    categoryId: 'normas',
+    subcategoryId: 'adelantamientos',
+    question: 'En un tramo donde el adelantamiento está normalmente prohibido, te encuentras con un vehículo averiado e inmovilizado que ocupa parte del carril. ¿Puedes adelantarlo?',
+    options: [
+      'Sí, incluso en zona de adelantamiento prohibido, si puedes hacerlo sin peligro',
+      'No, la prohibición de adelantamiento se aplica siempre, sin excepciones',
+      'Solo si el vehículo inmovilizado lleva más de una hora parado',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Un vehículo inmovilizado que ocupa la calzada, así como ciclistas, peatones o animales que circulen despacio, pueden rebasarse incluso en tramos donde el adelantamiento está normalmente prohibido, siempre que la maniobra pueda hacerse sin peligro.',
+    difficulty: 'hard',
+    tags: ['normas', 'adelantamiento'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 88',
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
