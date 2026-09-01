@@ -1,7 +1,16 @@
 import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/';
+const VERIFIED_AT = '2026-09-01';
 
+// --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
+// Most of this file is safety education (physics of braking/reaction time,
+// fatigue/somnolence advice) rather than numeric legal thresholds, so lower
+// risk of having gone stale — reviewed each for correctness/ambiguity.
+// Actively re-checked the one area known to have tightened recently:
+// SEG-TEL-01/02 (mobile phone at the wheel) — confirmed current (a 2026
+// reform doubled the point penalty for handling the phone, but neither
+// question asserts a specific point count, so no correction was needed).
 export const seguridadVialQuestions = [
   q({
     id: 'SEG-DIS-01',
@@ -19,6 +28,8 @@ export const seguridadVialQuestions = [
     difficulty: 'easy',
     tags: ['seguridad vial', 'distancia'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-DIS-02',
@@ -35,6 +46,8 @@ export const seguridadVialQuestions = [
       'Una forma sencilla de estimar la distancia de seguridad es dejar transcurrir al menos dos segundos entre que el vehículo de delante pasa por un punto fijo y tú pasas por el mismo punto.',
     tags: ['seguridad vial', 'distancia'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-DIS-03',
@@ -51,6 +64,8 @@ export const seguridadVialQuestions = [
       'A mayor velocidad, o con condiciones adversas como lluvia, niebla, hielo o neumáticos en mal estado, la distancia de frenado aumenta y por tanto también debe aumentar la distancia de seguridad.',
     tags: ['seguridad vial', 'distancia'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-VEL-01',
@@ -68,6 +83,8 @@ export const seguridadVialQuestions = [
     difficulty: 'easy',
     tags: ['seguridad vial', 'velocidad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'SEG-VEL-02',
@@ -85,6 +102,8 @@ export const seguridadVialQuestions = [
     difficulty: 'hard',
     tags: ['seguridad vial', 'velocidad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'SEG-FRE-01',
@@ -101,6 +120,8 @@ export const seguridadVialQuestions = [
       'La distancia total de detención es la suma de la distancia recorrida durante el tiempo de reacción del conductor y la distancia que el vehículo recorre mientras frena hasta detenerse.',
     tags: ['seguridad vial', 'frenado'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-FRE-02',
@@ -114,6 +135,8 @@ export const seguridadVialQuestions = [
     difficulty: 'easy',
     tags: ['seguridad vial', 'frenado'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-RIE-01',
@@ -131,6 +154,8 @@ export const seguridadVialQuestions = [
     difficulty: 'easy',
     tags: ['seguridad vial', 'riesgos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-FAT-01',
@@ -147,6 +172,8 @@ export const seguridadVialQuestions = [
       'La fatiga reduce la capacidad de reacción de forma progresiva; se recomienda descansar unos 15-20 minutos aproximadamente cada dos horas de conducción para mantener el nivel de atención.',
     tags: ['seguridad vial', 'fatiga'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-SOM-01',
@@ -164,6 +191,8 @@ export const seguridadVialQuestions = [
     difficulty: 'easy',
     tags: ['seguridad vial', 'somnolencia'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-SOM-02',
@@ -180,6 +209,8 @@ export const seguridadVialQuestions = [
       'Los "bajones" de vigilancia coinciden con los ritmos circadianos del cuerpo, especialmente en las primeras horas de la tarde y durante la madrugada, por lo que el riesgo de somnolencia es mayor en esas franjas.',
     tags: ['seguridad vial', 'somnolencia'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-DIST-01',
@@ -197,6 +228,8 @@ export const seguridadVialQuestions = [
     difficulty: 'easy',
     tags: ['seguridad vial', 'distracciones'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-DIST-02',
@@ -212,6 +245,8 @@ export const seguridadVialQuestions = [
     difficulty: 'hard',
     tags: ['seguridad vial', 'distracciones'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-TEL-01',
@@ -228,6 +263,8 @@ export const seguridadVialQuestions = [
       'Está prohibido conducir sujetando con la mano cualquier dispositivo de telefonía móvil o similar, incluso sin usarlo activamente; la normativa vigente sanciona esta conducta con pérdida de puntos.',
     tags: ['seguridad vial', 'móvil'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEG-TEL-02',
@@ -244,5 +281,7 @@ export const seguridadVialQuestions = [
       'La forma legal de usar el móvil conduciendo es a través de un sistema de manos libres homologado, sin necesidad de sujetarlo, marcarlo o manipularlo con las manos.',
     tags: ['seguridad vial', 'móvil'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
 ];

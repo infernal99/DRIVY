@@ -1,11 +1,12 @@
 import type { Question } from '../../types';
 import { TrafficSign, type SignKey } from '../ui/TrafficSign';
+import { SituationDiagram, type DiagramKey } from '../ui/SituationDiagram';
 import { getPublicImageUrl } from '../../services/storageService';
 
 export function QuestionImage({ question }: { question: Question }) {
   const image = question.image;
   if (!image) return null;
-  if (image.signKey) {
+  if (image.signKey || image.diagramKey) {
     return (
       <div
         style={{
@@ -20,8 +21,12 @@ export function QuestionImage({ question }: { question: Question }) {
           marginBottom: 26,
         }}
       >
-        <TrafficSign signKey={image.signKey as SignKey} size={110} />
-        <span className="visually-hidden">{image.alt || 'Señal de tráfico'}</span>
+        {image.signKey ? (
+          <TrafficSign signKey={image.signKey as SignKey} size={110} />
+        ) : (
+          <SituationDiagram diagramKey={image.diagramKey as DiagramKey} size={110} />
+        )}
+        <span className="visually-hidden">{image.alt || (image.signKey ? 'Señal de tráfico' : 'Diagrama ilustrativo')}</span>
       </div>
     );
   }

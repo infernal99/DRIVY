@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import type { Question, QuestionSourceType } from '../types';
 import { CATEGORIES } from '../data/categories';
+import { TrafficSign, type SignKey } from '../components/ui/TrafficSign';
+import { SituationDiagram, type DiagramKey } from '../components/ui/SituationDiagram';
 import {
   filterContent,
   getContentStats,
@@ -194,11 +196,22 @@ function QuestionDetail({ question, onReviewChange }: { question: Question; onRe
       {question.image && (
         <>
           <h3 style={{ fontSize: 13, marginTop: 16, marginBottom: 6 }}>Imagen</h3>
+          {(question.image.signKey || question.image.diagramKey) && (
+            <div style={{ background: '#f4f5f7', borderRadius: 12, padding: 12, marginBottom: 8, width: 'fit-content' }}>
+              {question.image.signKey ? (
+                <TrafficSign signKey={question.image.signKey as SignKey} size={72} />
+              ) : (
+                <SituationDiagram diagramKey={question.image.diagramKey as DiagramKey} size={72} />
+              )}
+            </div>
+          )}
           <dl style={{ display: 'grid', gridTemplateColumns: '120px 1fr', rowGap: 4, columnGap: 8, fontSize: 12 }}>
             <dt style={{ color: '#888' }}>Tipo</dt>
             <dd>{question.image.sourceType}</dd>
             <dt style={{ color: '#888' }}>signKey</dt>
             <dd>{question.image.signKey ?? '—'}</dd>
+            <dt style={{ color: '#888' }}>diagramKey</dt>
+            <dd>{question.image.diagramKey ?? '—'}</dd>
             <dt style={{ color: '#888' }}>URL</dt>
             <dd>{question.image.url ?? question.image.localPath ?? '—'}</dd>
             <dt style={{ color: '#888' }}>Alt</dt>

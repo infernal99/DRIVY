@@ -35,7 +35,8 @@
     "contentHash": "c0e5a9f26ed7979e906b9cebbc37fb3e83535a066772d241746b093ebbe8b2c5",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-AUP-02",
@@ -74,7 +75,8 @@
     "contentHash": "e08899016e44ae8778e7e19df346e5b3ef03e5f0d302ed67d500a4ff9ea61107",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-AUV-01",
@@ -112,7 +114,8 @@
     "contentHash": "dcc1c72b9c16ab9ccfd648fafb5f13c457823bdf8e0905ecb535253b28493eb5",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-CAR-01",
@@ -151,11 +154,12 @@
     "contentHash": "9bbdafe464c74d9b2cc9d14f641072d916050df01824de31b082ad1a99b91e37",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-CAR-02",
-    "question": "En una carretera convencional con arcén señalizado igual o superior a 1,5 m para turismos, autocaravanas o motocicletas de hasta 3.500 kg, la velocidad máxima puede llegar a:",
+    "question": "En una carretera convencional con separación física entre ambos sentidos de circulación, la velocidad máxima puede llegar a, para turismos, motocicletas y autocaravanas de hasta 3.500 kg:",
     "options": [
       {
         "id": "VIA-CAR-02-0",
@@ -171,7 +175,7 @@
       }
     ],
     "correctOptionId": "VIA-CAR-02-0",
-    "explanation": "Como excepción al límite genérico de 90 km/h, en carreteras convencionales con separación física de sentidos o arcén amplio, la señalización puede autorizar hasta 100 km/h para turismos, motocicletas y autocaravanas ligeras.",
+    "explanation": "Desde la reforma del Reglamento General de Circulación de 2018 (en vigor desde 2019), el criterio del arcén ancho desapareció: la única excepción al límite genérico de 90 km/h es que exista separación física entre ambos sentidos de circulación, en cuyo caso la señalización puede autorizar hasta 100 km/h para turismos, motocicletas y autocaravanas con MMA de hasta 3.500 kg.",
     "categoryId": "vias",
     "subcategoryId": "carreteras-convencionales",
     "difficulty": "hard",
@@ -187,10 +191,11 @@
       "carreteras convencionales",
       "velocidad"
     ],
-    "contentHash": "15c0338a3588aa4d7d5cda9a85d26f0bea6b74f0deac1d3daad3d34af437e786",
+    "contentHash": "18f42f82905796c850a4a8d57e745c03d87bb6ed8fc591651a53945956265e50",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-URB-01",
@@ -229,7 +234,8 @@
     "contentHash": "e6b42f6a60d6855241e136f58f141add869652fbcd66b76ecdd8b236ec793d25",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-URB-02",
@@ -268,7 +274,8 @@
     "contentHash": "48b7afb94df7f118ed340abca185ee2207467ce6236e65d7f9771902634fc6f1",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-URB-03",
@@ -307,7 +314,8 @@
     "contentHash": "e66018aa0355e0f037c73e8fc7866d8716ee40c133a20aec37f42789a627b0d1",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-URB-04",
@@ -345,7 +353,8 @@
     "contentHash": "d4f0179d62dc1f3632c7677adb3396c64a62827d38ec9a1f7f601d0e5b05cf0a",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-CRR-01",
@@ -383,7 +392,8 @@
     "contentHash": "329eb9448894055ed45935cda2ca116b63afc1bb28fe649b81f076ead411a753",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-CRR-02",
@@ -421,7 +431,8 @@
     "contentHash": "7751802c1d078ee93e0752cede8bb8ec32b7b5345e612543e8fb77246c1d7ae5",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-ARC-01",
@@ -459,7 +470,8 @@
     "contentHash": "dab75be9bfcdb26032abe8635ca72ddf6bd2f07f7dbc8c54179414d50626e26a",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VIA-ARC-02",
@@ -467,7 +479,7 @@
     "options": [
       {
         "id": "VIA-ARC-02-0",
-        "text": "Señalizar el vehículo, ponerte el chaleco reflectante y alejarte a un lugar seguro si es posible"
+        "text": "Encender la luz V16 de emergencia, ponerte el chaleco reflectante y alejarte a un lugar seguro si es posible"
       },
       {
         "id": "VIA-ARC-02-1",
@@ -479,7 +491,7 @@
       }
     ],
     "correctOptionId": "VIA-ARC-02-0",
-    "explanation": "Ante una avería, se debe situar el vehículo en el arcén, señalizarlo (luces de emergencia y, si procede, dispositivos de señalización), ponerse el chaleco reflectante antes de salir y, si es seguro, alejarse del vehículo y de la calzada.",
+    "explanation": "Ante una avería, se debe situar el vehículo en el arcén y señalizarlo con la luz V16 de emergencia conectada, obligatoria desde el 1 de enero de 2026 y único medio de señalización ya válido (sustituye a los triángulos). Después hay que ponerse el chaleco reflectante antes de salir y, si es seguro, alejarse del vehículo y de la calzada.",
     "categoryId": "vias",
     "subcategoryId": "arcenes",
     "difficulty": "medium",
@@ -495,9 +507,10 @@
       "arcén",
       "seguridad"
     ],
-    "contentHash": "e3bedfbd24f4187f647d3bfdfb4e5336f002ef6adb162750f9aadd2ac3dacaf8",
+    "contentHash": "7f6bb0895fd0996ee8175291b556d859b260c24e269238224166751da4c822cf",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   }
 ]

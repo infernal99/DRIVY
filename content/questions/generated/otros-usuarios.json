@@ -35,7 +35,8 @@
     "contentHash": "7f33f346b7aedbc268ec4a582ed453ed3381826d6a17556438e429e1df555c95",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-PEA-02",
@@ -73,7 +74,8 @@
     "contentHash": "4d0d3b73fbdaf96d0ee63752fb3f83ddc7d6155c1803ea4ce8a6885035a79eb9",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-PEA-03",
@@ -111,7 +113,8 @@
     "contentHash": "0f1f2dc955b194b18440ceeb8ab92da738ce2ba951cd15e20530575c5297d589",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-CIC-01",
@@ -149,7 +152,8 @@
     "contentHash": "554ab70e8f8b970e3733780167f18f386ee998e64ef3da73d98b980eaedb1c46",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-CIC-02",
@@ -187,7 +191,8 @@
     "contentHash": "ab7d0cf626ec9c471a7e111a8e2c94101bc57e1dbe504e05ece489cf227b9f98",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-CIC-03",
@@ -225,7 +230,8 @@
     "contentHash": "10b33c257f1f77ca9760cf73ef6179244ce3c603c9f215c907cfccc9664f3fe9",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-MOT-01",
@@ -263,7 +269,8 @@
     "contentHash": "d0b26466e84851c5c9fe3cdb2f4da2ae1c9cc2861421ca4d722e1db8584da44a",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-MOT-02",
@@ -301,7 +308,8 @@
     "contentHash": "b6de076bce11d077c4c620b8eecaf7d19775adbbd8dfd175d57f720e075341ae",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-VPR-01",
@@ -339,7 +347,8 @@
     "contentHash": "3bb7dd92e9d3a44490d8663b4ba4618267c98a24629bc82fd61c6164995a0daa",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-VPR-02",
@@ -377,7 +386,8 @@
     "contentHash": "c3503e183ea6a5b7208b0f3ee472d5f899bd8f824cd1f23dd2bf3046264de132",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-TRP-01",
@@ -415,7 +425,8 @@
     "contentHash": "1420052e1badbc3ebb5baa6f74d59b0a552264985d6a1581cb6db97f3117a42a",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "OTR-TRP-02",
@@ -453,6 +464,7 @@
     "contentHash": "bd89e86ff482ad7cd01508c2151f7ed50fecb14d58c11fd300fe9f0999468333",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   }
 ]

@@ -2,7 +2,16 @@ import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/nuestros-servicios/permisos-de-conducir/tus-puntos-y-tus-permisos/como-funciona-el-permiso-por-puntos/';
 const DOC_SRC = 'https://www.dgt.es/nuestros-servicios/permisos-de-conducir/';
+const VERIFIED_AT = '2026-09-01';
 
+// --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
+// Points-system numbers are exactly the kind of thing that can drift, so
+// checked the specific figures rather than assuming: 12 puntos generales,
+// 8 para noveles/recuperación, escalera de bonificación 12→14 (3 años sin
+// perder puntos)→15 (otros 3 años) — all confirmed current against a DGT
+// article from mid-2026 (revista.dgt.es/.../ppp-como-funciona). CON-PTO-04
+// (6 puntos por sujetar el móvil) was already correctly stating the
+// doubled 2026 penalty — no correction needed anywhere in this file.
 export const conductorQuestions = [
   q({
     id: 'CON-DOC-01',
@@ -20,6 +29,8 @@ export const conductorQuestions = [
     difficulty: 'medium',
     tags: ['conductor', 'documentación'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-DOC-02',
@@ -36,6 +47,8 @@ export const conductorQuestions = [
       'Todo vehículo a motor debe contar con seguro obligatorio en vigor; circular sin él constituye una infracción muy grave y deja al conductor expuesto a responder personalmente de los daños causados.',
     tags: ['conductor', 'documentación', 'seguro'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-PER-01',
@@ -49,6 +62,8 @@ export const conductorQuestions = [
     difficulty: 'easy',
     tags: ['conductor', 'permiso de conducir'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-PER-02',
@@ -65,6 +80,8 @@ export const conductorQuestions = [
       'Se considera conductor novel a quien lleva menos de 2 años desde la obtención del permiso; durante ese periodo se le aplican límites más estrictos, como la tasa de alcoholemia reducida.',
     tags: ['conductor', 'permiso de conducir', 'noveles'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-PTO-01',
@@ -78,6 +95,8 @@ export const conductorQuestions = [
     difficulty: 'easy',
     tags: ['conductor', 'puntos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-PTO-02',
@@ -90,6 +109,8 @@ export const conductorQuestions = [
       'Los conductores noveles, así como quienes recuperan el permiso tras una pérdida total de puntos, inician el sistema con 8 puntos en lugar de los 12 habituales.',
     tags: ['conductor', 'puntos', 'noveles'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-PTO-03',
@@ -103,6 +124,8 @@ export const conductorQuestions = [
     difficulty: 'hard',
     tags: ['conductor', 'puntos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-PTO-04',
@@ -116,6 +139,8 @@ export const conductorQuestions = [
     difficulty: 'medium',
     tags: ['conductor', 'puntos', 'móvil'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-PTO-05',
@@ -132,6 +157,8 @@ export const conductorQuestions = [
       'Al perder la totalidad de los puntos, el permiso pierde su vigencia. Para recuperarlo es necesario realizar un curso de sensibilización y reeducación vial y, en general, superar de nuevo las pruebas correspondientes.',
     tags: ['conductor', 'puntos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-APT-01',
@@ -149,6 +176,8 @@ export const conductorQuestions = [
     difficulty: 'easy',
     tags: ['conductor', 'aptitudes'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-APT-02',
@@ -165,6 +194,8 @@ export const conductorQuestions = [
       'Los estados emocionales intensos pueden alterar la capacidad de concentración, la percepción del riesgo y el autocontrol al volante, aumentando la probabilidad de cometer errores.',
     tags: ['conductor', 'aptitudes'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-COM-01',
@@ -182,6 +213,8 @@ export const conductorQuestions = [
     difficulty: 'easy',
     tags: ['conductor', 'comportamiento'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'CON-COM-02',
@@ -198,5 +231,7 @@ export const conductorQuestions = [
       'Responder con agresividad ante la provocación de otro conductor aumenta el riesgo para todos; lo más seguro es mantener la calma, ceder espacio si es necesario y evitar entrar en una dinámica de conducción agresiva.',
     tags: ['conductor', 'comportamiento'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
 ];

@@ -1,7 +1,25 @@
 import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
+const VERIFIED_AT = '2026-09-01';
 
+// --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
+// These are long-standing rules of the road (priority, overtaking, turns,
+// stopping/parking definitions) that haven't been subject to the kind of
+// recent legislative churn alcohol limits or speed limits have — reasoned
+// through each for internal correctness/ambiguity, and actively re-checked
+// against current sources anywhere a specific number, exception, or
+// wording looked risky enough to be worth confirming rather than assuming:
+//   - NOR-PRI-03 (prioridad en pendiente): confirmed current — "el que
+//     sube" has priority on grades ≥7%, except when it has a nearby
+//     apartadero to pull into (this exception exists in the regulation but
+//     is a reasonable simplification to omit from a "norma general"
+//     question, same as it is in official test material).
+//   - NOR-PAR-01 (parada = menos de 2 minutos): confirmed unchanged.
+//   - NOR-CIR-02 (luces de cruce de día): the old wording ("para turismos
+//     depende de la normativa vigente en cada momento") was a vague
+//     non-answer, exactly the kind of phrasing the audit is meant to catch
+//     — rewritten with the actual current rule (see comment at that entry).
 export const normasQuestions = [
   q({
     id: 'NOR-PRI-01',
@@ -19,6 +37,8 @@ export const normasQuestions = [
     difficulty: 'easy',
     tags: ['normas', 'prioridad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-PRI-02',
@@ -35,6 +55,8 @@ export const normasQuestions = [
       'Como norma general en las glorietas, quien va a entrar debe ceder el paso a los vehículos que ya circulan por su interior.',
     tags: ['normas', 'prioridad', 'glorieta'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-PRI-03',
@@ -52,6 +74,8 @@ export const normasQuestions = [
     difficulty: 'hard',
     tags: ['normas', 'prioridad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-PRI-04',
@@ -68,6 +92,8 @@ export const normasQuestions = [
       'Los vehículos prioritarios en servicio urgente, con dispositivos luminosos y acústicos activados, tienen preferencia de paso; el resto de conductores deben facilitarles el paso y, si es necesario, detenerse.',
     tags: ['normas', 'prioridad', 'vehículos prioritarios'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-ADE-01',
@@ -85,6 +111,8 @@ export const normasQuestions = [
     difficulty: 'easy',
     tags: ['normas', 'adelantamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-ADE-02',
@@ -101,6 +129,8 @@ export const normasQuestions = [
       'Está prohibido adelantar en pasos para peatones señalizados como tales y en sus proximidades, precisamente por el riesgo que supone para quienes cruzan.',
     tags: ['normas', 'adelantamiento', 'peatones'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-ADE-03',
@@ -114,6 +144,8 @@ export const normasQuestions = [
     difficulty: 'easy',
     tags: ['normas', 'adelantamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-ADE-04',
@@ -130,6 +162,8 @@ export const normasQuestions = [
       'Está prohibido adelantar en curvas, cambios de rasante y demás lugares con visibilidad insuficiente, ya que no se puede garantizar que no venga tráfico en sentido contrario.',
     tags: ['normas', 'adelantamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-CDI-01',
@@ -147,6 +181,8 @@ export const normasQuestions = [
     difficulty: 'easy',
     tags: ['normas', 'cambio de dirección'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-CDI-02',
@@ -163,6 +199,8 @@ export const normasQuestions = [
       'Antes de girar a la izquierda hay que situarse lo más cerca posible del centro de la calzada (o en el carril izquierdo si existen varios), sin invadir el sentido contrario.',
     tags: ['normas', 'cambio de dirección'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-CSE-01',
@@ -179,6 +217,8 @@ export const normasQuestions = [
       'Cambiar de sentido está prohibido en lugares sin visibilidad suficiente, como curvas o cambios de rasante, en pasos a nivel, túneles y otros puntos peligrosos.',
     tags: ['normas', 'cambio de sentido'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-CSE-02',
@@ -195,6 +235,8 @@ export const normasQuestions = [
       'El cambio de sentido debe anunciarse con los intermitentes y ejecutarse solo cuando no suponga peligro ni entorpecimiento grave para el resto de la circulación.',
     tags: ['normas', 'cambio de sentido'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-INC-01',
@@ -212,6 +254,8 @@ export const normasQuestions = [
     difficulty: 'easy',
     tags: ['normas', 'incorporación'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-INC-02',
@@ -228,6 +272,8 @@ export const normasQuestions = [
       'Aunque quien se incorpora debe ceder el paso, los conductores de la vía principal deben facilitar la maniobra, moderando su velocidad o cambiando de carril cuando sea posible con seguridad.',
     tags: ['normas', 'incorporación'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-PAR-01',
@@ -244,6 +290,8 @@ export const normasQuestions = [
       'La parada es la inmovilización de un vehículo durante un tiempo inferior a dos minutos, sin que el conductor pueda abandonarlo, para subir o bajar personas o cargar/descargar objetos; el estacionamiento es cualquier inmovilización que no sea parada.',
     tags: ['normas', 'paradas', 'estacionamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-PAR-02',
@@ -260,6 +308,8 @@ export const normasQuestions = [
       'Está prohibido parar en carriles o partes de la vía reservados a un determinado tipo de usuarios, como los carriles bus, salvo causa de fuerza mayor.',
     tags: ['normas', 'paradas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-EST-01',
@@ -277,6 +327,8 @@ export const normasQuestions = [
     difficulty: 'easy',
     tags: ['normas', 'estacionamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-EST-02',
@@ -294,6 +346,8 @@ export const normasQuestions = [
     difficulty: 'hard',
     tags: ['normas', 'estacionamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-CIR-01',
@@ -310,23 +364,36 @@ export const normasQuestions = [
       'La norma general es circular por el carril de la derecha, utilizando los carriles de la izquierda solo mientras dura el adelantamiento u otra maniobra, para no entorpecer al resto del tráfico.',
     tags: ['normas', 'circulación'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-CIR-02',
     categoryId: 'normas',
     subcategoryId: 'circulacion-vias',
-    question: '¿Es obligatorio circular con las luces de cruce encendidas de día en autopista o autovía?',
+    // CORRECTED 2026-09-01 (content-quality audit): the old correct answer
+    // read "para turismos depende de la normativa vigente en cada
+    // momento" — a vague non-answer instead of stating the actual rule.
+    // Verified current rule: motorcycles/mopeds must run with low-beam
+    // lights on at all times, day and night, any road; cars/vans are NOT
+    // generally required to on ordinary roads, but ARE required in
+    // tunnels, underpasses, stretches signed for mandatory lighting,
+    // reversible/contraflow lanes, and low-visibility conditions (rain,
+    // fog). Rewritten to state that instead of hedging.
+    question: '¿Es obligatorio circular con las luces de cruce encendidas de día?',
     options: [
-      'Es recomendable y obligatorio para motocicletas; para turismos depende de la normativa vigente en cada momento',
+      'Sí, siempre para motocicletas y ciclomotores; para turismos solo en túneles, tramos mal iluminados, carriles reversibles o con poca visibilidad',
       'Está totalmente prohibido llevarlas encendidas de día',
       'Solo se pueden usar en túneles',
     ],
     correctAnswer: 0,
     explanation:
-      'El uso de luces de cruce de día es obligatorio para motocicletas y ciclomotores, y muy recomendable para el resto de vehículos en autopistas y autovías, al mejorar la visibilidad frente a otros conductores.',
+      'Las motocicletas y ciclomotores deben circular siempre con la luz de cruce encendida, de día y de noche, en cualquier vía. Los turismos y furgonetas no están obligados con carácter general en vías normales, pero sí en túneles, pasos inferiores, tramos señalizados con obligación de alumbrado, carriles reversibles o adicionales, y en condiciones de poca visibilidad como lluvia o niebla.',
     difficulty: 'hard',
     tags: ['normas', 'alumbrado'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'NOR-CIR-03',
@@ -343,5 +410,7 @@ export const normasQuestions = [
       'La marcha atrás solo puede realizarse en un trecho corto, sin que suponga peligro para el resto de usuarios; está prohibida en autopistas y autovías salvo casos excepcionales.',
     tags: ['normas', 'circulación'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
 ];

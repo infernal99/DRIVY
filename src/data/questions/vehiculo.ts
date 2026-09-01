@@ -1,7 +1,15 @@
 import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/';
+const VERIFIED_AT = '2026-09-01';
 
+// --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
+// Re-checked the one hard numeric/regulatory schedule in this file
+// (VEH-ITV-01's 4 años / cada 2 años hasta 10 / anual después) against
+// current sources citing RD 920/2017 — unchanged. The rest (1,6 mm de
+// dibujo, ABS, alumbrado obligatorio, cinturón, seguridad activa/pasiva)
+// are stable technical/legal facts not subject to recent reform; reviewed
+// each for correctness and ambiguity. No corrections needed in this file.
 export const vehiculoQuestions = [
   q({
     id: 'VEH-NEU-01',
@@ -15,6 +23,8 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'neumáticos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-NEU-02',
@@ -32,6 +42,8 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'neumáticos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-NEU-03',
@@ -48,6 +60,8 @@ export const vehiculoQuestions = [
       'Por seguridad, los dos neumáticos de un mismo eje deben ser del mismo tipo y con un desgaste similar, para no comprometer la estabilidad del vehículo, especialmente al frenar.',
     tags: ['vehículo', 'neumáticos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-FRE-01',
@@ -65,6 +79,8 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'frenos', 'ABS'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-FRE-02',
@@ -81,6 +97,8 @@ export const vehiculoQuestions = [
       'Un pedal de freno blando o que se hunde en exceso puede indicar aire en el circuito hidráulico, fuga de líquido de frenos u otra avería grave; debe revisarse de inmediato antes de seguir circulando.',
     tags: ['vehículo', 'frenos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-ALU-01',
@@ -98,6 +116,8 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'alumbrado'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-ALU-02',
@@ -114,6 +134,8 @@ export const vehiculoQuestions = [
       'Las luces antiniebla, especialmente las traseras, deben reservarse para situaciones de visibilidad muy reducida, ya que su uso continuo puede deslumbrar y confundir a quien circula detrás.',
     tags: ['vehículo', 'alumbrado'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-ITV-01',
@@ -127,6 +149,8 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'ITV'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-ITV-02',
@@ -143,6 +167,8 @@ export const vehiculoQuestions = [
       'Circular con la ITV caducada es una infracción de tráfico; además, un agente puede inmovilizar el vehículo si aprecia que su estado supone un riesgo para la circulación.',
     tags: ['vehículo', 'ITV'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-MAN-01',
@@ -160,6 +186,8 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'mantenimiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-SAC-01',
@@ -177,6 +205,8 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'seguridad activa'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-SPA-01',
@@ -194,6 +224,8 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'seguridad pasiva'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'VEH-SPA-02',
@@ -211,5 +243,7 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'cinturón'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
 ];

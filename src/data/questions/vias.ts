@@ -20,6 +20,8 @@ export const viasQuestions = [
     difficulty: 'easy',
     tags: ['vías', 'autopistas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-AUP-02',
@@ -33,6 +35,8 @@ export const viasQuestions = [
     difficulty: 'easy',
     tags: ['vías', 'autopistas', 'velocidad'],
     sourceUrl: SPEED_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-AUV-01',
@@ -49,6 +53,8 @@ export const viasQuestions = [
       'A diferencia de la autopista, la autovía puede presentar cruces a nivel y accesos directos a las propiedades colindantes, aunque comparte con ella la calzada única por sentido separada físicamente.',
     tags: ['vías', 'autovías'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-CAR-01',
@@ -61,19 +67,29 @@ export const viasQuestions = [
       'En carreteras convencionales sin separación física de sentidos, el límite genérico es de 90 km/h para turismos, salvo señalización específica que indique otro límite.',
     tags: ['vías', 'carreteras convencionales', 'velocidad'],
     sourceUrl: SPEED_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-CAR-02',
     categoryId: 'vias',
     subcategoryId: 'carreteras-convencionales',
-    question: 'En una carretera convencional con arcén señalizado igual o superior a 1,5 m para turismos, autocaravanas o motocicletas de hasta 3.500 kg, la velocidad máxima puede llegar a:',
+    // CORRECTED 2026-09-01 (content-quality audit): the old condition here
+    // was "arcén señalizado ≥ 1,5 m", which was the PRE-2019 rule. The 2018
+    // reform of the RGC (RD 1514/2018, en vigor desde 2019) removed the
+    // shoulder-width criterion entirely — the only remaining exception is
+    // physical separation between the two directions of travel. Question
+    // rewritten to test the current condition instead of the obsolete one.
+    question: 'En una carretera convencional con separación física entre ambos sentidos de circulación, la velocidad máxima puede llegar a, para turismos, motocicletas y autocaravanas de hasta 3.500 kg:',
     options: ['100 km/h si así lo indica la señal', '130 km/h en cualquier caso', '90 km/h siempre, sin excepción'],
     correctAnswer: 0,
     explanation:
-      'Como excepción al límite genérico de 90 km/h, en carreteras convencionales con separación física de sentidos o arcén amplio, la señalización puede autorizar hasta 100 km/h para turismos, motocicletas y autocaravanas ligeras.',
+      'Desde la reforma del Reglamento General de Circulación de 2018 (en vigor desde 2019), el criterio del arcén ancho desapareció: la única excepción al límite genérico de 90 km/h es que exista separación física entre ambos sentidos de circulación, en cuyo caso la señalización puede autorizar hasta 100 km/h para turismos, motocicletas y autocaravanas con MMA de hasta 3.500 kg.',
     difficulty: 'hard',
     tags: ['vías', 'carreteras convencionales', 'velocidad'],
     sourceUrl: SPEED_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-URB-01',
@@ -87,6 +103,8 @@ export const viasQuestions = [
     difficulty: 'easy',
     tags: ['vías', 'urbanas', 'velocidad'],
     sourceUrl: SPEED_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-URB-02',
@@ -99,6 +117,8 @@ export const viasQuestions = [
       'Las calles de plataforma única, donde calzada y acera comparten el mismo nivel sin diferenciación, tienen un límite máximo de 20 km/h.',
     tags: ['vías', 'urbanas', 'velocidad'],
     sourceUrl: SPEED_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-URB-03',
@@ -111,6 +131,8 @@ export const viasQuestions = [
       'Cuando una vía urbana dispone de dos o más carriles por sentido de circulación, el límite genérico se mantiene en 50 km/h.',
     tags: ['vías', 'urbanas', 'velocidad'],
     sourceUrl: SPEED_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-URB-04',
@@ -127,6 +149,8 @@ export const viasQuestions = [
       'Se llama travesía al tramo de una carretera que discurre por dentro de un casco urbano; su límite genérico de velocidad es de 50 km/h, salvo que se indique otro por señalización.',
     tags: ['vías', 'urbanas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-CRR-01',
@@ -144,6 +168,8 @@ export const viasQuestions = [
     difficulty: 'hard',
     tags: ['vías', 'carriles'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-CRR-02',
@@ -160,6 +186,8 @@ export const viasQuestions = [
       'Los carriles VAO están reservados a vehículos que circulen con un número mínimo de ocupantes (habitualmente dos o más), tal y como se indique en la señalización del carril.',
     tags: ['vías', 'carriles'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-ARC-01',
@@ -177,21 +205,31 @@ export const viasQuestions = [
     difficulty: 'easy',
     tags: ['vías', 'arcén'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'VIA-ARC-02',
     categoryId: 'vias',
     subcategoryId: 'arcenes',
+    // UPDATED 2026-09-01 (content-quality audit): the old explanation said
+    // only "dispositivos de señalización" generically. Since 2026-01-01 the
+    // V16 luz de emergencia conectada is mandatory and is now the ONLY
+    // legal roadside signaling method — the old warning triangles are no
+    // longer valid on their own. Rewritten to state this specifically
+    // instead of the vague catch-all phrase.
     question: 'Si tu vehículo sufre una avería en autovía y debes detenerte en el arcén, debes:',
     options: [
-      'Señalizar el vehículo, ponerte el chaleco reflectante y alejarte a un lugar seguro si es posible',
+      'Encender la luz V16 de emergencia, ponerte el chaleco reflectante y alejarte a un lugar seguro si es posible',
       'Permanecer siempre dentro del vehículo con las puertas cerradas',
       'Detenerte en el carril derecho de circulación, no en el arcén',
     ],
     correctAnswer: 0,
     explanation:
-      'Ante una avería, se debe situar el vehículo en el arcén, señalizarlo (luces de emergencia y, si procede, dispositivos de señalización), ponerse el chaleco reflectante antes de salir y, si es seguro, alejarse del vehículo y de la calzada.',
+      'Ante una avería, se debe situar el vehículo en el arcén y señalizarlo con la luz V16 de emergencia conectada, obligatoria desde el 1 de enero de 2026 y único medio de señalización ya válido (sustituye a los triángulos). Después hay que ponerse el chaleco reflectante antes de salir y, si es seguro, alejarse del vehículo y de la calzada.',
     tags: ['vías', 'arcén', 'seguridad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
 ];
