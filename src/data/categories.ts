@@ -129,6 +129,7 @@ export const CATEGORIES: Category[] = [
       { id: 'motocicletas', name: 'Motocicletas' },
       { id: 'vehiculos-prioritarios', name: 'Vehículos prioritarios' },
       { id: 'transporte-publico', name: 'Transporte público' },
+      { id: 'vmp', name: 'VMP y patinetes eléctricos' },
     ],
   },
 ];

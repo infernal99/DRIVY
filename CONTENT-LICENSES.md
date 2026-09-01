@@ -155,6 +155,34 @@ Contenido `derived` puede citar estas fuentes.
 - **Qué NO podemos reutilizar**: 
   - Copiar texto literal de la página como si fuera nuestro
 
+## DGT — En patinete
+
+- **URL**: https://www.dgt.es/muevete-con-seguridad/viaja-seguro/en-patinete/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Normativa e información oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal de la página como si fuera nuestro
+  - Afirmar una edad mínima nacional o una obligación de casco en toda España: la propia página no lo especifica, depende de ordenanza municipal
+
+## BOE — Real Decreto 52/2026, Registro de Vehículos Personales Ligeros
+
+- **URL**: https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-2140
+- **Autor/organización**: Boletín Oficial del Estado / Ministerio del Interior
+- **Licencia**: Texto normativo público (BOE) — reutilizable para citar y referenciar
+- **Tipo de contenido**: Norma jurídica (texto legal)
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Citar el ámbito de aplicación, fechas de entrada en vigor y régimen transitorio para preguntas `derived` sobre VMP
+- **Qué NO podemos reutilizar**: 
+  - Reproducir el texto legal completo como contenido propio
+- **Notas**: En vigor desde el 30-01-2026 (mismo día de publicación). Ámbito: todos los VMP (1+ ruedas, plaza única, motor eléctrico exclusivo, 6-25 km/h si pesan <25kg o 6-14 km/h si pesan ≥25kg), excluyendo vehículos militares, dispositivos para personas con discapacidad y bicicletas de pedaleo asistido (EPAC). El seguro obligatorio es un requisito inmediato por la Ley 5/2025. Los VMP no certificados comercializados antes del 22-01-2024 pueden seguir circulando hasta el 22-01-2027 (disposición transitoria primera). Una nota de prensa previa de la propia DGT (2025-12-23) reflejaba un estado transitorio de incertidumbre/retraso sobre estas fechas — superado por la publicación final del RD, que es la fuente que prevalece.
+
 ## DGT — Manual básico del permiso B (Lectura Fácil)
 
 - **URL**: https://seguridadvial2030.dgt.es/.galleries/enlaces/practicas-interes/personas-formadas-y-capaces/manual-permiso-b-lectura-facil.html

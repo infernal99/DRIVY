@@ -1,6 +1,8 @@
 import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
+const SRC_VMP = 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/en-patinete/';
+const BOE_VMP = 'https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-2140';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -255,6 +257,185 @@ export const otrosUsuariosQuestions = [
       'Los carriles reservados a determinados vehículos, como el carril bus, no pueden ser utilizados por el resto de vehículos salvo que la señalización lo permita expresamente (por ejemplo, para girar).',
     tags: ['otros usuarios', 'transporte público'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // --- 2026-09-01, ampliación del banco (Fase 1, bloque VMP) ---------------
+  // VMP (patinetes eléctricos): el hueco temático más grave detectado en el
+  // análisis de cobertura — 0 preguntas pese a ser normativa muy reciente y
+  // activa. Verificado contra el BOE (RD 52/2026, BOE-A-2026-2140, en vigor
+  // desde 2026-01-30) y la página oficial "DGT - En patinete", no contra
+  // blogs de patinetes. Deliberadamente NO se pregunta por la edad mínima
+  // ni por una obligación nacional "en bloque" del casco: ambos datos
+  // varían por ordenanza municipal y no tienen una cifra única a nivel
+  // nacional — preguntarlo como si la hubiera sería inventar contenido.
+  q({
+    id: 'OTR-VMP-01',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vmp',
+    question: 'Un vehículo de movilidad personal (VMP, como un patinete eléctrico) se define legalmente como un vehículo de una o más ruedas:',
+    options: [
+      'De una única plaza, propulsado exclusivamente por motor eléctrico, con velocidad de diseño entre 6 y 25 km/h',
+      'De cualquier número de plazas, con motor eléctrico o de combustión',
+      'Sin límite de velocidad de diseño, siempre que sea eléctrico',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La normativa define el VMP como un vehículo de una o más ruedas, de una única plaza, propulsado exclusivamente por motores eléctricos, con una velocidad máxima por diseño de entre 6 y 25 km/h; quedan excluidas, entre otros, las bicicletas de pedaleo asistido.',
+    difficulty: 'easy',
+    tags: ['otros usuarios', 'vmp', 'patinete'],
+    sourceUrl: BOE_VMP,
+    legalReference: 'Reglamento General de Vehículos, Anexo XXI (redacción dada por el RD 52/2026)',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VMP-02',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vmp',
+    question: 'Un VMP (patinete eléctrico) tiene prohibido circular por:',
+    options: [
+      'Aceras, zonas peatonales, pasos de peatones, autopistas, autovías, vías interurbanas y túneles urbanos',
+      'Los carriles bici, en cualquier caso',
+      'Las calzadas urbanas con límite de 30 km/h, en cualquier caso',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Los VMP tienen prohibida la circulación por aceras, zonas peatonales, pasos de peatones, autopistas, autovías, vías interurbanas y túneles urbanos; pueden circular por calzada urbana o carril bici según lo que establezca la ordenanza municipal correspondiente.',
+    difficulty: 'medium',
+    tags: ['otros usuarios', 'vmp', 'patinete'],
+    sourceUrl: SRC_VMP,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VMP-03',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vmp',
+    question: 'La velocidad máxima a la que puede circular un VMP (patinete eléctrico) es de:',
+    options: ['25 km/h', '45 km/h', 'No existe límite específico, solo el genérico de la vía'],
+    correctAnswer: 0,
+    explanation:
+      'Los VMP no pueden superar los 25 km/h de velocidad, con independencia del límite genérico que pueda tener la vía por la que circulan.',
+    difficulty: 'easy',
+    tags: ['otros usuarios', 'vmp', 'patinete'],
+    sourceUrl: SRC_VMP,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VMP-04',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vmp',
+    question: '¿Está permitido llevar un segundo ocupante en un VMP (patinete eléctrico) diseñado para una sola plaza?',
+    options: [
+      'No, los VMP son de una única plaza y no pueden llevar pasajeros',
+      'Sí, siempre que el segundo ocupante sea menor de edad',
+      'Sí, si el trayecto es muy corto',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Los VMP están homologados y diseñados para una única plaza; llevar un segundo ocupante incumple esa condición técnica, sin que existan excepciones por la edad del acompañante o la distancia del trayecto.',
+    difficulty: 'easy',
+    tags: ['otros usuarios', 'vmp', 'patinete'],
+    sourceUrl: SRC_VMP,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VMP-05',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vmp',
+    question: 'Respecto al uso del casco al circular en un VMP (patinete eléctrico), la normativa actual establece que:',
+    options: [
+      'Es obligatorio solo si lo exige la ordenanza municipal correspondiente, aunque la DGT recomienda usarlo siempre',
+      'Es obligatorio en toda España sin excepción, igual que en motocicleta',
+      'Nunca es obligatorio, ni siquiera si lo exige una ordenanza municipal',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'A día de hoy el uso del casco en VMP no es una obligación general en toda España: depende de si la ordenanza municipal correspondiente lo exige (en cuyo caso no llevarlo se sanciona), aunque la DGT recomienda usarlo siempre, exista o no esa exigencia local.',
+    difficulty: 'hard',
+    tags: ['otros usuarios', 'vmp', 'patinete'],
+    sourceUrl: SRC_VMP,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VMP-06',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vmp',
+    question: '¿Qué límite de alcoholemia se aplica a quien circula en un VMP (patinete eléctrico)?',
+    options: [
+      'El mismo que a los conductores de vehículos a motor',
+      'Ninguno: los VMP no están sujetos a control de alcoholemia',
+      'Un límite más permisivo, al no ser un vehículo a motor',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'A los usuarios de VMP se les aplican los mismos límites de alcoholemia que al resto de conductores, y pueden ser sometidos a las pruebas de detección correspondientes.',
+    difficulty: 'medium',
+    tags: ['otros usuarios', 'vmp', 'patinete'],
+    sourceUrl: SRC_VMP,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VMP-07',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vmp',
+    question: '¿Está permitido usar el teléfono móvil o auriculares mientras se circula en un VMP (patinete eléctrico)?',
+    options: [
+      'No, está prohibido igual que en el resto de vehículos',
+      'Sí, siempre que sea con manos libres',
+      'Sí, solo los auriculares están permitidos',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El uso del teléfono móvil y de auriculares está expresamente prohibido mientras se circula en VMP, entre las tres prohibiciones básicas que la DGT resume para estos vehículos junto con el alcohol y la circulación por aceras.',
+    difficulty: 'easy',
+    tags: ['otros usuarios', 'vmp', 'patinete'],
+    sourceUrl: SRC_VMP,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VMP-08',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vmp',
+    question: 'Desde la entrada en vigor del Real Decreto 52/2026, circular en un VMP (patinete eléctrico) sin el seguro correspondiente:',
+    options: [
+      'Es una infracción, ya que el seguro de responsabilidad civil es obligatorio para los VMP',
+      'Es legal: los VMP, al no ser vehículos a motor tradicionales, no necesitan seguro',
+      'Solo es obligatorio para los patinetes de alquiler, no para los de propiedad particular',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El Real Decreto 52/2026, que desarrolla la Ley 5/2025, extiende la obligación del seguro de responsabilidad civil a todos los VMP, sin distinguir entre uso particular o de alquiler; circular sin él es una infracción sancionable.',
+    difficulty: 'hard',
+    tags: ['otros usuarios', 'vmp', 'patinete', 'seguro'],
+    sourceUrl: BOE_VMP,
+    legalReference: 'Real Decreto 52/2026, de 28 de enero (BOE-A-2026-2140), y Ley 5/2025, de 24 de julio',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VMP-09',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vmp',
+    question: 'Un VMP comercializado sin la certificación exigida antes del 22 de enero de 2024:',
+    options: [
+      'Puede seguir circulando solo hasta el 22 de enero de 2027',
+      'No puede circular en ningún caso desde esa fecha',
+      'Puede circular indefinidamente, sin ninguna restricción de plazo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Los VMP comercializados sin certificación antes del 22 de enero de 2024 cuentan con un régimen transitorio que les permite seguir circulando hasta el 22 de enero de 2027, fecha a partir de la cual dejarán de poder hacerlo.',
+    difficulty: 'hard',
+    tags: ['otros usuarios', 'vmp', 'patinete'],
+    sourceUrl: BOE_VMP,
+    legalReference: 'Real Decreto 52/2026, de 28 de enero (BOE-A-2026-2140), disposición transitoria primera',
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),

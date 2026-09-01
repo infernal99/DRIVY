@@ -58,7 +58,7 @@ export const conductorQuestions = [
     options: ['18 años', '16 años', '21 años'],
     correctAnswer: 0,
     explanation:
-      'La edad mínima para obtener el permiso de conducir de la clase B (turismos) en España es de 18 años.',
+      'La normativa fija en 18 años la edad mínima para el permiso B, un umbral más alto que el de otros permisos (como el AM para ciclomotores, a partir de los 15) porque exige un mayor grado de madurez para circular con un vehículo de mayor masa y velocidad.',
     difficulty: 'easy',
     tags: ['conductor', 'permiso de conducir'],
     sourceUrl: DOC_SRC,
