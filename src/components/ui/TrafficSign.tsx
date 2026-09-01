@@ -132,10 +132,25 @@ const registry: Record<SignKey, () => React.ReactNode> = {
       <line x1="32" y1="60" x2="68" y2="60" stroke={DARK} strokeWidth="7" strokeLinecap="round" />
     </Triangle>
   ),
+  // A generic upright stick figure (head + straight body + spread limbs)
+  // reads as a pedestrian, not a worker — indistinguishable from a danger
+  // sign for peatones. Redrawn bent forward over a shovel so the digging
+  // posture and the tool itself (not just a person shape) read clearly at
+  // the small size this renders at — reported by the user against the live
+  // app after the 2026-09-01 audit; that audit had checked this sign's
+  // code/meaning but not whether its actual pictogram was legible.
   obras: () => (
     <Triangle>
-      <circle cx="45" cy="46" r="6" fill={DARK} />
-      <path d="M45 54 L45 70 M45 58 L36 68 M45 58 L58 66 M45 70 L38 82 M45 70 L54 82" stroke={DARK} strokeWidth="5" strokeLinecap="round" fill="none" />
+      <circle cx="52" cy="30" r="7" fill={DARK} />
+      <path
+        d="M52 38 L64 55 M64 55 L74 82 M64 55 L54 82 M58 46 L36 63 M36 63 L26 81"
+        stroke={DARK}
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <rect x="8" y="72" width="24" height="12" rx="2" fill={DARK} transform="rotate(-32 20 78)" />
     </Triangle>
   ),
   'curva-peligrosa-derecha': () => (
