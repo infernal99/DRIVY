@@ -75,7 +75,21 @@ export function validateQuestion(q: Question): ValidationResult {
 }
 
 export function validateAll(questions: Question[]): ValidationResult[] {
-  return questions.map(validateQuestion);
+  const results = questions.map(validateQuestion);
+
+  // Ids are the stable key user progress/stats are recorded against (see
+  // src/data/questions/helpers.ts) — a collision would silently merge two
+  // unrelated questions' history, so it must be a hard error, not a lint nit.
+  const idCounts = new Map<string, number>();
+  for (const q of questions) idCounts.set(q.id, (idCounts.get(q.id) ?? 0) + 1);
+  for (const result of results) {
+    if ((idCounts.get(result.questionId) ?? 0) > 1) {
+      result.issues.push({ level: 'error', code: 'duplicate_id', message: `Duplicate question id "${result.questionId}" — ids must be unique` });
+      result.ok = false;
+    }
+  }
+
+  return results;
 }
 
 export function formatValidationResult(result: ValidationResult): string {

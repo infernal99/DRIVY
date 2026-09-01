@@ -382,6 +382,19 @@ Contenido `derived` puede citar estas fuentes.
 - **Qué NO podemos reutilizar**: 
   - Copiar o adaptar visualmente cualquier imagen o texto literal del artículo
 
+## DGT (revista) — Intermitentes: siempre imprescindibles (y obligatorios)
+
+- **URL**: https://revista.dgt.es/es/educacion-formacion/conducir-mejor/2022/1202-CM-Intermitentes.shtml
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior) — revista oficial
+- **Licencia**: © DGT — contenido editorial institucional
+- **Tipo de contenido**: Reportaje oficial
+- **Fecha de comprobación**: 2026-09-02
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y diagramas propios (derived) basados en este hecho, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal del reportaje como si fuera nuestro
+
 ## DGT — Manual básico del permiso B (Lectura Fácil)
 
 - **URL**: https://seguridadvial2030.dgt.es/.galleries/enlaces/practicas-interes/personas-formadas-y-capaces/manual-permiso-b-lectura-facil.html

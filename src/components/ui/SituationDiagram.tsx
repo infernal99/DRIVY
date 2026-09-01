@@ -37,7 +37,8 @@ export type DiagramKey =
   | 'glorieta-salida-carril-interior-excepcion'
   | 'glorieta-entrada-izquierda-congestion'
   | 'glorieta-grupo-ciclistas'
-  | 'adelantamiento-tres-vehiculos-sin-espacio';
+  | 'adelantamiento-tres-vehiculos-sin-espacio'
+  | 'cambio-carril-intermitente-no-prioridad';
 
 const ASPHALT = '#3a4150';
 const WHITE = '#ffffff';
@@ -426,6 +427,17 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       <Car x={50} y={84} rotate={0} color={YIELD_CAR} />
       <Car x={50} y={58} rotate={0} color={YIELD_CAR} />
       <Car x={50} y={22} rotate={180} color={PROHIBIT_RED} />
+    </RoadTopDown>
+  ),
+  // Signalling a lane change does not, by itself, grant priority: the grey
+  // car has its indicator on but must still yield to the green car already
+  // established in the destination lane.
+  'cambio-carril-intermitente-no-prioridad': () => (
+    <RoadTopDown>
+      <line x1="50" y1="4" x2="50" y2="96" stroke={WHITE} strokeWidth="3" strokeDasharray="9 7" opacity="0.5" />
+      <Car x={70} y={50} rotate={0} color={YIELD_CAR} />
+      <path d="M60 44 L52 44 L52 38 L44 47 L52 56 L52 50 L60 50 Z" fill={AMBER} />
+      <Car x={34} y={36} rotate={0} color={PRIORITY_CAR} />
     </RoadTopDown>
   ),
 };
