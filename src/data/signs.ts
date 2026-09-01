@@ -41,6 +41,17 @@ const WIKI_R = 'https://es.wikipedia.org/wiki/Anexo:Se%C3%B1ales_de_tr%C3%A1fico
 const WIKI_P = 'https://es.wikipedia.org/wiki/Anexo:Se%C3%B1ales_de_tr%C3%A1fico_de_peligro_de_Espa%C3%B1a';
 const WIKI_S = 'https://es.wikipedia.org/wiki/Anexo:Se%C3%B1ales_de_tr%C3%A1fico_de_indicaci%C3%B3n_de_Espa%C3%B1a';
 
+// --- 2026-09-01 real-image pass ------------------------------------------
+// 7 signs below got a real vendored image (public/signs/<image>.svg) instead
+// of our hand-drawn <TrafficSign> registry entry — independent vector
+// recreations from Wikimedia Commons (mostly user Benedicto16), each
+// individually confirmed public-domain-no-conditions AND not superseded by
+// a newer "2023 set" redesign before being used (see TrafficSign.tsx's
+// REAL_SIGN_KEYS comment for why this is a small allowlist, not "any
+// Commons file"). Each affected entry below has its own comment recording
+// the exact Commons file/license checked, so a later pass doesn't have to
+// redo that research from scratch.
+
 export const TRAFFIC_SIGNS: TrafficSign[] = [
   {
     id: 'ceda-el-paso',
@@ -48,6 +59,9 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Ceda el paso',
     category: 'senales-prioridad',
     image: 'ceda-el-paso',
+    // Image: Spain_traffic_signal_r1.svg (Wikimedia Commons, user
+    // Benedicto16) — "released into the public domain... for any purpose,
+    // without any conditions", no "2023 set" replacement found for this code.
     source: { name: 'Reglamento General de Circulación (RD 1428/2003), Anexo I', url: RGC_BASE, type: 'official' },
     validFrom: '2003-11-21',
     verificationStatus: 'verified',
@@ -90,6 +104,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Paso a nivel sin barreras',
     category: 'senales-peligro',
     image: 'paso-nivel',
+    // Image: Spain_traffic_signal_p11.svg (Wikimedia Commons, Benedicto16),
+    // public domain, no "2023 set" replacement found for this code.
     source: { name: 'Anexo de señales de peligro (referencia secundaria sobre el Reglamento)', url: WIKI_P, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -100,20 +116,29 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Paso de animales en libertad',
     category: 'senales-peligro',
     image: 'animales-sueltos',
+    // Image: Spain_traffic_signal_p24.svg (Wikimedia Commons, Benedicto16),
+    // public domain, no "2023 set" replacement found for this code.
     source: { name: 'Anexo de señales de peligro (referencia secundaria sobre el Reglamento)', url: WIKI_P, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'obras',
+    code: 'P-18',
     name: 'Obras',
     category: 'senales-peligro',
     image: 'obras',
+    // NOT P-50: that code is the generic "otros peligros" (exclamation
+    // mark) sign, a different pictogram from the roadworks one. The actual
+    // code, P-18, was confirmed via Rotuvall/Preventec/Seton signage
+    // catalogs (its temporary-worksite variant is TP-18, same pictogram on
+    // a yellow background). Image: Spain_traffic_signal_p18.svg (Wikimedia
+    // Commons, Benedicto16), public domain — the file's own description
+    // flags it as the "1992-2003" design, so if the pictogram was
+    // redrawn after 2003 this may need re-checking, but no evidence of a
+    // newer replacement (no "2023 set" file for p18) turned up.
     source: { name: 'Reglamento General de Circulación — señales de peligro', url: RGC_BASE, type: 'derived' },
-    // NOT P-50: that code turned out to be the generic "otros peligros"
-    // (exclamation mark) sign, a different pictogram from the roadworks
-    // "person digging" one drawn here. Left uncoded rather than guessed.
-    verificationStatus: 'needs_review',
+    verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   },
   {
@@ -122,6 +147,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Adelantamiento prohibido',
     category: 'senales-prohibicion',
     image: 'prohibido-adelantar',
+    // Image: Spain_traffic_signal_r305.svg (Wikimedia Commons, Benedicto16),
+    // public domain, no "2023 set" replacement found for this code.
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -162,6 +189,9 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Circulación prohibida',
     category: 'senales-prohibicion',
     image: 'circulacion-prohibida-ambos-sentidos',
+    // Image: Spain_traffic_signal_r100.svg (Wikimedia Commons, Benedicto16),
+    // public domain (last touched 2011, "color corrected"), no "2023 set"
+    // replacement found for this code.
     source: { name: 'Reglamento General de Circulación — señales de prohibición', url: RGC_BASE, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -183,6 +213,10 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Estacionamiento prohibido',
     category: 'senales-prohibicion',
     image: 'prohibido-aparcar',
+    // Image: Spain_traffic_signal_r308.svg (Wikimedia Commons), public
+    // domain — redrawn 2025-11-29 by a second contributor (Caminetero)
+    // explicitly noting "Color (2025 BOE)", i.e. updated for the current
+    // catalogue. The best-confirmed-current file of this whole batch.
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,

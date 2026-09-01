@@ -132,10 +132,25 @@ const registry: Record<SignKey, () => React.ReactNode> = {
       <line x1="32" y1="60" x2="68" y2="60" stroke={DARK} strokeWidth="7" strokeLinecap="round" />
     </Triangle>
   ),
+  // A generic upright stick figure (head + straight body + spread limbs)
+  // reads as a pedestrian, not a worker — indistinguishable from a danger
+  // sign for peatones. Redrawn bent forward over a shovel so the digging
+  // posture and the tool itself (not just a person shape) read clearly at
+  // the small size this renders at — reported by the user against the live
+  // app after the 2026-09-01 audit; that audit had checked this sign's
+  // code/meaning but not whether its actual pictogram was legible.
   obras: () => (
     <Triangle>
-      <circle cx="45" cy="46" r="6" fill={DARK} />
-      <path d="M45 54 L45 70 M45 58 L36 68 M45 58 L58 66 M45 70 L38 82 M45 70 L54 82" stroke={DARK} strokeWidth="5" strokeLinecap="round" fill="none" />
+      <circle cx="52" cy="30" r="7" fill={DARK} />
+      <path
+        d="M52 38 L64 55 M64 55 L74 82 M64 55 L54 82 M58 46 L36 63 M36 63 L26 81"
+        stroke={DARK}
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <rect x="8" y="72" width="24" height="12" rx="2" fill={DARK} transform="rotate(-32 20 78)" />
     </Triangle>
   ),
   'curva-peligrosa-derecha': () => (
@@ -215,8 +230,38 @@ const registry: Record<SignKey, () => React.ReactNode> = {
   ),
 };
 
-/** Renders one of our own sign illustrations. Falls back to nothing for unknown keys. */
+// Real vector recreations (public/signs/<key>.svg), vendored from Wikimedia
+// Commons — public domain, no-conditions dedications, individually checked
+// against the current (post-2025-reform) catalogue during the 2026-09-01
+// content-quality audit (see docs/content-pipeline.md). Deliberately a small
+// allowlist, not "use the real file whenever one exists": several Commons
+// files for this series turned out to be CC-BY-SA (attribution owed, a
+// different author) or superseded by a "2023 set" redesign whose own
+// license rests on the same unresolved art. 13 LPI question flagged in
+// src/data/sources.ts — those were left on the hand-drawn registry below
+// rather than risk an uncleared or outdated image. Extend this list only
+// after the same two checks (license + currency), not just because a file
+// exists on Commons.
+const REAL_SIGN_KEYS = new Set<SignKey>([
+  'ceda-el-paso',
+  'paso-nivel',
+  'obras',
+  'prohibido-adelantar',
+  'circulacion-prohibida-ambos-sentidos',
+  'prohibido-aparcar',
+  'animales-sueltos',
+]);
+
+/** Renders a real vendored sign image where one is cleared for use, otherwise our own illustration. Falls back to nothing for unknown keys. */
 export function TrafficSign({ signKey, size = 96, style }: { signKey: SignKey; size?: number; style?: CSSProperties }) {
+  if (REAL_SIGN_KEYS.has(signKey)) {
+    return (
+      <div style={{ width: size, height: size, ...style }}>
+        <img src={`/signs/${signKey}.svg`} width={size} height={size} alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+      </div>
+    );
+  }
+
   const render = registry[signKey];
   if (!render) return null;
   return (
