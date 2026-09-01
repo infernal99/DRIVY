@@ -237,6 +237,59 @@ Contenido `derived` puede citar estas fuentes.
   - Copiar texto literal del artículo como si fuera nuestro
   - Afirmar una distancia fija (p.ej. "150 metros") para el cambio a luces de cruce: el art. 102 RGC no fija ninguna cifra, solo "tan pronto como se aprecie la posibilidad" de deslumbrar — una cifra concreta circula en blogs de autoescuela pero no está en el articulado
 
+## DGT — Distintivo ambiental
+
+- **URL**: https://www.dgt.es/nuestros-servicios/tu-vehiculo/tus-vehiculos/distintivo-ambiental/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Normativa e información oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal de la página como si fuera nuestro
+
+## DGT — Sistemas avanzados de ayuda a la conducción (ADAS)
+
+- **URL**: https://www.dgt.es/muevete-con-seguridad/sistemas-avanzados-ayuda-conduccion/Sistemas-avanzados-de-ayuda-a-la-conduccion-ADAS-/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Normativa e información oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal de la página como si fuera nuestro
+
+## BOE — Reglamento General de Vehículos (RD 2822/1998)
+
+- **URL**: https://www.boe.es/buscar/act.php?id=BOE-A-1999-1826
+- **Autor/organización**: Boletín Oficial del Estado / Ministerio del Interior
+- **Licencia**: Texto normativo público (BOE) — reutilizable para citar y referenciar
+- **Tipo de contenido**: Norma jurídica (texto legal)
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Citar la exigencia de visibilidad mínima en lunas delanteras para preguntas `derived`
+- **Qué NO podemos reutilizar**: 
+  - Reproducir el texto legal completo como contenido propio
+- **Notas**: No se localizó un número de artículo único y preciso para la transparencia mínima de las lunas delanteras (el art. 16 RGV regula alumbrado, no cristales) — la cifra del 70% circula de forma consistente en múltiples fuentes profesionales del sector (talleres, ITV) que citan este RD junto con el reglamento ECE 43R y el manual de inspección ITV como base conjunta, así que se cita esa base normativa general en vez de un artículo concreto no confirmado.
+
+## BOE — Texto refundido de la Ley de Tráfico (RDL 6/2015)
+
+- **URL**: https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722
+- **Autor/organización**: Boletín Oficial del Estado / Ministerio del Interior
+- **Licencia**: Texto normativo público (BOE) — reutilizable para citar y referenciar
+- **Tipo de contenido**: Norma jurídica (texto legal)
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Citar artículos y supuestos concretos (infracciones, inmovilización) para preguntas `derived`
+- **Qué NO podemos reutilizar**: 
+  - Reproducir el texto legal completo como contenido propio
+
 ## DGT — Manual básico del permiso B (Lectura Fácil)
 
 - **URL**: https://seguridadvial2030.dgt.es/.galleries/enlaces/practicas-interes/personas-formadas-y-capaces/manual-permiso-b-lectura-facil.html
@@ -349,6 +402,20 @@ Nada de aquí se usa como base de contenido `official` ni `derived`. Ver
 
 Solo para detectar temas que podríamos estar pasando por alto (prioridad 4
 del content spec) — nunca como fuente de contenido.
+
+## PracticaTest — índice de temas del permiso B (solo títulos, no contenido)
+
+- **URL**: https://practicatest.com/temario/permiso-B
+- **Autor/organización**: PracticaTest (sitio de terceros)
+- **Licencia**: Contenido de terceros — no copiado, solo se consultaron los títulos de sus 38 temas para planificación interna
+- **Tipo de contenido**: Índice temático (referencia externa)
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: REFERENCE_ONLY
+- **Qué podemos reutilizar**: 
+  - Detectar qué áreas temáticas del permiso B podrían faltar en nuestro banco (p. ej. distintivo ambiental, carga, visibilidad, ADAS, inmovilización)
+- **Qué NO podemos reutilizar**: 
+  - Copiar, parafrasear o inspirarse literalmente en sus preguntas, respuestas, explicaciones o imágenes
+  - Usar este sitio como fundamento normativo de ninguna pregunta: la fundamentación siempre es DGT/BOE
 
 ## Revista DGT — Sección Test
 

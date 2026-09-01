@@ -104,6 +104,10 @@ export const CATEGORIES: Category[] = [
       { id: 'seguridad-activa', name: 'Seguridad activa' },
       { id: 'seguridad-pasiva', name: 'Seguridad pasiva' },
       { id: 'retencion-infantil', name: 'Retención infantil' },
+      { id: 'distintivo-ambiental', name: 'Distintivo ambiental' },
+      { id: 'carga', name: 'Carga del vehículo' },
+      { id: 'visibilidad', name: 'Visibilidad' },
+      { id: 'adas', name: 'ADAS' },
     ],
   },
   {
@@ -118,6 +122,7 @@ export const CATEGORIES: Category[] = [
       { id: 'puntos', name: 'Puntos' },
       { id: 'aptitudes', name: 'Aptitudes' },
       { id: 'comportamiento', name: 'Comportamiento' },
+      { id: 'inmovilizacion', name: 'Inmovilización del vehículo' },
     ],
   },
   {

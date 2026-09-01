@@ -371,6 +371,86 @@ export const seguridadVialQuestions = [
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
+  // 2026-09-01, ampliación (Fase 1, bloque 5): estas 4 preguntas amplían
+  // primeros auxilios con datos ya verificados en el bloque 1 de la misma
+  // fuente (SRC_ACCIDENTE) que no se habían usado todavía — no ha hecho
+  // falta investigación nueva, solo aprovechar mejor lo ya comprobado.
+  q({
+    id: 'SEG-PAS-05',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'primeros-auxilios',
+    question: 'Ante una víctima de accidente que no reacciona pero respira, dentro de la fase de "Socorrer" del protocolo PAS, una de las primeras comprobaciones es:',
+    options: [
+      'Abrir la vía aérea si la víctima lo requiere, para asegurar que puede respirar',
+      'Darle de beber agua para que se reanime',
+      'Trasladarla de inmediato a un lugar más cómodo, sea cual sea su estado',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Dentro de la fase de socorrer, si la víctima no reacciona hay que comprobar y, si es necesario, abrir su vía aérea para asegurar que puede respirar, antes de cualquier otra actuación.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'primeros auxilios'],
+    sourceUrl: SRC_ACCIDENTE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-PAS-06',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'primeros-auxilios',
+    question: 'Si no tienes conocimientos de primeros auxilios, a una persona accidentada que está consciente pero quejándose de dolor, en principio:',
+    options: [
+      'No debes movilizarla, salvo riesgo inmediato de incendio o explosión',
+      'Debes moverla a la posición que ella misma pida, sin más consideraciones',
+      'Debes sentarla, para facilitar que respire mejor',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Sin conocimientos de primeros auxilios no se debe movilizar a una persona accidentada, ya que un movimiento incorrecto puede agravar una lesión no visible, como una fractura o un daño en la columna; la única excepción es un riesgo inmediato como el fuego.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'primeros auxilios'],
+    sourceUrl: SRC_ACCIDENTE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-PAS-07',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'primeros-auxilios',
+    question: 'Si un vehículo accidentado queda en una posición inestable con una persona atrapada en su interior, sin formación ni equipo de rescate:',
+    options: [
+      'No debes intentar rescatarla tú mismo, salvo riesgo inmediato para su vida',
+      'Debes sacarla cuanto antes, sea como sea, para alejarla del vehículo',
+      'Debes esperar sin hacer nada hasta que lleguen los servicios de emergencia, sin llamarlos siquiera',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Rescatar a alguien de un vehículo inestable sin la formación ni el equipo adecuados puede agravar sus lesiones o poner en riesgo a quien intenta ayudar; se recomienda no hacerlo salvo que exista un riesgo inmediato como el fuego, y dejar el rescate a los servicios de emergencia ya alertados.',
+    difficulty: 'hard',
+    tags: ['seguridad vial', 'primeros auxilios'],
+    sourceUrl: SRC_ACCIDENTE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-PAS-08',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'primeros-auxilios',
+    question: 'Mientras llega la ayuda a una persona accidentada consciente, entre las actuaciones recomendadas está:',
+    options: [
+      'Aflojarle las prendas ajustadas y protegerla del frío o el calor',
+      'Darle de comer o beber algo para reanimarla',
+      'Quitarle cualquier prenda que lleve puesta, por si acaso',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Aflojar las prendas ajustadas facilita la respiración y la circulación, y proteger a la víctima del frío o el calor ayuda a prevenir el shock; en cambio, nunca se le debe dar de comer o beber, por el riesgo de que pierda el conocimiento o necesite ser intervenida.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'primeros auxilios'],
+    sourceUrl: SRC_ACCIDENTE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
   q({
     id: 'SEG-ECO-01',
     categoryId: 'seguridad-vial',

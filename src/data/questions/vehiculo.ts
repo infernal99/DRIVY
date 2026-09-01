@@ -2,6 +2,9 @@ import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/';
 const SRC_SRI = 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/con-ninos/';
+const SRC_AMBIENTAL = 'https://www.dgt.es/nuestros-servicios/tu-vehiculo/tus-vehiculos/distintivo-ambiental/';
+const SRC_ADAS = 'https://www.dgt.es/muevete-con-seguridad/sistemas-avanzados-ayuda-conduccion/Sistemas-avanzados-de-ayuda-a-la-conduccion-ADAS-/';
+const RGC_BASE = 'https://www.boe.es/buscar/act.php?id=BOE-A-2003-23514';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -366,6 +369,199 @@ export const vehiculoQuestions = [
     difficulty: 'medium',
     tags: ['vehículo', 'retención infantil'],
     sourceUrl: SRC_SRI,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // --- 2026-09-01, ampliación del banco (Fase 1, bloque 6) -----------------
+  // Distintivo ambiental, carga, visibilidad/lunas y ADAS: huecos
+  // detectados comparando el índice temático (solo los títulos de los 38
+  // temas oficiales, nunca preguntas) de un test público de terceros contra
+  // nuestra propia cobertura — la respuesta y la normativa de cada
+  // pregunta se verificaron después contra DGT/BOE, nunca contra ese test.
+  q({
+    id: 'VEH-AMB-01',
+    categoryId: 'vehiculo',
+    subcategoryId: 'distintivo-ambiental',
+    question: '¿Qué distintivo ambiental de la DGT identifica a los vehículos sin ningún tipo de emisión (eléctricos de batería, de autonomía extendida o de pila de combustible)?',
+    options: ['El distintivo 0', 'El distintivo ECO', 'El distintivo B'],
+    correctAnswer: 0,
+    explanation:
+      'El distintivo 0 identifica a los vehículos más eficientes: eléctricos de batería, de autonomía extendida, híbridos enchufables con más de 40 km de autonomía y de pila de combustible; el ECO, en cambio, incluye híbridos e híbridos enchufables de menor autonomía, entre otros.',
+    difficulty: 'easy',
+    tags: ['vehículo', 'distintivo ambiental'],
+    sourceUrl: SRC_AMBIENTAL,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-AMB-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'distintivo-ambiental',
+    question: 'Los distintivos ambientales de la DGT (0, ECO, C, B) se utilizan principalmente para:',
+    options: [
+      'Regular el acceso a zonas de bajas emisiones y restringir la circulación en episodios de alta contaminación',
+      'Calcular el importe del impuesto de circulación',
+      'Determinar la velocidad máxima permitida a cada vehículo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Los ayuntamientos usan los distintivos ambientales para regular el acceso a las zonas de bajas emisiones (ZBE) y para restringir la circulación de los vehículos más contaminantes durante episodios de alta contaminación.',
+    tags: ['vehículo', 'distintivo ambiental'],
+    sourceUrl: SRC_AMBIENTAL,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-AMB-03',
+    categoryId: 'vehiculo',
+    subcategoryId: 'distintivo-ambiental',
+    question: 'Un vehículo de combustión antiguo que no cumple los requisitos mínimos de ninguna de las categorías (0, ECO, C, B):',
+    options: [
+      'No recibe ningún distintivo ambiental',
+      'Recibe automáticamente el distintivo B, por defecto',
+      'Recibe un distintivo especial de "vehículo histórico" que lo exime de restricciones',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Aproximadamente la mitad del parque de vehículos en España no cumple los requisitos mínimos de ninguna categoría y, por tanto, no recibe ningún distintivo ambiental, lo que lo hace especialmente vulnerable a las restricciones de las ZBE.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'distintivo ambiental'],
+    sourceUrl: SRC_AMBIENTAL,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-CAR-01',
+    categoryId: 'vehiculo',
+    subcategoryId: 'carga',
+    question: 'La carga transportada en un vehículo debe ir dispuesta y sujeta de tal forma que:',
+    options: [
+      'No pueda arrastrar, caer total o parcialmente, ni desplazarse de forma peligrosa',
+      'Ocupe el máximo espacio posible, sin más condiciones',
+      'Solo necesite sujeción si supera los 100 kg',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La normativa exige que la carga y los elementos usados para acondicionarla o protegerla estén dispuestos y sujetos de forma que no puedan arrastrar, caer ni desplazarse peligrosamente durante la marcha, sea cual sea su peso.',
+    difficulty: 'easy',
+    tags: ['vehículo', 'carga'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 14',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-CAR-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'carga',
+    question: 'Como norma general, ¿puede la carga de un vehículo sobresalir de su proyección en planta (del contorno del propio vehículo)?',
+    options: [
+      'No, salvo en los casos y condiciones concretas que fija el reglamento, como ciertas cargas indivisibles de gran longitud',
+      'Sí, sin ninguna restricción, siempre que esté bien sujeta',
+      'Solo está permitido en motocicletas, nunca en turismos o furgonetas',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La regla general es que la carga no sobresalga del contorno del vehículo; solo se permite en supuestos concretos y con límites de longitud, por ejemplo en vehículos de mercancías que transporten cargas indivisibles largas como vigas o tubos.',
+    difficulty: 'hard',
+    tags: ['vehículo', 'carga'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 15',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-VIS-01',
+    categoryId: 'vehiculo',
+    subcategoryId: 'visibilidad',
+    question: '¿Está permitido tintar u oscurecer con láminas no homologadas de fábrica el parabrisas y las lunas delanteras (conductor y copiloto) de un turismo?',
+    options: [
+      'No: esas lunas deben mantener un nivel mínimo de transparencia para no comprometer la visibilidad',
+      'Sí, sin ninguna restricción, igual que las lunas traseras',
+      'Solo está prohibido de noche',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El parabrisas y las lunas delanteras deben mantener un nivel mínimo de transmisión de luz para garantizar una visibilidad adecuada; oscurecerlas con láminas no homologadas es un defecto que puede impedir superar la ITV.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'visibilidad'],
+    sourceUrl: 'https://www.boe.es/buscar/act.php?id=BOE-A-1999-1826',
+    legalReference: 'Reglamento General de Vehículos (RD 2822/1998) y normativa de inspección técnica (ITV)',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-VIS-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'visibilidad',
+    question: 'A diferencia del parabrisas y las lunas delanteras, las lunas traseras de un turismo:',
+    options: [
+      'Sí pueden tintarse con láminas, siempre que estén homologadas conforme a la normativa',
+      'Nunca pueden tintarse, bajo ningún concepto',
+      'Solo pueden tintarse si el vehículo es descapotable',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Las lunas traseras admiten un tintado mayor que las delanteras, siempre que las láminas empleadas estén homologadas conforme a la normativa, ya que la visibilidad crítica del conductor depende sobre todo del parabrisas y las lunas delanteras.',
+    tags: ['vehículo', 'visibilidad'],
+    sourceUrl: 'https://www.boe.es/buscar/act.php?id=BOE-A-1999-1826',
+    legalReference: 'Reglamento General de Vehículos (RD 2822/1998) y normativa de inspección técnica (ITV)',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-ADA-01',
+    categoryId: 'vehiculo',
+    subcategoryId: 'adas',
+    question: 'Desde julio de 2022, los vehículos de nueva homologación en España deben incorporar de serie al menos ocho sistemas ADAS, entre ellos:',
+    options: [
+      'Un inhibidor de arranque con alcoholímetro y un detector de somnolencia',
+      'Un sistema de conducción totalmente autónoma',
+      'Un limitador que impide superar nunca los 100 km/h',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Entre los ocho sistemas ADAS obligatorios en los vehículos de nueva homologación están el inhibidor de arranque con alcoholímetro y el detector de somnolencia (DDR), junto con otros como el asistente inteligente de velocidad o la alerta de uso del cinturón.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'adas'],
+    sourceUrl: SRC_ADAS,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-ADA-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'adas',
+    question: 'Vas circulando y, al cambiar de carril sin haber puesto el intermitente, el vehículo emite un aviso. ¿Qué sistema ADAS ha actuado?',
+    options: [
+      'El LDW, alerta de cambio de carril involuntario',
+      'El ISA, asistente inteligente de velocidad',
+      'El RCTA, alerta de tráfico cruzado',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El LDW (Lane Departure Warning) detecta cuándo el vehículo abandona su carril sin que se haya activado el intermitente y avisa al conductor; el ISA regula la velocidad y el RCTA avisa de tráfico que cruza por detrás al hacer marcha atrás.',
+    difficulty: 'hard',
+    tags: ['vehículo', 'adas'],
+    sourceUrl: SRC_ADAS,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-ADA-03',
+    categoryId: 'vehiculo',
+    subcategoryId: 'adas',
+    question: 'Los sistemas ADAS de un vehículo actúan sobre:',
+    options: [
+      'El freno o el acelerador, la dirección o la señalización, con distinto grado de autonomía respecto al conductor',
+      'Únicamente la climatización y el entretenimiento a bordo',
+      'Solo el sistema de infoentretenimiento, nunca elementos mecánicos del vehículo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Los ADAS son tecnologías que pueden intervenir en el frenado, la aceleración, la dirección o la señalización del vehículo, con distintos grados de autonomía respecto al conductor, para mejorar la seguridad propia y de otros usuarios de la vía.',
+    tags: ['vehículo', 'adas'],
+    sourceUrl: SRC_ADAS,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
