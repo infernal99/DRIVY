@@ -4,6 +4,7 @@ const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafi
 const SRC_SRI = 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/con-ninos/';
 const SRC_AMBIENTAL = 'https://www.dgt.es/nuestros-servicios/tu-vehiculo/tus-vehiculos/distintivo-ambiental/';
 const SRC_ADAS = 'https://www.dgt.es/muevete-con-seguridad/sistemas-avanzados-ayuda-conduccion/Sistemas-avanzados-de-ayuda-a-la-conduccion-ADAS-/';
+const SRC_AGRICOLA = 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/tractor/';
 const RGC_BASE = 'https://www.boe.es/buscar/act.php?id=BOE-A-2003-23514';
 const VERIFIED_AT = '2026-09-01';
 
@@ -599,6 +600,81 @@ export const vehiculoQuestions = [
       'Los ADAS son tecnologías que pueden intervenir en el frenado, la aceleración, la dirección o la señalización del vehículo, con distintos grados de autonomía respecto al conductor, para mejorar la seguridad propia y de otros usuarios de la vía.',
     tags: ['vehículo', 'adas'],
     sourceUrl: SRC_ADAS,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 9): vehículos
+  // especiales y maquinaria agrícola, hueco detectado en el índice
+  // temático de un test público de terceros (solo títulos). Verificado
+  // contra la página oficial "DGT - En tractor y vehículo agrícola".
+  q({
+    id: 'VEH-ESP-01',
+    categoryId: 'vehiculo',
+    subcategoryId: 'vehiculos-especiales',
+    question: '¿Qué es, según la normativa, un "vehículo especial"?',
+    options: [
+      'Uno concebido para obras o servicios determinados, exceptuado de ciertas condiciones técnicas o que supera permanentemente los límites de masa o dimensiones, como la maquinaria agrícola',
+      'Cualquier vehículo con más de 20 años de antigüedad',
+      'Únicamente los vehículos de emergencia como ambulancias o bomberos',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Un vehículo especial es aquel concebido y construido para realizar obras o servicios determinados, que por ello está exceptuado de cumplir alguna condición técnica exigida con carácter general o supera permanentemente los límites de masa o dimensiones; la maquinaria agrícola se incluye expresamente en esta categoría.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'vehículos especiales'],
+    sourceUrl: SRC_AGRICOLA,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-ESP-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'vehiculos-especiales',
+    question: 'Un tractor agrícola capaz de superar los 60 km/h en llano tiene, como máximo, una velocidad autorizada de:',
+    options: ['70 km/h', '40 km/h', '90 km/h, igual que un turismo'],
+    correctAnswer: 0,
+    explanation:
+      'Los vehículos agrícolas se dividen en varios grupos según su velocidad: 25 km/h los que no llevan señalización de frenado o van remolcados, 40 km/h el resto con carácter general, y 70 km/h como máximo los capaces de superar los 60 km/h en llano.',
+    difficulty: 'hard',
+    tags: ['vehículo', 'vehículos especiales'],
+    sourceUrl: SRC_AGRICOLA,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-ESP-03',
+    categoryId: 'vehiculo',
+    subcategoryId: 'vehiculos-especiales',
+    question: 'Los tractores y vehículos agrícolas que circulan a un máximo de 40 km/h deben llevar obligatoriamente:',
+    options: [
+      'Una luz rotativa amarilla (señal V-2)',
+      'Una sirena, igual que un vehículo de emergencia',
+      'Ninguna señalización adicional, basta con las luces de un turismo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Los vehículos agrícolas que no superan los 40 km/h deben llevar una luz rotativa amarilla (señal V-2), que avisa al resto de usuarios de que se trata de un vehículo lento antes de acercarse a él.',
+    tags: ['vehículo', 'vehículos especiales'],
+    sourceUrl: SRC_AGRICOLA,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-ESP-04',
+    categoryId: 'vehiculo',
+    subcategoryId: 'vehiculos-especiales',
+    question: 'Como norma general, ¿pueden los vehículos agrícolas circular por autopistas o autovías?',
+    options: [
+      'No, salvo que cuenten con una autorización especial',
+      'Sí, sin ninguna restricción, igual que un turismo',
+      'Solo si van remolcando otro vehículo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Los vehículos agrícolas tienen prohibida, con carácter general, la entrada en autopistas y autovías; solo pueden hacerlo si disponen de una autorización especial para ese trayecto concreto.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'vehículos especiales'],
+    sourceUrl: SRC_AGRICOLA,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),

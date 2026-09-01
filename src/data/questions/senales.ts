@@ -2,6 +2,7 @@ import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
 const SIGNS_SRC = 'https://www.dgt.es/comunicacion/notas-de-prensa/20250610-el-gobierno-aprueba-la-actualizacion-del-catalogo-oficial-de-senales-de-trafico/';
+const SRC_PANELES = 'https://revista.dgt.es/es/reportajes/2013/donde-llega-aplicacion-sennal.shtml';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -658,6 +659,69 @@ export const senalesQuestions = [
     signCatalogVersion: '2025',
     sourceUrl: SIGNS_SRC,
     source: 'DGT — Nota de prensa: actualización del catálogo oficial de señales',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 9): paneles
+  // complementarios, hueco detectado en el índice temático de un test
+  // público de terceros (solo títulos, nunca preguntas). Verificado contra
+  // un reportaje oficial de la revista de la DGT y, para el código S-810,
+  // contra el Anexo de Wikipedia ya usado como referencia secundaria en
+  // este proyecto para códigos de señal.
+  q({
+    id: 'SEN-PAN-01',
+    categoryId: 'senales',
+    subcategoryId: 'paneles-complementarios',
+    question: 'Un panel complementario situado bajo una señal sirve para:',
+    options: [
+      'Precisar o limitar su alcance: la distancia a la que empieza, la longitud del tramo afectado, o a qué carriles o vehículos afecta',
+      'Repetir exactamente el mismo significado que la señal, como refuerzo visual',
+      'Indicar el nombre del municipio donde está instalada la señal',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Los paneles complementarios no tienen significado propio por sí solos: acompañan a una señal para precisar su alcance real, por ejemplo indicando a qué distancia empieza el peligro, cuánto dura el tramo afectado, o a qué carril o tipo de vehículo se aplica.',
+    difficulty: 'medium',
+    tags: ['señales', 'paneles complementarios'],
+    sourceUrl: SRC_PANELES,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEN-PAN-02',
+    categoryId: 'senales',
+    subcategoryId: 'paneles-complementarios',
+    question: 'El panel complementario S-810 indica:',
+    options: [
+      'La longitud del tramo en el que se mantiene el peligro o la prescripción de la señal',
+      'La distancia hasta el inicio del peligro',
+      'Que la señal no afecta a ningún vehículo en concreto',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El panel S-810 se coloca bajo una señal para indicar la longitud del tramo en el que se mantiene vigente el peligro o la prescripción señalada, distinto de otros paneles que indican la distancia hasta el inicio de esa zona.',
+    difficulty: 'hard',
+    tags: ['señales', 'paneles complementarios'],
+    sourceUrl: SRC_PANELES,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEN-PAN-03',
+    categoryId: 'senales',
+    subcategoryId: 'paneles-complementarios',
+    question: 'En una autopista, ves una señal de velocidad máxima con una pequeña flecha en un panel complementario debajo. ¿A quién afecta ese límite?',
+    options: [
+      'Solo a quienes vayan a tomar la dirección indicada por la flecha, por ejemplo una salida',
+      'A todos los vehículos de la autopista, en cualquier carril',
+      'Únicamente a los vehículos pesados',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Cuando una señal de velocidad máxima lleva debajo un panel con una flecha, el límite que marca la señal solo se aplica a quienes circulan hacia la dirección que indica esa flecha, como los vehículos que van a tomar una salida, no a todo el tráfico de la vía.',
+    difficulty: 'medium',
+    tags: ['señales', 'paneles complementarios'],
+    sourceUrl: SRC_PANELES,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
