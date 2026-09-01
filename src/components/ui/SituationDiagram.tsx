@@ -18,7 +18,12 @@ export type DiagramKey =
   | 'semaforo-ambar-fijo'
   | 'semaforo-flecha-verde'
   | 'semaforo-ambar-intermitente'
-  | 'agente-brazo-levantado';
+  | 'agente-brazo-levantado'
+  | 'cruce-prioridad-derecha'
+  | 'rotonda-prioridad-interior'
+  | 'pendiente-estrecha-prioridad'
+  | 'adelantamiento-espacio-seguro'
+  | 'adelantamiento-curva-prohibido';
 
 const ASPHALT = '#3a4150';
 const WHITE = '#ffffff';
@@ -28,6 +33,21 @@ const GREEN = '#2ecc71';
 const OFF_LIGHT = '#3a4150';
 const HOUSING = '#20242e';
 const SKIN = '#e8b98a';
+// Shared colour code across the priority/overtaking diagrams below: the
+// vehicle that must yield is grey, the one with right of way is green.
+const YIELD_CAR = '#8b93a3';
+const PRIORITY_CAR = GREEN;
+const PROHIBIT_RED = '#e74c3c';
+
+/** Small top-down car glyph, nose pointing up at rotate=0 (0=up, 90=right, 180=down, 270=left). */
+function Car({ x, y, rotate, color }: { x: number; y: number; rotate: number; color: string }) {
+  return (
+    <g transform={`translate(${x} ${y}) rotate(${rotate})`}>
+      <rect x="-7" y="-12" width="14" height="24" rx="4" fill={color} />
+      <rect x="-5" y="-8" width="10" height="7" rx="2" fill="rgba(255,255,255,0.55)" />
+    </g>
+  );
+}
 
 function RoadTopDown({ children }: { children?: React.ReactNode }) {
   return (
@@ -100,6 +120,71 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       <line x1="48" y1="36" x2="48" y2="6" stroke={SKIN} strokeWidth="7" strokeLinecap="round" />
       <line x1="42" y1="66" x2="38" y2="94" stroke={HOUSING} strokeWidth="7" strokeLinecap="round" />
       <line x1="54" y1="66" x2="58" y2="94" stroke={HOUSING} strokeWidth="7" strokeLinecap="round" />
+    </svg>
+  ),
+  // Unsignalised crossroads: the grey car must yield to the green car
+  // arriving from its right (norma general de prioridad a la derecha).
+  'cruce-prioridad-derecha': () => (
+    <RoadTopDown>
+      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <Car x={42} y={80} rotate={0} color={YIELD_CAR} />
+      <Car x={80} y={42} rotate={270} color={PRIORITY_CAR} />
+    </RoadTopDown>
+  ),
+  // Roundabout: the green car already circulating inside has priority over
+  // the grey car waiting to enter.
+  'rotonda-prioridad-interior': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
+      <circle cx="50" cy="50" r="32" fill="none" stroke={WHITE} strokeWidth="3" opacity="0.6" />
+      <circle cx="50" cy="50" r="16" fill={HOUSING} />
+      <Car x={50} y={90} rotate={0} color={YIELD_CAR} />
+      <Car x={18} y={50} rotate={180} color={PRIORITY_CAR} />
+    </svg>
+  ),
+  // Narrow steep stretch: the green car going uphill has priority over the
+  // grey car coming down, which must wait or reverse to a pull-out.
+  'pendiente-estrecha-prioridad': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
+      <line x1="12" y1="88" x2="88" y2="12" stroke="#4a5468" strokeWidth="26" strokeLinecap="round" />
+      <line x1="12" y1="88" x2="88" y2="12" stroke={WHITE} strokeWidth="3" strokeDasharray="8 6" opacity="0.6" />
+      <polygon points="61,55 68,62 61,69 57,62" fill="#5c6478" />
+      <polygon points="39,31 46,38 39,45 35,38" fill="#5c6478" />
+      <Car x={26} y={74} rotate={45} color={PRIORITY_CAR} />
+      <Car x={74} y={26} rotate={225} color={YIELD_CAR} />
+    </svg>
+  ),
+  // Safe overtaking: the green car has already moved into the (currently
+  // empty) opposing lane, past the slower grey vehicle, with enough space
+  // and visibility ahead.
+  'adelantamiento-espacio-seguro': () => (
+    <RoadTopDown>
+      <line x1="50" y1="2" x2="50" y2="98" stroke={WHITE} strokeWidth="4" strokeDasharray="10 8" opacity="0.6" />
+      <Car x={66} y={62} rotate={0} color={YIELD_CAR} />
+      <Car x={32} y={38} rotate={0} color={PRIORITY_CAR} />
+    </RoadTopDown>
+  ),
+  // Overtaking forbidden on a bend with no visibility: a prohibition
+  // roundel sits over the blind curve ahead of the (grey) car.
+  'adelantamiento-curva-prohibido': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
+      <path d="M18,90 Q18,18 90,18" stroke="#4a5468" strokeWidth="22" strokeLinecap="round" fill="none" />
+      <path
+        d="M18,90 Q18,18 90,18"
+        stroke={WHITE}
+        strokeWidth="3"
+        strokeDasharray="8 6"
+        opacity="0.6"
+        fill="none"
+      />
+      <Car x={18} y={78} rotate={0} color={YIELD_CAR} />
+      <circle cx="66" cy="24" r="15" fill={PROHIBIT_RED} stroke={WHITE} strokeWidth="2.5" />
+      <line x1="57" y1="15" x2="75" y2="33" stroke={WHITE} strokeWidth="3.5" strokeLinecap="round" />
     </svg>
   ),
 };
