@@ -161,15 +161,33 @@ export const CONTENT_SOURCES: ContentSource[] = [
     reviewStatus: 'needs_review',
     canReuse: [
       'Los archivos de Benedicto16 (o NACLE2, con dedicación CC0 propia) explícitamente liberados a dominio público, verificados individualmente y sin sustituto "2023 set" conocido — ya usados en signs.ts para 16 señales: R-1, P-11, P-18, R-305, R-100, R-308, P-24, P-13a, R-301 (50/90), S-1, S-2, S-17, R-116, R-407a, R-411',
+      'Un segundo archivo de Benedicto16 para R-2 (STOP), "Spain_traffic_signal_r2_1992.svg" — distinto del bloqueado por "2023 set", con docname genérico ("Ajax.svg") que no indica ningún origen gubernamental',
+      'Archivos CC BY-SA/GFDL de Gigillo83 (R-400a → usa el fichero Commons "r400c.svg", ver nota) y Majafego (R-402), y de Gigillo83 (R-501), ahora que la app muestra atribución visible en la pantalla "Fuentes oficiales" (ver `wikimedia-cc-by-sa-sign-attribution`)',
     ],
     cannotReuse: [
-      'Archivos de otros autores (p.ej. Gigillo83) licenciados CC BY-SA/GFDL sin añadir la atribución correspondiente en la app — no usados por ahora (R-400a, R-402, R-501)',
-      'Archivos con un "2023 set" o equivalente más reciente (p.ej. R-2/STOP, S-13/paso de peatones): su licencia se basa en el mismo argumento del art. 13 LPI sobre artwork gubernamental que sigue sin resolver (ver `boe-reutilizacion-anexos-graficos-rd465-2025`) — no usados, se mantiene el dibujo propio',
-      'Cualquier archivo de esta serie sin comprobar individualmente licencia + vigencia — no extrapolar "esta serie es toda de dominio público" solo porque varias muestras lo fueron',
+      'El archivo "Spain_traffic_signal_s13.svg" pese a su etiqueta de dominio público: su metadato interno de Inkscape (sodipodi:docname) revela que es una copia relicenciada del artwork "2023 set" de origen gubernamental — el mismo problema del art. 13 LPI sin resolver, no una fuente independiente. No usado; S-13 (paso de peatones) se mantiene dibujado a mano.',
+      'Cualquier archivo de esta serie sin comprobar individualmente licencia + vigencia + contenido real (no solo el nombre del archivo) — no extrapolar "esta serie es toda de dominio público", y no asumir que el sufijo a/b/c de un nombre de archivo Commons corresponde al sufijo del código oficial (ver nota sobre R-400a/b/c)',
     ],
     consultedAt: '2026-09-01',
     notes:
-      'La serie "Spain traffic signal X.svg" no es homogénea: mismo patrón de nombres, pero distintos autores y licencias mezclados en el mismo árbol de categorías. Confirmado dominio público (mismo texto de cesión, autor Benedicto16, sin sustituto posterior) para: r1, p11, p18, r305, r100, r308, p24, p13a, r301-50, r301-90, s1, s2, s17, r116. Confirmado CC0 1.0 (dedicación privada de su propio autor, NACLE2 — no depende del argumento del art. 13 LPI sobre artwork gubernamental) para: r407a ("Señal_r407_bicicletas.svg"), r411 ("Señal_r411_velocidad_mínima.svg") — nombres de archivo distintos al patrón "Spain traffic signal X.svg" del resto. Confirmado NO dominio público (CC BY-SA/GFDL, autor Gigillo83): r400a, r402, r501 — no usados, requerirían añadir atribución visible en la app. Confirmado con sustituto "2023 set" de origen gubernamental (misma incertidumbre legal que el Anexo del RD 465/2025): r2 (STOP), s13 (paso de peatones) — no usados, se mantiene el dibujo propio. Segunda pasada (mismo día) resolvió también el código de dos señales que en la Fase 1 habían quedado sin confirmar: obras = P-18, prohibido-paso-peatones = R-116 (este último confirmado además contra cuatro catálogos comerciales independientes: Rotuvall, Preventec, Seton, Rótulos González).',
+      'La serie "Spain traffic signal X.svg" no es homogénea: mismo patrón de nombres, pero distintos autores y licencias mezclados en el mismo árbol de categorías. Confirmado dominio público (mismo texto de cesión, autor Benedicto16, sin sustituto posterior) para: r1, p11, p18, r305, r100, r308, p24, p13a, r301-50, r301-90, s1, s2, s17, r116, y (tercera pasada) r2_1992 (STOP). Confirmado CC0 1.0 (dedicación privada de su propio autor, NACLE2 — no depende del argumento del art. 13 LPI sobre artwork gubernamental) para: r407a ("Señal_r407_bicicletas.svg"), r411 ("Señal_r411_velocidad_mínima.svg"). Confirmado CC BY-SA/GFDL —usados en la tercera pasada con atribución— para: r400a (en realidad el fichero "r400c.svg", ver más abajo), r402 (autor real Majafego, no Gigillo83 — la investigación de la segunda pasada asumió mal que las 3 señales compartían autor; corregido tras leer el wikitext crudo de la página, no el resumen de un summarizer que ya se había equivocado una vez en esta misma investigación), r501 (autor Gigillo83). Confirmado NO reutilizable (relicenciado de artwork "2023 set" gubernamental) para: s13 (paso de peatones) — ver cannotReuse. Trampa detectada en la tercera pasada: la galería Commons de R-400 (r400a.svg/r400b.svg/r400c.svg) NO usa el mismo criterio a/b/c que el código oficial R-400a/b/c — al renderizar cada fichero, "r400a.svg" resultó ser la flecha de giro a la DERECHA (según su propia descripción "Turn right sign... used for not turning left or straight ahead"), "r400b.svg" la de giro a la IZQUIERDA, y "r400c.svg" la de RECTO — este último es el que se usa para nuestra señal R-400a ("Sentido obligatorio recto"). Sin esta comprobación visual se habría introducido un error de contenido real (flecha equivocada), del mismo tipo que el bug de "obras" que motivó todo este trabajo. r501 se usa con un número de ejemplo ("60") tachado por la franja diagonal — confirmado contra la Wikipedia Anexo (WIKI_R) que el pictograma real de R-501 SÍ incluye el número de la limitación que termina, no una franja genérica sin número. Segunda pasada (mismo día) resolvió también el código de dos señales que en la Fase 1 habían quedado sin confirmar: obras = P-18, prohibido-paso-peatones = R-116 (este último confirmado además contra cuatro catálogos comerciales independientes: Rotuvall, Preventec, Seton, Rótulos González).',
+  },
+  {
+    id: 'wikimedia-cc-by-sa-sign-attribution',
+    name: 'Atribución de imágenes CC BY-SA / GFDL de señales de tráfico (Wikimedia Commons)',
+    description:
+      'Cumplimiento de la condición de atribución de las 3 señales del catálogo (R-400a, R-402, R-501) cuya imagen real procede de un archivo de Wikimedia Commons licenciado CC BY-SA / GFDL, no de dominio público. La atribución se muestra aquí, en la pantalla "Fuentes oficiales" de la propia app.',
+    url: 'https://commons.wikimedia.org/wiki/Category:SVG_road_signs_in_Spain',
+    owner: 'Autores individuales en Wikimedia Commons (ver detalle)',
+    license:
+      'CC BY-SA 3.0 / GNU Free Documentation License — R-400a ("Spain_traffic_signal_r400c.svg"): autor Gigillo83. R-402 ("Spain_traffic_signal_r402.svg"): autor Majafego. R-501 ("Spain_traffic_signal_r501.svg"): autor Gigillo83. Ninguno de los 3 ficheros ha sido modificado respecto al original.',
+    contentType: 'Atribución de imagen (requisito de licencia)',
+    reviewStatus: 'cleared',
+    canReuse: [
+      'Mostrar estos 3 iconos en la app tal cual, con esta atribución visible, tal y como exige CC BY-SA/GFDL',
+    ],
+    cannotReuse: ['Modificar estos 3 SVG y redistribuirlos sin conservar la misma licencia (cláusula share-alike)'],
+    consultedAt: '2026-09-01',
   },
   {
     id: 'dgt-manual-permiso-b-lectura-facil',
