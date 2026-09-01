@@ -3,6 +3,9 @@ import { q } from './helpers';
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/';
 const SRC_ACCIDENTE = 'https://www.dgt.es/muevete-con-seguridad/que-hacer-ante-un-accidente-de-trafico/';
 const SRC_ECO = 'https://www.dgt.es/muevete-con-seguridad/conviertete-en-un-buen-conductor/consejos-generales/conduccion-eficiente/';
+const SRC_HIELO = 'https://www.dgt.es/comunicacion/noticias/hielo-y-nieve-con-la-adherencia-al-limite/';
+const SRC_VIENTO = 'https://www.dgt.es/comunicacion/noticias/conducir-con-el-viento-en-contra/';
+const SRC_NOCHE = 'https://www.dgt.es/comunicacion/noticias/consejos-para-conducir-de-noche/';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -436,6 +439,204 @@ export const seguridadVialQuestions = [
     difficulty: 'medium',
     tags: ['seguridad vial', 'conducción eficiente'],
     sourceUrl: SRC_ECO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // --- 2026-09-01, ampliación del banco (Fase 1, bloque 4) -----------------
+  // Condiciones meteorológicas adversas (hielo, nieve, viento) y conducción
+  // nocturna: huecos verificados del análisis de cobertura. La pregunta
+  // sobre luces largas (SEG-NOC-01) corrige deliberadamente un mito muy
+  // repetido en blogs de autoescuela (una distancia fija de "150 metros"):
+  // el articulado real (art. 102 RGC) no fija ninguna distancia, exige
+  // cambiar a cruce "tan pronto como se aprecie la posibilidad" de
+  // deslumbrar — confirmado citando el propio artículo, no un blog.
+  q({
+    id: 'SEG-MET-01',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'condiciones-meteorologicas',
+    question: 'En un día frío y soleado, ¿dónde es más probable encontrar placas de hielo en la calzada, aunque el resto de la vía esté seca?',
+    options: [
+      'En zonas umbrías sin sol directo y sobre puentes',
+      'En las zonas más anchas de la vía',
+      'Únicamente en los tramos con más tráfico',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El sol de un día despejado puede transmitir una falsa sensación de seguridad: las zonas umbrías (sin radiación solar directa) y los puentes retienen el hielo con más facilidad que el resto de la calzada, precisamente porque no reciben ese calor.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'meteorología', 'hielo'],
+    sourceUrl: SRC_HIELO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-MET-02',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'condiciones-meteorologicas',
+    question: 'Si notas que las ruedas pierden adherencia sobre una placa de hielo, debes:',
+    options: [
+      'Levantar el pie del acelerador y no frenar hasta recuperar la adherencia',
+      'Frenar con fuerza de inmediato para detener el vehículo cuanto antes',
+      'Acelerar para atravesar la zona helada lo más rápido posible',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Frenar sobre hielo bloquea las ruedas y hace perder por completo el control direccional; lo correcto es levantar el pie del acelerador y esperar, sin frenar, a que el vehículo recupere la adherencia por sí mismo.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'meteorología', 'hielo'],
+    sourceUrl: SRC_HIELO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-MET-03',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'condiciones-meteorologicas',
+    question: 'Frenando sobre nieve, un neumático de invierno respecto a uno de verano necesita, según datos de la DGT:',
+    options: [
+      'Menos de la mitad de distancia para detener el vehículo',
+      'Prácticamente la misma distancia: el tipo de neumático apenas influye en nieve',
+      'El doble de distancia para detener el vehículo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La DGT cita pruebas de frenada en nieve a 40 km/h en las que un neumático de invierno necesita unos 17,5 metros frente a los cerca de 44,7 metros de uno de verano: menos de la mitad de distancia para detenerse.',
+    difficulty: 'hard',
+    tags: ['seguridad vial', 'meteorología', 'nieve', 'neumáticos'],
+    sourceUrl: SRC_HIELO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-MET-04',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'condiciones-meteorologicas',
+    question: 'El llamado "efecto pantalla" al conducir con viento fuerte se produce cuando:',
+    options: [
+      'Un vehículo grande, como un camión, bloquea el viento momentáneamente, y al superarlo la racha aparece de forma repentina',
+      'El parabrisas se empaña por completo y deja de verse la vía',
+      'El viento apaga los faros del vehículo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Al adelantar o cruzarte con un vehículo grande, este actúa de pantalla frente al viento; en cuanto lo superas, la racha lateral aparece de golpe y puede desviar tu trayectoria si no sujetas el volante con firmeza.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'meteorología', 'viento'],
+    sourceUrl: SRC_VIENTO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-MET-05',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'condiciones-meteorologicas',
+    question: '¿Qué tramos son especialmente peligrosos por la acción del viento lateral?',
+    options: [
+      'Puentes, viaductos y salidas de túnel, al estar más expuestos y sin barreras naturales',
+      'Las rotondas, por la forma circular de la vía',
+      'Los tramos con más carriles por sentido',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Los puentes y viaductos están más expuestos al viento al no tener edificios ni vegetación que hagan de barrera, y las salidas de túnel generan un cambio brusco de intensidad del viento; ambos son puntos de especial riesgo.',
+    difficulty: 'easy',
+    tags: ['seguridad vial', 'meteorología', 'viento'],
+    sourceUrl: SRC_VIENTO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-MET-06',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'condiciones-meteorologicas',
+    question: '¿Qué vehículos son más vulnerables al viento lateral fuerte?',
+    options: [
+      'Los que llevan baca, remolque o caravana, y los de carrocería más angulosa',
+      'Los vehículos eléctricos, por su mayor peso',
+      'Ninguno en particular: el viento afecta igual a todos los vehículos',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Una baca, un remolque o una caravana ofrecen más superficie lateral al viento y empeoran la aerodinámica; las carrocerías de líneas angulosas, además, son menos penetrantes que las aerodinámicas, por lo que sufren más el empuje lateral.',
+    tags: ['seguridad vial', 'meteorología', 'viento'],
+    sourceUrl: SRC_VIENTO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-NOC-01',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'conduccion-nocturna',
+    question: 'Al cruzarte de noche con otro vehículo, la normativa obliga a cambiar de luces largas a luces de cruce:',
+    options: [
+      'Tan pronto como exista la posibilidad de deslumbrar al otro conductor, sin que la norma fije una distancia concreta',
+      'Solo cuando estéis a menos de 150 metros exactos el uno del otro',
+      'Solo si el otro conductor te avisa primero con un cambio de luces',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'A pesar de que circula la idea de una distancia fija (por ejemplo, "150 metros"), el Reglamento General de Circulación no establece ninguna cifra: exige cambiar a luces de cruce en cuanto se aprecie la posibilidad de deslumbrar a otro usuario, sea cual sea la distancia real.',
+    difficulty: 'hard',
+    tags: ['seguridad vial', 'conducción nocturna', 'luces'],
+    sourceUrl: SRC_NOCHE,
+    legalReference: 'Reglamento General de Circulación, artículo 102',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-NOC-02',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'conduccion-nocturna',
+    question: 'Si te deslumbra de frente otro vehículo por la noche, lo más seguro es:',
+    options: [
+      'Dirigir la vista hacia la derecha y abajo, guiándote por la marca vial, sin mirar directamente a las luces',
+      'Mirar fijamente a las luces contrarias para calcular mejor la distancia',
+      'Apagar tus propias luces para no empeorar el deslumbramiento mutuo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Mirar directamente a unos faros que deslumbran prolonga la pérdida de visión central; lo seguro es desviar la vista hacia la derecha y abajo, usando la marca vial como referencia para mantener la trayectoria hasta recuperar la visión.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'conducción nocturna'],
+    sourceUrl: SRC_NOCHE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-NOC-03',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'conduccion-nocturna',
+    question: 'Por la noche, la velocidad debe adaptarse de forma que permita:',
+    options: [
+      'Detener el vehículo dentro del tramo de calzada que iluminan tus propias luces',
+      'Circular siempre al límite máximo señalizado, igual que de día',
+      'Ir lo más despacio posible, sin relación con lo que ilumines',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'De noche solo ves con claridad el tramo de vía que iluminan tus propias luces; la velocidad debe permitir detenerte dentro de ese espacio, ya que más allá no puedes anticipar obstáculos.',
+    difficulty: 'easy',
+    tags: ['seguridad vial', 'conducción nocturna'],
+    sourceUrl: SRC_NOCHE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-NOC-04',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'conduccion-nocturna',
+    question: 'Según datos que cita la DGT, los accidentes nocturnos suponen aproximadamente el 29% del total, pero concentran:',
+    options: [
+      'En torno al 40% de los fallecidos en accidente de tráfico',
+      'Menos del 5% de los fallecidos, al circular menos vehículos',
+      'Exactamente el mismo porcentaje de fallecidos que de accidentes',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Pese a representar solo el 29% de los accidentes, los siniestros nocturnos concentran alrededor del 40% de los fallecidos, reflejo de su mayor gravedad media frente a los que ocurren de día.',
+    difficulty: 'hard',
+    tags: ['seguridad vial', 'conducción nocturna'],
+    sourceUrl: SRC_NOCHE,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
