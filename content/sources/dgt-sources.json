@@ -227,6 +227,42 @@
     "consultedAt": "2026-09-01"
   },
   {
+    "id": "dgt-en-patinete",
+    "name": "DGT — En patinete",
+    "description": "Normas oficiales para VMP (vehículos de movilidad personal): dónde pueden y no pueden circular, velocidad máxima, prohibición de alcohol/móvil/auriculares, y el estado (municipal, no nacional) de la obligación del casco.",
+    "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/en-patinete/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro",
+      "Afirmar una edad mínima nacional o una obligación de casco en toda España: la propia página no lo especifica, depende de ordenanza municipal"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "boe-rd-52-2026-vmp",
+    "name": "BOE — Real Decreto 52/2026, Registro de Vehículos Personales Ligeros",
+    "description": "Real Decreto 52/2026, de 28 de enero (BOE-A-2026-2140), que modifica el Reglamento General de Vehículos para regular el Registro de Vehículos Personales Ligeros y el seguro obligatorio de los VMP, desarrollando la Ley 5/2025, de 24 de julio.",
+    "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-2140",
+    "owner": "Boletín Oficial del Estado / Ministerio del Interior",
+    "license": "Texto normativo público (BOE) — reutilizable para citar y referenciar",
+    "contentType": "Norma jurídica (texto legal)",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Citar el ámbito de aplicación, fechas de entrada en vigor y régimen transitorio para preguntas `derived` sobre VMP"
+    ],
+    "cannotReuse": [
+      "Reproducir el texto legal completo como contenido propio"
+    ],
+    "consultedAt": "2026-09-01",
+    "notes": "En vigor desde el 30-01-2026 (mismo día de publicación). Ámbito: todos los VMP (1+ ruedas, plaza única, motor eléctrico exclusivo, 6-25 km/h si pesan <25kg o 6-14 km/h si pesan ≥25kg), excluyendo vehículos militares, dispositivos para personas con discapacidad y bicicletas de pedaleo asistido (EPAC). El seguro obligatorio es un requisito inmediato por la Ley 5/2025. Los VMP no certificados comercializados antes del 22-01-2024 pueden seguir circulando hasta el 22-01-2027 (disposición transitoria primera). Una nota de prensa previa de la propia DGT (2025-12-23) reflejaba un estado transitorio de incertidumbre/retraso sobre estas fechas — superado por la publicación final del RD, que es la fuente que prevalece."
+  },
+  {
     "id": "dgt-manual-permiso-b-lectura-facil",
     "name": "DGT — Manual básico del permiso B (Lectura Fácil)",
     "description": "Manual oficial de la DGT sobre los contenidos del permiso B.",

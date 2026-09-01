@@ -114,7 +114,7 @@ export const viasQuestions = [
     options: ['20 km/h', '30 km/h', '50 km/h'],
     correctAnswer: 0,
     explanation:
-      'Las calles de plataforma única, donde calzada y acera comparten el mismo nivel sin diferenciación, tienen un límite máximo de 20 km/h.',
+      'La reforma de límites urbanos fija tres escalones según el tipo de vía: 20 km/h para plataforma única, 30 km/h para el resto de calles de un solo carril por sentido, y 50 km/h con dos o más carriles por sentido. El límite más bajo se aplica aquí porque, al no haber separación física entre calzada y acera, peatones y vehículos comparten literalmente el mismo espacio.',
     tags: ['vías', 'urbanas', 'velocidad'],
     sourceUrl: SPEED_SRC,
     verificationStatus: 'verified',
@@ -128,7 +128,7 @@ export const viasQuestions = [
     options: ['50 km/h', '30 km/h', '70 km/h'],
     correctAnswer: 0,
     explanation:
-      'Cuando una vía urbana dispone de dos o más carriles por sentido de circulación, el límite genérico se mantiene en 50 km/h.',
+      'De los tres escalones de velocidad urbana (20/30/50 según el tipo de vía), el de 50 km/h es el único que se mantiene igual que antes de la reforma, y se reserva para vías con dos o más carriles por sentido, donde la separación entre carriles y respecto a los peatones es mayor que en una calle de un solo carril.',
     tags: ['vías', 'urbanas', 'velocidad'],
     sourceUrl: SPEED_SRC,
     verificationStatus: 'verified',

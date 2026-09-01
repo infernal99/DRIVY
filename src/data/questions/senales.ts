@@ -273,7 +273,7 @@ export const senalesQuestions = [
     ],
     correctAnswer: 0,
     explanation:
-      'Esta señal de prohibición indica que el paso de peatones está prohibido en ese punto de la vía, habitualmente por razones de seguridad.',
+      'El círculo rojo con la silueta de una persona cruzando es la señal R-116: prohíbe el paso a peatones por ese tramo, típico de vías rápidas o túneles donde su presencia sería especialmente peligrosa para ellos mismos y para el tráfico.',
     tags: ['señales', 'prohibición', 'peatones'],
     sourceUrl: SRC,
     verificationStatus: 'verified',
@@ -515,7 +515,7 @@ export const senalesQuestions = [
     ],
     correctAnswer: 0,
     explanation:
-      'La marca amarilla longitudinal junto al bordillo o borde de calzada indica prohibición de parar y estacionar en ese tramo.',
+      'El color amarillo en las marcas viales se reserva para restricciones especiales de parada y estacionamiento (a diferencia del blanco, que ordena la circulación); pintada junto al bordillo, indica que en ese tramo no puedes ni parar ni estacionar, a diferencia de una línea blanca continua de borde de calzada, que no impone esa prohibición.',
     tags: ['señales', 'marcas viales', 'estacionamiento'],
     sourceUrl: SRC,
     verificationStatus: 'verified',
