@@ -5,6 +5,7 @@ const SRC_SRI = 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/con-ninos
 const SRC_AMBIENTAL = 'https://www.dgt.es/nuestros-servicios/tu-vehiculo/tus-vehiculos/distintivo-ambiental/';
 const SRC_ADAS = 'https://www.dgt.es/muevete-con-seguridad/sistemas-avanzados-ayuda-conduccion/Sistemas-avanzados-de-ayuda-a-la-conduccion-ADAS-/';
 const SRC_AGRICOLA = 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/tractor/';
+const SRC_REMOLQUE = 'https://revista.dgt.es/es/reportajes/2017/07JULIO/Reportaje-remolques.shtml';
 const RGC_BASE = 'https://www.boe.es/buscar/act.php?id=BOE-A-2003-23514';
 const VERIFIED_AT = '2026-09-01';
 
@@ -675,6 +676,125 @@ export const vehiculoQuestions = [
     difficulty: 'medium',
     tags: ['vehículo', 'vehículos especiales'],
     sourceUrl: SRC_AGRICOLA,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // --- 2026-09-01, ampliación del banco (Fase 1, bloque 10) ----------------
+  // Remolques y transporte de personas: huecos detectados en el índice
+  // temático de un test público de terceros (solo títulos). Verificado
+  // contra un reportaje oficial de la revista de la DGT, contrastado
+  // además con RACE para el límite de velocidad — que resultó ser el
+  // MISMO (90 km/h) para remolque ligero y pesado en autopista/autovía,
+  // corrigiendo un dato que un resumen agregado había dado como distinto
+  // (80 km/h para el pesado) sin que ninguna fuente primaria lo respaldara.
+  q({
+    id: 'VEH-REM-01',
+    categoryId: 'vehiculo',
+    subcategoryId: 'remolques',
+    question: 'Un remolque se considera "ligero" cuando su masa máxima autorizada (MMA) no supera:',
+    options: ['750 kg', '1.500 kg', '3.500 kg'],
+    correctAnswer: 0,
+    explanation:
+      'Los remolques ligeros son aquellos con una MMA de hasta 750 kg; por encima de esa cifra se consideran remolques no ligeros, con requisitos administrativos distintos.',
+    difficulty: 'easy',
+    tags: ['vehículo', 'remolques'],
+    sourceUrl: SRC_REMOLQUE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-REM-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'remolques',
+    question: 'En autopista o autovía, la velocidad máxima circulando con remolque es de:',
+    options: [
+      '90 km/h, la misma tanto para remolque ligero como para uno de mayor MMA',
+      '90 km/h para el remolque ligero, pero solo 80 km/h para uno más pesado',
+      '70 km/h en cualquier caso, por llevar remolque',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El límite de 90 km/h en autopista y autovía se aplica por igual a remolques ligeros y no ligeros; lo que cambia según el peso del remolque son los requisitos administrativos (matrícula, seguro propio), no la velocidad máxima permitida.',
+    difficulty: 'hard',
+    tags: ['vehículo', 'remolques'],
+    sourceUrl: SRC_REMOLQUE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-REM-03',
+    categoryId: 'vehiculo',
+    subcategoryId: 'remolques',
+    question: 'A diferencia de un remolque ligero, uno con MMA superior a 750 kg:',
+    options: [
+      'Necesita permiso de circulación propio, matrícula específica y seguro obligatorio independiente',
+      'No necesita ningún trámite adicional, basta con el seguro del vehículo tractor',
+      'Solo puede circular de noche',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Un remolque de más de 750 kg de MMA deja de ser "ligero" y pasa a necesitar su propio permiso de circulación, matrícula específica y seguro obligatorio independiente del vehículo que lo arrastra.',
+    tags: ['vehículo', 'remolques'],
+    sourceUrl: SRC_REMOLQUE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-REM-04',
+    categoryId: 'vehiculo',
+    subcategoryId: 'remolques',
+    question: 'Para arrastrar con un turismo de hasta 3.500 kg un remolque de MMA superior a 750 kg, sin que el conjunto supere los 4.250 kg, el titular de un permiso B necesita:',
+    options: [
+      'Ampliar su permiso con la autorización B-96',
+      'Nada más, el permiso B ya lo permite sin ningún trámite adicional',
+      'Sacarse directamente el permiso C',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La autorización B-96 amplía el permiso B para poder arrastrar un remolque de MMA superior a 750 kg con un vehículo de hasta 3.500 kg, siempre que el conjunto no supere los 4.250 kg; por encima de esas cifras haría falta el permiso B+E.',
+    difficulty: 'hard',
+    tags: ['vehículo', 'remolques'],
+    sourceUrl: SRC_REMOLQUE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-CAR-03',
+    categoryId: 'vehiculo',
+    subcategoryId: 'carga',
+    question: 'El número de personas transportadas en un vehículo no puede superar:',
+    options: [
+      'El número de plazas autorizadas, sin superar tampoco la masa máxima autorizada del vehículo',
+      'El número de plazas autorizadas, aunque se supere la masa máxima autorizada',
+      'No hay límite si los ocupantes son menores de edad',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La normativa limita el transporte de personas al número de plazas autorizadas del vehículo, con el límite adicional de no poder superar en ningún caso la masa máxima autorizada, sea cual sea la edad de los ocupantes.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'carga', 'ocupación'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 9',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-CAR-04',
+    categoryId: 'vehiculo',
+    subcategoryId: 'carga',
+    question: 'En un turismo homologado para 5 plazas (conductor y 4 pasajeros), circular con 7 o más personas en total:',
+    options: [
+      'Es una infracción grave, y además permite a los agentes inmovilizar el vehículo',
+      'Es una infracción leve, igual que llevar 6 personas',
+      'No tiene ninguna consecuencia si el trayecto es corto',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Superar en un 50% el número de plazas de pasajeros autorizadas (en un 5 plazas, viajar con 7 o más personas en total) se considera infracción grave y faculta a los agentes para inmovilizar el vehículo mientras se mantenga esa situación.',
+    difficulty: 'hard',
+    tags: ['vehículo', 'carga', 'ocupación'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 9',
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
