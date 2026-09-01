@@ -25,7 +25,7 @@ type SendPushBody =
   | { type: 'battle_accept'; battleId: number };
 
 webpush.setVapidDetails(
-  'mailto:drivy-app@example.com',
+  'mailto:roady-app@example.com',
   process.env.VITE_VAPID_PUBLIC_KEY as string,
   process.env.VAPID_PRIVATE_KEY as string,
 );
@@ -112,7 +112,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         if (!friendship) break;
         await sendToUser(db, target.user_id, {
           title: 'Nueva solicitud de amistad',
-          body: `${callerName} quiere ser tu amigo en DRIVY`,
+          body: `${callerName} quiere ser tu amigo en Roady`,
           url: '/friends',
         });
         break;

@@ -14,7 +14,7 @@ interface PushPayload {
 }
 
 self.addEventListener('push', (event: PushEvent) => {
-  let payload: PushPayload = { title: 'DRIVY', body: 'Tienes novedades.' };
+  let payload: PushPayload = { title: 'Roady', body: 'Tienes novedades.' };
   try {
     if (event.data) payload = { ...payload, ...event.data.json() };
   } catch {
@@ -31,7 +31,7 @@ self.addEventListener('push', (event: PushEvent) => {
   );
 });
 
-// Focuses an already-open DRIVY tab if there is one, instead of always
+// Focuses an already-open Roady tab if there is one, instead of always
 // opening a new one.
 self.addEventListener('notificationclick', (event: NotificationEvent) => {
   event.notification.close();

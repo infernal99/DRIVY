@@ -33,7 +33,7 @@ export function PendingFriendInviteHandler() {
     }
 
     acceptFriendInvite(code)
-      .then((result) => setNotice(`Ahora eres amigo de ${result.displayName} en DRIVY`))
+      .then((result) => setNotice(`Ahora eres amigo de ${result.displayName} en Roady`))
       .catch(() => {
         // Invalid/self/blocked code — nothing meaningful to show a new user for this.
       });
