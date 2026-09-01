@@ -183,6 +183,20 @@ Contenido `derived` puede citar estas fuentes.
   - Reproducir el texto legal completo como contenido propio
 - **Notas**: En vigor desde el 30-01-2026 (mismo día de publicación). Ámbito: todos los VMP (1+ ruedas, plaza única, motor eléctrico exclusivo, 6-25 km/h si pesan <25kg o 6-14 km/h si pesan ≥25kg), excluyendo vehículos militares, dispositivos para personas con discapacidad y bicicletas de pedaleo asistido (EPAC). El seguro obligatorio es un requisito inmediato por la Ley 5/2025. Los VMP no certificados comercializados antes del 22-01-2024 pueden seguir circulando hasta el 22-01-2027 (disposición transitoria primera). Una nota de prensa previa de la propia DGT (2025-12-23) reflejaba un estado transitorio de incertidumbre/retraso sobre estas fechas — superado por la publicación final del RD, que es la fuente que prevalece.
 
+## DGT — Con niños
+
+- **URL**: https://www.dgt.es/muevete-con-seguridad/viaja-seguro/con-ninos/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Normativa e información oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente y el artículo 117 del RGC
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal de la página como si fuera nuestro
+  - Afirmar cómo queda la excepción de taxi (135 cm sin SRI en tráfico urbano) tras el RD 518/2026: esa reforma entra en vigor el 2026-10-01 y las fuentes consultadas no coinciden en si la mantiene igual — no preguntar por ella hasta confirmarlo después de esa fecha
+
 ## DGT — Manual básico del permiso B (Lectura Fácil)
 
 - **URL**: https://seguridadvial2030.dgt.es/.galleries/enlaces/practicas-interes/personas-formadas-y-capaces/manual-permiso-b-lectura-facil.html

@@ -1,6 +1,7 @@
 import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-conductores/';
+const SRC_SRI = 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/con-ninos/';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -243,6 +244,128 @@ export const vehiculoQuestions = [
     difficulty: 'easy',
     tags: ['vehículo', 'cinturón'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // --- 2026-09-01, ampliación del banco (Fase 1, bloque 2) -----------------
+  // Retención infantil: tema muy examinado y hasta ahora ausente del banco.
+  // Verificado contra el art. 117 RGC (cinturones y SRI homologados) y la
+  // página oficial "DGT - Con niños". NO se pregunta por la excepción de
+  // taxi (135 cm sin SRI en tráfico urbano): el RD 518/2026, que entra en
+  // vigor el 2026-10-01 (todavía no vigente hoy), reforma precisamente el
+  // bloque de protección a usuarios vulnerables donde vive esa excepción, y
+  // las fuentes consultadas no coinciden en si se mantiene igual — mejor
+  // no preguntar que preguntar con una cifra a punto de cambiar. Revisar
+  // este archivo después del 2026-10-01 para añadirla si procede.
+  q({
+    id: 'VEH-SRI-01',
+    categoryId: 'vehiculo',
+    subcategoryId: 'retencion-infantil',
+    question: '¿Hasta qué altura es obligatorio el uso de un sistema de retención infantil (SRI) homologado en el coche?',
+    options: ['135 cm', '150 cm', 'Hasta los 8 años, independientemente de la altura'],
+    correctAnswer: 0,
+    explanation:
+      'La normativa fija el umbral en la altura del menor, no en su edad: hasta 135 cm es obligatorio un SRI homologado adaptado a su peso y talla; a partir de esa altura ya puede usarse el cinturón de seguridad directamente.',
+    difficulty: 'easy',
+    tags: ['vehículo', 'retención infantil'],
+    sourceUrl: SRC_SRI,
+    legalReference: 'Reglamento General de Circulación, artículo 117',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-SRI-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'retencion-infantil',
+    question: 'Como norma general, ¿en qué asientos debe viajar un menor sujeto a la obligación de usar SRI?',
+    options: [
+      'En los asientos traseros, salvo alguna de las excepciones tasadas por la norma',
+      'Siempre en el asiento delantero, para vigilarlo mejor',
+      'Indistintamente delante o detrás, sin ninguna preferencia',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La norma general es que los menores viajen en los asientos traseros; solo pueden ir delante en casos excepcionales: que el vehículo no tenga asientos traseros, que ya estén todos ocupados por otros menores, o que no quepan allí todos los SRI necesarios.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'retención infantil'],
+    sourceUrl: SRC_SRI,
+    legalReference: 'Reglamento General de Circulación, artículo 117',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-SRI-03',
+    categoryId: 'vehiculo',
+    subcategoryId: 'retencion-infantil',
+    question: 'Si por alguna de las excepciones permitidas un SRI a contramarcha se instala en el asiento delantero, el airbag frontal de ese asiento debe estar:',
+    options: [
+      'Desconectado; nunca se instala una silla a contramarcha con el airbag frontal activo',
+      'Activado siempre, para mayor protección',
+      'Da igual, el airbag no afecta a los SRI',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Un airbag frontal se despliega con fuerza hacia el respaldo del asiento; con una silla a contramarcha, esa fuerza golpearía directamente al menor, por lo que la norma exige desconectar el airbag antes de instalar un SRI a contramarcha en esa plaza.',
+    difficulty: 'hard',
+    tags: ['vehículo', 'retención infantil', 'airbag'],
+    sourceUrl: SRC_SRI,
+    legalReference: 'Reglamento General de Circulación, artículo 117',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-SRI-04',
+    categoryId: 'vehiculo',
+    subcategoryId: 'retencion-infantil',
+    question: 'La normativa i-Size (R129), frente a los grupos clásicos 0/0+/I/II/III, clasifica los sistemas de retención infantil principalmente según:',
+    options: [
+      'La altura del menor, en lugar de su peso',
+      'El precio del sistema de retención',
+      'La marca del vehículo en el que se instala',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Mientras los grupos clásicos (0, 0+, I, II/III) clasifican los SRI por el peso del menor, la normativa i-Size (reglamento UNECE R129) los clasifica por su altura, un criterio que se ajusta mejor a las proporciones reales del cuerpo infantil.',
+    tags: ['vehículo', 'retención infantil'],
+    sourceUrl: SRC_SRI,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-SRI-05',
+    categoryId: 'vehiculo',
+    subcategoryId: 'retencion-infantil',
+    question: 'Un menor que ya ha superado los 135 cm y viaja con el cinturón de seguridad directamente, sin elevador:',
+    options: [
+      'Cumple la norma, aunque se recomienda seguir usando elevador hasta los 150 cm para que el cinturón ajuste mejor',
+      'Incumple siempre la norma hasta los 18 años',
+      'Solo puede hacerlo si viaja en el asiento delantero',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'A partir de 135 cm ya no es obligatorio el SRI y puede usarse el cinturón directamente, pero la DGT recomienda mantener un elevador hasta los 150 cm, porque por debajo de esa altura el cinturón de adulto no suele ajustar correctamente sobre el cuerpo del menor.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'retención infantil'],
+    sourceUrl: SRC_SRI,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-SRI-06',
+    categoryId: 'vehiculo',
+    subcategoryId: 'retencion-infantil',
+    question: 'Según datos que cita la propia DGT, el uso correcto de un sistema de retención infantil, en caso de accidente, puede evitar:',
+    options: [
+      'Hasta el 75% de las muertes infantiles y el 90% de las lesiones graves',
+      'Solo golpes leves, no tiene impacto real en accidentes graves',
+      'Únicamente lesiones en la cabeza, no en el resto del cuerpo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La DGT cifra en un 75% la reducción de muertes infantiles y en un 90% la de lesiones graves cuando se usa correctamente un sistema de retención infantil adaptado al menor, frente a viajar sin él o mal sujeto.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'retención infantil'],
+    sourceUrl: SRC_SRI,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
