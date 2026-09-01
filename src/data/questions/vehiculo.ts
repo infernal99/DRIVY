@@ -194,6 +194,24 @@ export const vehiculoQuestions = [
     lastVerifiedAt: VERIFIED_AT,
   }),
   q({
+    id: 'VEH-MAN-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'mantenimiento',
+    question: '¿Quién es el responsable de mantener el vehículo en condiciones de seguridad para circular?',
+    options: [
+      'El conductor o titular del vehículo, en todo momento, no solo cuando toca pasar la ITV',
+      'Únicamente el taller que hizo la última revisión',
+      'Solo la ITV, que es quien certifica que el vehículo está en condiciones',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La ITV es una revisión periódica puntual, pero la obligación de mantener el vehículo en condiciones de seguridad (frenos, neumáticos, luces, etc.) recae en todo momento sobre su conductor o titular, no solo el día de la inspección.',
+    tags: ['vehículo', 'mantenimiento'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
     id: 'VEH-SAC-01',
     categoryId: 'vehiculo',
     subcategoryId: 'seguridad-activa',
@@ -207,6 +225,25 @@ export const vehiculoQuestions = [
     explanation:
       'La seguridad activa engloba los elementos que ayudan a evitar que se produzca el accidente: frenos, ABS, control de estabilidad, neumáticos, dirección, etc.',
     difficulty: 'easy',
+    tags: ['vehículo', 'seguridad activa'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-SAC-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'seguridad-activa',
+    question: 'El sistema ABS (antibloqueo de frenos) es un ejemplo de seguridad activa porque:',
+    options: [
+      'Evita que las ruedas se bloqueen al frenar, permitiendo seguir dirigiendo el vehículo mientras se frena',
+      'Reduce las lesiones de los ocupantes una vez ya se ha producido la colisión',
+      'Aumenta automáticamente la velocidad máxima permitida en la vía',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El ABS impide que las ruedas se bloqueen durante una frenada brusca, lo que permite mantener la capacidad de dirección y esquivar un obstáculo mientras se frena: ayuda a evitar el accidente, la definición misma de seguridad activa.',
+    difficulty: 'medium',
     tags: ['vehículo', 'seguridad activa'],
     sourceUrl: SRC,
     verificationStatus: 'verified',

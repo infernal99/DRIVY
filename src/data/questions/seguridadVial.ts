@@ -164,6 +164,25 @@ export const seguridadVialQuestions = [
     lastVerifiedAt: VERIFIED_AT,
   }),
   q({
+    id: 'SEG-RIE-02',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'riesgos',
+    question: 'Una presión de los neumáticos inferior a la recomendada por el fabricante, además de desgastarlos de forma irregular:',
+    options: [
+      'Aumenta la distancia de frenado y el riesgo de reventón',
+      'No tiene ningún efecto sobre la seguridad, solo sobre el consumo',
+      'Mejora el agarre en curva al aumentar la superficie de contacto',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Con una presión insuficiente el neumático se deforma más de lo previsto, lo que aumenta la distancia de frenado, el consumo y el riesgo de que se caliente en exceso y llegue a reventar, especialmente a alta velocidad.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'riesgos', 'neumáticos'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
     id: 'SEG-FAT-01',
     categoryId: 'seguridad-vial',
     subcategoryId: 'fatiga',
@@ -177,6 +196,25 @@ export const seguridadVialQuestions = [
     explanation:
       'La fatiga reduce la capacidad de reacción de forma progresiva; se recomienda descansar unos 15-20 minutos aproximadamente cada dos horas de conducción para mantener el nivel de atención.',
     tags: ['seguridad vial', 'fatiga'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-FAT-02',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'fatiga',
+    question: 'Un "microsueño" al volante es:',
+    options: [
+      'Un episodio de apenas unos segundos en el que el conductor se queda ligeramente dormido sin ser consciente de ello',
+      'Una técnica de descanso rápido que se recomienda hacer parado en el arcén',
+      'Un síntoma exclusivo de los viajes nocturnos, que no ocurre de día',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Un microsueño es un periodo de apenas unos segundos durante el que el conductor se queda ligeramente dormido y permanece ajeno al tráfico, sin darse cuenta de que ha ocurrido hasta después; la DGT lo vincula con numerosos accidentes de extrema gravedad.',
+    difficulty: 'hard',
+    tags: ['seguridad vial', 'fatiga', 'somnolencia'],
     sourceUrl: SRC,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,

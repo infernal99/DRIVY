@@ -22,6 +22,7 @@ export const otrosUsuariosQuestions = [
     categoryId: 'otros-usuarios',
     subcategoryId: 'peatones',
     question: 'En un paso de peatones sin semáforo, un peatón que ya ha iniciado el cruce tiene:',
+    image: 'diagram:peaton-paso-senalizado-cruzando',
     options: [
       'Prioridad; debes detenerte o reducir para dejarlo pasar',
       'Ninguna prioridad si el vehículo ya se aproxima',
@@ -103,6 +104,7 @@ export const otrosUsuariosQuestions = [
     categoryId: 'otros-usuarios',
     subcategoryId: 'ciclistas',
     question: 'Al adelantar a un ciclista, un turismo debe dejar una separación lateral mínima de:',
+    image: 'diagram:ciclista-distancia-lateral',
     options: ['1,5 metros', '0,5 metros', 'No hay una distancia mínima regulada'],
     correctAnswer: 0,
     explanation:
