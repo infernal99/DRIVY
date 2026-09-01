@@ -1,7 +1,19 @@
 import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
+const VERIFIED_AT = '2026-09-01';
 
+// --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
+// Confirmed the one headline numeric rule here (OTR-CIC-01's 1,5 m de
+// distancia lateral al adelantar a un ciclista) is unchanged and current.
+//
+// FUTURE REVIEW FLAG: a reform of the RGC enters into force 2026-10-01
+// requiring drivers to also reduce speed by at least 20 km/h when
+// overtaking a cyclist, and to fully change lanes on multi-lane roads to
+// keep the 1,5 m gap. Not yet in force as of this audit (2026-09-01), so
+// not added to OTR-CIC-01 to avoid asserting a rule before it applies —
+// but re-check this file once that date passes, since the question will
+// then be incomplete (still true, just no longer the whole picture).
 export const otrosUsuariosQuestions = [
   q({
     id: 'OTR-PEA-01',
@@ -19,6 +31,8 @@ export const otrosUsuariosQuestions = [
     difficulty: 'easy',
     tags: ['otros usuarios', 'peatones'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-PEA-02',
@@ -35,6 +49,8 @@ export const otrosUsuariosQuestions = [
       'Al girar, el vehículo debe ceder el paso a los peatones que ya estén cruzando legalmente la vía a la que se incorpora, sin distinción de edad.',
     tags: ['otros usuarios', 'peatones'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-PEA-03',
@@ -52,6 +68,8 @@ export const otrosUsuariosQuestions = [
     difficulty: 'hard',
     tags: ['otros usuarios', 'peatones'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-CIC-01',
@@ -65,6 +83,8 @@ export const otrosUsuariosQuestions = [
     difficulty: 'medium',
     tags: ['otros usuarios', 'ciclistas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-CIC-02',
@@ -81,6 +101,8 @@ export const otrosUsuariosQuestions = [
       'Los ciclistas tienen derecho a circular por la calzada ocupando el espacio necesario para su seguridad, y en determinadas condiciones (por ejemplo, en zonas urbanas o de baja velocidad) se les permite circular en paralelo.',
     tags: ['otros usuarios', 'ciclistas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-CIC-03',
@@ -97,6 +119,8 @@ export const otrosUsuariosQuestions = [
       'Con carácter general, los ciclistas pueden circular en paralelo dentro de un carril, siempre que no entorpezcan de forma indebida la circulación del resto de vehículos.',
     tags: ['otros usuarios', 'ciclistas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-MOT-01',
@@ -114,6 +138,8 @@ export const otrosUsuariosQuestions = [
     difficulty: 'easy',
     tags: ['otros usuarios', 'motocicletas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-MOT-02',
@@ -130,6 +156,8 @@ export const otrosUsuariosQuestions = [
       'Las motocicletas son más vulnerables ante una colisión y más difíciles de detectar por su tamaño; conviene comprobar dos veces los retrovisores y el ángulo muerto antes de cualquier maniobra.',
     tags: ['otros usuarios', 'motocicletas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-VPR-01',
@@ -147,6 +175,8 @@ export const otrosUsuariosQuestions = [
     difficulty: 'easy',
     tags: ['otros usuarios', 'vehículos prioritarios'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-VPR-02',
@@ -163,6 +193,8 @@ export const otrosUsuariosQuestions = [
       'Cuando la urgencia lo justifique, estos vehículos pueden apartarse de determinadas normas de circulación, pero siempre extremando la precaución y sin generar un peligro innecesario para otros usuarios.',
     tags: ['otros usuarios', 'vehículos prioritarios'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-TRP-01',
@@ -180,6 +212,8 @@ export const otrosUsuariosQuestions = [
     difficulty: 'easy',
     tags: ['otros usuarios', 'transporte público'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'OTR-TRP-02',
@@ -196,5 +230,7 @@ export const otrosUsuariosQuestions = [
       'Los carriles reservados a determinados vehículos, como el carril bus, no pueden ser utilizados por el resto de vehículos salvo que la señalización lo permita expresamente (por ejemplo, para girar).',
     tags: ['otros usuarios', 'transporte público'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
 ];

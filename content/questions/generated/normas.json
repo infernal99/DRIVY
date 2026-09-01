@@ -35,7 +35,8 @@
     "contentHash": "6b0f3be7e898ef854954cd7b752c9d690a90e5fa1df1a83808d0609a70ebfbd5",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-PRI-02",
@@ -74,7 +75,8 @@
     "contentHash": "6229bf5335ed65feed1365a4660f3b4f5e0507554cac6bc365ac3962abe50702",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-PRI-03",
@@ -112,7 +114,8 @@
     "contentHash": "f0d0b522b283d2c5162a2b72e79edddd0b066241d61d4979879c5f63269f4ee7",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-PRI-04",
@@ -151,7 +154,8 @@
     "contentHash": "b6dceedc723c4333181af1be13a0e73fee522ed07d14d948cf2ab5eec8586d2f",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-ADE-01",
@@ -189,7 +193,8 @@
     "contentHash": "9f591a01464feec112d956506fa323d637207d54af6c9008ae579a20aaa0753f",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-ADE-02",
@@ -228,7 +233,8 @@
     "contentHash": "881f02ac4481481e1457c92e4acb0e139d0dcce4efe58f288548fb3499967317",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-ADE-03",
@@ -266,7 +272,8 @@
     "contentHash": "b3f0a6f72261e9f8d167e78c68d5cab5bffe0b6cba8b068b243afb5288c8db34",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-ADE-04",
@@ -304,7 +311,8 @@
     "contentHash": "cae73b856c7ec6df74f1c9a98f5a969f0fa0898cb26139d4f7044798a0ca79cf",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-CDI-01",
@@ -342,7 +350,8 @@
     "contentHash": "dfbc24c351fa0b490e1288e4ce2ab70210e866003a2d51125654842a28d1b0a0",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-CDI-02",
@@ -380,7 +389,8 @@
     "contentHash": "5fc4915966ad519ee4e6af65b4cc1928607600e8607a2623e976b95c6355fe3c",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-CSE-01",
@@ -418,7 +428,8 @@
     "contentHash": "1d994fee7ebf6c5d33d96d66fd4508026b48644164c108a76629ac3eb6b60ee8",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-CSE-02",
@@ -456,7 +467,8 @@
     "contentHash": "c8fd08f1d09e3d619dc9523d2cbd9df5924346d2c812787faa87b5c0e2fc3009",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-INC-01",
@@ -494,7 +506,8 @@
     "contentHash": "361b599a102a2249ce8114eb689ef188427c4600cfff028c8bbb34346b145580",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-INC-02",
@@ -532,7 +545,8 @@
     "contentHash": "a5b089954aa16b58f6b2fa53f1656a4147c861241560300a8c5bea3612e7a235",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-PAR-01",
@@ -571,7 +585,8 @@
     "contentHash": "13c56e82b6dc22d189a32adc0172619d2cfeeb1816819d4d3803ef4b0d6cf8f6",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-PAR-02",
@@ -609,7 +624,8 @@
     "contentHash": "7800dbc006d5ab0b7e15ce26434fa8aa35031f9cb62a4742a1925386010721b0",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-EST-01",
@@ -647,7 +663,8 @@
     "contentHash": "84fc7de909ceb6454c29eed912b947ce316749ad288259fcf89f1ce0686fe955",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-EST-02",
@@ -685,7 +702,8 @@
     "contentHash": "ede829d32d21ac1898a4f3be272c1d8b68c17fd3fb8b89f491a5498768e1fb1f",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-CIR-01",
@@ -723,15 +741,16 @@
     "contentHash": "4a6f5aebf38b7a9fe070e8acd862f01e09bf15d054173917f8267afac1c88e26",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-CIR-02",
-    "question": "¿Es obligatorio circular con las luces de cruce encendidas de día en autopista o autovía?",
+    "question": "¿Es obligatorio circular con las luces de cruce encendidas de día?",
     "options": [
       {
         "id": "NOR-CIR-02-0",
-        "text": "Es recomendable y obligatorio para motocicletas; para turismos depende de la normativa vigente en cada momento"
+        "text": "Sí, siempre para motocicletas y ciclomotores; para turismos solo en túneles, tramos mal iluminados, carriles reversibles o con poca visibilidad"
       },
       {
         "id": "NOR-CIR-02-1",
@@ -743,7 +762,7 @@
       }
     ],
     "correctOptionId": "NOR-CIR-02-0",
-    "explanation": "El uso de luces de cruce de día es obligatorio para motocicletas y ciclomotores, y muy recomendable para el resto de vehículos en autopistas y autovías, al mejorar la visibilidad frente a otros conductores.",
+    "explanation": "Las motocicletas y ciclomotores deben circular siempre con la luz de cruce encendida, de día y de noche, en cualquier vía. Los turismos y furgonetas no están obligados con carácter general en vías normales, pero sí en túneles, pasos inferiores, tramos señalizados con obligación de alumbrado, carriles reversibles o adicionales, y en condiciones de poca visibilidad como lluvia o niebla.",
     "categoryId": "normas",
     "subcategoryId": "circulacion-vias",
     "difficulty": "hard",
@@ -758,10 +777,11 @@
       "normas",
       "alumbrado"
     ],
-    "contentHash": "acc8713e8157339db9f7798e408e7821364d9eede18603acbd71fd9c2f443dfd",
+    "contentHash": "f00ff5adc31551046f6de8bb11e304a2448d5a2777ea149e2272ccd7edf26b40",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "NOR-CIR-03",
@@ -799,6 +819,7 @@
     "contentHash": "26cc1614a2338aa53bbc21810d3a2b5f82928c2f9a9c8703a8ff47b35d41e608",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   }
 ]

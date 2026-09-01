@@ -134,6 +134,21 @@ Contenido `derived` puede citar estas fuentes.
 Nada de aquí se usa como base de contenido `official` ni `derived`. Ver
 `scripts/import-*.ts` para cómo (no) se importan.
 
+## BOE — ¿son reutilizables los pictogramas del Anexo del RD 465/2025 (catálogo de señales)?
+
+- **URL**: https://www.boe.es/informacion/aviso_legal/index.php
+- **Autor/organización**: Agencia Estatal Boletín Oficial del Estado
+- **Licencia**: NO CONCLUYENTE — ver notes. No usar como base para reproducir artwork sin revisión legal profesional.
+- **Tipo de contenido**: Análisis legal (dos fuentes en tensión, sin resolver)
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: NEEDS_REVIEW
+- **Qué podemos reutilizar**: 
+  - Citar el razonamiento en la documentación interna como punto de partida para una consulta legal real
+- **Qué NO podemos reutilizar**: 
+  - Reproducir el artwork del Anexo I / RD 465/2025 en la app basándose únicamente en este análisis
+  - Presentar esos pictogramas como "oficiales" en el sentido legal de "reutilización confirmada"
+- **Notas**: Dos argumentos en tensión, ninguno concluyente: (1) A FAVOR — el art. 13 del TRLPI (RDLeg 1/1996) excluye de propiedad intelectual "las disposiciones legales o reglamentarias"; la propia Wikipedia en español se apoya en este artículo para alojar libremente textos legales españoles y afirma (página "Recursos libres/Artículo 13") que la exclusión alcanza a "anexos, gráficos, etc." de esas disposiciones — y el Anexo I del RD 465/2025 no es una ilustración decorativa añadida a la norma, es la norma misma (el decreto define el pictograma oficial dibujándolo). (2) EN CONTRA — la licencia de reutilización que el propio BOE publica en su aviso legal excluye expresamente "el diseño del portal, así como sus elementos gráficos"; no está claro si esa frase se refiere solo al diseño de la web boe.es o también a las imágenes incrustadas en los documentos que aloja, y no encontré jurisprudencia ni doctrina que resuelva específicamente este caso (catálogos técnicos/pictogramas de un reglamento). Conclusión: mantener needs_review y NO tocar la política actual (SVG propios en TrafficSign.tsx, nunca artwork DGT/BOE) hasta que un abogado de propiedad intelectual lo confirme — el coste de equivocarse (retirar contenido, quedar mal con Stripe/premium ya en producción) supera el beneficio estético de un pictograma más fiel.
+
 ## DGT (Sede electrónica) — Tests oficiales de examen
 
 - **URL**: https://sede.dgt.gob.es/es/permisos-de-conducir/test-de-examenes/

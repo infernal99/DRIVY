@@ -2,7 +2,16 @@ import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
 const SIGNS_SRC = 'https://www.dgt.es/comunicacion/notas-de-prensa/20250610-el-gobierno-aprueba-la-actualizacion-del-catalogo-oficial-de-senales-de-trafico/';
+const VERIFIED_AT = '2026-09-01';
 
+// --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
+// Wording/answer review, distinct from the Fase 1 sign-code verification
+// already done in signs.ts. Found and fixed one real error: SEN-PEL-03
+// asserted the wrong meaning for its own sign (see that entry's comment).
+// Everything else checked out — including SEN-PRO-01's exemption detail
+// (motorcycles/mopeds excluded from the overtaking ban) and the 150-250 m
+// danger-sign placement distance in SEN-PEL-05, both confirmed against
+// current sources rather than assumed correct because they sounded right.
 export const senalesQuestions = [
   q({
     id: 'SEN-PRI-01',
@@ -17,6 +26,8 @@ export const senalesQuestions = [
       'El triángulo invertido de borde rojo es la señal de Ceda el paso: obliga a detenerse si es necesario y a dejar pasar a los vehículos que circulan por la vía a la que se accede.',
     tags: ['señales', 'prioridad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PRI-02',
@@ -35,6 +46,8 @@ export const senalesQuestions = [
     tags: ['señales', 'prioridad'],
     difficulty: 'easy',
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PRI-03',
@@ -52,6 +65,8 @@ export const senalesQuestions = [
       'Esta señal de peligro advierte de una intersección próxima en la que, si no hay otra señalización, rige la norma general de prioridad para quien viene por la derecha.',
     tags: ['señales', 'peligro', 'prioridad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PEL-01',
@@ -70,6 +85,8 @@ export const senalesQuestions = [
     tags: ['señales', 'peligro'],
     difficulty: 'easy',
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PEL-02',
@@ -84,23 +101,33 @@ export const senalesQuestions = [
     tags: ['señales', 'peligro', 'obras'],
     difficulty: 'easy',
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PEL-03',
     categoryId: 'senales',
     subcategoryId: 'senales-peligro',
+    // CORRECTED 2026-09-01 (content-quality audit): this sign is P-11 —
+    // verified in signs.ts as "Paso a nivel SIN barreras" (confirmed
+    // against the Wikipedia Anexo de señales de peligro, itself checked
+    // against commercial signage catalogs during the Fase 1 sign audit).
+    // The correct option here said "con barreras", the opposite of what
+    // P-11 actually means — a real factual error, not just a simplification.
     question: '¿Qué anuncia esta señal de peligro?',
     image: 'sign:paso-nivel',
     options: [
-      'Paso a nivel con barreras próximo',
+      'Paso a nivel sin barreras próximo',
       'Túnel estrecho',
       'Puente sobre un río',
     ],
     correctAnswer: 0,
     explanation:
-      'El pictograma con forma de vía férrea vallada advierte de un paso a nivel próximo; obliga a extremar la precaución y nunca detenerse sobre las vías.',
+      'El pictograma con forma de vía férrea advierte de un paso a nivel SIN barreras próximo; al no haber barreras que corten el paso, obliga a extremar la precaución y nunca detenerse sobre las vías.',
     tags: ['señales', 'peligro'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-01',
   }),
   q({
     id: 'SEN-PEL-04',
@@ -119,6 +146,8 @@ export const senalesQuestions = [
     tags: ['señales', 'peligro'],
     difficulty: 'easy',
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PEL-05',
@@ -136,6 +165,8 @@ export const senalesQuestions = [
     difficulty: 'hard',
     tags: ['señales', 'peligro'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PRO-01',
@@ -153,6 +184,8 @@ export const senalesQuestions = [
       'Las señales de prohibición son círculos de borde rojo. Esta en concreto prohíbe adelantar a vehículos de motor distintos de motocicletas de dos ruedas sin sidecar y ciclomotores de dos ruedas.',
     tags: ['señales', 'prohibición'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PRO-02',
@@ -171,6 +204,8 @@ export const senalesQuestions = [
     difficulty: 'easy',
     tags: ['señales', 'prohibición', 'velocidad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PRO-03',
@@ -188,6 +223,8 @@ export const senalesQuestions = [
       'La señal con el número tachado por una franja diagonal indica el final de la restricción de velocidad señalada anteriormente; a partir de ahí rige el límite genérico de la vía.',
     tags: ['señales', 'prohibición', 'velocidad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PRO-04',
@@ -201,6 +238,8 @@ export const senalesQuestions = [
       'Esta señal prohíbe el estacionamiento, aunque sí permite detenerse el tiempo imprescindible para dejar o recoger personas u objetos (parada).',
     tags: ['señales', 'prohibición', 'estacionamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PRO-05',
@@ -218,6 +257,8 @@ export const senalesQuestions = [
       'El círculo rojo con una franja horizontal blanca indica que está prohibido el acceso a todo vehículo, en ambos sentidos, más allá de esa señal.',
     tags: ['señales', 'prohibición'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-PRO-06',
@@ -235,6 +276,8 @@ export const senalesQuestions = [
       'Esta señal de prohibición indica que el paso de peatones está prohibido en ese punto de la vía, habitualmente por razones de seguridad.',
     tags: ['señales', 'prohibición', 'peatones'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-OBL-01',
@@ -253,6 +296,8 @@ export const senalesQuestions = [
     difficulty: 'easy',
     tags: ['señales', 'obligación'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-OBL-02',
@@ -270,6 +315,8 @@ export const senalesQuestions = [
       'Esta señal de obligación anuncia una intersección con circulación giratoria (glorieta) en la que debes ceder el paso a quien ya circula por ella, salvo señalización distinta.',
     tags: ['señales', 'obligación', 'glorieta'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-OBL-03',
@@ -288,6 +335,8 @@ export const senalesQuestions = [
     difficulty: 'hard',
     tags: ['señales', 'obligación', 'velocidad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-OBL-04',
@@ -305,6 +354,8 @@ export const senalesQuestions = [
       'Esta señal de obligación indica un tramo de vía o arcén reservado y obligatorio para la circulación de bicicletas.',
     tags: ['señales', 'obligación', 'ciclistas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-IND-01',
@@ -323,6 +374,8 @@ export const senalesQuestions = [
     difficulty: 'easy',
     tags: ['señales', 'indicación', 'peatones'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-IND-02',
@@ -337,6 +390,8 @@ export const senalesQuestions = [
     difficulty: 'easy',
     tags: ['señales', 'indicación', 'estacionamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-IND-03',
@@ -350,6 +405,8 @@ export const senalesQuestions = [
       'Esta señal de indicación anuncia el comienzo de una autopista, con las particularidades de circulación que le son propias (prohibido a peatones, ciclos, vehículos lentos, etc.).',
     tags: ['señales', 'indicación', 'autopista'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-IND-04',
@@ -363,6 +420,8 @@ export const senalesQuestions = [
       'Cuando el pictograma de autopista aparece tachado sobre fondo gris, indica el final del tramo de autopista.',
     tags: ['señales', 'indicación', 'autopista'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-CIR-01',
@@ -379,6 +438,8 @@ export const senalesQuestions = [
       'La señalización circunstancial (por ejemplo, en obras) prevalece sobre la señalización permanente mientras dure la situación que la motiva, aunque contradiga a la señal fija.',
     tags: ['señales', 'circunstancial'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-CIR-02',
@@ -395,12 +456,16 @@ export const senalesQuestions = [
       'La señalización circunstancial en obras (paneles direccionales, conos, balizas) marca el nuevo trazado temporal por el que debe circular el tráfico mientras duran los trabajos.',
     tags: ['señales', 'circunstancial', 'obras'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-MAR-01',
     categoryId: 'senales',
     subcategoryId: 'marcas-viales',
     question: 'Una línea continua que separa dos carriles en el mismo sentido...',
+    image: 'diagram:linea-continua',
+    imageAlt: 'Vista cenital de una calzada con una línea blanca continua entre dos carriles',
     options: [
       'No debe cruzarse ni siquiera para adelantar',
       'Puede cruzarse siempre que no venga nadie',
@@ -412,12 +477,16 @@ export const senalesQuestions = [
     tags: ['señales', 'marcas viales'],
     difficulty: 'easy',
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-MAR-02',
     categoryId: 'senales',
     subcategoryId: 'marcas-viales',
     question: 'Una línea discontinua que separa dos sentidos de circulación...',
+    image: 'diagram:linea-discontinua',
+    imageAlt: 'Vista cenital de una calzada con una línea blanca discontinua entre dos sentidos',
     options: [
       'Puede cruzarse para adelantar si hay visibilidad y espacio suficiente',
       'Nunca puede cruzarse bajo ningún concepto',
@@ -429,12 +498,16 @@ export const senalesQuestions = [
     tags: ['señales', 'marcas viales'],
     difficulty: 'easy',
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-MAR-03',
     categoryId: 'senales',
     subcategoryId: 'marcas-viales',
     question: 'Una línea continua amarilla en el borde de la calzada indica:',
+    image: 'diagram:linea-amarilla-borde',
+    imageAlt: 'Vista cenital de una calzada con una línea amarilla continua junto al borde',
     options: [
       'Prohibición de parar y estacionar',
       'Carril reservado para autobuses',
@@ -445,12 +518,16 @@ export const senalesQuestions = [
       'La marca amarilla longitudinal junto al bordillo o borde de calzada indica prohibición de parar y estacionar en ese tramo.',
     tags: ['señales', 'marcas viales', 'estacionamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-MAR-04',
     categoryId: 'senales',
     subcategoryId: 'marcas-viales',
     question: 'Unas flechas pintadas en el suelo dentro de un carril...',
+    image: 'diagram:flechas-carril',
+    imageAlt: 'Vista cenital de un carril con una flecha blanca pintada indicando dirección obligatoria',
     options: [
       'Tienen carácter obligatorio sobre la dirección a seguir desde ese carril',
       'Son solo orientativas y pueden ignorarse',
@@ -461,12 +538,16 @@ export const senalesQuestions = [
       'Las flechas de selección de carriles pintadas en la calzada tienen carácter obligatorio: marcan la única dirección permitida para los vehículos situados en ese carril.',
     tags: ['señales', 'marcas viales'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-SEM-01',
     categoryId: 'senales',
     subcategoryId: 'semaforos',
     question: 'Ante un semáforo en ámbar (amarillo) fijo, debes:',
+    image: 'diagram:semaforo-ambar-fijo',
+    imageAlt: 'Semáforo con la luz ámbar central encendida de forma fija',
     options: [
       'Detenerte, salvo que ya estés tan cerca que frenar suponga un riesgo',
       'Acelerar para cruzar antes de que cambie a rojo',
@@ -478,12 +559,16 @@ export const senalesQuestions = [
     tags: ['señales', 'semáforos'],
     difficulty: 'easy',
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-SEM-02',
     categoryId: 'senales',
     subcategoryId: 'semaforos',
     question: 'Una flecha verde de semáforo permite:',
+    image: 'diagram:semaforo-flecha-verde',
+    imageAlt: 'Semáforo con una flecha verde encendida en la posición inferior',
     options: [
       'Avanzar únicamente en el sentido que indica la flecha',
       'Avanzar en cualquier dirección',
@@ -494,12 +579,16 @@ export const senalesQuestions = [
       'Cuando el semáforo muestra una flecha verde, el paso solo está permitido en el sentido indicado por la flecha, cediendo el paso a peatones y a otros vehículos que circulen legalmente.',
     tags: ['señales', 'semáforos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-SEM-03',
     categoryId: 'senales',
     subcategoryId: 'semaforos',
     question: 'Un semáforo con luz ámbar intermitente indica:',
+    image: 'diagram:semaforo-ambar-intermitente',
+    imageAlt: 'Semáforo con la luz ámbar central parpadeando',
     options: [
       'Que puedes pasar con precaución, cediendo el paso si procede',
       'Que el cruce está cerrado al tráfico',
@@ -510,12 +599,16 @@ export const senalesQuestions = [
       'El ámbar intermitente funciona como una advertencia de peligro: se puede circular, pero extremando la precaución y respetando las normas generales de prioridad del cruce.',
     tags: ['señales', 'semáforos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-AGE-01',
     categoryId: 'senales',
     subcategoryId: 'senales-agentes',
     question: 'Un agente de circulación con el brazo levantado verticalmente ordena:',
+    image: 'diagram:agente-brazo-levantado',
+    imageAlt: 'Silueta de un agente de circulación con el brazo levantado verticalmente',
     options: [
       'Detener la marcha a quienes se aproximen, salvo que ya estén tan cerca que no puedan parar con seguridad',
       'Que todos los vehículos aceleren',
@@ -526,6 +619,8 @@ export const senalesQuestions = [
       'El brazo en alto de un agente equivale a una señal de "atención, alto" para quienes se acercan, salvo los conductores que por su proximidad no puedan detenerse con seguridad.',
     tags: ['señales', 'agentes'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-AGE-02',
@@ -542,6 +637,8 @@ export const senalesQuestions = [
       'Las indicaciones de los agentes que regulan el tráfico tienen prioridad sobre cualquier otra señalización, incluidos semáforos y señales fijas, y sobre las normas generales.',
     tags: ['señales', 'agentes', 'prioridad'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'SEN-2025-01',
@@ -561,5 +658,7 @@ export const senalesQuestions = [
     signCatalogVersion: '2025',
     sourceUrl: SIGNS_SRC,
     source: 'DGT — Nota de prensa: actualización del catálogo oficial de señales',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
 ];

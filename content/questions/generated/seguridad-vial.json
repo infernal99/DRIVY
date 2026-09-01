@@ -35,7 +35,8 @@
     "contentHash": "e832d5cfe5d1d84c667d9aff6fbacb820084fd806e5fcf6bf3b40539ea73806b",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-DIS-02",
@@ -73,7 +74,8 @@
     "contentHash": "50f06c1eaf87033bf86375ae05c2798bfe2970ed44e733b1c1e38e7f0483287f",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-DIS-03",
@@ -111,7 +113,8 @@
     "contentHash": "05f6e30c64239449e2edc81a35de32f0fe349ad98bb4f3d34b5b2a6fe9581e36",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-VEL-01",
@@ -149,7 +152,8 @@
     "contentHash": "ecfb53c4d2cf65c68d7980e2c40df4dcd539e3fa3bb6d7602ebc573f6aec599a",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-VEL-02",
@@ -187,7 +191,8 @@
     "contentHash": "5aef4693da748ecb826099401577c7bcfc1dc5e93bf9642765875c86bd0df08e",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-FRE-01",
@@ -225,7 +230,8 @@
     "contentHash": "44cacd731390471c7b454af07b80a6ef01225e0d2c2e1b41e6e2c6cffbe6c95b",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-FRE-02",
@@ -263,7 +269,8 @@
     "contentHash": "a2f0014ef58b26d529f27e977a40ebde83247c93011dad12eef335eb77e9626b",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-RIE-01",
@@ -301,7 +308,8 @@
     "contentHash": "575fb66c139bf9fa70962dce2a200062629f2fd7725f6227a4222312d4dc30bf",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-FAT-01",
@@ -339,7 +347,8 @@
     "contentHash": "f3bad11e16903de65855c86a673d27ce9c37c3691c156e6c91f2cfa39f2bd709",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-SOM-01",
@@ -377,7 +386,8 @@
     "contentHash": "47e9edc57f8822d8141814f5f4ec14ccce1ca24086631d54388be9276bcfb4aa",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-SOM-02",
@@ -415,7 +425,8 @@
     "contentHash": "b98f1cad3842698b72b9274a5942ce3e20c2e828de5183a27f590ce4e69e64ba",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-DIST-01",
@@ -453,7 +464,8 @@
     "contentHash": "c548647ad9337c65aa7174485cab8f40046069f2f7ba5186acb5be4eb4a0d740",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-DIST-02",
@@ -491,7 +503,8 @@
     "contentHash": "8ee00ca13b7e89161ed330bd6105d7459134bda9518791cd58186edc9920a5be",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-TEL-01",
@@ -529,7 +542,8 @@
     "contentHash": "23eb9a580031fb37318e73a4934fca0cf5aea5261257cc4b03a13d6c6b2c423d",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEG-TEL-02",
@@ -567,6 +581,7 @@
     "contentHash": "c0c12202e54d89b630b5b2f057a1b8018314dbadddcbfd6463993e5b402483d5",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   }
 ]

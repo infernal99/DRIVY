@@ -1,5 +1,28 @@
 import type { TrafficSign } from '../types';
 
+// --- 2026-09-01 verification pass ---------------------------------------
+// Cross-checked every coded sign below against the Wikipedia Anexo pages
+// already cited as `source.url` (WIKI_R/WIKI_P/WIKI_S), which structurally
+// mirror the Reglamento General de Circulación's own Anexo I nomenclature
+// and were independently corroborated against commercial/driving-school
+// signage catalogs (Rotuvall, Preventec, Rótulos González) during this
+// audit — never against TodoTest/PracticaTest/autoescuela blog prose, per
+// the content-quality initiative's sourcing rules. Confirmed unchanged:
+// none of these 17 pre-existing codes appear among the pictograms the 2025
+// catalogue reform (Real Decreto 465/2025, BOE-A-2025-12199, in force since
+// 2025-07-01) added, redesigned, or repealed — that reform's public
+// reporting names P-15a/P-15b (resalto/badén) and new ZBE/VMP signage as
+// its notable changes, not any sign in this file. Two previously uncoded
+// signs got a confirmed code from this pass (R-100, S-2); two others
+// ('obras', 'prohibido-paso-peatones') stay uncoded on purpose — search
+// turned up a plausible-sounding candidate for each (P-50 "otros peligros"
+// turned out to be a different, generic sign, not the roadworks pictogram;
+// no source pinned down an exact code for the pedestrian-prohibition sign)
+// but not precisely enough to confirm without risking a wrong code, so
+// they're marked `needs_review` rather than guessed — see content spec
+// rule "es preferible needs_review a inventar".
+const VERIFIED_AT = '2026-09-01';
+
 // Internal sign catalogue (content spec §10). `image` is a key into our own
 // <TrafficSign> SVG registry (src/components/ui/TrafficSign.tsx) — never a
 // path to DGT artwork, which we have no license to redistribute.
@@ -27,6 +50,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     image: 'ceda-el-paso',
     source: { name: 'Reglamento General de Circulación (RD 1428/2003), Anexo I', url: RGC_BASE, type: 'official' },
     validFrom: '2003-11-21',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'stop',
@@ -36,6 +61,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     image: 'stop',
     source: { name: 'Reglamento General de Circulación (RD 1428/2003), Anexo I', url: RGC_BASE, type: 'official' },
     validFrom: '2003-11-21',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'interseccion-prioridad',
@@ -44,6 +71,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-peligro',
     image: 'interseccion-prioridad',
     source: { name: 'Anexo de señales de peligro (referencia secundaria sobre el Reglamento)', url: WIKI_P, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'curva-peligrosa-derecha',
@@ -52,6 +81,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-peligro',
     image: 'curva-peligrosa-derecha',
     source: { name: 'Anexo de señales de peligro (referencia secundaria sobre el Reglamento)', url: WIKI_P, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'paso-nivel',
@@ -60,6 +91,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-peligro',
     image: 'paso-nivel',
     source: { name: 'Anexo de señales de peligro (referencia secundaria sobre el Reglamento)', url: WIKI_P, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'animales-sueltos',
@@ -68,6 +101,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-peligro',
     image: 'animales-sueltos',
     source: { name: 'Anexo de señales de peligro (referencia secundaria sobre el Reglamento)', url: WIKI_P, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'obras',
@@ -75,6 +110,11 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-peligro',
     image: 'obras',
     source: { name: 'Reglamento General de Circulación — señales de peligro', url: RGC_BASE, type: 'derived' },
+    // NOT P-50: that code turned out to be the generic "otros peligros"
+    // (exclamation mark) sign, a different pictogram from the roadworks
+    // "person digging" one drawn here. Left uncoded rather than guessed.
+    verificationStatus: 'needs_review',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'prohibido-adelantar',
@@ -83,6 +123,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-prohibicion',
     image: 'prohibido-adelantar',
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'limite-velocidad-50',
@@ -91,6 +133,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-prohibicion',
     image: 'limite-velocidad-50',
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'limite-velocidad-90',
@@ -99,6 +143,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-prohibicion',
     image: 'limite-velocidad-90',
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'fin-limite-velocidad',
@@ -107,13 +153,18 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-prohibicion',
     image: 'fin-limite-velocidad',
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'circulacion-prohibida-ambos-sentidos',
+    code: 'R-100',
     name: 'Circulación prohibida',
     category: 'senales-prohibicion',
     image: 'circulacion-prohibida-ambos-sentidos',
     source: { name: 'Reglamento General de Circulación — señales de prohibición', url: RGC_BASE, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'prohibido-paso-peatones',
@@ -121,6 +172,10 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-prohibicion',
     image: 'prohibido-paso-peatones',
     source: { name: 'Reglamento General de Circulación — señales de prohibición', url: RGC_BASE, type: 'derived' },
+    // Could not confirm an exact R-code for this specific pictogram from a
+    // source solid enough to trust — left uncoded rather than guessed.
+    verificationStatus: 'needs_review',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'prohibido-aparcar',
@@ -129,6 +184,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-prohibicion',
     image: 'prohibido-aparcar',
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'direccion-obligatoria-recto',
@@ -137,6 +194,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-obligacion',
     image: 'direccion-obligatoria-recto',
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'glorieta-obligatoria',
@@ -145,6 +204,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-obligacion',
     image: 'glorieta-obligatoria',
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'velocidad-minima-40',
@@ -153,6 +214,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-obligacion',
     image: 'velocidad-minima-40',
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'carril-bici',
@@ -161,6 +224,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-obligacion',
     image: 'carril-bici',
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'paso-peatones',
@@ -169,6 +234,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-indicacion',
     image: 'paso-peatones',
     source: { name: 'Anexo de señales de indicación (referencia secundaria sobre el Reglamento)', url: WIKI_S, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'aparcamiento',
@@ -177,6 +244,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-indicacion',
     image: 'aparcamiento',
     source: { name: 'Anexo de señales de indicación (referencia secundaria sobre el Reglamento)', url: WIKI_S, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'autopista',
@@ -185,13 +254,18 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     category: 'senales-indicacion',
     image: 'autopista',
     source: { name: 'Anexo de señales de indicación (referencia secundaria sobre el Reglamento)', url: WIKI_S, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
   {
     id: 'fin-autopista',
+    code: 'S-2',
     name: 'Fin de autopista',
     category: 'senales-indicacion',
     image: 'fin-autopista',
     source: { name: 'Reglamento General de Circulación — señales de indicación', url: RGC_BASE, type: 'derived' },
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   },
 ];
 

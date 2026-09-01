@@ -1,6 +1,26 @@
 import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/consumo-de-alcohol/';
+const VERIFIED_AT = '2026-09-01';
+
+// --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
+// Checked every numeric threshold below against current web sources, not
+// from memory — this category is exactly the kind of content that can go
+// stale silently. Notably: a 2024 DGT proposal to lower the general limit
+// to 0,2 g/l was rejected by the Congress Interior Committee on
+// 2026-03-18 (PP, Vox, ERC voted against) and never published in the BOE —
+// so it never took effect. The limits below (0,5 g/l general / 0,3 g/l
+// noveles-profesionales) remain the ones actually in force as of this
+// audit. All 11 questions in this file check out; none needed correction.
+//
+// Also debunked in this pass: several sites (motor16.com, okdiario.com,
+// merca2.es, elconfidencialdigital.com) claim the BOE "oficializó una tasa
+// 0,0" on 2026-06-11 and again on 2026-07-26. Checked both dates directly
+// against the actual BOE daily sumario (boe.es/boe/dias/2026/06/11/ and
+// .../07/26/) — neither contains any traffic/alcohol-related disposition;
+// the 06-11 traffic item is an unrelated DGT staffing correction. Treat
+// any future "tasa 0,0 ya vigente" claim as unverified until it can be
+// pinned to an actual BOE-A-xxxx identifier, not just a news aggregator.
 
 export const alcoholDrogasQuestions = [
   q({
@@ -19,6 +39,8 @@ export const alcoholDrogasQuestions = [
     difficulty: 'easy',
     tags: ['alcohol', 'alcoholemia'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-TAS-02',
@@ -36,6 +58,8 @@ export const alcoholDrogasQuestions = [
     difficulty: 'medium',
     tags: ['alcohol', 'alcoholemia', 'noveles'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-TAS-03',
@@ -52,6 +76,8 @@ export const alcoholDrogasQuestions = [
       'Los agentes de tráfico pueden someter a cualquier usuario de la vía a las pruebas para la detección de alcohol como medida preventiva, sin necesidad de que exista un accidente o una infracción previa.',
     tags: ['alcohol', 'alcoholemia'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-EFE-01',
@@ -69,6 +95,8 @@ export const alcoholDrogasQuestions = [
     difficulty: 'easy',
     tags: ['alcohol', 'efectos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-EFE-02',
@@ -85,6 +113,8 @@ export const alcoholDrogasQuestions = [
       'El hígado metaboliza el alcohol a un ritmo aproximadamente constante; ni el café, ni el ejercicio, ni una ducha fría aceleran ese proceso, solo hacen sentir "más despierto" sin reducir la tasa real.',
     tags: ['alcohol', 'efectos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-DRO-01',
@@ -102,6 +132,8 @@ export const alcoholDrogasQuestions = [
     difficulty: 'easy',
     tags: ['drogas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-DRO-02',
@@ -118,6 +150,8 @@ export const alcoholDrogasQuestions = [
       'Combinar alcohol con otras drogas no anula sus efectos, sino que habitualmente los potencia, incrementando de forma notable el deterioro de las capacidades necesarias para conducir con seguridad.',
     tags: ['drogas', 'alcohol'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-MED-01',
@@ -135,6 +169,8 @@ export const alcoholDrogasQuestions = [
     difficulty: 'easy',
     tags: ['medicamentos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-MED-02',
@@ -151,6 +187,8 @@ export const alcoholDrogasQuestions = [
       'Fármacos como los ansiolíticos, ciertos antihistamínicos con efecto sedante o algunos analgésicos pueden provocar somnolencia o reducir los reflejos, afectando a la seguridad al volante.',
     tags: ['medicamentos'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-TRE-01',
@@ -167,6 +205,8 @@ export const alcoholDrogasQuestions = [
       'En condiciones normales, el tiempo de reacción de un conductor —desde que percibe el peligro hasta que actúa sobre los mandos— se sitúa habitualmente entre 0,75 y 1,5 segundos.',
     tags: ['tiempos de reacción'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
   q({
     id: 'ALC-TRE-02',
@@ -183,5 +223,7 @@ export const alcoholDrogasQuestions = [
       'Tanto el consumo de alcohol como la fatiga o el uso del teléfono móvil alargan el tiempo que tarda el conductor en percibir y reaccionar ante un peligro, aumentando la distancia total necesaria para detenerse.',
     tags: ['tiempos de reacción'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
   }),
 ];

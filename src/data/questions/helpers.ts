@@ -1,4 +1,4 @@
-import type { Difficulty, Question, QuestionSource, QuestionSourceType } from '../../types';
+import type { Difficulty, Question, QuestionSource, QuestionSourceType, VerificationStatus } from '../../types';
 import { sha256Hex } from '../../utils/sha256';
 import { getSignById } from '../signs';
 
@@ -39,6 +39,24 @@ interface QuestionInput {
   sourceType?: QuestionSourceType;
   license?: string;
   signCatalogVersion?: '2015' | '2025';
+  /** Article-level citation once a specific BOE article has actually been located and read. */
+  legalReference?: string;
+  /**
+   * Content-audit status (see VerificationStatus in types/index.ts). Defaults
+   * to 'needs_review' — deliberately NOT inherited from `source.verified`,
+   * which every question gets set to `true` automatically unless its
+   * sourceType is `needs_review` (see below) and is not a real per-question
+   * human audit signal. Only set this explicitly once a human has actually
+   * checked this specific question against a primary source.
+   */
+  verificationStatus?: VerificationStatus;
+  /**
+   * Date a human/audit actually re-checked this question against a primary
+   * source (ISO yyyy-mm-dd). Defaults to the file's original authoring date
+   * — set this explicitly when auditing an existing question so it's
+   * distinguishable from "never re-checked since it was written".
+   */
+  lastVerifiedAt?: string;
 }
 
 function normalizeForHash(text: string): string {
@@ -72,19 +90,28 @@ export function q(input: QuestionInput): Question {
     url: input.sourceUrl,
     license: input.license ?? DEFAULT_LICENSE,
     verified: (input.sourceType ?? DEFAULT_SOURCE_TYPE) !== 'needs_review',
+    legalReference: input.legalReference,
   };
 
   const isSign = input.image?.startsWith('sign:') ?? false;
+  const isDiagram = input.image?.startsWith('diagram:') ?? false;
   const signKey = isSign ? input.image!.slice('sign:'.length) : undefined;
-  const fallbackAlt = signKey ? `Señal: ${getSignById(signKey)?.name ?? signKey}` : '';
+  const diagramKey = isDiagram ? input.image!.slice('diagram:'.length) : undefined;
+  const fallbackAlt = signKey
+    ? `Señal: ${getSignById(signKey)?.name ?? signKey}`
+    : diagramKey
+      ? `Diagrama: ${diagramKey.replace(/-/g, ' ')}`
+      : '';
 
   const image = input.image
     ? {
         signKey,
-        url: isSign ? undefined : input.image,
+        diagramKey,
+        url: isSign || isDiagram ? undefined : input.image,
         alt: input.imageAlt ?? fallbackAlt,
         sourceUrl: input.sourceUrl,
-        sourceType: isSign ? ('derived' as const) : (input.sourceType ?? DEFAULT_SOURCE_TYPE),
+        imageType: isSign ? ('traffic_sign' as const) : isDiagram ? ('diagram' as const) : undefined,
+        sourceType: isSign || isDiagram ? ('derived' as const) : (input.sourceType ?? DEFAULT_SOURCE_TYPE),
       }
     : undefined;
 
@@ -103,7 +130,8 @@ export function q(input: QuestionInput): Question {
     contentHash: computeContentHash(input.question, input.options),
     createdAt: AUTHORED_AT,
     updatedAt: AUTHORED_AT,
-    lastVerifiedAt: AUTHORED_AT,
+    lastVerifiedAt: input.lastVerifiedAt ?? AUTHORED_AT,
     signCatalogVersion: input.signCatalogVersion,
+    verificationStatus: input.verificationStatus ?? 'needs_review',
   };
 }
