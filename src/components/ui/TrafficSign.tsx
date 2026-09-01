@@ -261,6 +261,19 @@ const REAL_SIGN_KEYS = new Set<SignKey>([
   'prohibido-paso-peatones',
   'carril-bici',
   'velocidad-minima-40',
+  // Third pass (same day): the 3 CC-BY-SA/GFDL signs, now that the app
+  // gives visible attribution on the "Fuentes oficiales" screen (see
+  // sources.ts, id wikimedia-cc-by-sa-sign-attribution), plus 'stop' on a
+  // second, independently-authored public-domain file that (unlike the
+  // first pass's candidate for this code) isn't a relicensed copy of the
+  // disputed 2023-set government artwork. 'paso-peatones' (S-13) is the
+  // only sign still on the hand-drawn registry: its only "public domain"
+  // Commons file turned out to be exactly that kind of relicensed copy
+  // (same sodipodi:docname as the 2023-set file) — see sources.ts.
+  'stop',
+  'direccion-obligatoria-recto',
+  'glorieta-obligatoria',
+  'fin-limite-velocidad',
 ]);
 
 /** Renders a real vendored sign image where one is cleared for use, otherwise our own illustration. Falls back to nothing for unknown keys. */

@@ -48,11 +48,17 @@ const WIKI_S = 'https://es.wikipedia.org/wiki/Anexo:Se%C3%B1ales_de_tr%C3%A1fico
 // this is a small allowlist, not "any Commons file"). Each affected entry
 // below has its own comment recording the exact Commons file/license
 // checked, so a later pass doesn't have to redo that research from scratch.
-// The remaining 5 (stop, paso-peatones, direccion-obligatoria-recto,
-// glorieta-obligatoria, fin-limite-velocidad) stay on the hand-drawn
-// registry: the first two are blocked by the unresolved art. 13 LPI
-// question (see sources.ts), the other three are CC-BY-SA from a different
-// author (Gigillo83) and the app doesn't show image attribution yet.
+// Third pass (2026-09-01, same day): resolved 4 of the remaining 5.
+// 'stop' got a second, independently-authored public-domain file (unlike
+// the "2023 set"-derived one blocking it in the first pass). The 3 CC-BY-SA/
+// GFDL signs (direccion-obligatoria-recto, glorieta-obligatoria,
+// fin-limite-velocidad) now ship with visible attribution on the "Fuentes
+// oficiales" screen (see sources.ts, id wikimedia-cc-by-sa-sign-attribution),
+// so their license condition is satisfied. Only 'paso-peatones' (S-13)
+// remains hand-drawn: its only "public domain" Commons file turned out to
+// be a relicensed copy of the disputed 2023-set government artwork (same
+// sodipodi:docname internally) — not actually independent, so the same
+// art. 13 LPI question that blocks the 2023-set file blocks this one too.
 
 export const TRAFFIC_SIGNS: TrafficSign[] = [
   {
@@ -75,6 +81,12 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Detención obligatoria (STOP)',
     category: 'senales-prioridad',
     image: 'stop',
+    // Image: Spain_traffic_signal_r2_1992.svg (Wikimedia Commons,
+    // Benedicto16), public domain — a distinct, independently-authored file
+    // from the "2023 set" one (docname "Ajax.svg", created 2006, predates
+    // the 2025 catalogue reform entirely). The octagon has been unchanged
+    // internationally for decades, so a pre-reform recreation is still
+    // current.
     source: { name: 'Reglamento General de Circulación (RD 1428/2003), Anexo I', url: RGC_BASE, type: 'official' },
     validFrom: '2003-11-21',
     verificationStatus: 'verified',
@@ -188,6 +200,13 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Fin de limitación de velocidad',
     category: 'senales-prohibicion',
     image: 'fin-limite-velocidad',
+    // Image: Spain_traffic_signal_r501.svg (Wikimedia Commons, Gigillo83) —
+    // CC BY-SA 3.0 / GFDL, attribution given on the "Fuentes oficiales"
+    // screen. Shows the pictogram with an example number ("60") crossed out
+    // by the diagonal bar — confirmed against the Wikipedia Anexo (already
+    // cited as WIKI_R) that R-501's real pictogram includes the specific
+    // speed limit being lifted, same convention SEN-PRO-03's own explanation
+    // text already describes ("la señal con el número tachado...").
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -241,6 +260,14 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Sentido obligatorio (recto)',
     category: 'senales-obligacion',
     image: 'direccion-obligatoria-recto',
+    // Image: Spain_traffic_signal_r400c.svg (Wikimedia Commons, Gigillo83) —
+    // CC BY-SA 3.0 / GFDL, attribution given on the "Fuentes oficiales"
+    // screen (sources.ts, id wikimedia-cc-by-sa-sign-attribution). NOTE the
+    // filename mismatch: Commons' own r400a.svg/r400b.svg actually depict
+    // right/left turn arrows (confirmed by rendering them, not just trusting
+    // the filename) — its "c" file is the straight-ahead pictogram this
+    // R-400a code needs. Commons' internal a/b/c suffixes for this gallery
+    // don't correspond to the official R-400a/b/c code suffixes.
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -251,6 +278,13 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Intersección de sentido giratorio obligatorio',
     category: 'senales-obligacion',
     image: 'glorieta-obligatoria',
+    // Image: Spain_traffic_signal_r402.svg (Wikimedia Commons) — CC BY-SA
+    // (all versions) / GFDL, attribution given on the "Fuentes oficiales"
+    // screen. Author is Majafego, NOT Gigillo83 — an earlier research pass
+    // wrongly assumed all 3 remaining CC-BY-SA signs shared one author;
+    // confirmed via the page's raw wikitext (Information template), not the
+    // AI-summarized page view, after that same summarizer got another fact
+    // wrong on this file (see wikimedia-cc-by-sa-sign-attribution notes).
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -289,6 +323,13 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Situación de un paso para peatones',
     category: 'senales-indicacion',
     image: 'paso-peatones',
+    // Stays hand-drawn: Commons' "Spain_traffic_signal_s13.svg" claims
+    // public domain (author Benedicto16) but its internal Inkscape metadata
+    // (sodipodi:docname="Spain_traffic_signal_s13,_2023_set.svg") shows it's
+    // a relicensed copy of the government-traced "2023 set" file, whose own
+    // reuse status is the unresolved art. 13 LPI question in sources.ts — a
+    // second uploader's PD claim doesn't resolve that question. No other S-13
+    // file exists on Commons.
     source: { name: 'Anexo de señales de indicación (referencia secundaria sobre el Reglamento)', url: WIKI_S, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
