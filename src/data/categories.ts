@@ -101,6 +101,7 @@ export const CATEGORIES: Category[] = [
       { id: 'mantenimiento', name: 'Mantenimiento' },
       { id: 'seguridad-activa', name: 'Seguridad activa' },
       { id: 'seguridad-pasiva', name: 'Seguridad pasiva' },
+      { id: 'retencion-infantil', name: 'Retención infantil' },
     ],
   },
   {
