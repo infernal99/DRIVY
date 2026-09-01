@@ -69,6 +69,8 @@ export const CATEGORIES: Category[] = [
       { id: 'somnolencia', name: 'Somnolencia' },
       { id: 'distracciones', name: 'Distracciones' },
       { id: 'telefono-movil', name: 'Teléfono móvil' },
+      { id: 'primeros-auxilios', name: 'Primeros auxilios' },
+      { id: 'conduccion-eficiente', name: 'Conducción eficiente' },
     ],
   },
   {

@@ -23,7 +23,10 @@ export type DiagramKey =
   | 'rotonda-prioridad-interior'
   | 'pendiente-estrecha-prioridad'
   | 'adelantamiento-espacio-seguro'
-  | 'adelantamiento-curva-prohibido';
+  | 'adelantamiento-curva-prohibido'
+  | 'carril-reversible'
+  | 'carril-vao'
+  | 'peaton-cruce-no-senalizado';
 
 const ASPHALT = '#3a4150';
 const WHITE = '#ffffff';
@@ -186,6 +189,43 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       <circle cx="66" cy="24" r="15" fill={PROHIBIT_RED} stroke={WHITE} strokeWidth="2.5" />
       <line x1="57" y1="15" x2="75" y2="33" stroke={WHITE} strokeWidth="3.5" strokeLinecap="round" />
     </svg>
+  ),
+  // Reversible lane: overhead panels over each lane show whether it's open
+  // (green arrow) or closed (red cross) in the current direction.
+  'carril-reversible': () => (
+    <RoadTopDown>
+      <line x1="34" y1="4" x2="34" y2="96" stroke={WHITE} strokeWidth="2.5" strokeDasharray="8 6" opacity="0.5" />
+      <line x1="66" y1="4" x2="66" y2="96" stroke={WHITE} strokeWidth="2.5" strokeDasharray="8 6" opacity="0.5" />
+      <rect x="10" y="10" width="16" height="16" rx="3" fill={HOUSING} stroke={WHITE} strokeWidth="1.5" />
+      <line x1="14" y1="14" x2="22" y2="22" stroke={PROHIBIT_RED} strokeWidth="3" strokeLinecap="round" />
+      <line x1="22" y1="14" x2="14" y2="22" stroke={PROHIBIT_RED} strokeWidth="3" strokeLinecap="round" />
+      <rect x="42" y="10" width="16" height="16" rx="3" fill={HOUSING} stroke={WHITE} strokeWidth="1.5" />
+      <polygon points="50,12 56,22 52,22 52,26 48,26 48,22 44,22" fill={GREEN} />
+    </RoadTopDown>
+  ),
+  // VAO lane: a painted diamond plus two occupant dots mark the lane
+  // reserved for vehicles with a minimum number of people aboard.
+  'carril-vao': () => (
+    <RoadTopDown>
+      <line x1="50" y1="4" x2="50" y2="96" stroke={WHITE} strokeWidth="2.5" strokeDasharray="8 6" opacity="0.5" />
+      <polygon points="74,34 84,50 74,66 64,50" fill="none" stroke={WHITE} strokeWidth="3" />
+      <circle cx="70" cy="48" r="4" fill={WHITE} />
+      <circle cx="78" cy="48" r="4" fill={WHITE} />
+    </RoadTopDown>
+  ),
+  // Pedestrian crossing outside a marked crossing: no zebra stripes here
+  // (unlike the paso-peatones sign/diagrams elsewhere), so the pedestrian
+  // has no automatic priority and the driver must stay alert.
+  'peaton-cruce-no-senalizado': () => (
+    <RoadTopDown>
+      <line x1="50" y1="4" x2="50" y2="96" stroke={WHITE} strokeWidth="3" strokeDasharray="10 8" opacity="0.5" />
+      <Car x={50} y={82} rotate={0} color={YIELD_CAR} />
+      <circle cx="66" cy="40" r="7" fill={SKIN} />
+      <rect x="60" y="47" width="12" height="20" rx="5" fill={HOUSING} />
+      <path d="M78 26 L82 34 L74 34 Z" fill={AMBER} />
+      <line x1="78" y1="29" x2="78" y2="31.5" stroke={HOUSING} strokeWidth="1.4" strokeLinecap="round" />
+      <circle cx="78" cy="33" r="0.9" fill={HOUSING} />
+    </RoadTopDown>
   ),
 };
 

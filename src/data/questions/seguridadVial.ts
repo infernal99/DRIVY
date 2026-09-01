@@ -1,6 +1,8 @@
 import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/';
+const SRC_ACCIDENTE = 'https://www.dgt.es/muevete-con-seguridad/que-hacer-ante-un-accidente-de-trafico/';
+const SRC_ECO = 'https://www.dgt.es/muevete-con-seguridad/conviertete-en-un-buen-conductor/consejos-generales/conduccion-eficiente/';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -281,6 +283,159 @@ export const seguridadVialQuestions = [
       'La forma legal de usar el móvil conduciendo es a través de un sistema de manos libres homologado, sin necesidad de sujetarlo, marcarlo o manipularlo con las manos.',
     tags: ['seguridad vial', 'móvil'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // --- 2026-09-01, cobertura temática (Fase 3) -----------------------------
+  // Dos subcategorías nuevas, ausentes por completo del banco hasta ahora:
+  // primeros auxilios (protocolo PAS) y conducción eficiente. Contenido
+  // derivado directamente de dos páginas oficiales de la DGT consultadas
+  // hoy mismo (ver SRC_ACCIDENTE / SRC_ECO), citando datos concretos que sí
+  // aparecen en esas páginas (distancias de los triángulos, teléfono 112,
+  // umbral de 60 segundos para parar el motor, etc.) en vez de cifras
+  // genéricas de memoria.
+  q({
+    id: 'SEG-PAS-01',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'primeros-auxilios',
+    question: 'Ante un accidente de tráfico, el protocolo PAS establece que la primera actuación debe ser:',
+    options: [
+      'Proteger: señalizar y asegurar la zona para que el accidente no vaya a más',
+      'Socorrer a los heridos inmediatamente, sea cual sea la situación',
+      'Avisar primero a un familiar antes que a emergencias',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El protocolo PAS (Proteger, Alertar, Socorrer) empieza siempre por proteger la zona del accidente, para evitar que se produzcan más víctimas antes de poder atender a las que ya hay.',
+    difficulty: 'easy',
+    tags: ['seguridad vial', 'primeros auxilios'],
+    sourceUrl: SRC_ACCIDENTE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-PAS-02',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'primeros-auxilios',
+    question: 'Si tienes que colocar los triángulos de señalización tras un accidente en una vía de doble sentido, debes situarlos:',
+    options: [
+      'A unos 50 metros del vehículo, en ambos sentidos de circulación',
+      'A 5 metros, solo en el sentido de tu marcha',
+      'No hace falta colocarlos si hay poco tráfico',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'En una vía de doble sentido los triángulos se colocan a unos 50 metros del vehículo en ambos sentidos, para advertir con tiempo suficiente al tráfico que se aproxima desde cualquiera de las dos direcciones.',
+    tags: ['seguridad vial', 'primeros auxilios'],
+    sourceUrl: SRC_ACCIDENTE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-PAS-03',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'primeros-auxilios',
+    question: 'Ante un motociclista accidentado, la actuación correcta respecto a su casco es:',
+    options: [
+      'No quitárselo, salvo que sea imprescindible para reanimarlo',
+      'Quitárselo siempre, para que respire mejor',
+      'Quitárselo solo si está consciente y lo pide',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'No se debe retirar el casco a un motociclista accidentado, ya que una manipulación incorrecta puede agravar una posible lesión cervical; solo se retira si es imprescindible para maniobras de reanimación.',
+    difficulty: 'easy',
+    tags: ['seguridad vial', 'primeros auxilios'],
+    sourceUrl: SRC_ACCIDENTE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-PAS-04',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'primeros-auxilios',
+    question: 'Al llamar al 112 para alertar de un accidente, es especialmente importante:',
+    options: [
+      'Dar la localización precisa y el número de heridos, siendo breve y conciso',
+      'Colgar en cuanto describas los daños del vehículo',
+      'Esperar a tener todos los datos médicos de los heridos antes de llamar',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Al alertar al 112 hay que aportar la localización precisa, el número de vehículos y heridos y cualquier riesgo especial, siendo breve y conciso para no demorar la respuesta de emergencias.',
+    tags: ['seguridad vial', 'primeros auxilios'],
+    sourceUrl: SRC_ACCIDENTE,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-ECO-01',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'conduccion-eficiente',
+    question: 'Para una conducción eficiente, como norma general conviene:',
+    options: [
+      'Circular en marchas largas y a bajas revoluciones, siempre que la vía lo permita',
+      'Circular siempre en marchas cortas para tener más potencia disponible',
+      'Mantener el motor a altas revoluciones el mayor tiempo posible',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La conducción eficiente recomienda circular en marchas largas y a bajas revoluciones, y mantener una velocidad uniforme, lo que reduce el consumo de combustible y las emisiones.',
+    difficulty: 'easy',
+    tags: ['seguridad vial', 'conducción eficiente'],
+    sourceUrl: SRC_ECO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-ECO-02',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'conduccion-eficiente',
+    question: 'Según las recomendaciones de conducción eficiente de la DGT, en una parada previsible conviene apagar el motor cuando vaya a durar más de:',
+    options: ['60 segundos', '10 minutos', 'Nunca conviene apagarlo en una parada corta'],
+    correctAnswer: 0,
+    explanation:
+      'La DGT recomienda apagar el motor en paradas superiores a 60 segundos, ya que mantenerlo en marcha innecesariamente aumenta el consumo de combustible y las emisiones sin ningún beneficio.',
+    difficulty: 'hard',
+    tags: ['seguridad vial', 'conducción eficiente'],
+    sourceUrl: SRC_ECO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-ECO-03',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'conduccion-eficiente',
+    question: 'Llevar una baca portaequipajes montada en el vehículo, aunque vaya vacía:',
+    options: [
+      'Aumenta el consumo de combustible por la resistencia al aire, hasta un 35% según la DGT',
+      'No afecta en absoluto al consumo si va vacía',
+      'Reduce el consumo al mejorar la aerodinámica',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La baca portaequipajes aumenta considerablemente la resistencia aerodinámica del vehículo; la DGT cifra ese sobreconsumo en hasta un 35%, incluso circulando sin carga sobre ella.',
+    tags: ['seguridad vial', 'conducción eficiente'],
+    sourceUrl: SRC_ECO,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'SEG-ECO-04',
+    categoryId: 'seguridad-vial',
+    subcategoryId: 'conduccion-eficiente',
+    question: 'En un descenso prolongado, para conducir de forma eficiente y segura debes:',
+    options: [
+      'Levantar el pie del acelerador y aprovechar la inercia, sin poner nunca punto muerto',
+      'Poner el punto muerto para ahorrar combustible durante toda la bajada',
+      'Mantener el acelerador pisado para no perder velocidad',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'En bajadas se recomienda levantar el acelerador y aprovechar la inercia del vehículo; circular en punto muerto cuesta abajo está desaconsejado porque se pierde el freno motor y el control del vehículo.',
+    difficulty: 'medium',
+    tags: ['seguridad vial', 'conducción eficiente'],
+    sourceUrl: SRC_ECO,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),

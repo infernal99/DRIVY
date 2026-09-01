@@ -157,6 +157,7 @@ export const viasQuestions = [
     categoryId: 'vias',
     subcategoryId: 'carriles',
     question: 'El carril central de una vía con tres carriles y sentido reversible se identifica habitualmente con:',
+    image: 'diagram:carril-reversible',
     options: [
       'Semáforos o paneles especiales sobre el carril que indican si está abierto o cerrado',
       'Ninguna señal, se usa libremente',
@@ -176,6 +177,7 @@ export const viasQuestions = [
     categoryId: 'vias',
     subcategoryId: 'carriles',
     question: 'Un carril "VAO" (vehículo de alta ocupación) permite circular a:',
+    image: 'diagram:carril-vao',
     options: [
       'Vehículos con un número mínimo de ocupantes, según señalización',
       'Cualquier vehículo sin restricciones',
