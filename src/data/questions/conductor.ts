@@ -2,6 +2,7 @@ import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/nuestros-servicios/permisos-de-conducir/tus-puntos-y-tus-permisos/como-funciona-el-permiso-por-puntos/';
 const DOC_SRC = 'https://www.dgt.es/nuestros-servicios/permisos-de-conducir/';
+const LEY_TRAFICO = 'https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -231,6 +232,71 @@ export const conductorQuestions = [
       'Responder con agresividad ante la provocación de otro conductor aumenta el riesgo para todos; lo más seguro es mantener la calma, ceder espacio si es necesario y evitar entrar en una dinámica de conducción agresiva.',
     tags: ['conductor', 'comportamiento'],
     sourceUrl: DOC_SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 6): inmovilización del
+  // vehículo por agentes de la autoridad — hueco detectado comparando el
+  // índice temático de un test público de terceros (solo títulos de tema)
+  // contra nuestra cobertura. Verificado contra el art. 104 de la Ley de
+  // Tráfico (RDL 6/2015), que lista los supuestos tasados de inmovilización.
+  q({
+    id: 'CON-INM-01',
+    categoryId: 'conductor',
+    subcategoryId: 'inmovilizacion',
+    question: 'Si dan positivo en un control de alcoholemia, los agentes de la autoridad pueden:',
+    options: [
+      'Inmovilizar el vehículo de inmediato, salvo que otra persona autorizada pueda hacerse cargo de la conducción',
+      'Solo pueden multar, nunca inmovilizar el vehículo en el momento',
+      'Únicamente pueden retirar el permiso de conducir, no inmovilizar el vehículo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Un resultado positivo en alcoholemia (o la negativa a hacer la prueba) es una de las causas legales de inmovilización inmediata del vehículo, que solo se evita si otra persona debidamente autorizada puede asumir la conducción.',
+    difficulty: 'medium',
+    tags: ['conductor', 'inmovilización'],
+    sourceUrl: LEY_TRAFICO,
+    legalReference: 'Real Decreto Legislativo 6/2015 (Ley de Tráfico), artículo 104',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'CON-INM-02',
+    categoryId: 'conductor',
+    subcategoryId: 'inmovilizacion',
+    question: 'Un vehículo que circula sin el seguro obligatorio en vigor:',
+    options: [
+      'Puede ser inmovilizado por los agentes, al ser una de las causas legales previstas',
+      'Solo puede ser multado; la falta de seguro nunca es causa de inmovilización',
+      'Solo se sanciona si además ha tenido un accidente',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La carencia del seguro obligatorio es, por sí sola, una de las causas legales que permite a los agentes inmovilizar el vehículo, sin necesidad de que se haya producido ningún accidente.',
+    difficulty: 'medium',
+    tags: ['conductor', 'inmovilización'],
+    sourceUrl: LEY_TRAFICO,
+    legalReference: 'Real Decreto Legislativo 6/2015 (Ley de Tráfico), artículo 104',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'CON-INM-03',
+    categoryId: 'conductor',
+    subcategoryId: 'inmovilizacion',
+    question: '¿Puede un agente inmovilizar un vehículo por presentar deficiencias que supongan un riesgo especialmente grave para la seguridad vial?',
+    options: [
+      'Sí, es una de las causas legales previstas para la inmovilización',
+      'No, las deficiencias mecánicas solo pueden dar lugar a un suspenso en la ITV, nunca a una inmovilización inmediata',
+      'Solo si el vehículo tiene más de 10 años de antigüedad',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Cuando un vehículo presenta deficiencias que constituyen un riesgo especialmente grave para la seguridad vial, los agentes están facultados para inmovilizarlo en el acto, sin esperar a una revisión posterior en la ITV.',
+    difficulty: 'hard',
+    tags: ['conductor', 'inmovilización'],
+    sourceUrl: LEY_TRAFICO,
+    legalReference: 'Real Decreto Legislativo 6/2015 (Ley de Tráfico), artículo 104',
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
