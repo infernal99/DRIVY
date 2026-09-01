@@ -110,6 +110,7 @@ export const CATEGORIES: Category[] = [
       { id: 'visibilidad', name: 'Visibilidad' },
       { id: 'adas', name: 'ADAS' },
       { id: 'vehiculos-especiales', name: 'Vehículos especiales' },
+      { id: 'remolques', name: 'Remolques' },
     ],
   },
   {
