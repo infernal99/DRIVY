@@ -369,6 +369,19 @@ Contenido `derived` puede citar estas fuentes.
 - **Qué NO podemos reutilizar**: 
   - Copiar texto literal de la página como si fuera nuestro
 
+## DGT — Glorietas: cómo actuar en 6 situaciones habituales
+
+- **URL**: https://www.dgt.es/comunicacion/noticias/glorietas-como-actuar-en-6-situaciones-habituales/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Normativa e información oficial
+- **Fecha de comprobación**: 2026-09-02
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y diagramas propios (derived) basados en estas 6 situaciones, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar o adaptar visualmente cualquier imagen o texto literal del artículo
+
 ## DGT — Manual básico del permiso B (Lectura Fácil)
 
 - **URL**: https://seguridadvial2030.dgt.es/.galleries/enlaces/practicas-interes/personas-formadas-y-capaces/manual-permiso-b-lectura-facil.html

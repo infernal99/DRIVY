@@ -2,6 +2,7 @@ import { q } from './helpers';
 
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
 const RGC_BASE = 'https://www.boe.es/buscar/act.php?id=BOE-A-2003-23514';
+const SRC_GLORIETA = 'https://www.dgt.es/comunicacion/noticias/glorietas-como-actuar-en-6-situaciones-habituales/';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -221,6 +222,154 @@ export const normasQuestions = [
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
+  // --- 2026-09-02, imágenes de situaciones reales (Lote 1: intersecciones,
+  // Lote 2: glorietas) ------------------------------------------------------
+  // Confirmado el artículo exacto del RGC que agrupa TODAS las excepciones a
+  // la prioridad a la derecha (raíles, vía pavimentada, glorietas,
+  // autopista): es el mismo artículo 57 que ya se citaba para el tranvía
+  // (NOR-PRI-05/06), no uno distinto — verificado citando el texto íntegro
+  // del artículo, no una paráfrasis suelta.
+  q({
+    id: 'NOR-PRI-11',
+    categoryId: 'normas',
+    subcategoryId: 'prioridad',
+    question: 'Te acercas a un cruce señalizado con STOP. Aunque no veas venir ningún vehículo por la vía a la que te incorporas, debes:',
+    image: 'diagram:interseccion-stop-obligatorio',
+    options: [
+      'Detenerte por completo ante la señal, sea cual sea el tráfico visible',
+      'Reducir la velocidad, pero no hace falta parar del todo si no viene nadie',
+      'Solo detenerte si hay otro vehículo esperando detrás de ti',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La señal STOP obliga a detener completamente el vehículo ante la línea de detención en todos los casos, aunque no se aprecie ningún vehículo por la vía a la que te incorporas; a diferencia de Ceda el paso, aquí la parada nunca es opcional.',
+    difficulty: 'easy',
+    tags: ['normas', 'prioridad', 'stop'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-PRI-12',
+    categoryId: 'normas',
+    subcategoryId: 'prioridad',
+    question: 'Te acercas a un cruce señalizado con Ceda el paso, sin ningún vehículo a la vista por la vía a la que te incorporas. A diferencia de una señal de STOP:',
+    image: 'diagram:interseccion-ceda-paso',
+    options: [
+      'Solo estás obligado a detenerte si es necesario para dejar pasar a otro vehículo',
+      'Debes detenerte igualmente por completo, sin excepción',
+      'Puedes ignorar la señal si circulas despacio',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Ceda el paso obliga a ceder la prioridad a los vehículos de la vía a la que te incorporas, pero solo exige detenerse por completo cuando sea necesario para hacerlo con seguridad; si no viene nadie, se puede continuar sin pararse, algo que la señal de STOP nunca permite.',
+    difficulty: 'medium',
+    tags: ['normas', 'prioridad', 'ceda el paso'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-PRI-13',
+    categoryId: 'normas',
+    subcategoryId: 'prioridad',
+    question: 'En una intersección sin señalizar entre una vía pavimentada y un camino de tierra sin pavimentar, tiene prioridad:',
+    image: 'diagram:via-pavimentada-prioridad',
+    options: [
+      'El vehículo que circula por la vía pavimentada, aunque el otro venga por la derecha',
+      'Siempre el que viene por la derecha, sin excepción',
+      'El camino sin pavimentar, para compensar su peor estado',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La vía pavimentada tiene preferencia sobre la que no lo está: es una de las excepciones legales a la norma general de prioridad a la derecha, y se aplica aunque el vehículo del camino de tierra llegue por la derecha del otro.',
+    difficulty: 'hard',
+    tags: ['normas', 'prioridad'],
+    sourceUrl: SRC,
+    legalReference: 'Reglamento General de Circulación, artículo 57',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-PRI-14',
+    categoryId: 'normas',
+    subcategoryId: 'prioridad',
+    question: 'Vas a abandonar una glorieta por una salida cercana. Como norma general, debes:',
+    image: 'diagram:glorieta-salida-carril-derecho',
+    options: [
+      'Situarte con antelación en el carril exterior (derecho) y salir por él',
+      'Salir desde cualquier carril, ya que dentro de la glorieta no hay normas de carril',
+      'Esperar a estar justo en la salida para cambiarte al carril derecho',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La DGT recuerda que, como norma general, una glorieta se abandona por el carril exterior (derecho), ocupándolo con antelación suficiente para evitar la maniobra conocida como "cruzada", que consiste en salir cortando la trayectoria de quien circula por fuera.',
+    difficulty: 'medium',
+    tags: ['normas', 'prioridad', 'glorieta'],
+    sourceUrl: SRC_GLORIETA,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-PRI-15',
+    categoryId: 'normas',
+    subcategoryId: 'prioridad',
+    question: '¿Está permitido abandonar una glorieta directamente desde un carril interior?',
+    image: 'diagram:glorieta-salida-carril-interior-excepcion',
+    options: [
+      'Solo cuando una señal, como una flecha pintada en el suelo, lo indique expresamente',
+      'Sí, siempre que se haga con el intermitente puesto',
+      'Nunca, es una maniobra siempre prohibida sin excepción',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La norma general obliga a salir por el carril exterior, pero admite una excepción: cuando una señal (por ejemplo, una flecha pintada en el pavimento) indique expresamente que esa salida también puede tomarse desde un carril interior.',
+    difficulty: 'hard',
+    tags: ['normas', 'prioridad', 'glorieta'],
+    sourceUrl: SRC_GLORIETA,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-PRI-16',
+    categoryId: 'normas',
+    subcategoryId: 'prioridad',
+    question: 'Al entrar en una glorieta muy transitada con el carril derecho de acceso completamente saturado, mientras el izquierdo está libre:',
+    image: 'diagram:glorieta-entrada-izquierda-congestion',
+    options: [
+      'Puedes entrar directamente por el carril izquierdo al interior de la glorieta',
+      'Debes esperar siempre a que se libere el carril derecho, por saturado que esté',
+      'Debes invadir el arcén para rodear la congestión',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Cuando el carril derecho de entrada está saturado, la DGT admite entrar directamente desde el carril izquierdo al interior de la glorieta, pudiendo circular por el carril interior hasta las últimas salidas si la congestión lo justifica.',
+    difficulty: 'hard',
+    tags: ['normas', 'prioridad', 'glorieta'],
+    sourceUrl: SRC_GLORIETA,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-PRI-17',
+    categoryId: 'normas',
+    subcategoryId: 'prioridad',
+    question: 'Un grupo de varios ciclistas circula junto dentro de una glorieta. A efectos de prioridad, ese grupo:',
+    image: 'diagram:glorieta-grupo-ciclistas',
+    options: [
+      'Se considera como un único vehículo, una vez que el primero ya ha entrado en la glorieta',
+      'Pierde toda prioridad frente a los turismos, por tratarse de varios vehículos',
+      'Debe circular en fila de uno, nunca en grupo, dentro de una glorieta',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Un grupo de ciclistas dentro de una glorieta goza de prioridad como si fuese un único vehículo desde el momento en que el primero ya ha entrado: el resto del grupo mantiene esa misma prioridad frente a quien pretenda incorporarse.',
+    difficulty: 'medium',
+    tags: ['normas', 'prioridad', 'glorieta', 'ciclistas'],
+    sourceUrl: SRC_GLORIETA,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
   q({
     id: 'NOR-ADE-01',
     categoryId: 'normas',
@@ -396,6 +545,30 @@ export const normasQuestions = [
     tags: ['normas', 'adelantamiento'],
     sourceUrl: RGC_BASE,
     legalReference: 'Reglamento General de Circulación, artículo 88',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-02, imágenes de situaciones reales (Lote 3: adelantamientos).
+  // Situación con 3 vehículos para que la respuesta dependa realmente de
+  // la imagen, no de conocer una regla aislada: A no puede completar el
+  // adelantamiento a tiempo con C ya tan cerca en sentido contrario.
+  q({
+    id: 'NOR-ADE-10',
+    categoryId: 'normas',
+    subcategoryId: 'adelantamientos',
+    question: 'Circulas detrás de un vehículo lento en una carretera de doble sentido y quieres adelantarlo. En ese momento aparece otro vehículo de frente, ya relativamente cerca. ¿Debes iniciar el adelantamiento?',
+    image: 'diagram:adelantamiento-tres-vehiculos-sin-espacio',
+    options: [
+      'No: con un vehículo en sentido contrario tan cerca, no hay espacio ni tiempo para completar la maniobra con seguridad',
+      'Sí, siempre que aceleres con decisión en cuanto empieces a adelantar',
+      'Sí, porque el vehículo que viene de frente tiene la obligación de reducir la velocidad para dejarte sitio',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Antes de adelantar hay que comprobar que se dispone de espacio y tiempo suficientes para completar la maniobra y volver al carril propio sin obligar a maniobrar bruscamente al vehículo que viene de frente; si este ya está relativamente cerca, la distancia no es suficiente y no debe iniciarse el adelantamiento.',
+    difficulty: 'medium',
+    tags: ['normas', 'adelantamiento'],
+    sourceUrl: SRC,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),

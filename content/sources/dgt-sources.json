@@ -523,6 +523,23 @@
     "consultedAt": "2026-09-01"
   },
   {
+    "id": "dgt-glorietas-6-situaciones",
+    "name": "DGT — Glorietas: cómo actuar en 6 situaciones habituales",
+    "description": "Seis situaciones oficiales de circulación en glorietas: salida por el carril exterior (regla general), excepción de salida desde carril interior con flecha en el suelo, entrada por la izquierda cuando el derecho está saturado, prioridad de grupos de ciclistas, y precaución con vehículos grandes.",
+    "url": "https://www.dgt.es/comunicacion/noticias/glorietas-como-actuar-en-6-situaciones-habituales/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y diagramas propios (derived) basados en estas 6 situaciones, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar o adaptar visualmente cualquier imagen o texto literal del artículo"
+    ],
+    "consultedAt": "2026-09-02"
+  },
+  {
     "id": "dgt-manual-permiso-b-lectura-facil",
     "name": "DGT — Manual básico del permiso B (Lectura Fácil)",
     "description": "Manual oficial de la DGT sobre los contenidos del permiso B.",

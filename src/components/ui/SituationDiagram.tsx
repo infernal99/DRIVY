@@ -29,7 +29,15 @@ export type DiagramKey =
   | 'peaton-cruce-no-senalizado'
   | 'ciclista-distancia-lateral'
   | 'peaton-paso-senalizado-cruzando'
-  | 'eleccion-carril-flechas';
+  | 'eleccion-carril-flechas'
+  | 'interseccion-stop-obligatorio'
+  | 'interseccion-ceda-paso'
+  | 'via-pavimentada-prioridad'
+  | 'glorieta-salida-carril-derecho'
+  | 'glorieta-salida-carril-interior-excepcion'
+  | 'glorieta-entrada-izquierda-congestion'
+  | 'glorieta-grupo-ciclistas'
+  | 'adelantamiento-tres-vehiculos-sin-espacio';
 
 const ASPHALT = '#3a4150';
 const WHITE = '#ffffff';
@@ -44,6 +52,12 @@ const SKIN = '#e8b98a';
 const YIELD_CAR = '#8b93a3';
 const PRIORITY_CAR = GREEN;
 const PROHIBIT_RED = '#e74c3c';
+const DIRT = '#8a7259';
+
+// --- Reusable scene primitives -------------------------------------------
+// Small, composable building blocks (car, pedestrian, mini road-signs)
+// shared across every diagram in the registry below, so a new situation
+// can usually be assembled from these instead of drawn from scratch.
 
 /** Small top-down car glyph, nose pointing up at rotate=0 (0=up, 90=right, 180=down, 270=left). */
 function Car({ x, y, rotate, color }: { x: number; y: number; rotate: number; color: string }) {
@@ -51,6 +65,29 @@ function Car({ x, y, rotate, color }: { x: number; y: number; rotate: number; co
     <g transform={`translate(${x} ${y}) rotate(${rotate})`}>
       <rect x="-7" y="-12" width="14" height="24" rx="4" fill={color} />
       <rect x="-5" y="-8" width="10" height="7" rx="2" fill="rgba(255,255,255,0.55)" />
+    </g>
+  );
+}
+
+/** Miniature STOP octagon, for placing a real sign inline within a scene. */
+function MiniStop({ x, y }: { x: number; y: number }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <polygon
+        points="-7,-3 -3,-7 3,-7 7,-3 7,3 3,7 -3,7 -7,3"
+        fill={PROHIBIT_RED}
+        stroke={WHITE}
+        strokeWidth="1.2"
+      />
+    </g>
+  );
+}
+
+/** Miniature "Ceda el paso" inverted triangle, for placing inline within a scene. */
+function MiniYield({ x, y }: { x: number; y: number }) {
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <polygon points="0,8 8,-7 -8,-7" fill={WHITE} stroke={PROHIBIT_RED} strokeWidth="2.2" />
     </g>
   );
 }
@@ -275,6 +312,120 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       </g>
       <polygon points="72,10 78,24 74,24 74,34 70,34 70,24 66,24" fill={WHITE} />
       <Car x={72} y={70} rotate={0} color={PRIORITY_CAR} />
+    </RoadTopDown>
+  ),
+  // STOP-regulated crossroads: the sign is visible next to the yield car,
+  // which must come to a complete stop even though the priority car isn't
+  // there yet — unlike Ceda el paso, STOP is never optional.
+  'interseccion-stop-obligatorio': () => (
+    <RoadTopDown>
+      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <Car x={42} y={78} rotate={0} color={YIELD_CAR} />
+      <MiniStop x={58} y={78} />
+      <Car x={80} y={42} rotate={270} color={PRIORITY_CAR} />
+    </RoadTopDown>
+  ),
+  // Ceda el paso crossroads: same layout as the STOP scene, but the sign is
+  // a yield triangle — the driver only has to stop if it's actually
+  // necessary to let the priority car through, not as an unconditional rule.
+  'interseccion-ceda-paso': () => (
+    <RoadTopDown>
+      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <Car x={42} y={78} rotate={0} color={YIELD_CAR} />
+      <MiniYield x={58} y={78} />
+      <Car x={80} y={42} rotate={270} color={PRIORITY_CAR} />
+    </RoadTopDown>
+  ),
+  // Paved road vs. dirt track: the car on the paved surface (grey texture)
+  // has priority over the one coming from the unpaved track (dirt texture),
+  // regardless of which one is on the geometric right.
+  'via-pavimentada-prioridad': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={DIRT} />
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={DIRT} opacity="0.35" />
+      <circle cx="18" cy="18" r="1.2" fill="#6e5940" />
+      <circle cx="30" cy="10" r="1" fill="#6e5940" />
+      <circle cx="12" cy="32" r="1" fill="#6e5940" />
+      <circle cx="82" cy="80" r="1.2" fill="#6e5940" />
+      <circle cx="70" cy="88" r="1" fill="#6e5940" />
+      <rect x="38" y="0" width="24" height="100" fill={ASPHALT} />
+      <line x1="50" y1="4" x2="50" y2="96" stroke={WHITE} strokeWidth="3" strokeDasharray="8 6" opacity="0.5" />
+      <Car x={50} y={80} rotate={0} color={PRIORITY_CAR} />
+      <Car x={20} y={50} rotate={90} color={YIELD_CAR} />
+    </svg>
+  ),
+  // Roundabout — leaving from the outer (right) lane, positioned there with
+  // enough advance notice: the general rule (DGT "6 situaciones").
+  'glorieta-salida-carril-derecho': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
+      <circle cx="50" cy="50" r="34" fill="none" stroke={WHITE} strokeWidth="2" opacity="0.4" />
+      <circle cx="50" cy="50" r="22" fill="none" stroke={WHITE} strokeWidth="2" strokeDasharray="6 5" opacity="0.4" />
+      <circle cx="50" cy="50" r="14" fill={HOUSING} />
+      <Car x={72} y={50} rotate={90} color={PRIORITY_CAR} />
+      <line x1="88" y1="50" x2="100" y2="50" stroke={WHITE} strokeWidth="2" opacity="0.4" />
+    </svg>
+  ),
+  // Roundabout — the exception: leaving from an inner lane is only allowed
+  // when a ground arrow explicitly marks that exit as usable from there.
+  'glorieta-salida-carril-interior-excepcion': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
+      <circle cx="50" cy="50" r="34" fill="none" stroke={WHITE} strokeWidth="2" opacity="0.4" />
+      <circle cx="50" cy="50" r="22" fill="none" stroke={WHITE} strokeWidth="2" strokeDasharray="6 5" opacity="0.4" />
+      <circle cx="50" cy="50" r="14" fill={HOUSING} />
+      <Car x={64} y={64} rotate={45} color={PRIORITY_CAR} />
+      <polygon points="78,78 84,86 80,86 80,92 76,92 76,86 72,86" fill={WHITE} />
+    </svg>
+  ),
+  // Roundabout — entering from the left lane when the right one is jammed:
+  // allowed to merge straight into the inner ring.
+  'glorieta-entrada-izquierda-congestion': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
+      <circle cx="50" cy="50" r="30" fill="none" stroke={WHITE} strokeWidth="2" opacity="0.4" />
+      <circle cx="50" cy="50" r="14" fill={HOUSING} />
+      <line x1="38" y1="80" x2="38" y2="100" stroke={WHITE} strokeWidth="2" strokeDasharray="5 4" opacity="0.4" />
+      <Car x={30} y={90} rotate={0} color={YIELD_CAR} />
+      <Car x={30} y={78} rotate={0} color={YIELD_CAR} />
+      <Car x={22} y={64} rotate={0} color={PRIORITY_CAR} />
+    </svg>
+  ),
+  // Roundabout — a group of cyclists inside is treated as a single vehicle:
+  // once the first one has entered, the whole group keeps its priority.
+  'glorieta-grupo-ciclistas': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
+      <circle cx="50" cy="50" r="32" fill="none" stroke={WHITE} strokeWidth="2" opacity="0.4" />
+      <circle cx="50" cy="50" r="16" fill={HOUSING} />
+      <g transform="translate(30 30)">
+        <circle cx="-8" cy="6" r="4" fill="none" stroke={PRIORITY_CAR} strokeWidth="2" />
+        <circle cx="8" cy="6" r="4" fill="none" stroke={PRIORITY_CAR} strokeWidth="2" />
+        <circle cx="0" cy="-6" r="3" fill={SKIN} />
+      </g>
+      <g transform="translate(46 22)">
+        <circle cx="-8" cy="6" r="4" fill="none" stroke={PRIORITY_CAR} strokeWidth="2" />
+        <circle cx="8" cy="6" r="4" fill="none" stroke={PRIORITY_CAR} strokeWidth="2" />
+        <circle cx="0" cy="-6" r="3" fill={SKIN} />
+      </g>
+      <Car x={82} y={70} rotate={135} color={YIELD_CAR} />
+    </svg>
+  ),
+  // Overtaking with three vehicles, exactly the situation to reason about:
+  // A (behind slow B) cannot safely start overtaking because C is already
+  // close, approaching from the opposite direction.
+  'adelantamiento-tres-vehiculos-sin-espacio': () => (
+    <RoadTopDown>
+      <line x1="50" y1="2" x2="50" y2="98" stroke={WHITE} strokeWidth="3" strokeDasharray="9 7" opacity="0.6" />
+      <Car x={50} y={84} rotate={0} color={YIELD_CAR} />
+      <Car x={50} y={58} rotate={0} color={YIELD_CAR} />
+      <Car x={50} y={22} rotate={180} color={PROHIBIT_RED} />
     </RoadTopDown>
   ),
 };
