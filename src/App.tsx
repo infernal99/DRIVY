@@ -33,6 +33,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { AdminContentPage } from './pages/AdminContentPage';
 import { DevOnboardingPreviewPage } from './pages/DevOnboardingPreviewPage';
 import { DevMascotPreviewPage } from './pages/DevMascotPreviewPage';
+import { DevFeedbackPreviewPage } from './pages/DevFeedbackPreviewPage';
 import { InviteFriendPage } from './pages/InviteFriendPage';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         {/* Dev-only: probar todos los estados de la mascota (celebrating,
             sleeping, thinking sostenido...) sin depender de una lección real. */}
         {import.meta.env.DEV && <Route path="/dev/mascot" element={<DevMascotPreviewPage />} />}
+        {import.meta.env.DEV && <Route path="/dev/feedback" element={<DevFeedbackPreviewPage />} />}
 
         {/* Public, unauthenticated-only: bounce a signed-in user back to "/". */}
         <Route element={<RedirectIfAuthed />}>
