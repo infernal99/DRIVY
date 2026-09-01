@@ -798,4 +798,69 @@ export const vehiculoQuestions = [
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
+  // --- 2026-09-01, ampliación del banco (Fase 1, bloque 12) ----------------
+  // Matrícula: hueco detectado en el índice temático de un test público de
+  // terceros (solo títulos). Verificado contra el Reglamento General de
+  // Vehículos (RD 2822/1998, Anexo XVIII) y contrastado el dato de la
+  // exención de matrícula delantera en moto con dos fuentes independientes
+  // tras encontrar una fuente inicial que lo afirmaba justo al revés.
+  q({
+    id: 'VEH-MAT-01',
+    categoryId: 'vehiculo',
+    subcategoryId: 'matricula',
+    question: 'Como norma general, un turismo debe circular con:',
+    options: [
+      'Dos placas de matrícula homologadas, una delantera y otra trasera',
+      'Solo la placa trasera; la delantera es opcional en cualquier vehículo',
+      'Una única placa, colocada donde el propietario prefiera',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La normativa exige que los turismos lleven dos placas de matrícula homologadas, delantera y trasera; circular sin la placa delantera es una infracción grave.',
+    difficulty: 'easy',
+    tags: ['vehículo', 'matrícula'],
+    sourceUrl: 'https://www.boe.es/buscar/act.php?id=BOE-A-1999-1826',
+    legalReference: 'Reglamento General de Vehículos (RD 2822/1998), Anexo XVIII',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-MAT-02',
+    categoryId: 'vehiculo',
+    subcategoryId: 'matricula',
+    question: 'A diferencia de un turismo, una motocicleta:',
+    options: [
+      'Está exenta de llevar matrícula delantera; solo necesita la trasera',
+      'Necesita tres placas de matrícula en lugar de dos',
+      'No necesita matrícula de ningún tipo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Las motocicletas están exentas de la obligación general de llevar matrícula delantera: solo deben llevar la placa trasera, colocada en el plano longitudinal medio del vehículo, por encima del guardabarros posterior.',
+    tags: ['vehículo', 'matrícula'],
+    sourceUrl: 'https://www.boe.es/buscar/act.php?id=BOE-A-1999-1826',
+    legalReference: 'Reglamento General de Vehículos (RD 2822/1998), artículo 49',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'VEH-MAT-03',
+    categoryId: 'vehiculo',
+    subcategoryId: 'matricula',
+    question: '¿Está permitido colocar adornos, marcos o pegatinas sobre la matrícula que dificulten su lectura?',
+    options: [
+      'No, la matrícula debe mantenerse legible y sin elementos que dificulten su identificación',
+      'Sí, siempre que no la tapen por completo',
+      'Sí, siempre que sea un adorno homologado por el fabricante del vehículo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La normativa prohíbe fijar o pintar marcas, marcos o distintivos que por su forma, color o disposición dificulten la legibilidad de la matrícula o puedan inducir a confusión con sus caracteres.',
+    difficulty: 'medium',
+    tags: ['vehículo', 'matrícula'],
+    sourceUrl: 'https://www.boe.es/buscar/act.php?id=BOE-A-1999-1826',
+    legalReference: 'Reglamento General de Vehículos (RD 2822/1998), Anexo XVIII',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
 ];

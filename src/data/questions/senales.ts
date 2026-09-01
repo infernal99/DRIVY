@@ -603,6 +603,32 @@ export const senalesQuestions = [
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
+  // 2026-09-01, ampliación del banco (Fase 1, bloque 12): semáforo apagado
+  // o averiado, hueco detectado en el índice temático de un test público
+  // de terceros (solo títulos). No se cita un artículo concreto del RGC:
+  // varias fuentes secundarias coinciden en el hecho (tratar el cruce como
+  // sin señalizar), pero no logré confirmar un número de artículo preciso
+  // con una fuente lo bastante fiable — mejor citar solo la fuente
+  // general que forzar una referencia legal no verificada.
+  q({
+    id: 'SEN-SEM-04',
+    categoryId: 'senales',
+    subcategoryId: 'semaforos',
+    question: 'Te acercas a un cruce y compruebas que el semáforo está completamente apagado por una avería. Debes:',
+    options: [
+      'Tratar el cruce como una intersección sin señalizar, extremando la precaución',
+      'Pasar sin ninguna precaución especial, ya que un semáforo apagado no obliga a nada',
+      'Detenerte por completo y esperar a que se repare, sin cruzar bajo ningún concepto',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Cuando un semáforo deja de funcionar por avería o corte de suministro, el cruce pasa a tratarse como una intersección sin señalizar: se aplican las normas generales de prioridad y conviene reducir la velocidad y extremar la precaución, aunque te corresponda el paso.',
+    difficulty: 'medium',
+    tags: ['señales', 'semáforos'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
   q({
     id: 'SEN-AGE-01',
     categoryId: 'senales',
