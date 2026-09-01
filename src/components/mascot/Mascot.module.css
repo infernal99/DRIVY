@@ -1,0 +1,174 @@
+/* Dos capas a propósito: .root lleva el hover/click (transition CSS) y
+   .img lleva la animación del estado (keyframes). Si ambas cosas tocaran
+   "transform" en el MISMO elemento, la animación por keyframes gana la
+   pugna en cada frame y el hover deja de notarse mientras hay un estado
+   en marcha (p. ej. idle, que siempre está animando). Como los transforms
+   de dos elementos anidados se componen, así conviven sin pisarse. */
+.root {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.root:active .img {
+  transform: scale(0.97);
+  transition: transform 100ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .root:hover {
+    transform: scale(1.035) rotate(-2deg);
+  }
+}
+
+.img {
+  display: block;
+  transform-origin: 50% 100%;
+}
+
+/* --- Idle: nunca del todo quieta, pero MUY sutil (2-4px) ------------------ */
+.stateIdle {
+  animation: mascotBreathe 4.5s ease-in-out infinite;
+}
+
+@keyframes mascotBreathe {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.012); }
+}
+
+.stateSleeping {
+  animation: mascotSleep 5.5s ease-in-out infinite;
+}
+
+@keyframes mascotSleep {
+  0%, 100% { transform: translateY(0) rotate(2deg); }
+  50% { transform: translateY(-2px) rotate(2deg); }
+}
+
+/* Los "tics" de idle (parpadeo/vistazo/meneo) se SUMAN encima de la
+   animación base con una segunda clase — no la sustituyen — para que la
+   respiración de fondo nunca se corte mientras dura el tic. */
+.tickBlink {
+  animation: mascotBlink 260ms ease-in-out;
+}
+
+/* No hay párpados que animar (una sola imagen estática, sin capas): esto
+   es una aproximación honesta al parpadeo — una compresión vertical
+   brevísima que se lee como un pestañeo sin serlo de verdad. */
+@keyframes mascotBlink {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.985); }
+}
+
+.tickGlance {
+  animation: mascotGlance 650ms ease-in-out;
+}
+
+@keyframes mascotGlance {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  30% { transform: translateX(-3px) rotate(-1.5deg); }
+  70% { transform: translateX(-3px) rotate(-1.5deg); }
+}
+
+.tickWiggle {
+  animation: mascotWiggle 500ms ease-in-out;
+}
+
+@keyframes mascotWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+}
+
+/* --- Estados temporales ---------------------------------------------------- */
+.stateGreeting {
+  animation: mascotGreeting 900ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes mascotGreeting {
+  0% { transform: scale(0.9) rotate(0deg); }
+  40% { transform: scale(1.06) rotate(-4deg); }
+  70% { transform: scale(0.99) rotate(3deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.stateThinking {
+  animation: mascotThinking 1.6s ease-in-out infinite;
+}
+
+@keyframes mascotThinking {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(-3deg) scale(1.008); }
+}
+
+.stateExplaining {
+  animation: mascotExplaining 1.1s ease-in-out infinite;
+}
+
+@keyframes mascotExplaining {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-2px) rotate(2deg); }
+}
+
+.stateHappy {
+  animation: mascotHappy 550ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes mascotHappy {
+  0% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(-8px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+.stateCelebrating {
+  animation: mascotCelebrating 850ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes mascotCelebrating {
+  0% { transform: translateY(0) scale(1) rotate(0deg); }
+  30% { transform: translateY(-12px) scale(1.09) rotate(-5deg); }
+  55% { transform: translateY(0) scale(1.03) rotate(4deg); }
+  80% { transform: translateY(-4px) scale(1.05) rotate(-2deg); }
+  100% { transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+/* Nunca brusca ni "enfadada": un balanceo lento y suave, no un bounce. */
+.stateEncouraging {
+  animation: mascotEncouraging 1.2s ease-in-out infinite;
+}
+
+@keyframes mascotEncouraging {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  50% { transform: rotate(-3deg) translateY(1px); }
+}
+
+.stateSurprised {
+  animation: mascotSurprised 420ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes mascotSurprised {
+  0% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.08) translateY(-5px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.stateIdea {
+  animation: mascotIdea 1.5s ease-in-out infinite;
+}
+
+@keyframes mascotIdea {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-4px) rotate(-2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .root:hover,
+  .root:active .img,
+  .img[class] {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

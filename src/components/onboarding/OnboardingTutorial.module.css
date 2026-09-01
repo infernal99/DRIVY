@@ -223,23 +223,6 @@
   padding-top: 12px;
 }
 
-/* El bob es deliberadamente sutil (6px) y lento (3.4s): acompaña un texto
-   que hay que leer, no debe competir por la atención. */
-.mascotBob {
-  animation: mascot-bob 3.4s ease-in-out infinite;
-}
-
-@keyframes mascot-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mascotBob {
-    animation: none;
-  }
-}
-
 .title {
   font-family: var(--font-display);
   font-weight: 700;
