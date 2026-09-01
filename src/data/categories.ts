@@ -20,6 +20,7 @@ export const CATEGORIES: Category[] = [
       { id: 'marcas-viales', name: 'Marcas viales' },
       { id: 'semaforos', name: 'Semáforos' },
       { id: 'senales-agentes', name: 'Señales de agentes' },
+      { id: 'paneles-complementarios', name: 'Paneles complementarios' },
     ],
   },
   {
@@ -108,6 +109,7 @@ export const CATEGORIES: Category[] = [
       { id: 'carga', name: 'Carga del vehículo' },
       { id: 'visibilidad', name: 'Visibilidad' },
       { id: 'adas', name: 'ADAS' },
+      { id: 'vehiculos-especiales', name: 'Vehículos especiales' },
     ],
   },
   {

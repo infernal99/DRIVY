@@ -316,6 +316,33 @@ Contenido `derived` puede citar estas fuentes.
 - **Qué NO podemos reutilizar**: 
   - Copiar texto literal de la página como si fuera nuestro
 
+## DGT (revista) — Paneles complementarios
+
+- **URL**: https://revista.dgt.es/es/reportajes/2013/donde-llega-aplicacion-sennal.shtml
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior) — revista oficial
+- **Licencia**: © DGT — contenido editorial institucional
+- **Tipo de contenido**: Reportaje oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) sobre el concepto y función de los paneles complementarios, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal del reportaje como si fuera nuestro
+- **Notas**: El código S-810 (longitud del tramo) se corroboró además contra el Anexo de Wikipedia de señales de indicación, ya usado como referencia secundaria en signs.ts para códigos de señal.
+
+## DGT — En tractor y vehículo agrícola
+
+- **URL**: https://www.dgt.es/muevete-con-seguridad/viaja-seguro/tractor/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Normativa e información oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal de la página como si fuera nuestro
+
 ## DGT — Manual básico del permiso B (Lectura Fácil)
 
 - **URL**: https://seguridadvial2030.dgt.es/.galleries/enlaces/practicas-interes/personas-formadas-y-capaces/manual-permiso-b-lectura-facil.html
