@@ -71,6 +71,31 @@ export const otrosUsuariosQuestions = [
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
+  // 2026-09-01, cobertura temática (Fase 3): la DGT aclara en su página "A
+  // pie" que fuera de un paso señalizado el peatón NO tiene prioridad
+  // automática y debe cruzar con máxima precaución — no confundir con
+  // OTR-PEA-01 (que sí trata un paso señalizado). Esto no exime al
+  // conductor de su deber general de evitar el atropello si lo ve a tiempo.
+  q({
+    id: 'OTR-PEA-04',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'peatones',
+    question: 'Un peatón cruza la calzada fuera de un paso de peatones señalizado. Como conductor debes:',
+    image: 'diagram:peaton-cruce-no-senalizado',
+    options: [
+      'Extremar la precaución y estar preparado para detenerte, aunque allí el peatón no tenga prioridad legal automática',
+      'Continuar sin reducir la velocidad, ya que en ese punto el peatón no tiene ningún derecho',
+      'Tocar el claxon para que se aparte y mantener tu trayectoria sin reducir',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Fuera de un paso señalizado el peatón no tiene prioridad automática y debe cruzar eligiendo el lugar más seguro; pero eso no exime al conductor de su deber general de conducir con precaución y evitar atropellar a quien vea cruzando.',
+    difficulty: 'medium',
+    tags: ['otros usuarios', 'peatones'],
+    sourceUrl: 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/a-pie/',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
   q({
     id: 'OTR-CIC-01',
     categoryId: 'otros-usuarios',

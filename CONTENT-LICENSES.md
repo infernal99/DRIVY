@@ -116,6 +116,45 @@ Contenido `derived` puede citar estas fuentes.
 - **Qué NO podemos reutilizar**: 
   - Modificar estos 3 SVG y redistribuirlos sin conservar la misma licencia (cláusula share-alike)
 
+## DGT — Qué hacer ante un accidente de tráfico
+
+- **URL**: https://www.dgt.es/muevete-con-seguridad/que-hacer-ante-un-accidente-de-trafico/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Normativa e información oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal de la página como si fuera nuestro
+
+## DGT — Conducción eficiente
+
+- **URL**: https://www.dgt.es/muevete-con-seguridad/conviertete-en-un-buen-conductor/consejos-generales/conduccion-eficiente/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Normativa e información oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal de la página como si fuera nuestro
+
+## DGT — A pie
+
+- **URL**: https://www.dgt.es/muevete-con-seguridad/viaja-seguro/a-pie/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Normativa e información oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal de la página como si fuera nuestro
+
 ## DGT — Manual básico del permiso B (Lectura Fácil)
 
 - **URL**: https://seguridadvial2030.dgt.es/.galleries/enlaces/practicas-interes/personas-formadas-y-capaces/manual-permiso-b-lectura-facil.html
