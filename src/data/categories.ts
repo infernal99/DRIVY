@@ -71,6 +71,8 @@ export const CATEGORIES: Category[] = [
       { id: 'telefono-movil', name: 'Teléfono móvil' },
       { id: 'primeros-auxilios', name: 'Primeros auxilios' },
       { id: 'conduccion-eficiente', name: 'Conducción eficiente' },
+      { id: 'condiciones-meteorologicas', name: 'Condiciones meteorológicas' },
+      { id: 'conduccion-nocturna', name: 'Conducción nocturna' },
     ],
   },
   {

@@ -197,6 +197,46 @@ Contenido `derived` puede citar estas fuentes.
   - Copiar texto literal de la página como si fuera nuestro
   - Afirmar cómo queda la excepción de taxi (135 cm sin SRI en tráfico urbano) tras el RD 518/2026: esa reforma entra en vigor el 2026-10-01 y las fuentes consultadas no coinciden en si la mantiene igual — no preguntar por ella hasta confirmarlo después de esa fecha
 
+## DGT — Hielo y nieve: con la adherencia al límite
+
+- **URL**: https://www.dgt.es/comunicacion/noticias/hielo-y-nieve-con-la-adherencia-al-limite/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Nota de prensa / artículo informativo oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal del artículo como si fuera nuestro
+
+## DGT — Conducir con el viento en contra
+
+- **URL**: https://www.dgt.es/comunicacion/noticias/conducir-con-el-viento-en-contra/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Nota de prensa / artículo informativo oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal del artículo como si fuera nuestro
+
+## DGT — Consejos para conducir de noche
+
+- **URL**: https://www.dgt.es/comunicacion/noticias/consejos-para-conducir-de-noche/
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior)
+- **Licencia**: unknown (contenido institucional público; sin licencia de reutilización explícita)
+- **Tipo de contenido**: Nota de prensa / artículo informativo oficial
+- **Fecha de comprobación**: 2026-09-01
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar texto literal del artículo como si fuera nuestro
+  - Afirmar una distancia fija (p.ej. "150 metros") para el cambio a luces de cruce: el art. 102 RGC no fija ninguna cifra, solo "tan pronto como se aprecie la posibilidad" de deslumbrar — una cifra concreta circula en blogs de autoescuela pero no está en el articulado
+
 ## DGT — Manual básico del permiso B (Lectura Fácil)
 
 - **URL**: https://seguridadvial2030.dgt.es/.galleries/enlaces/practicas-interes/personas-formadas-y-capaces/manual-permiso-b-lectura-facil.html

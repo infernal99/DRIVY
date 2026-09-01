@@ -281,6 +281,58 @@
     "consultedAt": "2026-09-01"
   },
   {
+    "id": "dgt-hielo-nieve",
+    "name": "DGT — Hielo y nieve: con la adherencia al límite",
+    "description": "Zonas de mayor riesgo de hielo (umbrías, puentes), qué hacer si se pierde adherencia (no frenar), y comparativa de distancia de frenada en nieve entre neumáticos de invierno y de verano.",
+    "url": "https://www.dgt.es/comunicacion/noticias/hielo-y-nieve-con-la-adherencia-al-limite/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Nota de prensa / artículo informativo oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal del artículo como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-viento-fuerte",
+    "name": "DGT — Conducir con el viento en contra",
+    "description": "El \"efecto pantalla\" al adelantar vehículos grandes, zonas de mayor riesgo (puentes, viaductos, salidas de túnel) y vehículos más vulnerables al viento lateral (baca, remolque, carrocería angulosa).",
+    "url": "https://www.dgt.es/comunicacion/noticias/conducir-con-el-viento-en-contra/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Nota de prensa / artículo informativo oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal del artículo como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-conducir-de-noche",
+    "name": "DGT — Consejos para conducir de noche",
+    "description": "Deslumbramiento (tiempo de recuperación de la visión, qué hacer), adaptación de la velocidad al alcance del alumbrado propio, y estadística de accidentes/fallecidos nocturnos.",
+    "url": "https://www.dgt.es/comunicacion/noticias/consejos-para-conducir-de-noche/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Nota de prensa / artículo informativo oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal del artículo como si fuera nuestro",
+      "Afirmar una distancia fija (p.ej. \"150 metros\") para el cambio a luces de cruce: el art. 102 RGC no fija ninguna cifra, solo \"tan pronto como se aprecie la posibilidad\" de deslumbrar — una cifra concreta circula en blogs de autoescuela pero no está en el articulado"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
     "id": "dgt-manual-permiso-b-lectura-facil",
     "name": "DGT — Manual básico del permiso B (Lectura Fácil)",
     "description": "Manual oficial de la DGT sobre los contenidos del permiso B.",
