@@ -13,14 +13,11 @@ import type { TrafficSign } from '../types';
 // 2025-07-01) added, redesigned, or repealed — that reform's public
 // reporting names P-15a/P-15b (resalto/badén) and new ZBE/VMP signage as
 // its notable changes, not any sign in this file. Two previously uncoded
-// signs got a confirmed code from this pass (R-100, S-2); two others
-// ('obras', 'prohibido-paso-peatones') stay uncoded on purpose — search
-// turned up a plausible-sounding candidate for each (P-50 "otros peligros"
-// turned out to be a different, generic sign, not the roadworks pictogram;
-// no source pinned down an exact code for the pedestrian-prohibition sign)
-// but not precisely enough to confirm without risking a wrong code, so
-// they're marked `needs_review` rather than guessed — see content spec
-// rule "es preferible needs_review a inventar".
+// signs got a confirmed code from this pass (R-100, S-2). 'obras' and
+// 'prohibido-paso-peatones' stayed uncoded from this first pass (P-50
+// "otros peligros" turned out to be a different, generic sign, not the
+// roadworks pictogram; no source pinned down the pedestrian one yet) — both
+// were later resolved in the 2026-09-01 real-image pass below (P-18, R-116).
 const VERIFIED_AT = '2026-09-01';
 
 // Internal sign catalogue (content spec §10). `image` is a key into our own
@@ -41,16 +38,21 @@ const WIKI_R = 'https://es.wikipedia.org/wiki/Anexo:Se%C3%B1ales_de_tr%C3%A1fico
 const WIKI_P = 'https://es.wikipedia.org/wiki/Anexo:Se%C3%B1ales_de_tr%C3%A1fico_de_peligro_de_Espa%C3%B1a';
 const WIKI_S = 'https://es.wikipedia.org/wiki/Anexo:Se%C3%B1ales_de_tr%C3%A1fico_de_indicaci%C3%B3n_de_Espa%C3%B1a';
 
-// --- 2026-09-01 real-image pass ------------------------------------------
-// 7 signs below got a real vendored image (public/signs/<image>.svg) instead
-// of our hand-drawn <TrafficSign> registry entry — independent vector
-// recreations from Wikimedia Commons (mostly user Benedicto16), each
-// individually confirmed public-domain-no-conditions AND not superseded by
-// a newer "2023 set" redesign before being used (see TrafficSign.tsx's
-// REAL_SIGN_KEYS comment for why this is a small allowlist, not "any
-// Commons file"). Each affected entry below has its own comment recording
-// the exact Commons file/license checked, so a later pass doesn't have to
-// redo that research from scratch.
+// --- 2026-09-01 real-image pass (two rounds) ------------------------------
+// 16 of the 21 signs below got a real vendored image (public/signs/<image>.svg)
+// instead of our hand-drawn <TrafficSign> registry entry — independent
+// vector recreations from Wikimedia Commons (mostly Benedicto16, two by
+// NACLE2), each individually confirmed public-domain-no-conditions (or CC0
+// for the NACLE2 ones) AND not superseded by a newer "2023 set" redesign
+// before being used (see TrafficSign.tsx's REAL_SIGN_KEYS comment for why
+// this is a small allowlist, not "any Commons file"). Each affected entry
+// below has its own comment recording the exact Commons file/license
+// checked, so a later pass doesn't have to redo that research from scratch.
+// The remaining 5 (stop, paso-peatones, direccion-obligatoria-recto,
+// glorieta-obligatoria, fin-limite-velocidad) stay on the hand-drawn
+// registry: the first two are blocked by the unresolved art. 13 LPI
+// question (see sources.ts), the other three are CC-BY-SA from a different
+// author (Gigillo83) and the app doesn't show image attribution yet.
 
 export const TRAFFIC_SIGNS: TrafficSign[] = [
   {
@@ -94,6 +96,9 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Curva peligrosa hacia la derecha',
     category: 'senales-peligro',
     image: 'curva-peligrosa-derecha',
+    // Image: Spain_traffic_signal_p13a.svg (Wikimedia Commons, Benedicto16),
+    // public domain, no "2023 set" replacement found for this code (only
+    // s13/p33/s45/s46 turned up "2023 set" files in this pass).
     source: { name: 'Anexo de señales de peligro (referencia secundaria sobre el Reglamento)', url: WIKI_P, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -159,6 +164,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Velocidad máxima (50 km/h)',
     category: 'senales-prohibicion',
     image: 'limite-velocidad-50',
+    // Image: Spain_traffic_signal_r301-50.svg (Wikimedia Commons), public
+    // domain, no "2023 set" replacement found for this code.
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -169,6 +176,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Velocidad máxima (90 km/h)',
     category: 'senales-prohibicion',
     image: 'limite-velocidad-90',
+    // Image: Spain_traffic_signal_r301-90.svg (Wikimedia Commons), public
+    // domain, no "2023 set" replacement found for this code.
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -198,13 +207,18 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
   },
   {
     id: 'prohibido-paso-peatones',
+    code: 'R-116',
     name: 'Prohibido el paso a peatones',
     category: 'senales-prohibicion',
     image: 'prohibido-paso-peatones',
+    // Code confirmed in the second pass via multiple independent commercial
+    // signage catalogs (Rotuvall, Preventec, Seton, Rótulos González) all
+    // agreeing on R-116 "Entrada prohibida a peatones" — the Fase 1 pass
+    // hadn't found a source solid enough to trust. Image:
+    // Spain_traffic_signal_r116.svg (Wikimedia Commons, Benedicto16 +
+    // Citypeek cleanup), public domain, no "2023 set" replacement found.
     source: { name: 'Reglamento General de Circulación — señales de prohibición', url: RGC_BASE, type: 'derived' },
-    // Could not confirm an exact R-code for this specific pictogram from a
-    // source solid enough to trust — left uncoded rather than guessed.
-    verificationStatus: 'needs_review',
+    verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   },
   {
@@ -247,6 +261,10 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Velocidad mínima (40 km/h)',
     category: 'senales-obligacion',
     image: 'velocidad-minima-40',
+    // Image: "Señal r411 velocidad mínima.svg" (Wikimedia Commons, user
+    // NACLE2) — CC0 1.0 Universal, a direct public-domain dedication by its
+    // own author, not dependent on the government-artwork/art.13 LPI
+    // argument that blocks the "2023 set" files elsewhere in this catalogue.
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -257,6 +275,10 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Vía obligatoria para ciclos',
     category: 'senales-obligacion',
     image: 'carril-bici',
+    // Image: "Señal r407 bicicletas.svg" (Wikimedia Commons, user NACLE2,
+    // cleanup by Caminetero 2025) — CC0 1.0 Universal, same clean private
+    // dedication as velocidad-minima-40 above (not the ambiguous
+    // government-sourced "2023 set" license).
     source: { name: 'Anexo de señales de reglamentación (referencia secundaria sobre el Reglamento)', url: WIKI_R, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -277,6 +299,9 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Estacionamiento',
     category: 'senales-indicacion',
     image: 'aparcamiento',
+    // Image: Spain_traffic_signal_s17.svg (Wikimedia Commons), public
+    // domain — updated 2026-01-11 explicitly for "2025 BOE" colors, one of
+    // the best-confirmed-current files in this whole batch.
     source: { name: 'Anexo de señales de indicación (referencia secundaria sobre el Reglamento)', url: WIKI_S, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -287,6 +312,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Autopista',
     category: 'senales-indicacion',
     image: 'autopista',
+    // Image: Spain_traffic_signal_s1.svg (Wikimedia Commons), public
+    // domain, updated 2026-01-11, no "2023 set" replacement found.
     source: { name: 'Anexo de señales de indicación (referencia secundaria sobre el Reglamento)', url: WIKI_S, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
@@ -297,6 +324,8 @@ export const TRAFFIC_SIGNS: TrafficSign[] = [
     name: 'Fin de autopista',
     category: 'senales-indicacion',
     image: 'fin-autopista',
+    // Image: Spain_traffic_signal_s2.svg (Wikimedia Commons), public
+    // domain, updated 2026-01-11, no "2023 set" replacement found.
     source: { name: 'Reglamento General de Circulación — señales de indicación', url: RGC_BASE, type: 'derived' },
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,

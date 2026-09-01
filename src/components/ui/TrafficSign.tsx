@@ -250,6 +250,17 @@ const REAL_SIGN_KEYS = new Set<SignKey>([
   'circulacion-prohibida-ambos-sentidos',
   'prohibido-aparcar',
   'animales-sueltos',
+  // Second pass (same day): the remaining signs that weren't blocked by a
+  // CC-BY-SA license or a "2023 set" government-sourced redesign.
+  'curva-peligrosa-derecha',
+  'limite-velocidad-50',
+  'limite-velocidad-90',
+  'autopista',
+  'fin-autopista',
+  'aparcamiento',
+  'prohibido-paso-peatones',
+  'carril-bici',
+  'velocidad-minima-40',
 ]);
 
 /** Renders a real vendored sign image where one is cleared for use, otherwise our own illustration. Falls back to nothing for unknown keys. */
