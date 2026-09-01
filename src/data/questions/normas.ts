@@ -3,6 +3,7 @@ import { q } from './helpers';
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
 const RGC_BASE = 'https://www.boe.es/buscar/act.php?id=BOE-A-2003-23514';
 const SRC_GLORIETA = 'https://www.dgt.es/comunicacion/noticias/glorietas-como-actuar-en-6-situaciones-habituales/';
+const SRC_INTERMITENTE = 'https://revista.dgt.es/es/educacion-formacion/conducir-mejor/2022/1202-CM-Intermitentes.shtml';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -679,6 +680,32 @@ export const normasQuestions = [
       'Aunque quien se incorpora debe ceder el paso, los conductores de la vía principal deben facilitar la maniobra, moderando su velocidad o cambiando de carril cuando sea posible con seguridad.',
     tags: ['normas', 'incorporación'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-02, imágenes de situaciones reales (Lote 4: cambios de
+  // carril). Verificado contra un reportaje oficial de la revista de la
+  // DGT que lo dice explícitamente: el intermitente es una "declaración
+  // de intenciones" y nunca otorga prioridad por sí solo (salvo una
+  // única excepción, no representada aquí: dos vehículos en el mismo
+  // carril señalizando un adelantamiento).
+  q({
+    id: 'NOR-INC-03',
+    categoryId: 'normas',
+    subcategoryId: 'incorporaciones',
+    question: 'Quieres cambiar al carril izquierdo y activas el intermitente, pero en ese carril ya circula otro vehículo a tu altura. ¿Tiene tu intermitente activado prioridad sobre ese vehículo?',
+    image: 'diagram:cambio-carril-intermitente-no-prioridad',
+    options: [
+      'No: el intermitente solo avisa de tu intención, pero quien ya circula por ese carril mantiene la prioridad',
+      'Sí, activar el intermitente con antelación suficiente da prioridad automática para el cambio',
+      'Sí, pero solo si lo activas más de 5 segundos antes de moverte',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El intermitente es solo una señal de aviso: informa de tu intención, pero nunca otorga prioridad por sí mismo (salvo un supuesto muy concreto ajeno a este caso). El vehículo que ya circula por el carril de destino mantiene la prioridad, y quien quiere cambiarse debe cederle el paso.',
+    difficulty: 'medium',
+    tags: ['normas', 'cambio de carril', 'intermitente'],
+    sourceUrl: SRC_INTERMITENTE,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
