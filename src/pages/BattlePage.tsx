@@ -567,9 +567,23 @@ function XpHexIcon({ size = 16 }: { size?: number }) {
 function StatColumn({ icon, iconColor, value, label }: { icon: 'target' | 'clock' | 'chart'; iconColor: string; value: string; label: string }) {
   return (
     <div style={{ flex: 1, textAlign: 'center' }}>
-      <Icon name={icon} size={22} color={iconColor} />
-      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, color: '#fff', marginTop: 8 }}>{value}</div>
-      <div style={{ fontSize: 11, color: 'var(--color-text-muted-60)', marginTop: 2 }}>{label}</div>
+      <div
+        style={{
+          width: 44,
+          height: 44,
+          margin: '0 auto',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: `color-mix(in srgb, ${iconColor} 16%, transparent)`,
+          boxShadow: `0 4px 14px color-mix(in srgb, ${iconColor} 40%, transparent)`,
+        }}
+      >
+        <Icon name={icon} size={20} color={iconColor} />
+      </div>
+      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, color: '#fff', marginTop: 10 }}>{value}</div>
+      <div style={{ fontSize: 11, color: 'var(--color-primary-light)', marginTop: 2 }}>{label}</div>
     </div>
   );
 }
@@ -583,19 +597,33 @@ function ResultActionRow({ icon, text, onClick, disabled }: { icon: 'share' | 's
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: 12,
+        gap: 14,
         width: '100%',
-        height: 47,
-        padding: '0 20px',
-        borderRadius: 13,
-        border: '1px solid rgba(255,255,255,0.06)',
-        background: 'var(--color-bg-card)',
+        height: 60,
+        padding: '0 18px',
+        border: 'none',
+        background: 'transparent',
         cursor: disabled ? 'default' : 'pointer',
         opacity: disabled ? 0.7 : 1,
       }}
     >
-      <Icon name={icon} size={17} color="#fff" />
-      <span style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>{text}</span>
+      <div
+        style={{
+          width: 34,
+          height: 34,
+          borderRadius: 10,
+          flex: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'rgba(155,108,255,0.16)',
+          boxShadow: '0 3px 10px rgba(139,92,246,0.25)',
+        }}
+      >
+        <Icon name={icon} size={16} color="var(--color-primary-light)" />
+      </div>
+      <span style={{ flex: 1, textAlign: 'left', fontSize: 13.5, fontWeight: 600, color: '#fff' }}>{text}</span>
+      <Icon name="chevronRight" size={16} color="var(--color-primary-light)" />
     </button>
   );
 }
@@ -782,49 +810,74 @@ export function BattleResultScreen({
           </div>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 16 }}>
-          <ResultActionRow icon="share" text={sharing ? 'Generando…' : 'Compartir resultado'} onClick={handleShare} disabled={sharing} />
-          {shareNote && <p style={{ fontSize: 11.5, color: 'var(--color-text-muted-60)', textAlign: 'center', margin: 0 }}>{shareNote}</p>}
-          <ResultActionRow icon="sources" text="Revisar preguntas" onClick={onReview} />
-
-          <button
-            type="button"
-            onClick={onBack}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 16 }}>
+          <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 12,
-              width: '100%',
-              height: 62,
-              padding: '0 16px',
-              marginTop: 2,
-              borderRadius: 14,
-              border: 'none',
-              background: 'var(--gradient-brand)',
-              boxShadow: 'var(--shadow-btn-primary)',
-              cursor: 'pointer',
+              background: 'var(--color-bg-card)',
+              border: '1px solid rgba(255,255,255,0.06)',
+              borderRadius: 16,
+              boxShadow: '0 10px 24px rgba(0,0,0,0.28)',
+              overflow: 'hidden',
             }}
           >
+            <ResultActionRow icon="share" text={sharing ? 'Generando…' : 'Compartir resultado'} onClick={handleShare} disabled={sharing} />
+            <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', margin: '0 18px' }} />
+            <ResultActionRow icon="sources" text="Revisar preguntas" onClick={onReview} />
+          </div>
+          {shareNote && <p style={{ fontSize: 11.5, color: 'var(--color-text-muted-60)', textAlign: 'center', margin: 0 }}>{shareNote}</p>}
+
+          <div style={{ position: 'relative', marginTop: 2 }}>
+            {/* Borde/extrusión 3D inferior — mismo truco que el resto de la app (LearnPath, GradientBanner). */}
             <div
+              aria-hidden="true"
               style={{
-                width: 38,
-                height: 38,
-                borderRadius: 11,
-                background: 'rgba(255,255,255,0.18)',
+                position: 'absolute',
+                inset: 0,
+                borderRadius: 15,
+                background: 'var(--gradient-brand)',
+                filter: 'brightness(0.6) saturate(1.15)',
+                transform: 'translateY(6px)',
+              }}
+            />
+            <button
+              type="button"
+              onClick={onBack}
+              style={{
+                position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
-                flex: 'none',
+                gap: 12,
+                width: '100%',
+                height: 64,
+                padding: '0 16px',
+                borderRadius: 15,
+                border: 'none',
+                background: 'var(--gradient-brand)',
+                boxShadow: '0 12px 26px rgba(139,92,246,0.4), inset 0 1px 0 rgba(255,255,255,0.3)',
+                cursor: 'pointer',
               }}
             >
-              <Icon name="users" size={18} color="#fff" />
-            </div>
-            <div style={{ flex: 1, textAlign: 'left' }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Volver a amigos</div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)', marginTop: 1 }}>Elegir nuevo rival</div>
-            </div>
-            <Icon name="chevronRight" size={18} color="#fff" />
-          </button>
+              <div
+                style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: 11,
+                  background: 'rgba(255,255,255,0.18)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flex: 'none',
+                }}
+              >
+                <Icon name="users" size={18} color="#fff" />
+              </div>
+              <div style={{ flex: 1, textAlign: 'left' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Volver a amigos</div>
+                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)', marginTop: 1 }}>Elegir nuevo rival</div>
+              </div>
+              <Icon name="chevronRight" size={18} color="#fff" />
+            </button>
+          </div>
         </div>
       </div>
     </AppShell>
