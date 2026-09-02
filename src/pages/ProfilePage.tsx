@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { useAuthStore } from '../store/authStore';
 import { promptInstall, useInstallPromptStore } from '../store/installPromptStore';
 import { usePremiumStore } from '../store/premiumStore';
 import { computeStats } from '../services/progressService';
-import { getMyAvatarId } from '../services/avatarService';
+import { useMyAvatarId } from '../hooks/useMyAvatarId';
 import { getLevelInfo } from '../utils/xp';
 import { ACHIEVEMENTS } from '../data/achievements';
 import { AppShell } from '../components/layout/AppShell';
@@ -30,7 +30,9 @@ export function ProfilePage() {
   const { level } = getLevelInfo(progress.xp);
   const unlockedIds = new Set(progress.achievements.map((a) => a.id));
 
-  const [avatarId, setAvatarId] = useState<string | null>(null);
+  const fetchedAvatarId = useMyAvatarId();
+  const [avatarOverride, setAvatarOverride] = useState<string | null>(null);
+  const avatarId = avatarOverride ?? fetchedAvatarId;
   const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const isPremium = usePremiumStore((s) => s.isPremium);
 
@@ -39,13 +41,6 @@ export function ProfilePage() {
   const { profile: onboardingProfile } = useOnboardingProfile();
   const onboardingLicense = LICENSE_CATEGORIES.find((c) => c.id === onboardingProfile.licenseCategoryId);
   const onboardingCountry = ONBOARDING_COUNTRIES.find((c) => c.id === onboardingProfile.countryId);
-
-  useEffect(() => {
-    if (authStatus !== 'authenticated') return;
-    getMyAvatarId()
-      .then(setAvatarId)
-      .catch(() => setAvatarId(null));
-  }, [authStatus]);
 
   const deferredInstallEvent = useInstallPromptStore((s) => s.deferredEvent);
   const appInstalled = useInstallPromptStore((s) => s.installed);
@@ -274,7 +269,7 @@ export function ProfilePage() {
           isPremium={isPremium}
           selectedAvatarId={avatarId}
           onClose={() => setShowAvatarPicker(false)}
-          onSelected={setAvatarId}
+          onSelected={setAvatarOverride}
         />
       )}
     </AppShell>
