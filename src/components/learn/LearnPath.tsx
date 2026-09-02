@@ -3,6 +3,7 @@ import { Icon } from '../ui/Icon';
 import { Mascot } from '../mascot/Mascot';
 import { useMascot } from '../mascot/useMascot';
 import { PathIcon, type PathIconName } from './pathVisuals';
+import { NODE_ASSET, DAILY_CHALLENGE_ASSET, REWARD_CHEST_ASSET, ENV_PROP, type EnvPropKind } from './pathAssets';
 import styles from './LearnPath.module.css';
 
 export type PathNodeKind = 'lesson' | 'checkpoint' | 'reward' | 'exam' | 'teaser';
@@ -23,11 +24,12 @@ export interface PathNode {
 const DEFAULT_GLOW = 'rgba(139,92,246,0.45)';
 
 /** Centro (x) de cada nodo dentro de un lienzo de ROW_WIDTH — la onda "centro / lado / extremo" que pide el diseño. */
-const X_PATTERN = [150, 90, 42, 150, 210, 258, 150];
-const ROW_WIDTH = 300;
-const ROW_HEIGHT = 104;
-const TOP_PADDING = 62;
-const BOTTOM_PADDING = 46;
+const X_PATTERN = [165, 95, 42, 165, 235, 288, 165];
+const ROW_WIDTH = 330;
+/** Mundo largo a propósito: mejor que la página se desplace mucho a que los nodos se encojan. */
+const ROW_HEIGHT = 172;
+const TOP_PADDING = 80;
+const BOTTOM_PADDING = 64;
 
 function xFor(i: number) {
   return X_PATTERN[i % X_PATTERN.length];
@@ -47,11 +49,11 @@ function buildTrailPath(points: { x: number; y: number }[]) {
 }
 
 const SIZE: Record<PathNodeKind, { active: number; other: number; extrusion: number }> = {
-  lesson: { active: 82, other: 68, extrusion: 9 },
-  checkpoint: { active: 78, other: 78, extrusion: 9 },
-  reward: { active: 74, other: 74, extrusion: 9 },
-  exam: { active: 94, other: 94, extrusion: 11 },
-  teaser: { active: 58, other: 58, extrusion: 6 },
+  lesson: { active: 104, other: 86, extrusion: 10 },
+  checkpoint: { active: 92, other: 92, extrusion: 10 },
+  reward: { active: 96, other: 96, extrusion: 10 },
+  exam: { active: 100, other: 100, extrusion: 12 },
+  teaser: { active: 68, other: 68, extrusion: 7 },
 };
 
 function sizeFor(node: PathNode) {
@@ -67,7 +69,14 @@ function surfaceFor(node: PathNode): string {
   return 'var(--gradient-brand)'; // lección activa
 }
 
-/** Camino serpenteante: botones 3D tácticos, halos de color por lección, hitos especiales y la mascota contando pequeñas historias por el camino. */
+/** Asset PNG de producción para este nodo, si el proyecto tiene arte real para él (ver pathAssets.ts) — si no, se usa el botón 3D en CSS + PathIcon. */
+function assetFor(node: PathNode): string | undefined {
+  if (node.kind === 'checkpoint') return DAILY_CHALLENGE_ASSET;
+  if (node.kind === 'reward') return REWARD_CHEST_ASSET;
+  return NODE_ASSET[node.icon];
+}
+
+/** Camino serpenteante: PNG de producción como base de cada nodo (con fallback al botón 3D en CSS), carretera real, decorado del entorno y la mascota contando pequeñas historias por el camino. */
 export function LearnPath({ nodes }: { nodes: PathNode[] }) {
   const gradId = useId().replace(/:/g, '');
   const idleMascot = useMascot({ idleSleepAfterMs: null });
@@ -98,7 +107,7 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
   const futurePoints = points.slice(splitIndex);
 
   return (
-    <div style={{ position: 'relative', width: ROW_WIDTH, height: totalHeight, margin: '64px auto 0' }}>
+    <div style={{ position: 'relative', width: ROW_WIDTH, height: totalHeight, margin: '84px auto 0' }}>
       {/* Atmósfera muy sutil detrás de los hitos importantes */}
       {[activeLessonIndex, rewardIndex, examIndex].map(
         (i, k) =>
@@ -109,8 +118,8 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
               style={{
                 left: points[i].x,
                 top: points[i].y,
-                width: 170,
-                height: 170,
+                width: 200,
+                height: 200,
                 background: nodes[i].glow ?? DEFAULT_GLOW,
                 opacity: 0.55,
               }}
@@ -122,33 +131,41 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
         width={ROW_WIDTH}
         height={totalHeight}
         viewBox={`0 0 ${ROW_WIDTH} ${totalHeight}`}
-        style={{ position: 'absolute', inset: 0 }}
+        style={{ position: 'absolute', inset: 0, overflow: 'visible' }}
         aria-hidden="true"
       >
         <defs>
-          <linearGradient id={`trail-${gradId}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--color-primary-light)" />
-            <stop offset="100%" stopColor="var(--color-primary)" />
-          </linearGradient>
+          <filter id={`roadglow-${gradId}`} x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="9" />
+          </filter>
         </defs>
+
+        {/* Futuro (todavía bloqueado): asfalto apagado, con un halo tenue — sigue leyéndose como carretera. */}
         <path
           d={buildTrailPath(futurePoints)}
           fill="none"
-          stroke="var(--color-path-trail)"
-          strokeWidth={6}
+          stroke="var(--color-primary)"
+          strokeWidth={64}
           strokeLinecap="round"
-          strokeDasharray="1 20"
+          opacity={0.1}
+          filter={`url(#roadglow-${gradId})`}
         />
+        <RoadLayer d={buildTrailPath(futurePoints)} asphalt="var(--color-road-asphalt-muted)" edge="var(--color-road-edge-muted)" lane="var(--color-road-lane-muted)" />
+
+        {/* Alcanzable ahora: asfalto vivo con halo morado brillante debajo. */}
         <path
           d={buildTrailPath(pastPoints)}
           fill="none"
-          stroke={`url(#trail-${gradId})`}
-          strokeWidth={7}
+          stroke="var(--color-primary)"
+          strokeWidth={70}
           strokeLinecap="round"
-          strokeDasharray="1 16"
-          opacity={0.9}
+          opacity={0.4}
+          filter={`url(#roadglow-${gradId})`}
         />
+        <RoadLayer d={buildTrailPath(pastPoints)} asphalt="var(--color-road-asphalt)" edge="var(--color-road-edge)" lane="var(--color-road-lane)" />
       </svg>
+
+      <RoadProps points={points} rowWidth={ROW_WIDTH} skip={[activeLessonIndex, rewardIndex, examIndex]} />
 
       {nodes.map((node, i) => {
         const { x, y } = points[i];
@@ -159,6 +176,7 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
         const extrusion = SIZE[node.kind].extrusion;
         const pressTravel = Math.max(3, extrusion - 3);
         const isLockedLook = node.kind === 'teaser' || node.status === 'locked';
+        const asset = assetFor(node);
 
         return (
           <div
@@ -167,7 +185,7 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
             style={{ left: x, top: y }}
           >
             {isCurrentLesson && (
-              <div className={styles.startBubble} style={{ top: -size / 2 - 48 }}>
+              <div className={styles.startBubble} style={{ top: -size / 2 - 32 }}>
                 <div className={styles.startBubbleInner}>
                   EMPIEZA
                   <div className={styles.startBubbleArrow} />
@@ -196,20 +214,29 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
                   />
                 ))}
 
-              <div className={styles.base} style={{ background: surfaceFor(node) }} />
-              <div
-                className={styles.top}
-                style={{
-                  width: size,
-                  height: size,
-                  background: surfaceFor(node),
-                  boxShadow: node.status === 'locked' || node.kind === 'teaser' ? 'inset 0 2px 5px rgba(0,0,0,0.35)' : 'none',
-                }}
-              >
-                <span className={isLockedLook ? styles.iconLocked : undefined}>
-                  <PathIcon name={node.icon} size={Math.round(size * 0.42)} />
-                </span>
-              </div>
+              {asset ? (
+                <img src={asset} alt="" className={isLockedLook ? styles.assetImgLocked : styles.assetImg} />
+              ) : (
+                <>
+                  <div className={styles.base} style={{ background: surfaceFor(node) }} />
+                  <div
+                    className={styles.top}
+                    style={{
+                      width: size,
+                      height: size,
+                      background: surfaceFor(node),
+                      boxShadow:
+                        node.status === 'locked' || node.kind === 'teaser'
+                          ? 'inset 0 2px 5px rgba(0,0,0,0.35)'
+                          : '0 10px 18px rgba(20,10,50,0.4)',
+                    }}
+                  >
+                    <span className={isLockedLook ? styles.iconLocked : undefined}>
+                      <PathIcon name={node.icon} size={Math.round(size * 0.48)} />
+                    </span>
+                  </div>
+                </>
+              )}
 
               {node.status === 'done' && (
                 <div className={styles.doneBadge}>
@@ -223,7 +250,7 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
               )}
             </button>
 
-            <div className={styles.label} style={{ top: size / 2 + 10, width: 118 }}>
+            <div className={styles.label} style={{ top: size / 2 + 10, width: 128 }}>
               <span
                 style={{
                   fontFamily: 'var(--font-display)',
@@ -275,11 +302,66 @@ function MascotMoment({
   return (
     <div
       className={styles.mascotWrap}
-      style={{ top: size / 2 + 4, left: onLeft ? size / 2 + 62 : -(size / 2 + 62) }}
+      style={{ top: size / 2 - 8, left: onLeft ? size / 2 + 74 : -(size / 2 + 74) }}
     >
       <div className={styles.mascotFloat}>
-        <Mascot controller={mascot} size={68} bubblePosition="top" />
+        <Mascot controller={mascot} size={94} bubblePosition="top" />
       </div>
     </div>
+  );
+}
+
+/** Tres capas del mismo trazado — borde ancho claro, asfalto encima, carriles discontinuos arriba — para que se lea como una carretera en miniatura y no como una simple línea. */
+function RoadLayer({ d, asphalt, edge, lane }: { d: string; asphalt: string; edge: string; lane: string }) {
+  return (
+    <>
+      <path d={d} fill="none" stroke={edge} strokeWidth={58} strokeLinecap="round" />
+      <path d={d} fill="none" stroke={asphalt} strokeWidth={48} strokeLinecap="round" />
+      <path d={d} fill="none" stroke={lane} strokeWidth={3.5} strokeLinecap="round" strokeDasharray="16 15" />
+    </>
+  );
+}
+
+/** Pequeños elementos decorativos junto a la carretera, con los PNG reales del proyecto — nunca en el mismo nodo que la mascota, siempre en el lado contrario al que se inclina el nodo. */
+function RoadProps({ points, rowWidth, skip }: { points: { x: number; y: number }[]; rowWidth: number; skip: number[] }) {
+  const cycle: EnvPropKind[] = [
+    'tree',
+    'yield',
+    'cone',
+    'bushLarge',
+    'lamp',
+    'directionBarrier',
+    'grassTall',
+    'car',
+    'bushSmall',
+    'barrier',
+    'grassSmall',
+    'rocksGrass',
+  ];
+  const candidates = points.map((p, i) => ({ p, i })).filter(({ i }) => i > 0 && !skip.includes(i));
+
+  return (
+    <>
+      {candidates.map(({ p, i }, k) => {
+        const onLeft = p.x >= rowWidth / 2; // el decorado va al lado contrario al que se inclina el nodo
+        const prop = ENV_PROP[cycle[k % cycle.length]];
+        return (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              left: p.x + (onLeft ? -90 : 90),
+              top: p.y + ROW_HEIGHT * 0.36,
+              transform: 'translate(-50%, -100%)',
+              opacity: 0.9,
+              pointerEvents: 'none',
+              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.35))',
+            }}
+          >
+            <img src={prop.src} alt="" style={{ width: prop.width, height: 'auto', display: 'block' }} />
+          </div>
+        );
+      })}
+    </>
   );
 }

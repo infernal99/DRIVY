@@ -19,7 +19,10 @@ export type PathIconName =
   | 'shield'
   | 'flag'
   | 'bolt'
-  | 'chest';
+  | 'chest'
+  | 'signObligation'
+  | 'signIndication'
+  | 'roadworks';
 
 /**
  * Iconos "de nodo": ilustraciones planas con color propio (no `currentColor`),
@@ -156,6 +159,32 @@ const PATH_ICON_PATHS: Record<PathIconName, ReactNode> = {
       <path d="M2.6 12.4a9.4 6.2 0 0 1 18.8 0" fill="none" stroke="#7c3a0c" strokeWidth="1.4" />
     </>
   ),
+  signObligation: (
+    <>
+      <circle cx="12" cy="12" r="10" fill="#2563eb" />
+      <path d="M12 17V7M7.5 11.5 12 7l4.5 4.5" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  ),
+  signIndication: (
+    <>
+      <rect x="2" y="2" width="20" height="20" rx="4.5" fill="#2563eb" />
+      <path
+        d="M5.5 12h10.2M11 7 16.5 12 11 17"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
+  roadworks: (
+    <>
+      <path d="M12 2.4 22 20.5H2z" fill="#fff" stroke="#f97316" strokeWidth="2.4" strokeLinejoin="round" />
+      <path d="M12 9.2 9 17.4h6L12 9.2z" fill="#f97316" />
+      <rect x="9.2" y="17.4" width="5.6" height="1.7" rx="0.6" fill="#f97316" />
+    </>
+  ),
 };
 
 export function PathIcon({ name, size = 30 }: { name: PathIconName; size?: number }) {
@@ -170,7 +199,7 @@ export function PathIcon({ name, size = 30 }: { name: PathIconName; size?: numbe
 const CATEGORY_DEFAULT: Partial<Record<IconName, PathIconName>> = {
   sign: 'signTriangle',
   rules: 'signPriority',
-  road: 'motorway',
+  road: 'roundabout',
   shield: 'shield',
   alcohol: 'alcohol',
   car: 'car',
@@ -183,6 +212,9 @@ const KEYWORD_RULES: [RegExp, PathIconName][] = [
   [/peligro/, 'signTriangle'],
   [/prioridad|incorporacion|cambios/, 'signPriority'],
   [/prohibicion/, 'signProhibition'],
+  [/obligacion/, 'signObligation'],
+  [/indicacion/, 'signIndication'],
+  [/circunstancial/, 'roadworks'],
   [/semaforo/, 'trafficLight'],
   [/agentes/, 'shield'],
   [/velocidad|frenado/, 'speedometer'],
@@ -223,4 +255,7 @@ const ICON_GLOW: Record<PathIconName, string> = {
   flag: 'rgba(139,92,246,0.45)',
   bolt: 'rgba(250,204,21,0.5)',
   chest: 'rgba(250,204,21,0.5)',
+  signObligation: 'rgba(37,99,235,0.45)',
+  signIndication: 'rgba(37,99,235,0.45)',
+  roadworks: 'rgba(249,115,22,0.45)',
 };
