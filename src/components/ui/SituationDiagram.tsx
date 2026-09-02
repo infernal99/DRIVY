@@ -71,12 +71,18 @@ const DIRT = '#8a7259';
 // shared across every diagram in the registry below, so a new situation
 // can usually be assembled from these instead of drawn from scratch.
 
-/** Small top-down car glyph, nose pointing up at rotate=0 (0=up, 90=right, 180=down, 270=left). */
+/**
+ * Small top-down car glyph, nose pointing up at rotate=0 (0=up, 90=right,
+ * 180=down, 270=left). Sized and outlined to stay readable at the diagram's
+ * real on-screen size (~110px, not the zoomed-in view used while authoring
+ * it) — a dark, muted-grey car on a dark asphalt background needs a light
+ * outline or it disappears; a car under ~20% of the canvas reads as a blob.
+ */
 function Car({ x, y, rotate, color }: { x: number; y: number; rotate: number; color: string }) {
   return (
     <g transform={`translate(${x} ${y}) rotate(${rotate})`}>
-      <rect x="-7" y="-12" width="14" height="24" rx="4" fill={color} />
-      <rect x="-5" y="-8" width="10" height="7" rx="2" fill="rgba(255,255,255,0.55)" />
+      <rect x="-10" y="-17" width="20" height="34" rx="5" fill={color} stroke={WHITE} strokeWidth="1.5" strokeOpacity="0.9" />
+      <rect x="-6.5" y="-11" width="13" height="10" rx="2.5" fill="rgba(20,26,38,0.55)" />
     </g>
   );
 }
@@ -85,12 +91,34 @@ function Car({ x, y, rotate, color }: { x: number; y: number; rotate: number; co
 function PriorityVehicle({ x, y, rotate }: { x: number; y: number; rotate: number }) {
   return (
     <g transform={`translate(${x} ${y}) rotate(${rotate})`}>
-      <rect x="-7" y="-12" width="14" height="24" rx="4" fill={WHITE} stroke="#c8ccd4" strokeWidth="0.75" />
-      <rect x="-5" y="-8" width="10" height="7" rx="2" fill="rgba(120,140,170,0.35)" />
-      <rect x="-4" y="-15" width="8" height="4" rx="1.5" fill={PROHIBIT_RED} />
-      <circle cx="-2" cy="-13" r="1.1" fill={WHITE} />
-      <circle cx="2" cy="-13" r="1.1" fill={AMBER} />
+      <rect x="-10" y="-17" width="20" height="34" rx="5" fill={WHITE} stroke="#aab0bd" strokeWidth="1" />
+      <rect x="-6.5" y="-11" width="13" height="10" rx="2.5" fill="rgba(120,140,170,0.4)" />
+      <rect x="-6" y="-21" width="12" height="6" rx="2" fill={PROHIBIT_RED} />
+      <circle cx="-3" cy="-18" r="1.6" fill={WHITE} />
+      <circle cx="3" cy="-18" r="1.6" fill={AMBER} />
     </g>
+  );
+}
+
+const GROUND = '#262b38';
+
+/**
+ * A crossroads scene: two asphalt road bands crossing in a "+" over a
+ * darker "off-road" ground colour (so the intersection actually reads as
+ * an intersection, not an undifferentiated square), each road with a
+ * dashed centre line. Replaces the old small corner tick-marks, which
+ * read as noise at the diagram's real ~110px render size.
+ */
+function IntersectionScene({ children }: { children?: React.ReactNode }) {
+  return (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={GROUND} />
+      <rect x="0" y="32" width="100" height="36" fill={ASPHALT} />
+      <rect x="32" y="0" width="36" height="100" fill={ASPHALT} />
+      <line x1="0" y1="50" x2="100" y2="50" stroke={WHITE} strokeWidth="2.5" strokeDasharray="8 6" opacity="0.7" />
+      <line x1="50" y1="0" x2="50" y2="100" stroke={WHITE} strokeWidth="2.5" strokeDasharray="8 6" opacity="0.7" />
+      {children}
+    </svg>
   );
 }
 
@@ -193,14 +221,10 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
   // Unsignalised crossroads: the grey car must yield to the green car
   // arriving from its right (norma general de prioridad a la derecha).
   'cruce-prioridad-derecha': () => (
-    <RoadTopDown>
-      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <Car x={42} y={80} rotate={0} color={YIELD_CAR} />
-      <Car x={80} y={42} rotate={270} color={PRIORITY_CAR} />
-    </RoadTopDown>
+    <IntersectionScene>
+      <Car x={50} y={84} rotate={0} color={YIELD_CAR} />
+      <Car x={84} y={50} rotate={270} color={PRIORITY_CAR} />
+    </IntersectionScene>
   ),
   // Roundabout: the green car already circulating inside has priority over
   // the grey car waiting to enter.
@@ -209,7 +233,7 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
       <circle cx="50" cy="50" r="32" fill="none" stroke={WHITE} strokeWidth="3" opacity="0.6" />
       <circle cx="50" cy="50" r="16" fill={HOUSING} />
-      <Car x={50} y={90} rotate={0} color={YIELD_CAR} />
+      <Car x={50} y={82} rotate={0} color={YIELD_CAR} />
       <Car x={18} y={50} rotate={180} color={PRIORITY_CAR} />
     </svg>
   ),
@@ -305,10 +329,10 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
         <line x1="6" y1="14" x2="0" y2="-6" stroke={WHITE} strokeWidth="2.5" />
         <line x1="0" y1="-6" x2="0" y2="-9" stroke={WHITE} strokeWidth="2.5" />
       </g>
-      <Car x={30} y={50} rotate={0} color={PRIORITY_CAR} />
-      <line x1="38" y1="50" x2="60" y2="50" stroke={AMBER} strokeWidth="2" />
-      <polygon points="38,50 43,47 43,53" fill={AMBER} />
-      <polygon points="60,50 55,47 55,53" fill={AMBER} />
+      <Car x={22} y={50} rotate={0} color={PRIORITY_CAR} />
+      <line x1="36" y1="50" x2="58" y2="50" stroke={AMBER} strokeWidth="2.5" />
+      <polygon points="36,50 42,46 42,54" fill={AMBER} />
+      <polygon points="58,50 52,46 52,54" fill={AMBER} />
     </RoadTopDown>
   ),
   // Pedestrian already crossing at a marked, striped crossing: the waiting
@@ -343,29 +367,21 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
   // which must come to a complete stop even though the priority car isn't
   // there yet — unlike Ceda el paso, STOP is never optional.
   'interseccion-stop-obligatorio': () => (
-    <RoadTopDown>
-      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <Car x={42} y={78} rotate={0} color={YIELD_CAR} />
-      <MiniStop x={58} y={78} />
-      <Car x={80} y={42} rotate={270} color={PRIORITY_CAR} />
-    </RoadTopDown>
+    <IntersectionScene>
+      <Car x={50} y={84} rotate={0} color={YIELD_CAR} />
+      <MiniStop x={68} y={84} />
+      <Car x={84} y={50} rotate={270} color={PRIORITY_CAR} />
+    </IntersectionScene>
   ),
   // Ceda el paso crossroads: same layout as the STOP scene, but the sign is
   // a yield triangle — the driver only has to stop if it's actually
   // necessary to let the priority car through, not as an unconditional rule.
   'interseccion-ceda-paso': () => (
-    <RoadTopDown>
-      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <Car x={42} y={78} rotate={0} color={YIELD_CAR} />
-      <MiniYield x={58} y={78} />
-      <Car x={80} y={42} rotate={270} color={PRIORITY_CAR} />
-    </RoadTopDown>
+    <IntersectionScene>
+      <Car x={50} y={84} rotate={0} color={YIELD_CAR} />
+      <MiniYield x={68} y={84} />
+      <Car x={84} y={50} rotate={270} color={PRIORITY_CAR} />
+    </IntersectionScene>
   ),
   // Paved road vs. dirt track: the car on the paved surface (grey texture)
   // has priority over the one coming from the unpaved track (dirt texture),
@@ -393,8 +409,8 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       <circle cx="50" cy="50" r="34" fill="none" stroke={WHITE} strokeWidth="2" opacity="0.4" />
       <circle cx="50" cy="50" r="22" fill="none" stroke={WHITE} strokeWidth="2" strokeDasharray="6 5" opacity="0.4" />
       <circle cx="50" cy="50" r="14" fill={HOUSING} />
-      <Car x={72} y={50} rotate={90} color={PRIORITY_CAR} />
-      <line x1="88" y1="50" x2="100" y2="50" stroke={WHITE} strokeWidth="2" opacity="0.4" />
+      <Car x={84} y={50} rotate={90} color={PRIORITY_CAR} />
+      <line x1="96" y1="50" x2="100" y2="50" stroke={WHITE} strokeWidth="2" opacity="0.4" />
     </svg>
   ),
   // Roundabout — the exception: leaving from an inner lane is only allowed
@@ -405,8 +421,8 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       <circle cx="50" cy="50" r="34" fill="none" stroke={WHITE} strokeWidth="2" opacity="0.4" />
       <circle cx="50" cy="50" r="22" fill="none" stroke={WHITE} strokeWidth="2" strokeDasharray="6 5" opacity="0.4" />
       <circle cx="50" cy="50" r="14" fill={HOUSING} />
-      <Car x={64} y={64} rotate={45} color={PRIORITY_CAR} />
-      <polygon points="78,78 84,86 80,86 80,92 76,92 76,86 72,86" fill={WHITE} />
+      <Car x={67} y={67} rotate={45} color={PRIORITY_CAR} />
+      <polygon points="80,80 87,88 82,88 82,94 78,94 78,88 73,88" fill={WHITE} />
     </svg>
   ),
   // Roundabout — entering from the left lane when the right one is jammed:
@@ -416,10 +432,10 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
       <circle cx="50" cy="50" r="30" fill="none" stroke={WHITE} strokeWidth="2" opacity="0.4" />
       <circle cx="50" cy="50" r="14" fill={HOUSING} />
-      <line x1="38" y1="80" x2="38" y2="100" stroke={WHITE} strokeWidth="2" strokeDasharray="5 4" opacity="0.4" />
-      <Car x={30} y={90} rotate={0} color={YIELD_CAR} />
-      <Car x={30} y={78} rotate={0} color={YIELD_CAR} />
-      <Car x={22} y={64} rotate={0} color={PRIORITY_CAR} />
+      <line x1="42" y1="82" x2="42" y2="100" stroke={WHITE} strokeWidth="2" strokeDasharray="5 4" opacity="0.4" />
+      <Car x={42} y={92} rotate={0} color={YIELD_CAR} />
+      <rect x="35" y="84" width="14" height="5" rx="2" fill={YIELD_CAR} opacity="0.55" />
+      <Car x={33} y={67} rotate={135} color={PRIORITY_CAR} />
     </svg>
   ),
   // Roundabout — a group of cyclists inside is treated as a single vehicle:
@@ -448,9 +464,9 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
   'adelantamiento-tres-vehiculos-sin-espacio': () => (
     <RoadTopDown>
       <line x1="50" y1="2" x2="50" y2="98" stroke={WHITE} strokeWidth="3" strokeDasharray="9 7" opacity="0.6" />
-      <Car x={50} y={84} rotate={0} color={YIELD_CAR} />
-      <Car x={50} y={58} rotate={0} color={YIELD_CAR} />
-      <Car x={50} y={22} rotate={180} color={PROHIBIT_RED} />
+      <Car x={50} y={86} rotate={0} color={YIELD_CAR} />
+      <Car x={50} y={50} rotate={0} color={YIELD_CAR} />
+      <Car x={50} y={14} rotate={180} color={PROHIBIT_RED} />
     </RoadTopDown>
   ),
   // Signalling a lane change does not, by itself, grant priority: the grey
@@ -483,20 +499,16 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
   // priority-to-the-right treatment as any other vehicle, no special
   // exception reducing it just for being a bicycle.
   'ciclista-interseccion-prioridad': () => (
-    <RoadTopDown>
-      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <Car x={42} y={80} rotate={0} color={YIELD_CAR} />
-      <g transform="translate(80 42) rotate(270)">
-        <circle cx="-7" cy="7" r="5" fill="none" stroke={PRIORITY_CAR} strokeWidth="2.2" />
-        <circle cx="7" cy="7" r="5" fill="none" stroke={PRIORITY_CAR} strokeWidth="2.2" />
-        <circle cx="0" cy="-8" r="3.5" fill={SKIN} />
-        <line x1="-7" y1="7" x2="0" y2="-4" stroke={PRIORITY_CAR} strokeWidth="2.2" />
-        <line x1="7" y1="7" x2="0" y2="-4" stroke={PRIORITY_CAR} strokeWidth="2.2" />
+    <IntersectionScene>
+      <Car x={50} y={84} rotate={0} color={YIELD_CAR} />
+      <g transform="translate(84 50) rotate(270)">
+        <circle cx="-9" cy="9" r="7" fill="none" stroke={PRIORITY_CAR} strokeWidth="3" />
+        <circle cx="9" cy="9" r="7" fill="none" stroke={PRIORITY_CAR} strokeWidth="3" />
+        <circle cx="0" cy="-10" r="5" fill={SKIN} />
+        <line x1="-9" y1="9" x2="0" y2="-5" stroke={PRIORITY_CAR} strokeWidth="3" />
+        <line x1="9" y1="9" x2="0" y2="-5" stroke={PRIORITY_CAR} strokeWidth="3" />
       </g>
-    </RoadTopDown>
+    </IntersectionScene>
   ),
   // A car pulling smoothly toward the right margin, well ahead of an
   // emergency vehicle approaching from behind — the correct, gradual way
@@ -512,14 +524,10 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
   // cross street: the right move is to clear the intersection, not stop
   // abruptly in the middle of it.
   'vehiculo-prioritario-dentro-cruce': () => (
-    <RoadTopDown>
-      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
-      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+    <IntersectionScene>
       <Car x={50} y={50} rotate={0} color={YIELD_CAR} />
-      <PriorityVehicle x={82} y={50} rotate={270} />
-    </RoadTopDown>
+      <PriorityVehicle x={86} y={50} rotate={270} />
+    </IntersectionScene>
   ),
   // Roundabout: an emergency vehicle enters via the outer lane while a car
   // is already circulating inside — that car must yield without cutting
@@ -572,9 +580,9 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
   // parked at the kerb, blocking the lane for everyone else.
   'estacionamiento-doble-fila': () => (
     <RoadTopDown>
-      <Car x={20} y={50} rotate={0} color={YIELD_CAR} />
-      <Car x={38} y={50} rotate={0} color={PROHIBIT_RED} />
-      <line x1="66" y1="4" x2="66" y2="96" stroke={WHITE} strokeWidth="3" strokeDasharray="9 7" opacity="0.5" />
+      <Car x={16} y={50} rotate={0} color={YIELD_CAR} />
+      <Car x={40} y={50} rotate={0} color={PROHIBIT_RED} />
+      <line x1="70" y1="4" x2="70" y2="96" stroke={WHITE} strokeWidth="3" strokeDasharray="9 7" opacity="0.6" />
     </RoadTopDown>
   ),
   // Stopping right on a marked pedestrian crossing — forbidden even for a
