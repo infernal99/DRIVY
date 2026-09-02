@@ -31,7 +31,27 @@ export type AvatarId =
   | 'owl_football'
   | 'owl_ninja'
   | 'owl_musician'
-  | 'owl_astronaut';
+  | 'owl_astronaut'
+  | 'premium_rey'
+  | 'premium_duque'
+  | 'premium_comandante'
+  | 'premium_hechicero'
+  | 'premium_magnate'
+  | 'premium_aristocrata'
+  | 'premium_cesar'
+  | 'premium_almirante'
+  | 'premium_streamer'
+  | 'premium_inspector'
+  | 'premium_caballero'
+  | 'premium_vip'
+  | 'premium_cosmonauta'
+  | 'premium_padrino'
+  | 'premium_sultan'
+  | 'premium_pirata'
+  | 'premium_dragon'
+  | 'premium_samurai'
+  | 'premium_archimago'
+  | 'premium_heroe';
 
 export interface AvatarCatalogEntry {
   id: AvatarId;
@@ -66,6 +86,35 @@ export const AVATAR_CATALOG: AvatarCatalogEntry[] = [
   { id: 'owl_musician', name: 'Músico', xpRequired: 7220, imageUrl: '/avatars/owl_musician.png' },
   { id: 'owl_astronaut', name: 'Astronauta', xpRequired: 8000, imageUrl: '/avatars/owl_astronaut.png' },
 ];
+
+/**
+ * Set premium: no se desbloquean con XP sino con una suscripción activa —
+ * mismo mecanismo que ya tenían 'vip' y 'cometa' en el catálogo antiguo.
+ */
+export const PREMIUM_AVATAR_CATALOG: AvatarCatalogEntry[] = [
+  { id: 'premium_rey', name: 'Rey', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_rey.png' },
+  { id: 'premium_duque', name: 'Duque', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_duque.png' },
+  { id: 'premium_comandante', name: 'Comandante', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_comandante.png' },
+  { id: 'premium_hechicero', name: 'Hechicero', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_hechicero.png' },
+  { id: 'premium_magnate', name: 'Magnate', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_magnate.png' },
+  { id: 'premium_aristocrata', name: 'Aristócrata', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_aristocrata.png' },
+  { id: 'premium_cesar', name: 'César', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_cesar.png' },
+  { id: 'premium_almirante', name: 'Almirante', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_almirante.png' },
+  { id: 'premium_streamer', name: 'Streamer', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_streamer.png' },
+  { id: 'premium_inspector', name: 'Inspector', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_inspector.png' },
+  { id: 'premium_caballero', name: 'Caballero', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_caballero.png' },
+  { id: 'premium_vip', name: 'VIP', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_vip.png' },
+  { id: 'premium_cosmonauta', name: 'Cosmonauta', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_cosmonauta.png' },
+  { id: 'premium_padrino', name: 'Padrino', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_padrino.png' },
+  { id: 'premium_sultan', name: 'Sultán', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_sultan.png' },
+  { id: 'premium_pirata', name: 'Pirata', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_pirata.png' },
+  { id: 'premium_dragon', name: 'Dragón', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_dragon.png' },
+  { id: 'premium_samurai', name: 'Samurái', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_samurai.png' },
+  { id: 'premium_archimago', name: 'Archimago', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_archimago.png' },
+  { id: 'premium_heroe', name: 'Héroe', xpRequired: 0, requiresPremium: true, imageUrl: '/avatars/premium/premium_heroe.png' },
+];
+
+AVATAR_CATALOG.push(...PREMIUM_AVATAR_CATALOG);
 
 export function isAvatarId(value: string | null | undefined): value is AvatarId {
   return !!value && AVATAR_CATALOG.some((a) => a.id === value);
