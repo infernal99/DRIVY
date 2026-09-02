@@ -53,6 +53,14 @@
   /* Camino de aprendizaje (LearnPath) — línea de puntos que conecta los nodos. */
   --color-path-trail: rgba(139, 92, 246, 0.25);
 
+  /* Carretera estilizada del camino: asfalto + borde + carriles. */
+  --color-road-asphalt: #3a2e70;
+  --color-road-asphalt-muted: #241d3f;
+  --color-road-edge: rgba(196, 181, 253, 0.55);
+  --color-road-edge-muted: rgba(196, 181, 253, 0.2);
+  --color-road-lane: rgba(255, 255, 255, 0.68);
+  --color-road-lane-muted: rgba(255, 255, 255, 0.18);
+
   /* Gradients — compuestos a partir de los colores de marca de arriba.
      No añaden colores nuevos: solo dan nombre a las dos combinaciones que
      ya estaban repetidas a mano por toda la app. */
@@ -151,6 +159,13 @@
   --color-info-bg: rgba(167, 139, 250, 0.16);
 
   --color-path-trail: rgba(167, 139, 250, 0.3);
+
+  --color-road-asphalt: #322863;
+  --color-road-asphalt-muted: #1d1733;
+  --color-road-edge: rgba(196, 181, 253, 0.5);
+  --color-road-edge-muted: rgba(196, 181, 253, 0.18);
+  --color-road-lane: rgba(255, 255, 255, 0.62);
+  --color-road-lane-muted: rgba(255, 255, 255, 0.16);
 
   /* Los degradados y las sombras de marca se recomponen aquí porque estaban
      definidos con los valores claros: si no, el halo de los botones seguiría
