@@ -66,11 +66,11 @@ export function AvatarPickerModal({
           Elige tu avatar
         </div>
         <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', textAlign: 'center', margin: '0 0 18px' }}>
-          Se desbloquean ganando XP.
+          Elige tu personaje — algunos se desbloquean ganando XP.
         </p>
         {error && <p style={{ fontSize: 12.5, color: 'var(--color-error)', textAlign: 'center', margin: '0 0 10px' }}>{error}</p>}
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
           {AVATAR_CATALOG.map((entry) => {
             const unlocked = currentXp >= entry.xpRequired && (!entry.requiresPremium || isPremium);
             const isSelected = selectedAvatarId === entry.id;
@@ -84,26 +84,56 @@ export function AvatarPickerModal({
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: 6,
+                  gap: 8,
                   background: 'none',
-                  border: isSelected ? '2px solid var(--color-primary)' : '2px solid transparent',
-                  borderRadius: 16,
-                  padding: 8,
+                  border: 'none',
+                  padding: 4,
                   cursor: unlocked ? 'pointer' : 'default',
                 }}
               >
-                <div style={{ position: 'relative' }}>
-                  <div style={{ opacity: unlocked ? 1 : 0.4, filter: unlocked ? 'none' : 'grayscale(0.5)' }}>
-                    <AvatarIcon avatarId={entry.id} size={56} />
+                <div
+                  style={{
+                    position: 'relative',
+                    transform: isSelected ? 'scale(1.08)' : 'scale(1)',
+                    transition: 'transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  }}
+                >
+                  {isSelected && (
+                    <div
+                      aria-hidden="true"
+                      style={{
+                        position: 'absolute',
+                        inset: -10,
+                        borderRadius: '50%',
+                        background: 'var(--gradient-brand)',
+                        opacity: 0.55,
+                        filter: 'blur(10px)',
+                      }}
+                    />
+                  )}
+                  <div
+                    style={{
+                      position: 'relative',
+                      borderRadius: '50%',
+                      padding: 3,
+                      background: isSelected ? 'var(--gradient-brand)' : 'var(--color-bg-screen)',
+                      boxShadow: isSelected
+                        ? '0 6px 18px rgba(139,92,246,0.55)'
+                        : '0 3px 10px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.05)',
+                    }}
+                  >
+                    <div style={{ opacity: unlocked ? 1 : 0.4, filter: unlocked ? 'none' : 'grayscale(0.6) brightness(0.7)' }}>
+                      <AvatarIcon avatarId={entry.id} size={68} />
+                    </div>
                   </div>
                   {!unlocked && (
                     <div
                       style={{
                         position: 'absolute',
-                        right: -3,
-                        bottom: -3,
-                        width: 22,
-                        height: 22,
+                        right: -2,
+                        bottom: -2,
+                        width: 24,
+                        height: 24,
                         borderRadius: '50%',
                         background: 'var(--color-text)',
                         border: '2px solid var(--color-bg-card)',
@@ -122,7 +152,7 @@ export function AvatarPickerModal({
                   style={{
                     fontSize: 10.5,
                     fontWeight: 700,
-                    color: unlocked ? 'var(--color-success)' : 'var(--color-text-muted-45)',
+                    color: isSelected ? 'var(--color-primary)' : unlocked ? 'var(--color-success)' : 'var(--color-text-muted-45)',
                   }}
                 >
                   {unlocked

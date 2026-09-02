@@ -1,9 +1,9 @@
-import type { AvatarId } from '../../data/avatars';
+import { AVATAR_CATALOG, type AvatarId } from '../../data/avatars';
 
 // Each catalog avatar is a colored badge (own gradient, not the theme's
 // brand blue) with a simple glyph — meant to read as a distinct collectible
 // rather than themed UI chrome, unlike the monochrome nav Icon set.
-const AVATAR_STYLE: Record<AvatarId, { gradient: string; glyph: React.ReactNode }> = {
+const AVATAR_STYLE: Partial<Record<AvatarId, { gradient: string; glyph: React.ReactNode }>> = {
   volante: {
     gradient: 'linear-gradient(135deg,#64748b,#94a3b8)',
     glyph: (
@@ -117,7 +117,26 @@ const AVATAR_STYLE: Record<AvatarId, { gradient: string; glyph: React.ReactNode 
 };
 
 export function AvatarIcon({ avatarId, size = 44 }: { avatarId: AvatarId; size?: number }) {
+  const imageUrl = AVATAR_CATALOG.find((a) => a.id === avatarId)?.imageUrl;
+  if (imageUrl) {
+    return (
+      <div
+        style={{
+          width: size,
+          height: size,
+          borderRadius: '50%',
+          overflow: 'hidden',
+          flex: 'none',
+          background: 'var(--color-primary-navy)',
+        }}
+      >
+        <img src={imageUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+      </div>
+    );
+  }
+
   const style = AVATAR_STYLE[avatarId];
+  if (!style) return null;
   return (
     <div
       style={{

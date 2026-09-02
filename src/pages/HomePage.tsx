@@ -18,6 +18,8 @@ import { AppShell } from '../components/layout/AppShell';
 import { BottomNav } from '../components/layout/BottomNav';
 import { OnboardingTutorial } from '../components/onboarding/OnboardingTutorial';
 import { useOnboarding } from '../hooks/useOnboarding';
+import { useMyAvatarId } from '../hooks/useMyAvatarId';
+import { Avatar } from '../components/ui/Avatar';
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -32,6 +34,7 @@ export function HomePage() {
   const lessonNodes = useCategoryLessons(activeCategory?.id);
   const isPremium = usePremiumStore((s) => s.isPremium);
   const premiumLoading = usePremiumStore((s) => s.loading);
+  const avatarId = useMyAvatarId();
 
   const pathNodes: PathNode[] = useMemo(() => {
     if (!activeCategory) return [];
@@ -113,23 +116,8 @@ export function HomePage() {
     <AppShell nav={<BottomNav />}>
       <div style={{ padding: '18px 20px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div
-            style={{
-              width: 46,
-              height: 46,
-              borderRadius: 15,
-              background: 'var(--gradient-brand)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-display)',
-              fontWeight: 700,
-              color: '#fff',
-              fontSize: 18,
-              boxShadow: '0 4px 12px rgba(139,92,246,0.4)',
-            }}
-          >
-            {progress.userName.charAt(0).toUpperCase()}
+          <div style={{ borderRadius: '50%', boxShadow: '0 4px 12px rgba(139,92,246,0.4)' }}>
+            <Avatar name={progress.userName} size={46} avatarId={avatarId} />
           </div>
           <div>
             <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15.5, color: 'var(--color-text)' }}>
