@@ -29,7 +29,10 @@ export function HomePage() {
   const pct = useOverallProgressPct();
   const readiness = getReadinessScore(progress);
   const { level } = getLevelInfo(progress.xp);
-  const activeModule = modules.find((m) => m.status === 'active');
+  // Si ya no queda ningún tema "activo" (todo completado), seguimos mostrando
+  // el camino del último tema en vez de un mensaje muerto — todas sus
+  // lecciones salen en verde/"done" y siguen siendo clicables para repasar.
+  const activeModule = modules.find((m) => m.status === 'active') ?? modules[modules.length - 1];
   const activeCategory = activeModule?.category;
   const lessonNodes = useCategoryLessons(activeCategory?.id);
   const isPremium = usePremiumStore((s) => s.isPremium);
@@ -225,13 +228,7 @@ export function HomePage() {
             <UnitCard activeModule={activeModule} modules={modules} navigate={navigate} />
           </div>
 
-          {activeCategory ? (
-            <LearnPath nodes={pathNodes} />
-          ) : (
-            <div style={{ textAlign: 'center', padding: '40px 20px', color: 'var(--color-text-muted-50)', fontSize: 13.5 }}>
-              Has completado todos los temas — ¡vuelve pronto para repasar!
-            </div>
-          )}
+          <LearnPath nodes={pathNodes} />
 
           <div
             style={{
@@ -335,8 +332,8 @@ function UnitCard({
               gap: 3,
             }}
           >
-            <Icon name="check" size={9} color="#fff" strokeWidth={3} />
-            PUEDES EMPEZAR
+            <Icon name={activeModule.status === 'done' ? 'crown' : 'check'} size={9} color="#fff" strokeWidth={3} />
+            {activeModule.status === 'done' ? 'COMPLETADO · REPASA' : 'PUEDES EMPEZAR'}
           </span>
         )}
       </div>
