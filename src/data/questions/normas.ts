@@ -192,6 +192,7 @@ export const normasQuestions = [
     categoryId: 'normas',
     subcategoryId: 'prioridad',
     question: 'Al incorporarte a una autovía por un carril de aceleración, la prioridad de paso la tienen:',
+    image: 'diagram:carril-aceleracion',
     options: [
       'Los vehículos que ya circulan por la vía principal',
       'Los vehículos que se incorporan, si aceleran lo suficiente',
@@ -780,6 +781,74 @@ export const normasQuestions = [
     difficulty: 'hard',
     tags: ['normas', 'estacionamiento'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-02, imágenes de situaciones reales (Lote 8: parada y
+  // estacionamiento). Distintas de NOR-EST-01 (norma general): estas tres
+  // afinan la diferencia entre "parada" (breve, con conductor) y
+  // "estacionamiento", y añaden la doble fila, no cubierta hasta ahora.
+  // Verificado contra el art. 94 RGC (lugares prohibidos).
+  q({
+    id: 'NOR-EST-03',
+    categoryId: 'normas',
+    subcategoryId: 'estacionamiento-normas',
+    question: 'Detenerte junto a un vehículo ya estacionado en línea, ocupando el carril de circulación, es:',
+    image: 'diagram:estacionamiento-doble-fila',
+    options: [
+      'Estacionar en doble fila, una infracción expresamente prohibida',
+      'Una parada normal, permitida si dura pocos minutos',
+      'Solo una infracción si el conductor se aleja del vehículo',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Colocarse junto a un vehículo ya estacionado, ocupando un carril de circulación, es estacionar en doble fila: una de las prohibiciones específicas de estacionamiento del Reglamento General de Circulación, sea cual sea la duración o si el conductor permanece dentro.',
+    difficulty: 'medium',
+    tags: ['normas', 'estacionamiento', 'doble fila'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 94',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-PAR-03',
+    categoryId: 'normas',
+    subcategoryId: 'paradas',
+    question: '¿Está permitido detenerte brevemente, aunque sea solo unos segundos, sobre un paso de peatones señalizado?',
+    image: 'diagram:parada-prohibida-paso-peatones',
+    options: [
+      'No, la parada está prohibida allí igual que el estacionamiento',
+      'Sí, siempre que dure menos de un minuto',
+      'Sí, mientras el conductor permanezca al volante',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La prohibición de parada en un paso de peatones señalizado se aplica desde el primer segundo: no depende de la duración ni de si el conductor se queda al volante, a diferencia de otras prohibiciones que solo afectan al estacionamiento.',
+    difficulty: 'medium',
+    tags: ['normas', 'paradas'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 94',
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'NOR-PAR-04',
+    categoryId: 'normas',
+    subcategoryId: 'paradas',
+    question: '¿Puedes detenerte, aunque sea un momento, en una curva con visibilidad reducida?',
+    image: 'diagram:parada-prohibida-curva-tunel',
+    options: [
+      'No, la parada está prohibida en curvas y cambios de rasante de visibilidad reducida',
+      'Sí, siempre que actives las luces de emergencia',
+      'Sí, si no hay ningún otro vehículo a la vista en ese momento',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Las curvas y cambios de rasante con visibilidad reducida, junto con los túneles, están entre los lugares donde ni siquiera una parada breve está permitida: el riesgo de que otro vehículo no pueda verte a tiempo existe independientemente del tráfico presente en ese instante.',
+    difficulty: 'hard',
+    tags: ['normas', 'paradas'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 94',
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),

@@ -237,6 +237,50 @@ export const viasQuestions = [
     verificationStatus: 'verified',
     lastVerifiedAt: '2026-09-01',
   }),
+  // 2026-09-02, imágenes de situaciones reales (Lote 7: carriles
+  // especiales). Verificado contra el art. 42 RGC (carril adicional
+  // circunstancial) y la definición general de carril de deceleración.
+  q({
+    id: 'VIA-CRR-04',
+    categoryId: 'vias',
+    subcategoryId: 'carriles',
+    question: 'Un carril de deceleración es el carril auxiliar que sirve para:',
+    image: 'diagram:carril-deceleracion',
+    options: [
+      'Reducir la velocidad antes de abandonar la vía principal, sin frenar todavía sobre ella',
+      'Adelantar a los vehículos más lentos de la vía principal',
+      'Aumentar la velocidad antes de incorporarse a la vía principal',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'El carril de deceleración es un carril auxiliar de longitud suficiente para que el vehículo reduzca la velocidad al salir de una vía, evitando frenar todavía sobre la calzada principal y afectar al tráfico que continúa por ella.',
+    difficulty: 'medium',
+    tags: ['vías', 'carriles'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-02',
+  }),
+  q({
+    id: 'VIA-CRR-05',
+    categoryId: 'vias',
+    subcategoryId: 'carriles',
+    question: 'En un carril adicional circunstancial (por ejemplo, el arcén abierto al tráfico en una operación salida), la velocidad debe estar entre:',
+    image: 'diagram:carril-adicional-circunstancial',
+    options: [
+      'Un mínimo de 60 km/h y un máximo de 80 km/h, salvo que se señale otra cosa',
+      'Sin ningún límite mínimo ni máximo específico',
+      'Un máximo de 120 km/h, igual que el resto de la autovía',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Cuando se habilita un carril adicional circunstancial (como el arcén en una operación salida), quienes circulen por él deben hacerlo entre 60 y 80 km/h salvo que la señalización específica indique otra cosa, y con el alumbrado de cruce encendido tanto de día como de noche.',
+    difficulty: 'hard',
+    tags: ['vías', 'carriles'],
+    sourceUrl: RGC_BASE,
+    legalReference: 'Reglamento General de Circulación, artículo 42',
+    verificationStatus: 'verified',
+    lastVerifiedAt: '2026-09-02',
+  }),
   q({
     id: 'VIA-ARC-01',
     categoryId: 'vias',

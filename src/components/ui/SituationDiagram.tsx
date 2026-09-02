@@ -40,7 +40,16 @@ export type DiagramKey =
   | 'adelantamiento-tres-vehiculos-sin-espacio'
   | 'cambio-carril-intermitente-no-prioridad'
   | 'peaton-aproximandose-paso'
-  | 'ciclista-interseccion-prioridad';
+  | 'ciclista-interseccion-prioridad'
+  | 'vehiculo-prioritario-cediendo-lateral'
+  | 'vehiculo-prioritario-dentro-cruce'
+  | 'vehiculo-prioritario-glorieta'
+  | 'carril-deceleracion'
+  | 'carril-adicional-circunstancial'
+  | 'carril-aceleracion'
+  | 'estacionamiento-doble-fila'
+  | 'parada-prohibida-paso-peatones'
+  | 'parada-prohibida-curva-tunel';
 
 const ASPHALT = '#3a4150';
 const WHITE = '#ffffff';
@@ -68,6 +77,19 @@ function Car({ x, y, rotate, color }: { x: number; y: number; rotate: number; co
     <g transform={`translate(${x} ${y}) rotate(${rotate})`}>
       <rect x="-7" y="-12" width="14" height="24" rx="4" fill={color} />
       <rect x="-5" y="-8" width="10" height="7" rx="2" fill="rgba(255,255,255,0.55)" />
+    </g>
+  );
+}
+
+/** Priority/emergency vehicle glyph: a Car with a small flashing light bar on top. */
+function PriorityVehicle({ x, y, rotate }: { x: number; y: number; rotate: number }) {
+  return (
+    <g transform={`translate(${x} ${y}) rotate(${rotate})`}>
+      <rect x="-7" y="-12" width="14" height="24" rx="4" fill={WHITE} stroke="#c8ccd4" strokeWidth="0.75" />
+      <rect x="-5" y="-8" width="10" height="7" rx="2" fill="rgba(120,140,170,0.35)" />
+      <rect x="-4" y="-15" width="8" height="4" rx="1.5" fill={PROHIBIT_RED} />
+      <circle cx="-2" cy="-13" r="1.1" fill={WHITE} />
+      <circle cx="2" cy="-13" r="1.1" fill={AMBER} />
     </g>
   );
 }
@@ -475,6 +497,107 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
         <line x1="7" y1="7" x2="0" y2="-4" stroke={PRIORITY_CAR} strokeWidth="2.2" />
       </g>
     </RoadTopDown>
+  ),
+  // A car pulling smoothly toward the right margin, well ahead of an
+  // emergency vehicle approaching from behind — the correct, gradual way
+  // to make way, without slamming the brakes.
+  'vehiculo-prioritario-cediendo-lateral': () => (
+    <RoadTopDown>
+      <line x1="50" y1="4" x2="50" y2="96" stroke={WHITE} strokeWidth="3" strokeDasharray="9 7" opacity="0.5" />
+      <Car x={64} y={60} rotate={-15} color={YIELD_CAR} />
+      <PriorityVehicle x={50} y={20} rotate={0} />
+    </RoadTopDown>
+  ),
+  // Caught inside a crossroads when an emergency vehicle appears on the
+  // cross street: the right move is to clear the intersection, not stop
+  // abruptly in the middle of it.
+  'vehiculo-prioritario-dentro-cruce': () => (
+    <RoadTopDown>
+      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <Car x={50} y={50} rotate={0} color={YIELD_CAR} />
+      <PriorityVehicle x={82} y={50} rotate={270} />
+    </RoadTopDown>
+  ),
+  // Roundabout: an emergency vehicle enters via the outer lane while a car
+  // is already circulating inside — that car must yield without cutting
+  // across its path, and still leave by the outer lane as usual.
+  'vehiculo-prioritario-glorieta': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
+      <circle cx="50" cy="50" r="32" fill="none" stroke={WHITE} strokeWidth="2" opacity="0.4" />
+      <circle cx="50" cy="50" r="16" fill={HOUSING} />
+      <Car x={26} y={50} rotate={180} color={YIELD_CAR} />
+      <PriorityVehicle x={50} y={88} rotate={0} />
+    </svg>
+  ),
+  // Deceleration lane: a car peels off the main carriageway into the
+  // widening auxiliary lane to slow down before leaving the road.
+  'carril-deceleracion': () => (
+    <RoadTopDown>
+      <line x1="72" y1="0" x2="72" y2="60" stroke={WHITE} strokeWidth="2.5" opacity="0.5" />
+      <path d="M72 60 Q72 90 96 96" stroke={WHITE} strokeWidth="2.5" opacity="0.5" fill="none" />
+      <line x1="40" y1="0" x2="40" y2="100" stroke={WHITE} strokeWidth="3" strokeDasharray="9 7" opacity="0.5" />
+      <Car x={56} y={30} rotate={0} color={YIELD_CAR} />
+      <Car x={82} y={78} rotate={35} color={PRIORITY_CAR} />
+    </RoadTopDown>
+  ),
+  // Circumstantial additional lane: the hard shoulder opened as an extra
+  // lane during heavy holiday traffic, speed-limited to 60-80 km/h.
+  'carril-adicional-circunstancial': () => (
+    <RoadTopDown>
+      <line x1="34" y1="0" x2="34" y2="100" stroke={WHITE} strokeWidth="2.5" strokeDasharray="8 6" opacity="0.4" />
+      <line x1="66" y1="0" x2="66" y2="100" stroke={WHITE} strokeWidth="2.5" strokeDasharray="8 6" opacity="0.4" />
+      <rect x="4" y="4" width="24" height="16" rx="3" fill={HOUSING} stroke={WHITE} strokeWidth="1.5" />
+      <text x="16" y="16" fontSize="11" fill={WHITE} textAnchor="middle" fontWeight="700">
+        80
+      </text>
+      <Car x={18} y={70} rotate={0} color={PRIORITY_CAR} />
+      <Car x={50} y={40} rotate={0} color={YIELD_CAR} />
+    </RoadTopDown>
+  ),
+  // Acceleration lane: merging onto the main carriageway must yield to
+  // traffic already on it, same underlying rule as art. 72 RGC.
+  'carril-aceleracion': () => (
+    <RoadTopDown>
+      <line x1="60" y1="0" x2="60" y2="100" stroke={WHITE} strokeWidth="2.5" opacity="0.5" />
+      <path d="M60 100 Q60 70 36 62" stroke={WHITE} strokeWidth="2.5" opacity="0.5" fill="none" />
+      <Car x={76} y={40} rotate={0} color={PRIORITY_CAR} />
+      <Car x={28} y={78} rotate={20} color={YIELD_CAR} />
+    </RoadTopDown>
+  ),
+  // Double-row parking: a car stops right alongside one already legally
+  // parked at the kerb, blocking the lane for everyone else.
+  'estacionamiento-doble-fila': () => (
+    <RoadTopDown>
+      <Car x={20} y={50} rotate={0} color={YIELD_CAR} />
+      <Car x={38} y={50} rotate={0} color={PROHIBIT_RED} />
+      <line x1="66" y1="4" x2="66" y2="96" stroke={WHITE} strokeWidth="3" strokeDasharray="9 7" opacity="0.5" />
+    </RoadTopDown>
+  ),
+  // Stopping right on a marked pedestrian crossing — forbidden even for a
+  // brief "parada", not only for leaving the car unattended.
+  'parada-prohibida-paso-peatones': () => (
+    <RoadTopDown>
+      <rect x="10" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="26" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="42" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="58" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="74" y="42" width="10" height="16" fill={WHITE} />
+      <Car x={50} y={50} rotate={0} color={PROHIBIT_RED} />
+    </RoadTopDown>
+  ),
+  // Stopping in a low-visibility bend — one of the spots where even a
+  // brief "parada" is forbidden, not just parking.
+  'parada-prohibida-curva-tunel': () => (
+    <svg viewBox="0 0 100 100" role="img" aria-hidden="true">
+      <rect x="0" y="0" width="100" height="100" rx="10" fill={ASPHALT} />
+      <path d="M18,90 Q18,18 90,18" stroke="#4a5468" strokeWidth="22" strokeLinecap="round" fill="none" />
+      <path d="M18,90 Q18,18 90,18" stroke={WHITE} strokeWidth="3" strokeDasharray="8 6" opacity="0.6" fill="none" />
+      <Car x={30} y={70} rotate={335} color={PROHIBIT_RED} />
+    </svg>
   ),
 };
 
