@@ -99,6 +99,31 @@ export const otrosUsuariosQuestions = [
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
+  // 2026-09-02, imágenes de situaciones reales (Lote 5: peatones y
+  // ciclistas). Distinta de OTR-PEA-01 (peatón ya cruzando) y OTR-PEA-04
+  // (peatón fuera de paso): aquí el peatón todavía no ha pisado el paso,
+  // por lo que se plantea como deber de anticipación/precaución del
+  // conductor, no como una regla de prioridad legal ya activada.
+  q({
+    id: 'OTR-PEA-05',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'peatones',
+    question: 'Ves a un peatón en la acera, claramente a punto de entrar en un paso de peatones señalizado sin semáforo. Debes:',
+    image: 'diagram:peaton-aproximandose-paso',
+    options: [
+      'Reducir la velocidad y estar preparado para detenerte, anticipándote a que inicie el cruce',
+      'Mantener la velocidad hasta que el peatón haya pisado físicamente la calzada',
+      'Acelerar para cruzar el paso antes de que el peatón llegue a él',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La conducción segura exige anticiparse: al ver a un peatón claramente dispuesto a cruzar por un paso señalizado, hay que moderar la velocidad y estar preparado para detenerse, sin esperar a que ya haya puesto un pie en la calzada para reaccionar.',
+    difficulty: 'medium',
+    tags: ['otros usuarios', 'peatones'],
+    sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
   q({
     id: 'OTR-CIC-01',
     categoryId: 'otros-usuarios',
@@ -148,6 +173,30 @@ export const otrosUsuariosQuestions = [
       'Con carácter general, los ciclistas pueden circular en paralelo dentro de un carril, siempre que no entorpezcan de forma indebida la circulación del resto de vehículos.',
     tags: ['otros usuarios', 'ciclistas'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-02, imágenes de situaciones reales (Lote 5): un ciclista es un
+  // vehículo más a efectos de prioridad — no existe una excepción que le
+  // reste prioridad frente a un turismo en un cruce sin señalizar.
+  q({
+    id: 'OTR-CIC-04',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'ciclistas',
+    question: 'En un cruce sin señalizar, un ciclista se aproxima por tu derecha al mismo tiempo que tú. ¿Quién tiene prioridad?',
+    image: 'diagram:ciclista-interseccion-prioridad',
+    options: [
+      'El ciclista, igual que si fuera cualquier otro vehículo que llega por la derecha',
+      'Tú, porque un turismo siempre tiene prioridad sobre una bicicleta',
+      'Ninguno tiene prioridad: ambos deben detenerse y esperar',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'La bicicleta es un vehículo a todos los efectos de las normas de prioridad; en un cruce sin señalizar se aplica la misma norma general de ceder el paso a quien llega por la derecha, sin ninguna excepción que reste prioridad al ciclista frente a un turismo.',
+    difficulty: 'medium',
+    tags: ['otros usuarios', 'ciclistas', 'prioridad'],
+    sourceUrl: SRC,
+    legalReference: 'Reglamento General de Circulación, artículo 57',
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
