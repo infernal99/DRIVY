@@ -50,11 +50,15 @@
   --color-info: #8b5cf6;
   --color-info-bg: rgba(139, 92, 246, 0.1);
 
+  /* Camino de aprendizaje (LearnPath) — línea de puntos que conecta los nodos. */
+  --color-path-trail: rgba(139, 92, 246, 0.25);
+
   /* Gradients — compuestos a partir de los colores de marca de arriba.
      No añaden colores nuevos: solo dan nombre a las dos combinaciones que
      ya estaban repetidas a mano por toda la app. */
   --gradient-brand: linear-gradient(135deg, var(--color-primary), var(--color-accent-pink));
   --gradient-hero: linear-gradient(135deg, var(--color-primary-navy), var(--color-primary-dark) 60%, var(--color-primary));
+  --gradient-success: linear-gradient(135deg, var(--color-success), #16a34a);
 
   /* Typography — fuente del sistema.
      En iOS/macOS esto resuelve a San Francisco, la tipografía de Apple. NO se
@@ -146,11 +150,14 @@
   --color-info: #a78bfa;
   --color-info-bg: rgba(167, 139, 250, 0.16);
 
+  --color-path-trail: rgba(167, 139, 250, 0.3);
+
   /* Los degradados y las sombras de marca se recomponen aquí porque estaban
      definidos con los valores claros: si no, el halo de los botones seguiría
      siendo el morado claro sobre fondo oscuro. */
   --gradient-brand: linear-gradient(135deg, var(--color-primary), var(--color-accent-pink));
   --gradient-hero: linear-gradient(135deg, var(--color-primary-navy), var(--color-primary-dark) 60%, var(--color-primary));
+  --gradient-success: linear-gradient(135deg, var(--color-success), #1e9e57);
   --shadow-btn-primary: 0 6px 16px rgba(167, 139, 250, 0.28);
   --shadow-node-active: 0 8px 18px rgba(167, 139, 250, 0.38);
 

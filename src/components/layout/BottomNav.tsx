@@ -35,13 +35,14 @@ export function BottomNav() {
           >
             {({ isActive }) => (
               <>
-                <span className={styles.iconWrap}>
-                  <Icon name={item.icon} size={22} color={isActive ? 'var(--color-primary)' : 'var(--color-text-muted-40)'} />
+                <span className={`${styles.iconWrap} ${isActive ? styles.iconWrapActive : ''}`}>
+                  <Icon name={item.icon} size={22} color={isActive ? '#fff' : 'var(--color-text-muted-40)'} />
                   {showDot && (
                     <span className={styles.dot} role="status" aria-label="Tienes novedades de amigos" />
                   )}
                 </span>
                 <span className={styles.label}>{item.label}</span>
+                {isActive && <span className={styles.activeDot} aria-hidden="true" />}
               </>
             )}
           </NavLink>
