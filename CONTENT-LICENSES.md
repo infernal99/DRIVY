@@ -395,6 +395,19 @@ Contenido `derived` puede citar estas fuentes.
 - **Qué NO podemos reutilizar**: 
   - Copiar texto literal del reportaje como si fuera nuestro
 
+## DGT (revista) — Vehículos prioritarios: cómo actuar
+
+- **URL**: https://revista.dgt.es/es/educacion-formacion/conducir-mejor/2017/1207-Vehiculos-Prioritarios.shtml
+- **Autor/organización**: Dirección General de Tráfico (Ministerio del Interior) — revista oficial
+- **Licencia**: © DGT — contenido editorial institucional
+- **Tipo de contenido**: Reportaje oficial
+- **Fecha de comprobación**: 2026-09-02
+- **STATUS**: CLEARED
+- **Qué podemos reutilizar**: 
+  - Redactar preguntas y diagramas propios (derived) basados en estas recomendaciones, citando la fuente
+- **Qué NO podemos reutilizar**: 
+  - Copiar o adaptar visualmente cualquier imagen o texto literal del artículo
+
 ## DGT — Manual básico del permiso B (Lectura Fácil)
 
 - **URL**: https://seguridadvial2030.dgt.es/.galleries/enlaces/practicas-interes/personas-formadas-y-capaces/manual-permiso-b-lectura-facil.html

@@ -3,6 +3,7 @@ import { q } from './helpers';
 const SRC = 'https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/';
 const SRC_VMP = 'https://www.dgt.es/muevete-con-seguridad/viaja-seguro/en-patinete/';
 const BOE_VMP = 'https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-2140';
+const SRC_EMERGENCIAS = 'https://revista.dgt.es/es/educacion-formacion/conducir-mejor/2017/1207-Vehiculos-Prioritarios.shtml';
 const VERIFIED_AT = '2026-09-01';
 
 // --- 2026-09-01 audit pass (content-quality initiative, Fase 2) ---------
@@ -271,6 +272,72 @@ export const otrosUsuariosQuestions = [
       'Cuando la urgencia lo justifique, estos vehículos pueden apartarse de determinadas normas de circulación, pero siempre extremando la precaución y sin generar un peligro innecesario para otros usuarios.',
     tags: ['otros usuarios', 'vehículos prioritarios'],
     sourceUrl: SRC,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  // 2026-09-02, imágenes de situaciones reales (Lote 6: vehículos
+  // prioritarios). Distintas de OTR-VPR-01/02 (regla general): estas tres
+  // cubren situaciones concretas -aproximación por detrás, ya dentro de un
+  // cruce, y en una glorieta- verificadas contra dos artículos de la
+  // revista oficial de la DGT sobre el comportamiento correcto en cada
+  // caso, incluido qué NO hacer.
+  q({
+    id: 'OTR-VPR-03',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vehiculos-prioritarios',
+    question: 'Ves por el retrovisor que un vehículo de emergencias se aproxima por detrás con las señales activadas. Debes:',
+    image: 'diagram:vehiculo-prioritario-cediendo-lateral',
+    options: [
+      'Reducir la velocidad progresivamente y desplazarte hacia el margen, sin frenar en seco',
+      'Frenar en seco de inmediato para dejarlo pasar cuanto antes',
+      'Acelerar para alejarte y despejarle el carril más adelante',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Ante un vehículo prioritario que se aproxima, hay que reducir la velocidad de forma progresiva y desplazarse hacia un lado en cuanto sea posible, sin frenazos bruscos que puedan provocar un alcance por parte de quien circula detrás.',
+    difficulty: 'medium',
+    tags: ['otros usuarios', 'vehículos prioritarios'],
+    sourceUrl: SRC_EMERGENCIAS,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VPR-04',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vehiculos-prioritarios',
+    question: 'Un vehículo prioritario te sorprende cuando ya estás cruzando una intersección. Debes:',
+    image: 'diagram:vehiculo-prioritario-dentro-cruce',
+    options: [
+      'Mantener la calma, no bloquear el cruce y evitar maniobras bruscas o sorpresivas',
+      'Detenerte de inmediato donde estés, aunque sea en mitad del cruce',
+      'Dar marcha atrás para salir del cruce por donde has entrado',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Si un vehículo prioritario aparece cuando ya estás dentro de una intersección, lo correcto es mantenerte alerta, terminar de despejar el cruce sin bloquearlo y evitar maniobras bruscas, nunca detenerte de golpe en mitad de la intersección.',
+    difficulty: 'hard',
+    tags: ['otros usuarios', 'vehículos prioritarios'],
+    sourceUrl: SRC_EMERGENCIAS,
+    verificationStatus: 'verified',
+    lastVerifiedAt: VERIFIED_AT,
+  }),
+  q({
+    id: 'OTR-VPR-05',
+    categoryId: 'otros-usuarios',
+    subcategoryId: 'vehiculos-prioritarios',
+    question: 'Circulas dentro de una glorieta y un vehículo de emergencias entra por el carril exterior. Debes:',
+    image: 'diagram:vehiculo-prioritario-glorieta',
+    options: [
+      'Cederle el paso sin cortar su trayectoria, y seguir saliendo por el carril exterior como de costumbre',
+      'Acelerar para salir de la glorieta antes de que te alcance',
+      'Detenerte de inmediato dentro de la glorieta, sea cual sea tu posición',
+    ],
+    correctAnswer: 0,
+    explanation:
+      'Si un vehículo de emergencias entra en la glorieta por el carril exterior, quien ya circula dentro debe cederle el paso sin cruzarse en su trayectoria, señalizando y abandonando la glorieta por el carril exterior de la forma habitual.',
+    difficulty: 'hard',
+    tags: ['otros usuarios', 'vehículos prioritarios', 'glorieta'],
+    sourceUrl: SRC_EMERGENCIAS,
     verificationStatus: 'verified',
     lastVerifiedAt: VERIFIED_AT,
   }),
