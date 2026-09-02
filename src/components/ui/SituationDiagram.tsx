@@ -38,7 +38,9 @@ export type DiagramKey =
   | 'glorieta-entrada-izquierda-congestion'
   | 'glorieta-grupo-ciclistas'
   | 'adelantamiento-tres-vehiculos-sin-espacio'
-  | 'cambio-carril-intermitente-no-prioridad';
+  | 'cambio-carril-intermitente-no-prioridad'
+  | 'peaton-aproximandose-paso'
+  | 'ciclista-interseccion-prioridad';
 
 const ASPHALT = '#3a4150';
 const WHITE = '#ffffff';
@@ -438,6 +440,40 @@ const registry: Record<DiagramKey, () => React.ReactNode> = {
       <Car x={70} y={50} rotate={0} color={YIELD_CAR} />
       <path d="M60 44 L52 44 L52 38 L44 47 L52 56 L52 50 L60 50 Z" fill={AMBER} />
       <Car x={34} y={36} rotate={0} color={PRIORITY_CAR} />
+    </RoadTopDown>
+  ),
+  // Pedestrian on the kerb, clearly about to step onto a marked crossing —
+  // not yet crossing, unlike peaton-paso-senalizado-cruzando. The driver
+  // must anticipate and be ready to stop, not just react once they step out.
+  'peaton-aproximandose-paso': () => (
+    <RoadTopDown>
+      <rect x="10" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="26" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="42" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="58" y="42" width="10" height="16" fill={WHITE} />
+      <rect x="74" y="42" width="10" height="16" fill={WHITE} />
+      <circle cx="90" cy="34" r="6" fill={SKIN} />
+      <rect x="85" y="40" width="10" height="18" rx="4" fill={HOUSING} />
+      <Car x={50} y={82} rotate={0} color={YIELD_CAR} />
+    </RoadTopDown>
+  ),
+  // Cyclist arriving from the right at an unsignalised intersection: same
+  // priority-to-the-right treatment as any other vehicle, no special
+  // exception reducing it just for being a bicycle.
+  'ciclista-interseccion-prioridad': () => (
+    <RoadTopDown>
+      <line x1="46" y1="44" x2="54" y2="44" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="46" y1="56" x2="54" y2="56" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="44" y1="46" x2="44" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <line x1="56" y1="46" x2="56" y2="54" stroke={WHITE} strokeWidth="3" opacity="0.5" />
+      <Car x={42} y={80} rotate={0} color={YIELD_CAR} />
+      <g transform="translate(80 42) rotate(270)">
+        <circle cx="-7" cy="7" r="5" fill="none" stroke={PRIORITY_CAR} strokeWidth="2.2" />
+        <circle cx="7" cy="7" r="5" fill="none" stroke={PRIORITY_CAR} strokeWidth="2.2" />
+        <circle cx="0" cy="-8" r="3.5" fill={SKIN} />
+        <line x1="-7" y1="7" x2="0" y2="-4" stroke={PRIORITY_CAR} strokeWidth="2.2" />
+        <line x1="7" y1="7" x2="0" y2="-4" stroke={PRIORITY_CAR} strokeWidth="2.2" />
+      </g>
     </RoadTopDown>
   ),
 };
