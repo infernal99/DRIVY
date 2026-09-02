@@ -55,6 +55,9 @@ function App() {
             sleeping, thinking sostenido...) sin depender de una lección real. */}
         {import.meta.env.DEV && <Route path="/dev/mascot" element={<DevMascotPreviewPage />} />}
         {import.meta.env.DEV && <Route path="/dev/feedback" element={<DevFeedbackPreviewPage />} />}
+        {/* Dev-only: previsualizar el Home / camino de aprendizaje sin login
+            (vive detrás de RequireAuth en el uso real; usa el progreso local por defecto). */}
+        {import.meta.env.DEV && <Route path="/dev/home" element={<HomePage />} />}
 
         {/* Public, unauthenticated-only: bounce a signed-in user back to "/". */}
         <Route element={<RedirectIfAuthed />}>
