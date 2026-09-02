@@ -18,12 +18,15 @@ import { useProgressStore } from '../store/progressStore';
 import { AppShell } from '../components/layout/AppShell';
 import { Button } from '../components/ui/Button';
 import { Icon } from '../components/ui/Icon';
+import { Avatar } from '../components/ui/Avatar';
 import { LoadingScreen } from '../components/ui/Loading';
 import { EmptyState } from '../components/ui/EmptyState';
 import { ContentProvenanceNote } from '../components/ui/ContentProvenanceNote';
 import { AiTutorPanel } from '../components/ui/AiTutorPanel';
 import { explainMistake } from '../services/aiTutorService';
-import { ShareResultButton } from '../components/ui/ShareResultButton';
+import { useShareResult } from '../components/ui/ShareResultButton';
+import { Mascot } from '../components/mascot/Mascot';
+import { useMascot } from '../components/mascot/useMascot';
 import { OptionRow, QuestionImage } from '../components/lesson/QuestionCard';
 import type { Question } from '../types';
 
@@ -32,6 +35,12 @@ type Phase = 'loading' | 'playing' | 'reveal' | 'result' | 'abandoned' | 'review
 const ROUND_SECONDS = 30;
 const REVEAL_SECONDS = 10;
 const POLL_MS = 1300;
+
+function formatDuration(totalSeconds: number): string {
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
 
 export function BattlePage() {
   const { battleId } = useParams();
@@ -55,6 +64,12 @@ export function BattlePage() {
   const [review, setReview] = useState<BattleReviewEntry[] | null>(null);
   const [abandonedByMe, setAbandonedByMe] = useState(false);
   const [reviewReturnPhase, setReviewReturnPhase] = useState<'result' | 'abandoned'>('result');
+  const [durationSec, setDurationSec] = useState<number | null>(null);
+
+  // Solo se puede medir cuando el duelo se juega en esta misma sesión —
+  // si se aterriza directo en el resultado (recarga, o desde el historial)
+  // no hay hora de inicio real que usar, y no la inventamos.
+  const battleStartRef = useRef<number | null>(null);
 
   // Refs mirror the state above so interval callbacks always see the latest
   // value without needing to be recreated (and re-poll from scratch) every
@@ -87,6 +102,9 @@ export function BattlePage() {
     const data = await getMyBattles();
     const historyMatch = data.history.find((b) => b.battleId === numericId);
     setResult(historyMatch ?? null);
+    if (battleStartRef.current) {
+      setDurationSec(Math.round((Date.now() - battleStartRef.current) / 1000));
+    }
     if (!historyMatch) {
       setPhase('not-found');
     } else {
@@ -191,6 +209,7 @@ export function BattlePage() {
         // Fall back to the getMyBattles snapshot above.
       }
 
+      if (battleStartRef.current === null) battleStartRef.current = Date.now();
       setPhase('playing');
       return;
     }
@@ -350,54 +369,14 @@ export function BattlePage() {
   }
 
   if (phase === 'result' && result) {
-    const won = result.won;
-    const tied = result.tied;
     return (
-      <AppShell>
-        <div
-          className="anim-pop-in"
-          style={{
-            padding: '36px 24px 26px',
-            textAlign: 'center',
-            background: tied
-              ? 'linear-gradient(135deg,#4b5566,#5b6472)'
-              : won
-                ? 'linear-gradient(135deg,#122B57,#1E4694 60%,#2F6FED)'
-                : 'linear-gradient(135deg,#5b1f22,#7a2a2f)',
-            color: '#fff',
-          }}
-        >
-          <div style={{ fontSize: 13, fontWeight: 600, opacity: 0.8, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-            Duelo contra {result.displayName}
-          </div>
-          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 40, marginTop: 8 }}>
-            {result.myCorrectCount} - {result.opponentCorrectCount}
-          </div>
-          <div style={{ fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 18, marginTop: 6 }}>
-            {tied ? 'Empate' : won ? '¡Has ganado el duelo!' : 'Has perdido este duelo'}
-          </div>
-        </div>
-        <div style={{ flex: 1, padding: 20 }}>
-          <p style={{ fontSize: 13.5, color: 'var(--color-text-muted-60)', textAlign: 'center' }}>
-            {won ? '+50 XP por ganar' : tied ? '+15 XP por el empate' : '+5 XP por participar'}
-          </p>
-        </div>
-        <div style={{ padding: '16px 20px 26px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <ShareResultButton
-            data={{
-              title: tied ? 'Empate en el duelo' : won ? '¡Has ganado el duelo!' : 'Has perdido este duelo',
-              scoreLine: `${result.myCorrectCount}-${result.opponentCorrectCount}`,
-              subtitle: `Duelo vs ${result.displayName}`,
-              userName,
-              positive: won || tied,
-            }}
-          />
-          <Button variant="secondary" onClick={openReview}>
-            REVISAR PREGUNTAS
-          </Button>
-          <Button onClick={() => navigate('/friends')}>VOLVER A AMIGOS</Button>
-        </div>
-      </AppShell>
+      <BattleResultScreen
+        result={result}
+        durationSec={durationSec}
+        userName={userName}
+        onBack={() => navigate('/friends')}
+        onReview={openReview}
+      />
     );
   }
 
@@ -563,6 +542,289 @@ export function BattlePage() {
             : opponentAnswered
               ? `${battle?.displayName ?? 'Tu rival'} ya ha respondido`
               : 'Elige una respuesta antes de que acabe el tiempo'}
+        </div>
+      </div>
+    </AppShell>
+  );
+}
+
+/** Insignia hexagonal de XP — no hay un icono así en el set compartido, y es demasiado pequeño/específico para justificar añadirlo ahí. */
+function XpHexIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        d="M12 1.5 21.5 7v10L12 22.5 2.5 17V7z"
+        fill="var(--color-primary)"
+        stroke="var(--color-primary-light)"
+        strokeWidth="1"
+        strokeLinejoin="round"
+      />
+      <path d="M9 8h2.2l1.3 3.6L13.8 8H16l-2.7 4 2.7 4h-2.2l-1.4-3.7L11 16H8.8l2.7-4L9 8z" fill="#fff" />
+    </svg>
+  );
+}
+
+function StatColumn({ icon, iconColor, value, label }: { icon: 'target' | 'clock' | 'chart'; iconColor: string; value: string; label: string }) {
+  return (
+    <div style={{ flex: 1, textAlign: 'center' }}>
+      <Icon name={icon} size={22} color={iconColor} />
+      <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, color: '#fff', marginTop: 8 }}>{value}</div>
+      <div style={{ fontSize: 11, color: 'var(--color-text-muted-60)', marginTop: 2 }}>{label}</div>
+    </div>
+  );
+}
+
+function ResultActionRow({ icon, text, onClick, disabled }: { icon: 'share' | 'sources'; text: string; onClick: () => void; disabled?: boolean }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        width: '100%',
+        height: 47,
+        padding: '0 20px',
+        borderRadius: 13,
+        border: '1px solid rgba(255,255,255,0.06)',
+        background: 'var(--color-bg-card)',
+        cursor: disabled ? 'default' : 'pointer',
+        opacity: disabled ? 0.7 : 1,
+      }}
+    >
+      <Icon name={icon} size={17} color="#fff" />
+      <span style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>{text}</span>
+    </button>
+  );
+}
+
+export function BattleResultScreen({
+  result,
+  durationSec,
+  userName,
+  onBack,
+  onReview,
+}: {
+  result: BattleHistoryEntry;
+  durationSec: number | null;
+  userName: string;
+  onBack: () => void;
+  onReview: () => void;
+}) {
+  const { won, tied } = result;
+  const mascot = useMascot({ idleSleepAfterMs: null });
+  const { busy: sharing, note: shareNote, handleClick: handleShare } = useShareResult({
+    title: tied ? 'Empate en el duelo' : won ? '¡Has ganado el duelo!' : 'Has perdido este duelo',
+    scoreLine: `${result.myCorrectCount}-${result.opponentCorrectCount}`,
+    subtitle: `Duelo vs ${result.displayName}`,
+    userName,
+    positive: won || tied,
+  });
+
+  useEffect(() => {
+    if (won) mascot.react('achievement', { intensity: 'big' });
+    else if (tied) mascot.react('thinking');
+    else mascot.react('incorrect');
+    // Solo al montar — no queremos relanzar la animación en cada render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const myColor = won ? 'var(--color-success)' : tied ? '#fff' : 'var(--color-error)';
+  const theirColor = won ? 'var(--color-error)' : tied ? '#fff' : 'var(--color-success)';
+  const myGlow = won ? 'rgba(78,203,132,0.35)' : tied ? 'rgba(167,139,250,0.3)' : 'rgba(255,107,111,0.3)';
+  const theirGlow = won ? 'rgba(255,107,111,0.3)' : tied ? 'rgba(167,139,250,0.3)' : 'rgba(78,203,132,0.35)';
+  const statusText = tied ? 'Empate en este duelo 🤝' : won ? '¡Has ganado este duelo! 🎉' : 'Has perdido este duelo 😔';
+  const xpText = won ? '+50 XP por ganar' : tied ? '+15 XP por el empate' : '+5 XP por participar';
+  const accuracyPct = result.totalCount > 0 ? Math.round((result.myCorrectCount / result.totalCount) * 100) : 0;
+
+  return (
+    <AppShell>
+      <div className="anim-pop-in" style={{ padding: '18px 20px 24px' }}>
+        <button
+          type="button"
+          onClick={onBack}
+          aria-label="Volver"
+          style={{
+            width: 42,
+            height: 42,
+            borderRadius: 14,
+            border: 'none',
+            background: 'var(--color-bg-locked)',
+            color: '#fff',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            flex: 'none',
+          }}
+        >
+          <Icon name="chevronLeft" size={20} color="#fff" />
+        </button>
+
+        <div>
+          <div style={{ textAlign: 'center', marginTop: 22 }}>
+            <span
+              style={{
+                display: 'inline-block',
+                fontSize: 11,
+                fontWeight: 700,
+                color: 'var(--color-text-muted-60)',
+                textTransform: 'uppercase',
+                letterSpacing: 0.6,
+                background: 'rgba(255,255,255,0.05)',
+                padding: '6px 16px',
+                borderRadius: 999,
+              }}
+            >
+              Duelo contra {result.displayName}
+            </span>
+          </div>
+
+          <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                left: 4,
+                width: 92,
+                height: 92,
+                borderRadius: '50%',
+                background: `radial-gradient(closest-side, ${myGlow}, transparent)`,
+                filter: 'blur(6px)',
+              }}
+            />
+            <div style={{ position: 'absolute', left: -8, transform: 'translateY(6px)' }}>
+              <Mascot controller={mascot} size={76} bubblePosition="top" />
+            </div>
+
+            <div
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 800,
+                fontSize: 54,
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: 10,
+              }}
+            >
+              <span style={{ color: myColor }}>{result.myCorrectCount}</span>
+              <span style={{ color: '#fff', fontSize: 32, opacity: 0.6 }}>-</span>
+              <span style={{ color: theirColor }}>{result.opponentCorrectCount}</span>
+            </div>
+
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                right: 4,
+                width: 92,
+                height: 92,
+                borderRadius: '50%',
+                background: `radial-gradient(closest-side, ${theirGlow}, transparent)`,
+                filter: 'blur(6px)',
+              }}
+            />
+            <div style={{ position: 'absolute', right: -8 }}>
+              <div
+                style={{
+                  width: 68,
+                  height: 68,
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: `0 0 0 3px ${theirGlow}, 0 0 22px 4px ${theirGlow}`,
+                }}
+              >
+                <Avatar name={result.displayName} size={60} avatarId={result.avatarUrl} />
+              </div>
+            </div>
+          </div>
+
+          <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', textAlign: 'center', marginTop: 18 }}>{statusText}</div>
+
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 10 }}>
+            <XpHexIcon size={15} />
+            <span style={{ fontSize: 12.5, fontWeight: 600, color: 'var(--color-primary-light)' }}>{xpText}</span>
+          </div>
+
+          <div
+            style={{
+              marginTop: 26,
+              background: 'var(--color-bg-card)',
+              border: '1px solid rgba(255,255,255,0.06)',
+              borderRadius: 16,
+              padding: '18px 16px',
+            }}
+          >
+            <div
+              style={{
+                textAlign: 'center',
+                fontSize: 11.5,
+                fontWeight: 700,
+                color: 'var(--color-text-muted-60)',
+                textTransform: 'uppercase',
+                letterSpacing: 0.6,
+                marginBottom: 16,
+              }}
+            >
+              Tu rendimiento
+            </div>
+            <div style={{ display: 'flex', alignItems: 'stretch' }}>
+              <StatColumn icon="target" iconColor="var(--color-error)" value={`${result.myCorrectCount}/${result.totalCount}`} label="Aciertos" />
+              <div style={{ width: 1, background: 'rgba(255,255,255,0.08)', margin: '2px 0' }} />
+              <StatColumn icon="clock" iconColor="var(--color-xp)" value={durationSec != null ? formatDuration(durationSec) : '—:—'} label="Tiempo" />
+              <div style={{ width: 1, background: 'rgba(255,255,255,0.08)', margin: '2px 0' }} />
+              <StatColumn icon="chart" iconColor="var(--color-success)" value={`${accuracyPct}%`} label="Precisión" />
+            </div>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 16 }}>
+          <ResultActionRow icon="share" text={sharing ? 'Generando…' : 'Compartir resultado'} onClick={handleShare} disabled={sharing} />
+          {shareNote && <p style={{ fontSize: 11.5, color: 'var(--color-text-muted-60)', textAlign: 'center', margin: 0 }}>{shareNote}</p>}
+          <ResultActionRow icon="sources" text="Revisar preguntas" onClick={onReview} />
+
+          <button
+            type="button"
+            onClick={onBack}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              width: '100%',
+              height: 62,
+              padding: '0 16px',
+              marginTop: 2,
+              borderRadius: 14,
+              border: 'none',
+              background: 'var(--gradient-brand)',
+              boxShadow: 'var(--shadow-btn-primary)',
+              cursor: 'pointer',
+            }}
+          >
+            <div
+              style={{
+                width: 38,
+                height: 38,
+                borderRadius: 11,
+                background: 'rgba(255,255,255,0.18)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flex: 'none',
+              }}
+            >
+              <Icon name="users" size={18} color="#fff" />
+            </div>
+            <div style={{ flex: 1, textAlign: 'left' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Volver a amigos</div>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)', marginTop: 1 }}>Elegir nuevo rival</div>
+            </div>
+            <Icon name="chevronRight" size={18} color="#fff" />
+          </button>
         </div>
       </div>
     </AppShell>

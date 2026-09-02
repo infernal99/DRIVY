@@ -177,7 +177,7 @@ export type IconName =
   | 'chevronRight' | 'alcohol' | 'car' | 'pedestrian' | 'sources' | 'users'
   | 'download' | 'crown'
   | 'mail' | 'eye' | 'eyeOff' | 'arrowRight' | 'bolt'
-  | 'motorcycle' | 'truck' | 'bus';
+  | 'motorcycle' | 'truck' | 'bus' | 'clock' | 'share';
 
 /**
  * Internal sign catalogue entry (section 10 of the content spec). `image`

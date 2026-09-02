@@ -34,6 +34,7 @@ import { AdminContentPage } from './pages/AdminContentPage';
 import { DevOnboardingPreviewPage } from './pages/DevOnboardingPreviewPage';
 import { DevMascotPreviewPage } from './pages/DevMascotPreviewPage';
 import { DevFeedbackPreviewPage } from './pages/DevFeedbackPreviewPage';
+import { DevBattleResultPreviewPage } from './pages/DevBattleResultPreviewPage';
 import { InviteFriendPage } from './pages/InviteFriendPage';
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
         {/* Dev-only: previsualizar el Home / camino de aprendizaje sin login
             (vive detrás de RequireAuth en el uso real; usa el progreso local por defecto). */}
         {import.meta.env.DEV && <Route path="/dev/home" element={<HomePage />} />}
+        {import.meta.env.DEV && <Route path="/dev/battle-result" element={<DevBattleResultPreviewPage />} />}
 
         {/* Public, unauthenticated-only: bounce a signed-in user back to "/". */}
         <Route element={<RedirectIfAuthed />}>

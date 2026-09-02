@@ -165,6 +165,20 @@ const PATHS: Record<IconName, React.ReactNode> = {
       <path d="M4 19h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </>
   ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
+      <path d="M12 7v5l3.5 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  ),
+  share: (
+    <>
+      <circle cx="6" cy="12" r="2.6" stroke="currentColor" strokeWidth="2" />
+      <circle cx="17.5" cy="6" r="2.6" stroke="currentColor" strokeWidth="2" />
+      <circle cx="17.5" cy="18" r="2.6" stroke="currentColor" strokeWidth="2" />
+      <path d="M8.3 10.8l6.9-3.6M8.3 13.2l6.9 3.6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </>
+  ),
 };
 
 export function Icon({

@@ -4,7 +4,13 @@ import { Button } from './Button';
 
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
-export function ShareResultButton({ data }: { data: ResultCardData }) {
+/**
+ * Core "share this result" logic (image generation + share/download +
+ * status note), split out of <ShareResultButton> so screens that need a
+ * differently-styled trigger (e.g. BattlePage's result screen) can reuse it
+ * without forking the sharing behavior itself.
+ */
+export function useShareResult(data: ResultCardData) {
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
 
@@ -23,6 +29,12 @@ export function ShareResultButton({ data }: { data: ResultCardData }) {
     if (outcome === 'downloaded') setNote(isIOS ? 'Mantén pulsada la imagen para guardarla.' : 'Imagen descargada.');
     if (outcome === 'failed') setNote('No se pudo generar la imagen. Inténtalo de nuevo.');
   }
+
+  return { busy, note, handleClick };
+}
+
+export function ShareResultButton({ data }: { data: ResultCardData }) {
+  const { busy, note, handleClick } = useShareResult(data);
 
   return (
     <>
