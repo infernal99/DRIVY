@@ -123,6 +123,48 @@ export async function getFriendProfile(userId: string): Promise<FriendProfile> {
   return data as FriendProfile;
 }
 
+export type ReportReason = 'spam' | 'acoso' | 'contenido_inapropiado' | 'suplantacion' | 'otro';
+
+export interface BlockedUser {
+  userId: string;
+  displayName: string;
+  avatarUrl: string | null;
+  blockedAt: string;
+}
+
+export async function blockUser(userId: string): Promise<void> {
+  const { error } = await supabase.rpc('fn_block_user', { p_user_id: userId });
+  if (error) throw error;
+}
+
+export async function unblockUser(userId: string): Promise<void> {
+  const { error } = await supabase.rpc('fn_unblock_user', { p_user_id: userId });
+  if (error) throw error;
+}
+
+export async function getBlockedUsers(): Promise<BlockedUser[]> {
+  const { data, error } = await supabase.rpc('fn_get_blocked_users');
+  if (error) throw error;
+  return ((data ?? []) as { user_id: string; display_name: string; avatar_url: string | null; blocked_at: string }[]).map(
+    (row) => ({
+      userId: row.user_id,
+      displayName: row.display_name,
+      avatarUrl: row.avatar_url,
+      blockedAt: row.blocked_at,
+    }),
+  );
+}
+
+export async function reportUser(userId: string, reason: ReportReason, details?: string, alsoBlock = true): Promise<void> {
+  const { error } = await supabase.rpc('fn_report_user', {
+    p_user_id: userId,
+    p_reason: reason,
+    p_details: details ?? null,
+    p_also_block: alsoBlock,
+  });
+  if (error) throw error;
+}
+
 export async function getFriendLeaderboard(): Promise<LeaderboardEntry[]> {
   const { data, error } = await supabase.rpc('fn_get_friend_leaderboard', {});
   if (error) throw error;

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import type { CSSProperties } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getFriendProfile, removeFriend, type FriendProfile } from '../services/friendsService';
+import { getFriendProfile, removeFriend, blockUser, type FriendProfile } from '../services/friendsService';
+import { ReportUserModal } from '../components/friends/ReportUserModal';
 import { getFriendBattleStats, getHeadToHead, type BattleStats, type HeadToHeadRecord } from '../services/battlesService';
 import { getAchievementById } from '../data/achievements';
 import { getCategoryById } from '../data/categories';
@@ -29,6 +31,9 @@ export function FriendProfilePage() {
   const [error, setError] = useState<string | null>(null);
   const [confirmingRemove, setConfirmingRemove] = useState(false);
   const [removing, setRemoving] = useState(false);
+  const [confirmingBlock, setConfirmingBlock] = useState(false);
+  const [blocking, setBlocking] = useState(false);
+  const [showReport, setShowReport] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -220,28 +225,60 @@ export function FriendProfilePage() {
                   {removing ? 'Eliminando…' : 'Confirmar'}
                 </Button>
               </div>
+            ) : confirmingBlock ? (
+              <div style={{ display: 'flex', gap: 8, marginTop: 24 }}>
+                <Button variant="secondary" style={{ flex: 1 }} onClick={() => setConfirmingBlock(false)} disabled={blocking}>
+                  Cancelar
+                </Button>
+                <Button
+                  variant="danger"
+                  style={{ flex: 1 }}
+                  disabled={blocking}
+                  onClick={() => {
+                    setBlocking(true);
+                    blockUser(userId)
+                      .then(() => navigate('/friends'))
+                      .catch(() => setBlocking(false));
+                  }}
+                >
+                  {blocking ? 'Bloqueando…' : 'Confirmar bloqueo'}
+                </Button>
+              </div>
             ) : (
-              <button
-                type="button"
-                onClick={() => setConfirmingRemove(true)}
-                style={{
-                  display: 'block',
-                  margin: '24px auto 0',
-                  background: 'none',
-                  border: 'none',
-                  color: 'var(--color-error)',
-                  fontSize: 12.5,
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  padding: 0,
-                }}
-              >
-                Eliminar amigo
-              </button>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 18, marginTop: 24, flexWrap: 'wrap' }}>
+                <button type="button" onClick={() => setConfirmingRemove(true)} style={textActionStyle}>
+                  Eliminar amigo
+                </button>
+                <button type="button" onClick={() => setConfirmingBlock(true)} style={textActionStyle}>
+                  Bloquear
+                </button>
+                <button type="button" onClick={() => setShowReport(true)} style={textActionStyle}>
+                  Denunciar
+                </button>
+              </div>
             )}
           </>
         )}
       </div>
+
+      {showReport && (
+        <ReportUserModal
+          userId={userId}
+          displayName={profile?.displayName ?? 'este usuario'}
+          onClose={() => setShowReport(false)}
+          onDone={() => navigate('/friends')}
+        />
+      )}
     </AppShell>
   );
 }
+
+const textActionStyle: CSSProperties = {
+  background: 'none',
+  border: 'none',
+  color: 'var(--color-error)',
+  fontSize: 12.5,
+  fontWeight: 600,
+  cursor: 'pointer',
+  padding: 0,
+};
