@@ -10,13 +10,12 @@ export type PathThemeId = 'default' | 'beach';
 
 export interface PathThemePalette {
   /**
-   * Imagen de fondo del tramo (con su propia transparencia — no es un
-   * rectángulo sólido, así que el fondo oscuro de la app se sigue viendo
-   * fuera de la silueta de arena) — se repite en vertical (repeat-y) para
-   * cubrir tramos de cualquier longitud.
+   * Textura de fondo del tramo — opaca de borde a borde (no un recorte con
+   * huecos), se repite en horizontal Y vertical (como un papel pintado)
+   * para cubrir cualquier ancho de pantalla y cualquier longitud de tramo.
    */
   bandImage: string;
-  /** Ancho al que se pinta bandImage (alto sale solo, respetando su proporción real). */
+  /** Ancho de cada baldosa de bandImage al repetirse (alto sale solo, respetando su proporción real). */
   bandImageWidth: number;
   /** Asfalto/superficie de la carretera cuando el tramo es alcanzable. */
   roadAsphalt: string;
@@ -35,9 +34,9 @@ export const PATH_THEMES: Record<PathThemeId, PathThemePalette | null> = {
     // que en este tema no se añaden los props de carretera de siempre
     // (ver skip de RoadProps en LearnPath.tsx) — se solaparían con el arte.
     bandImage: '/learn-path/beach_background.png',
-    // Ancho de la pantalla del móvil (--app-max-width en theme.css), no el
-    // de la columna de 330px de la carretera — así la imagen llega de lado
-    // a lado en vez de dejar franjas oscuras a los dos lados.
+    // Ancho de cada "baldosa" de la textura al repetirse — el mismo que
+    // --app-max-width (theme.css), así en una pantalla de móvil normal se
+    // ve una sola baldosa de lado a lado sin costura visible.
     bandImageWidth: 480,
     roadAsphalt: '#e8c98f',
     roadEdge: '#fbecc7',
