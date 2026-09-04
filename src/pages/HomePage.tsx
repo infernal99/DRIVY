@@ -66,6 +66,7 @@ export function HomePage() {
           kind: 'unitBanner',
           status: 'active',
           emoji: category.emoji,
+          categoryId: category.id,
         });
       }
 
@@ -79,6 +80,7 @@ export function HomePage() {
           status: categoryReachable ? 'active' : 'locked',
           glow: 'rgba(250,204,21,0.5)',
           onClick: categoryReachable ? () => navigate('/practice/daily') : undefined,
+          categoryId: category.id,
         });
       }
 
@@ -92,6 +94,7 @@ export function HomePage() {
           status: categoryReachable ? 'active' : 'locked',
           glow: 'rgba(250,204,21,0.5)',
           onClick: categoryReachable ? () => navigate('/progress') : undefined,
+          categoryId: category.id,
         });
       }
 
@@ -106,6 +109,7 @@ export function HomePage() {
         kind: 'lesson',
         status,
         onClick: status === 'locked' ? undefined : () => navigate(`/learn/${category.id}/lesson/${subId}`),
+        categoryId: category.id,
       });
       indexInCategory++;
 
@@ -121,6 +125,7 @@ export function HomePage() {
           status: categoryReachable ? 'active' : 'locked',
           glow: 'rgba(139,92,246,0.55)',
           onClick: categoryReachable ? () => navigate('/practice/exam/simulacro') : undefined,
+          categoryId: category.id,
         });
       }
     });
@@ -137,6 +142,7 @@ export function HomePage() {
         icon: 'flag',
         kind: 'wall',
         status: 'locked',
+        categoryId: nodes[frontierIndex].categoryId,
       });
     }
 

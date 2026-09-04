@@ -4,6 +4,7 @@ import { Mascot } from '../mascot/Mascot';
 import { useMascot } from '../mascot/useMascot';
 import { PathIcon, type PathIconName } from './pathVisuals';
 import { NODE_ASSET, DAILY_CHALLENGE_ASSET, REWARD_CHEST_ASSET, ENV_PROP, type EnvPropKind } from './pathAssets';
+import { PATH_THEMES, themeForCategory, type PathThemeId } from './pathThemes';
 import styles from './LearnPath.module.css';
 
 export type PathNodeKind = 'lesson' | 'checkpoint' | 'reward' | 'exam' | 'teaser' | 'unitBanner' | 'wall';
@@ -21,6 +22,8 @@ export interface PathNode {
   onClick?: () => void;
   /** Solo para kind:'unitBanner' — emoji de la categoría (Category.emoji). */
   emoji?: string;
+  /** Categoría a la que pertenece este nodo — decide qué ambientación (pathThemes.ts) pintar detrás. */
+  categoryId?: string;
 }
 
 const DEFAULT_GLOW = 'rgba(139,92,246,0.45)';
@@ -35,6 +38,35 @@ const BOTTOM_PADDING = 64;
 
 function xFor(i: number) {
   return X_PATTERN[i % X_PATTERN.length];
+}
+
+interface ThemeSegment {
+  theme: PathThemeId;
+  startIdx: number;
+  endIdx: number;
+}
+
+/**
+ * Agrupa los nodos en tramos contiguos por ambientación (pathThemes.ts).
+ * Cada tramo comparte su punto frontera con el siguiente (endIdx del tramo
+ * N === startIdx del tramo N+1) para que la carretera dibuje una curva
+ * continua en el cambio de ambiente, sin costura visible.
+ */
+function buildThemeSegments(nodes: PathNode[]): ThemeSegment[] {
+  if (nodes.length === 0) return [];
+  const segments: ThemeSegment[] = [];
+  let segStart = 0;
+  let current = themeForCategory(nodes[0].categoryId);
+  for (let i = 1; i < nodes.length; i++) {
+    const t = themeForCategory(nodes[i].categoryId);
+    if (t !== current) {
+      segments.push({ theme: current, startIdx: segStart, endIdx: i });
+      segStart = i;
+      current = t;
+    }
+  }
+  segments.push({ theme: current, startIdx: segStart, endIdx: nodes.length - 1 });
+  return segments;
 }
 
 function buildTrailPath(points: { x: number; y: number }[]) {
@@ -126,11 +158,34 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const pastPoints = points.slice(0, splitIndex + 1);
-  const futurePoints = points.slice(splitIndex);
+  const themeSegments = buildThemeSegments(nodes);
 
   return (
     <div style={{ position: 'relative', width: ROW_WIDTH, height: totalHeight, margin: '84px auto 0' }}>
+      {/* Ambientación por tema (pathThemes.ts) — banda de fondo a todo el
+          ancho de la pantalla, por debajo de la carretera y los nodos. */}
+      {themeSegments.map((seg, k) => {
+        const palette = PATH_THEMES[seg.theme];
+        if (!palette) return null;
+        const top = points[seg.startIdx].y - ROW_HEIGHT * 0.7;
+        const bottom = points[seg.endIdx].y + ROW_HEIGHT * 0.7;
+        return (
+          <div
+            key={k}
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              left: -1000,
+              right: -1000,
+              top,
+              height: bottom - top,
+              background: palette.bandBackground,
+              pointerEvents: 'none',
+            }}
+          />
+        );
+      })}
+
       {/* Atmósfera muy sutil detrás de los hitos importantes */}
       {[activeLessonIndex, rewardIndex, examIndex].map(
         (i, k) =>
@@ -163,29 +218,53 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
           </filter>
         </defs>
 
-        {/* Futuro (todavía bloqueado): asfalto apagado, con un halo tenue — sigue leyéndose como carretera. */}
-        <path
-          d={buildTrailPath(futurePoints)}
-          fill="none"
-          stroke="var(--color-primary)"
-          strokeWidth={64}
-          strokeLinecap="round"
-          opacity={0.1}
-          filter={`url(#roadglow-${gradId})`}
-        />
-        <RoadLayer d={buildTrailPath(futurePoints)} asphalt="var(--color-road-asphalt-muted)" edge="var(--color-road-edge-muted)" lane="var(--color-road-lane-muted)" />
+        {/* Carretera por tramos temáticos — cada tramo se divide a su vez en
+            "alcanzable" (antes de splitIndex) y "todavía bloqueado" (después),
+            con la paleta del tema (default = morado de siempre, u otra si el
+            tema trae la suya — ver pathThemes.ts). */}
+        {themeSegments.map((seg, k) => {
+          const palette = PATH_THEMES[seg.theme];
+          const segPoints = points.slice(seg.startIdx, seg.endIdx + 1);
+          const localSplit = Math.max(0, Math.min(splitIndex - seg.startIdx, segPoints.length - 1));
+          const segPast = segPoints.slice(0, localSplit + 1);
+          const segFuture = segPoints.slice(localSplit);
+          const glowColor = palette ? '#f0cf8a' : 'var(--color-primary)';
 
-        {/* Alcanzable ahora: asfalto vivo con halo morado brillante debajo. */}
-        <path
-          d={buildTrailPath(pastPoints)}
-          fill="none"
-          stroke="var(--color-primary)"
-          strokeWidth={70}
-          strokeLinecap="round"
-          opacity={0.4}
-          filter={`url(#roadglow-${gradId})`}
-        />
-        <RoadLayer d={buildTrailPath(pastPoints)} asphalt="var(--color-road-asphalt)" edge="var(--color-road-edge)" lane="var(--color-road-lane)" />
+          return (
+            <g key={k}>
+              <path
+                d={buildTrailPath(segFuture)}
+                fill="none"
+                stroke={glowColor}
+                strokeWidth={64}
+                strokeLinecap="round"
+                opacity={0.1}
+                filter={`url(#roadglow-${gradId})`}
+              />
+              <RoadLayer
+                d={buildTrailPath(segFuture)}
+                asphalt={palette ? palette.roadAsphaltMuted : 'var(--color-road-asphalt-muted)'}
+                edge={palette ? palette.roadEdgeMuted : 'var(--color-road-edge-muted)'}
+                lane={palette ? palette.roadLaneMuted : 'var(--color-road-lane-muted)'}
+              />
+              <path
+                d={buildTrailPath(segPast)}
+                fill="none"
+                stroke={glowColor}
+                strokeWidth={70}
+                strokeLinecap="round"
+                opacity={0.4}
+                filter={`url(#roadglow-${gradId})`}
+              />
+              <RoadLayer
+                d={buildTrailPath(segPast)}
+                asphalt={palette ? palette.roadAsphalt : 'var(--color-road-asphalt)'}
+                edge={palette ? palette.roadEdge : 'var(--color-road-edge)'}
+                lane={palette ? palette.roadLane : 'var(--color-road-lane)'}
+              />
+            </g>
+          );
+        })}
       </svg>
 
       {(() => {
@@ -193,10 +272,12 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
           if (n.kind === 'unitBanner' || n.kind === 'wall') acc.push(i);
           return acc;
         }, []);
+        const themeByIndex = nodes.map((n) => themeForCategory(n.categoryId));
         return (
           <RoadProps
             points={points}
             rowWidth={ROW_WIDTH}
+            themeByIndex={themeByIndex}
             skip={[activeLessonIndex, rewardIndex, examIndex, ...wideIndices]}
           />
         );
@@ -388,8 +469,18 @@ function RoadLayer({ d, asphalt, edge, lane }: { d: string; asphalt: string; edg
   );
 }
 
-/** Pequeños elementos decorativos junto a la carretera, con los PNG reales del proyecto — nunca en el mismo nodo que la mascota, siempre en el lado contrario al que se inclina el nodo. */
-function RoadProps({ points, rowWidth, skip }: { points: { x: number; y: number }[]; rowWidth: number; skip: number[] }) {
+/** Pequeños elementos decorativos junto a la carretera — PNG reales del proyecto por defecto, o los emoji del tema (pathThemes.ts) en los tramos con ambientación propia. Nunca en el mismo nodo que la mascota, siempre en el lado contrario al que se inclina el nodo. */
+function RoadProps({
+  points,
+  rowWidth,
+  skip,
+  themeByIndex,
+}: {
+  points: { x: number; y: number }[];
+  rowWidth: number;
+  skip: number[];
+  themeByIndex: PathThemeId[];
+}) {
   const cycle: EnvPropKind[] = [
     'tree',
     'yield',
@@ -410,20 +501,28 @@ function RoadProps({ points, rowWidth, skip }: { points: { x: number; y: number 
     <>
       {candidates.map(({ p, i }, k) => {
         const onLeft = p.x >= rowWidth / 2; // el decorado va al lado contrario al que se inclina el nodo
+        const palette = PATH_THEMES[themeByIndex[i]];
+        const style: React.CSSProperties = {
+          position: 'absolute',
+          left: p.x + (onLeft ? -90 : 90),
+          top: p.y + ROW_HEIGHT * 0.36,
+          transform: 'translate(-50%, -100%)',
+          opacity: 0.9,
+          pointerEvents: 'none',
+        };
+
+        if (palette) {
+          const emoji = palette.props[k % palette.props.length];
+          return (
+            <div key={i} style={{ ...style, fontSize: 34, lineHeight: 1, filter: 'drop-shadow(0 4px 5px rgba(0,0,0,0.35))' }}>
+              {emoji}
+            </div>
+          );
+        }
+
         const prop = ENV_PROP[cycle[k % cycle.length]];
         return (
-          <div
-            key={i}
-            style={{
-              position: 'absolute',
-              left: p.x + (onLeft ? -90 : 90),
-              top: p.y + ROW_HEIGHT * 0.36,
-              transform: 'translate(-50%, -100%)',
-              opacity: 0.9,
-              pointerEvents: 'none',
-              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.35))',
-            }}
-          >
+          <div key={i} style={{ ...style, filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.35))' }}>
             <img src={prop.src} alt="" style={{ width: prop.width, height: 'auto', display: 'block' }} />
           </div>
         );
