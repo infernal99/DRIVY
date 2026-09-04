@@ -65,8 +65,10 @@ function surfaceFor(node: PathNode): string {
   if (node.kind === 'teaser' || node.status === 'locked') return 'var(--color-bg-locked)';
   if (node.kind === 'reward') return 'linear-gradient(155deg, #ffdc7a, var(--color-xp))';
   if (node.kind === 'checkpoint' || node.kind === 'exam') return 'var(--gradient-brand)';
-  // Completado: mismo icono/color "normal" que una lección activa — el check
-  // del doneBadge ya comunica que está hecho, no hace falta pintar de verde.
+  // Completada: fondo verde de "éxito" (mismo icono de la lección encima,
+  // no uno genérico) para que se note de un vistazo que ya está hecha,
+  // además del check del doneBadge.
+  if (node.status === 'done') return 'var(--gradient-success)';
   return 'var(--gradient-brand)';
 }
 
@@ -216,7 +218,13 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
                 ))}
 
               {asset ? (
-                <img src={asset} alt="" className={isLockedLook ? styles.assetImgLocked : styles.assetImg} />
+                <img
+                  src={asset}
+                  alt=""
+                  className={
+                    isLockedLook ? styles.assetImgLocked : node.status === 'done' ? styles.assetImgDone : styles.assetImg
+                  }
+                />
               ) : (
                 <>
                   <div className={styles.base} style={{ background: surfaceFor(node) }} />

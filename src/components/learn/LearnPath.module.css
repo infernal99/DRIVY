@@ -68,6 +68,29 @@
   }
 }
 
+/* Lección completada: el PNG de producción viene en morado de fábrica, así
+   que lo "reteñimos" a verde con hue-rotate en vez de duplicar el arte, y le
+   añadimos un resplandor verde para que se note "iluminado" de un vistazo. */
+.assetImgDone {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: hue-rotate(-112deg) saturate(1.35) brightness(1.06) drop-shadow(0 0 10px rgba(74, 222, 128, 0.55))
+    drop-shadow(0 10px 14px rgba(20, 10, 50, 0.5));
+  transition: transform 90ms ease, filter 90ms ease;
+}
+
+.button:not(:disabled):active .assetImgDone {
+  transform: translateY(var(--press-travel, 6px)) scale(0.96);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:not(:disabled):hover .assetImgDone {
+    transform: scale(1.04);
+  }
+}
+
 /* Igual que .assetImg pero con el filter combinado en una sola declaración
    (grayscale + drop-shadow) — CSS no fusiona `filter` entre dos clases. */
 .assetImgLocked {
