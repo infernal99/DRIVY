@@ -65,8 +65,9 @@ function surfaceFor(node: PathNode): string {
   if (node.kind === 'teaser' || node.status === 'locked') return 'var(--color-bg-locked)';
   if (node.kind === 'reward') return 'linear-gradient(155deg, #ffdc7a, var(--color-xp))';
   if (node.kind === 'checkpoint' || node.kind === 'exam') return 'var(--gradient-brand)';
-  if (node.status === 'done') return 'var(--color-success)';
-  return 'var(--gradient-brand)'; // lección activa
+  // Completado: mismo icono/color "normal" que una lección activa — el check
+  // del doneBadge ya comunica que está hecho, no hace falta pintar de verde.
+  return 'var(--gradient-brand)';
 }
 
 /** Asset PNG de producción para este nodo, si el proyecto tiene arte real para él (ver pathAssets.ts) — si no, se usa el botón 3D en CSS + PathIcon. */
