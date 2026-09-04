@@ -162,10 +162,11 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
 
   return (
     <div style={{ position: 'relative', width: ROW_WIDTH, height: totalHeight, margin: '84px auto 0' }}>
-      {/* Ambientación por tema (pathThemes.ts) — la imagen trae su propia
-          transparencia (no es un rectángulo sólido), así que el fondo
-          oscuro de la app se sigue viendo fuera de la silueta de arena;
-          se repite en vertical para cubrir tramos de cualquier longitud. */}
+      {/* Ambientación por tema (pathThemes.ts) — textura de arena opaca de
+          borde a borde, repetida en horizontal Y vertical para cubrir
+          cualquier ancho de pantalla (móvil normal, "modo móvil" ancho en
+          desktop, etc.) sin dejar hueco a los lados ni tener que fijar un
+          ancho exacto que solo valga para un tamaño de pantalla. */}
       {themeSegments.map((seg, k) => {
         const palette = PATH_THEMES[seg.theme];
         if (!palette) return null;
@@ -177,13 +178,12 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
             aria-hidden="true"
             style={{
               position: 'absolute',
-              left: '50%',
-              width: palette.bandImageWidth,
-              transform: 'translateX(-50%)',
+              left: -1000,
+              right: -1000,
               top,
               height: bottom - top,
               backgroundImage: `url(${palette.bandImage})`,
-              backgroundRepeat: 'repeat-y',
+              backgroundRepeat: 'repeat',
               backgroundPosition: 'center top',
               backgroundSize: `${palette.bandImageWidth}px auto`,
               pointerEvents: 'none',
