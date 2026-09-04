@@ -1,4 +1,4 @@
-import { useEffect, useId } from 'react';
+import { useEffect, useId, useRef } from 'react';
 import { Icon } from '../ui/Icon';
 import { Mascot } from '../mascot/Mascot';
 import { useMascot } from '../mascot/useMascot';
@@ -6,7 +6,7 @@ import { PathIcon, type PathIconName } from './pathVisuals';
 import { NODE_ASSET, DAILY_CHALLENGE_ASSET, REWARD_CHEST_ASSET, ENV_PROP, type EnvPropKind } from './pathAssets';
 import styles from './LearnPath.module.css';
 
-export type PathNodeKind = 'lesson' | 'checkpoint' | 'reward' | 'exam' | 'teaser';
+export type PathNodeKind = 'lesson' | 'checkpoint' | 'reward' | 'exam' | 'teaser' | 'unitBanner' | 'wall';
 export type PathNodeStatus = 'done' | 'active' | 'locked';
 
 export interface PathNode {
@@ -19,6 +19,8 @@ export interface PathNode {
   /** Color de acento (rgba) para el halo del nodo activo y el resplandor de fondo. */
   glow?: string;
   onClick?: () => void;
+  /** Solo para kind:'unitBanner' — emoji de la categoría (Category.emoji). */
+  emoji?: string;
 }
 
 const DEFAULT_GLOW = 'rgba(139,92,246,0.45)';
@@ -54,6 +56,8 @@ const SIZE: Record<PathNodeKind, { active: number; other: number; extrusion: num
   reward: { active: 96, other: 96, extrusion: 10 },
   exam: { active: 100, other: 100, extrusion: 12 },
   teaser: { active: 68, other: 68, extrusion: 7 },
+  unitBanner: { active: 0, other: 0, extrusion: 0 },
+  wall: { active: 0, other: 0, extrusion: 0 },
 };
 
 function sizeFor(node: PathNode) {
@@ -86,14 +90,17 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
   const celebrateMascot = useMascot({ idleSleepAfterMs: null });
   const thinkMascot = useMascot({ idleSleepAfterMs: null });
 
-  const points = nodes.map((_, i) => ({ x: xFor(i), y: TOP_PADDING + i * ROW_HEIGHT }));
+  const points = nodes.map((n, i) => ({
+    x: n.kind === 'unitBanner' || n.kind === 'wall' ? ROW_WIDTH / 2 : xFor(i),
+    y: TOP_PADDING + i * ROW_HEIGHT,
+  }));
   const totalHeight = TOP_PADDING + Math.max(0, nodes.length - 1) * ROW_HEIGHT + BOTTOM_PADDING;
 
   const activeLessonIndex = nodes.findIndex((n) => n.kind === 'lesson' && n.status === 'active');
   const rewardIndex = nodes.findIndex((n) => n.kind === 'reward');
   const examIndex = nodes.findIndex((n) => n.kind === 'exam');
   const splitIndex = (() => {
-    const i = nodes.findIndex((n) => n.kind === 'teaser' || n.status === 'locked');
+    const i = nodes.findIndex((n) => n.kind === 'teaser' || n.kind === 'wall' || n.status === 'locked');
     return i === -1 ? nodes.length - 1 : i;
   })();
 
@@ -105,6 +112,19 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
     if (examIndex !== -1) thinkMascot.react('thinking');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [examIndex]);
+
+  // Con las 8 categorías en un único camino largo, sin esto el alumno
+  // aparecería siempre arriba del todo y tendría que desplazarse a mano
+  // hasta donde se quedó — nos centramos en su lección activa al entrar.
+  const activeNodeRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!activeNodeRef.current) return;
+    const t = setTimeout(() => {
+      activeNodeRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 200);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const pastPoints = points.slice(0, splitIndex + 1);
   const futurePoints = points.slice(splitIndex);
@@ -168,10 +188,46 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
         <RoadLayer d={buildTrailPath(pastPoints)} asphalt="var(--color-road-asphalt)" edge="var(--color-road-edge)" lane="var(--color-road-lane)" />
       </svg>
 
-      <RoadProps points={points} rowWidth={ROW_WIDTH} skip={[activeLessonIndex, rewardIndex, examIndex]} />
+      {(() => {
+        const wideIndices = nodes.reduce<number[]>((acc, n, i) => {
+          if (n.kind === 'unitBanner' || n.kind === 'wall') acc.push(i);
+          return acc;
+        }, []);
+        return (
+          <RoadProps
+            points={points}
+            rowWidth={ROW_WIDTH}
+            skip={[activeLessonIndex, rewardIndex, examIndex, ...wideIndices]}
+          />
+        );
+      })()}
 
       {nodes.map((node, i) => {
         const { x, y } = points[i];
+
+        if (node.kind === 'unitBanner') {
+          return (
+            <div key={node.id} className={styles.unitBannerWrap} style={{ left: x, top: y }}>
+              <div className={styles.unitBanner}>
+                <span className={styles.unitBannerEmoji}>{node.emoji}</span>
+                <span className={styles.unitBannerLabel}>{node.label}</span>
+              </div>
+            </div>
+          );
+        }
+
+        if (node.kind === 'wall') {
+          return (
+            <div key={node.id} className={styles.wallWrap} style={{ left: x, top: y }}>
+              <img src="/learn-path/road_barrier.png" alt="" className={styles.wallImg} />
+              <div className={styles.wallBadge}>
+                <Icon name="lock" size={13} color="#fff" strokeWidth={3} />
+              </div>
+              <span className={styles.wallLabel}>Completa la lección anterior para seguir</span>
+            </div>
+          );
+        }
+
         const clickable = !!node.onClick && node.status !== 'locked';
         const isCurrentLesson = i === activeLessonIndex;
         const isSpecial = node.kind === 'checkpoint' || node.kind === 'reward' || node.kind === 'exam';
@@ -184,6 +240,7 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
         return (
           <div
             key={node.id}
+            ref={isCurrentLesson ? activeNodeRef : undefined}
             className={`${styles.nodeWrap} ${isCurrentLesson || isSpecial ? styles.floaty : ''}`}
             style={{ left: x, top: y }}
           >
