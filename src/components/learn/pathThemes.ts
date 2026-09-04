@@ -9,8 +9,15 @@
 export type PathThemeId = 'default' | 'beach';
 
 export interface PathThemePalette {
-  /** Fondo del "tramo" — banda detrás de la carretera, a todo el ancho de la pantalla. */
-  bandBackground: string;
+  /**
+   * Imagen de fondo del tramo (con su propia transparencia — no es un
+   * rectángulo sólido, así que el fondo oscuro de la app se sigue viendo
+   * fuera de la silueta de arena) — se repite en vertical (repeat-y) para
+   * cubrir tramos de cualquier longitud.
+   */
+  bandImage: string;
+  /** Ancho al que se pinta bandImage (alto sale solo, respetando su proporción real). */
+  bandImageWidth: number;
   /** Asfalto/superficie de la carretera cuando el tramo es alcanzable. */
   roadAsphalt: string;
   roadEdge: string;
@@ -19,21 +26,22 @@ export interface PathThemePalette {
   roadAsphaltMuted: string;
   roadEdgeMuted: string;
   roadLaneMuted: string;
-  /** Emoji de decorado junto a la carretera, sustituyen a los props por defecto en este tramo. */
-  props: string[];
 }
 
 export const PATH_THEMES: Record<PathThemeId, PathThemePalette | null> = {
   default: null, // null = sigue usando los colores/decorado de siempre (sin banda de fondo).
   beach: {
-    bandBackground: 'linear-gradient(180deg, #f6dfa8 0%, #f0cf8a 55%, #e3ba6c 100%)',
+    // La propia imagen ya trae palmeras/sombrillas/conchas dibujadas, así
+    // que en este tema no se añaden los props de carretera de siempre
+    // (ver skip de RoadProps en LearnPath.tsx) — se solaparían con el arte.
+    bandImage: '/learn-path/beach_background.png',
+    bandImageWidth: 360,
     roadAsphalt: '#e8c98f',
     roadEdge: '#fbecc7',
     roadLane: '#c9973f',
     roadAsphaltMuted: '#a89572',
     roadEdgeMuted: '#c4b28c',
     roadLaneMuted: '#8a7650',
-    props: ['🌴', '🐚', '⛱️', '🦀', '🌊', '🏖️'],
   },
 };
 
