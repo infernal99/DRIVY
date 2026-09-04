@@ -6,6 +6,7 @@
       "signKey": "ceda-el-paso",
       "alt": "Triángulo invertido de borde rojo, sin pictograma",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -41,7 +42,8 @@
     "contentHash": "64f54f546a53db77ae7196848cd9fc057cc244b115af19277f5bd2509a86a6a9",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PRI-02",
@@ -50,6 +52,7 @@
       "signKey": "stop",
       "alt": "Señal: Detención obligatoria (STOP)",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -85,7 +88,8 @@
     "contentHash": "415afb6da518468ff2eee8d8763a995d695a5cb58e77a4167f582b7d2be1cf2b",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PRI-03",
@@ -94,6 +98,7 @@
       "signKey": "interseccion-prioridad",
       "alt": "Señal: Intersección con prioridad",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -130,7 +135,8 @@
     "contentHash": "1c5e5fc074151220facfc63fbff7051e1eb449cf42a522a6e0752cde828febd8",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PEL-01",
@@ -139,6 +145,7 @@
       "signKey": "curva-peligrosa-derecha",
       "alt": "Señal: Curva peligrosa hacia la derecha",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -174,7 +181,8 @@
     "contentHash": "6570c57fc31434d90a6e4e95d21460933aad8db494846763f246cffb2ac3443c",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PEL-02",
@@ -183,6 +191,7 @@
       "signKey": "obras",
       "alt": "Señal: Obras",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -219,7 +228,8 @@
     "contentHash": "90014a07d3f4768a7fafca61448cbfe4214efc4495e3d360791c167969ecfb4b",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PEL-03",
@@ -228,12 +238,13 @@
       "signKey": "paso-nivel",
       "alt": "Señal: Paso a nivel sin barreras",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
       {
         "id": "SEN-PEL-03-0",
-        "text": "Paso a nivel con barreras próximo"
+        "text": "Paso a nivel sin barreras próximo"
       },
       {
         "id": "SEN-PEL-03-1",
@@ -245,7 +256,7 @@
       }
     ],
     "correctOptionId": "SEN-PEL-03-0",
-    "explanation": "El pictograma con forma de vía férrea vallada advierte de un paso a nivel próximo; obliga a extremar la precaución y nunca detenerse sobre las vías.",
+    "explanation": "El pictograma con forma de vía férrea advierte de un paso a nivel SIN barreras próximo; al no haber barreras que corten el paso, obliga a extremar la precaución y nunca detenerse sobre las vías.",
     "categoryId": "senales",
     "subcategoryId": "senales-peligro",
     "difficulty": "medium",
@@ -260,10 +271,11 @@
       "señales",
       "peligro"
     ],
-    "contentHash": "d4a8c19b547f7132671819e3f9d5c3f83c5fd83154b557ff01b0bb55aa6df646",
+    "contentHash": "27e99ab50e82e6859151e816ead3f21df2dc160a14ba906e690608c18790c2a4",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PEL-04",
@@ -272,6 +284,7 @@
       "signKey": "animales-sueltos",
       "alt": "Señal: Paso de animales en libertad",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -307,7 +320,8 @@
     "contentHash": "67f88c1c86155863cd1a6d95dfd10126ae1761a06f9c68c6c66a784e1783272c",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PEL-05",
@@ -345,7 +359,8 @@
     "contentHash": "5e61c07c16bc63c2e3ba003409e0a28533c25879ab60b0781a80b68af07c7fbf",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PRO-01",
@@ -354,6 +369,7 @@
       "signKey": "prohibido-adelantar",
       "alt": "Señal: Adelantamiento prohibido",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -389,7 +405,8 @@
     "contentHash": "5973fed7965257f4532a0de49eeb5ff26773fe4d1c1f385ca630c778bbf279c0",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PRO-02",
@@ -398,6 +415,7 @@
       "signKey": "limite-velocidad-50",
       "alt": "Señal: Velocidad máxima (50 km/h)",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -434,7 +452,8 @@
     "contentHash": "769c9297ac98e46fc66bf3a6cbf42114e10b099f1dc6b392821a5c287b80375a",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PRO-03",
@@ -443,6 +462,7 @@
       "signKey": "fin-limite-velocidad",
       "alt": "Señal: Fin de limitación de velocidad",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -479,7 +499,8 @@
     "contentHash": "0150707db2194d131807e56aeeb072656917a03fc42677bb2e5afafdcd98c763",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PRO-04",
@@ -488,6 +509,7 @@
       "signKey": "prohibido-aparcar",
       "alt": "Señal: Estacionamiento prohibido",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -524,7 +546,8 @@
     "contentHash": "42825ce33212bff13757008efb2d0b150ff5a0df0dc86e944d370c14e27bcb1c",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PRO-05",
@@ -533,6 +556,7 @@
       "signKey": "circulacion-prohibida-ambos-sentidos",
       "alt": "Señal: Circulación prohibida",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -568,7 +592,8 @@
     "contentHash": "4e9f8d0d629b28eb03947006eb7a3bd15ad7038d6873f9b0bdafa273bdceb74d",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-PRO-06",
@@ -577,6 +602,7 @@
       "signKey": "prohibido-paso-peatones",
       "alt": "Señal: Prohibido el paso a peatones",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -613,7 +639,8 @@
     "contentHash": "3e75f33719a06bcbf736bfeb7f59973e9e26199654daaf68535c8ba19c865efe",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-OBL-01",
@@ -622,6 +649,7 @@
       "signKey": "direccion-obligatoria-recto",
       "alt": "Señal: Sentido obligatorio (recto)",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -657,7 +685,8 @@
     "contentHash": "b23299abcb1e36fd6bac3286da78dc443ebe36360d2154a9ea04cd4bcf4e0825",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-OBL-02",
@@ -666,6 +695,7 @@
       "signKey": "glorieta-obligatoria",
       "alt": "Señal: Intersección de sentido giratorio obligatorio",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -702,7 +732,8 @@
     "contentHash": "979d942efc10fa6b424d0af3945327826cc0f3c79f52ab122f983ccfe2aa7fb9",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-OBL-03",
@@ -711,6 +742,7 @@
       "signKey": "velocidad-minima-40",
       "alt": "Señal: Velocidad mínima (40 km/h)",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -747,7 +779,8 @@
     "contentHash": "69a5b9ba0f8decd2f1a2e781f95f4bca10bef71c5655799f454aee24bf760b01",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-OBL-04",
@@ -756,6 +789,7 @@
       "signKey": "carril-bici",
       "alt": "Señal: Vía obligatoria para ciclos",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -792,7 +826,8 @@
     "contentHash": "9d38d16ac1d5c7fc084d58880e173cbcbfbf6db9e769a3528f6c8f57e6a9c278",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-IND-01",
@@ -801,6 +836,7 @@
       "signKey": "paso-peatones",
       "alt": "Señal: Situación de un paso para peatones",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -837,7 +873,8 @@
     "contentHash": "980000c35aa3ae8edcae6cbede020809894000e7fff1d7fe55219711112a865a",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-IND-02",
@@ -846,6 +883,7 @@
       "signKey": "aparcamiento",
       "alt": "Señal: Estacionamiento",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -882,7 +920,8 @@
     "contentHash": "21782c5f655e37e323057966c81cdc6b6240622b22c99cdb4f70455dba0fbc03",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-IND-03",
@@ -891,6 +930,7 @@
       "signKey": "autopista",
       "alt": "Señal: Autopista",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -927,7 +967,8 @@
     "contentHash": "25cc8612e11332e6ed4f3c25ba72740fe4d424b55ff871a36a1f05f27d55794a",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-IND-04",
@@ -936,6 +977,7 @@
       "signKey": "fin-autopista",
       "alt": "Señal: Fin de autopista",
       "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "traffic_sign",
       "sourceType": "derived"
     },
     "options": [
@@ -972,7 +1014,8 @@
     "contentHash": "41e53d616528e8762584b53b19d88e4cd82e7cc2d32824acdb87d01ee64b2c95",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-CIR-01",
@@ -1010,7 +1053,8 @@
     "contentHash": "0a928ff1a70bdc293ef0e2ac30a7091f1b51076c7aa69bf27606048a1af96071",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-CIR-02",
@@ -1049,11 +1093,19 @@
     "contentHash": "978f1892e1616755855220fc7bac377f0b01623cf8c3ee7000c2858616984746",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-MAR-01",
     "question": "Una línea continua que separa dos carriles en el mismo sentido...",
+    "image": {
+      "diagramKey": "linea-continua",
+      "alt": "Vista cenital de una calzada con una línea blanca continua entre dos carriles",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "diagram",
+      "sourceType": "derived"
+    },
     "options": [
       {
         "id": "SEN-MAR-01-0",
@@ -1087,11 +1139,19 @@
     "contentHash": "af5580320f675ccac4a1e58cbc115eee911d2cd33b397fd321ab0f8d45ac9173",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-MAR-02",
     "question": "Una línea discontinua que separa dos sentidos de circulación...",
+    "image": {
+      "diagramKey": "linea-discontinua",
+      "alt": "Vista cenital de una calzada con una línea blanca discontinua entre dos sentidos",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "diagram",
+      "sourceType": "derived"
+    },
     "options": [
       {
         "id": "SEN-MAR-02-0",
@@ -1125,11 +1185,19 @@
     "contentHash": "e0fa85fa85342f3bbd49fc34baf06e419419bebcdbcbe79100b25c0c51352816",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-MAR-03",
     "question": "Una línea continua amarilla en el borde de la calzada indica:",
+    "image": {
+      "diagramKey": "linea-amarilla-borde",
+      "alt": "Vista cenital de una calzada con una línea amarilla continua junto al borde",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "diagram",
+      "sourceType": "derived"
+    },
     "options": [
       {
         "id": "SEN-MAR-03-0",
@@ -1164,11 +1232,19 @@
     "contentHash": "a2c87ea58fc2d4fb5e194f0959646f2f0581fe2d223fa7b63ac2dceda975676e",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-MAR-04",
     "question": "Unas flechas pintadas en el suelo dentro de un carril...",
+    "image": {
+      "diagramKey": "flechas-carril",
+      "alt": "Vista cenital de un carril con una flecha blanca pintada indicando dirección obligatoria",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "diagram",
+      "sourceType": "derived"
+    },
     "options": [
       {
         "id": "SEN-MAR-04-0",
@@ -1202,11 +1278,19 @@
     "contentHash": "7ab59d97583cc0d4bcb4c38503a6ca9280df8b1afff3da986f5778ed80ad2c6c",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-SEM-01",
     "question": "Ante un semáforo en ámbar (amarillo) fijo, debes:",
+    "image": {
+      "diagramKey": "semaforo-ambar-fijo",
+      "alt": "Semáforo con la luz ámbar central encendida de forma fija",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "diagram",
+      "sourceType": "derived"
+    },
     "options": [
       {
         "id": "SEN-SEM-01-0",
@@ -1240,11 +1324,19 @@
     "contentHash": "b6276e2a69f40a90a24b845a193301edf26b8cad771d49de0bf3938a2455adab",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-SEM-02",
     "question": "Una flecha verde de semáforo permite:",
+    "image": {
+      "diagramKey": "semaforo-flecha-verde",
+      "alt": "Semáforo con una flecha verde encendida en la posición inferior",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "diagram",
+      "sourceType": "derived"
+    },
     "options": [
       {
         "id": "SEN-SEM-02-0",
@@ -1278,11 +1370,19 @@
     "contentHash": "9e7616f2910b6130eab165cc61ccb5c7da66ec743690fa732841c624db9414ff",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-SEM-03",
     "question": "Un semáforo con luz ámbar intermitente indica:",
+    "image": {
+      "diagramKey": "semaforo-ambar-intermitente",
+      "alt": "Semáforo con la luz ámbar central parpadeando",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "diagram",
+      "sourceType": "derived"
+    },
     "options": [
       {
         "id": "SEN-SEM-03-0",
@@ -1316,11 +1416,19 @@
     "contentHash": "abd5c987ef20874f4996a82859ef76dfac70ec372f08171a36ed9f97983b0cdd",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-AGE-01",
     "question": "Un agente de circulación con el brazo levantado verticalmente ordena:",
+    "image": {
+      "diagramKey": "agente-brazo-levantado",
+      "alt": "Silueta de un agente de circulación con el brazo levantado verticalmente",
+      "sourceUrl": "https://www.dgt.es/muevete-con-seguridad/conoce-las-normas-de-trafico/normativa-para-la-circulacion/",
+      "imageType": "diagram",
+      "sourceType": "derived"
+    },
     "options": [
       {
         "id": "SEN-AGE-01-0",
@@ -1354,7 +1462,8 @@
     "contentHash": "d2097c38a3df1e167c4702707dec3d5022c84959a3aeae82a3b1f090c1c3fa8c",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-AGE-02",
@@ -1393,7 +1502,8 @@
     "contentHash": "9104a934df38f1bde1f9942faf27ba44b81902012c8e99b319751df6198089c4",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "SEN-2025-01",
@@ -1431,7 +1541,8 @@
     "contentHash": "d77885c7480e63aa7a3866c01b97616afe8cdf73fd3f0fb2dbe27f7d47fe4539",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25",
-    "signCatalogVersion": "2025"
+    "lastVerifiedAt": "2026-09-01",
+    "signCatalogVersion": "2025",
+    "verificationStatus": "verified"
   }
 ]

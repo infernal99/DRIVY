@@ -14,6 +14,34 @@
 // any question's sourceType to `official`.
 export type QuestionSourceType = 'official' | 'derived' | 'practice' | 'needs_review';
 
+/**
+ * Content-audit status (2026-09 content quality initiative — see
+ * docs/content-pipeline.md). Distinct from `QuestionSourceType`, which
+ * describes WHERE content came from; this describes WHETHER a human has
+ * actually checked it against a primary source (DGT/BOE) and found it
+ * currently accurate:
+ *   official                 — verbatim DGT exam content we have rights to.
+ *   verified                 — a human checked this question/sign against a
+ *                               primary source and confirmed it's accurate.
+ *   needs_review              — not yet checked, or checked and unclear.
+ *                               This is the honest default for anything not
+ *                               explicitly verified — never infer "verified"
+ *                               from the mere presence of a sourceUrl.
+ *   outdated                  — was accurate once; the underlying norm changed.
+ *   invalid                   — wrong, ambiguous, or otherwise unusable.
+ *   original_based_on_official — our own wording, but grounded in and
+ *                               checked against a cited official norm.
+ * Optional and additive: existing content without this field is simply
+ * unaudited, not incorrect — never backfill it with a guess.
+ */
+export type VerificationStatus =
+  | 'official'
+  | 'verified'
+  | 'needs_review'
+  | 'outdated'
+  | 'invalid'
+  | 'original_based_on_official';
+
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
 export interface QuestionSource {
@@ -30,7 +58,29 @@ export interface QuestionSource {
   attribution?: string;
   /** Has a human actually checked this source/content pair? */
   verified: boolean;
+  /**
+   * Article-level citation, e.g. "Reglamento General de Circulación (RD
+   * 1428/2003), Art. 21". More specific than `url` (which may just point at
+   * a general DGT informational page) — set this once a specific BOE
+   * article has actually been located and read, not guessed.
+   */
+  legalReference?: string;
 }
+
+/**
+ * What kind of image this is, for display/labeling purposes — e.g. so the UI
+ * (or a future admin tool) can show "ilustración educativa" instead of
+ * silently presenting a Roady-made drawing as if it were DGT artwork.
+ *   none                   — no image.
+ *   official               — verbatim DGT/official artwork we have rights to.
+ *   traffic_sign           — one of our own <TrafficSign> SVG drawings.
+ *   educational_illustration — a Roady-made illustration of a traffic
+ *                             situation (not a real photo, not official art).
+ *   diagram                — a schematic (lane layout, priority diagram, etc).
+ * Optional/additive: infer nothing from its absence — check `signKey`/`url`
+ * directly for existing content that predates this field.
+ */
+export type ImageType = 'none' | 'official' | 'traffic_sign' | 'educational_illustration' | 'diagram';
 
 export interface QuestionImage {
   /** Remote URL the image was sourced from, if it's hosted externally. */
@@ -40,6 +90,13 @@ export interface QuestionImage {
   /** Key into the internal <TrafficSign> illustration registry (see
    *  components/ui/TrafficSign.tsx) for our own vector drawings — not a URL. */
   signKey?: string;
+  /** Key into the <SituationDiagram> registry (see
+   *  components/ui/SituationDiagram.tsx) for an original educational
+   *  diagram — road markings, traffic-light states, officer hand signals.
+   *  Distinct from `signKey`: these aren't catalogued signs with a code. */
+  diagramKey?: string;
+  /** See `ImageType`. Optional — omitted on content that predates this field. */
+  imageType?: ImageType;
   /**
    * Path within the `question-images` Supabase Storage bucket (see
    * src/services/storageService.ts) — not used by any content yet. An
@@ -86,6 +143,9 @@ export interface Question {
   lastVerifiedAt?: string;
   /** The 2025 DGT sign catalogue changed some signage — flag affected items. */
   signCatalogVersion?: '2015' | '2025';
+  /** See `VerificationStatus`. Absent means "not yet audited" — treat the
+   *  same as `needs_review` for display purposes, never as "verified". */
+  verificationStatus?: VerificationStatus;
 }
 
 export interface Subcategory {
@@ -141,6 +201,14 @@ export interface TrafficSign {
   validFrom?: string;
   /** ISO date this sign was retired/superseded, if applicable. */
   validUntil?: string;
+  /** See `VerificationStatus`. Absent means "not yet audited". */
+  verificationStatus?: VerificationStatus;
+  /** Article-level citation once a specific BOE article has been located. */
+  legalReference?: string;
+  /** Last time a human confirmed this sign's code/name/meaning against a primary source. */
+  lastVerifiedAt?: string;
+  /** False for a sign retired/superseded by the 2025 catalogue update — defaults to true when absent. */
+  active?: boolean;
 }
 
 // ---------------------------------------------------------------------------

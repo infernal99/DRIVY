@@ -20,6 +20,7 @@ export const CATEGORIES: Category[] = [
       { id: 'marcas-viales', name: 'Marcas viales' },
       { id: 'semaforos', name: 'Semáforos' },
       { id: 'senales-agentes', name: 'Señales de agentes' },
+      { id: 'paneles-complementarios', name: 'Paneles complementarios' },
     ],
   },
   {
@@ -69,6 +70,11 @@ export const CATEGORIES: Category[] = [
       { id: 'somnolencia', name: 'Somnolencia' },
       { id: 'distracciones', name: 'Distracciones' },
       { id: 'telefono-movil', name: 'Teléfono móvil' },
+      { id: 'primeros-auxilios', name: 'Primeros auxilios' },
+      { id: 'conduccion-eficiente', name: 'Conducción eficiente' },
+      { id: 'condiciones-meteorologicas', name: 'Condiciones meteorológicas' },
+      { id: 'conduccion-nocturna', name: 'Conducción nocturna' },
+      { id: 'preparacion-viaje', name: 'Preparación del viaje' },
     ],
   },
   {
@@ -99,6 +105,14 @@ export const CATEGORIES: Category[] = [
       { id: 'mantenimiento', name: 'Mantenimiento' },
       { id: 'seguridad-activa', name: 'Seguridad activa' },
       { id: 'seguridad-pasiva', name: 'Seguridad pasiva' },
+      { id: 'retencion-infantil', name: 'Retención infantil' },
+      { id: 'distintivo-ambiental', name: 'Distintivo ambiental' },
+      { id: 'carga', name: 'Carga del vehículo' },
+      { id: 'visibilidad', name: 'Visibilidad' },
+      { id: 'adas', name: 'ADAS' },
+      { id: 'vehiculos-especiales', name: 'Vehículos especiales' },
+      { id: 'remolques', name: 'Remolques' },
+      { id: 'matricula', name: 'Matrícula' },
     ],
   },
   {
@@ -113,6 +127,7 @@ export const CATEGORIES: Category[] = [
       { id: 'puntos', name: 'Puntos' },
       { id: 'aptitudes', name: 'Aptitudes' },
       { id: 'comportamiento', name: 'Comportamiento' },
+      { id: 'inmovilizacion', name: 'Inmovilización del vehículo' },
     ],
   },
   {
@@ -127,6 +142,7 @@ export const CATEGORIES: Category[] = [
       { id: 'motocicletas', name: 'Motocicletas' },
       { id: 'vehiculos-prioritarios', name: 'Vehículos prioritarios' },
       { id: 'transporte-publico', name: 'Transporte público' },
+      { id: 'vmp', name: 'VMP y patinetes eléctricos' },
     ],
   },
 ];

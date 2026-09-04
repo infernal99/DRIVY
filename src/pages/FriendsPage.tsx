@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
+  blockUser,
   cancelFriendRequest,
   getFriendLeaderboard,
   getMyFriendships,
@@ -209,6 +210,27 @@ export function FriendsPage() {
                     >
                       Rechazar
                     </Button>
+                    <button
+                      type="button"
+                      aria-label="Bloquear"
+                      title="Bloquear"
+                      onClick={() => blockUser(req.userId).then(refresh)}
+                      style={{
+                        flex: 'none',
+                        width: 30,
+                        height: 30,
+                        border: 'none',
+                        borderRadius: 8,
+                        background: 'var(--color-error-bg)',
+                        color: 'var(--color-error)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <Icon name="lock" size={13} />
+                    </button>
                   </>
                 )}
               />

@@ -37,6 +37,11 @@ import { DevFeedbackPreviewPage } from './pages/DevFeedbackPreviewPage';
 import { DevBattleResultPreviewPage } from './pages/DevBattleResultPreviewPage';
 import { DevAvatarPickerPreviewPage } from './pages/DevAvatarPickerPreviewPage';
 import { InviteFriendPage } from './pages/InviteFriendPage';
+import { PrivacyPolicyPage } from './pages/legal/PrivacyPolicyPage';
+import { CookiesPolicyPage } from './pages/legal/CookiesPolicyPage';
+import { LegalNoticePage } from './pages/legal/LegalNoticePage';
+import { TermsPage } from './pages/legal/TermsPage';
+import { CookieNotice } from './components/legal/CookieNotice';
 
 function App() {
   return (
@@ -47,6 +52,7 @@ function App() {
       <PendingFriendInviteHandler />
       <PremiumStatusSync />
       <InstallBanner />
+      <CookieNotice />
       <Routes>
         {/* Dev-only content curation tool (content spec §15) — never shipped in production builds. */}
         {import.meta.env.DEV && <Route path="/admin/content" element={<AdminContentPage />} />}
@@ -73,6 +79,13 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/invite/:code" element={<InviteFriendPage />} />
+
+        {/* Documentos legales: siempre públicos, con o sin sesión iniciada
+            (deben poder leerse antes de registrarse). */}
+        <Route path="/privacidad" element={<PrivacyPolicyPage />} />
+        <Route path="/cookies" element={<CookiesPolicyPage />} />
+        <Route path="/aviso-legal" element={<LegalNoticePage />} />
+        <Route path="/terminos" element={<TermsPage />} />
 
         {/* Everything else requires a signed-in account — no guest mode. */}
         <Route element={<RequireAuth />}>

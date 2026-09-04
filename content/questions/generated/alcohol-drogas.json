@@ -35,7 +35,8 @@
     "contentHash": "cd2f55774b1ef55494bb8cb705a2ada3987357f1b676dd4ec6c6a60930db4ae4",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-TAS-02",
@@ -74,7 +75,8 @@
     "contentHash": "86614837edd141ff53fb2739f9912467f54d5968de1b03c6d081144fca80e27d",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-TAS-03",
@@ -112,7 +114,8 @@
     "contentHash": "90d5e7e9bb0d15c4b2c5af7f35bd9809af6864074a5ef43da4281d6564175282",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-EFE-01",
@@ -150,7 +153,8 @@
     "contentHash": "eda67a52fbe607a0193f62c995d042da121f8f684d9147d1ae9fd1d3274d17c0",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-EFE-02",
@@ -188,7 +192,8 @@
     "contentHash": "27575f951562b5ff03d1649a3c65cc4ead47f9763452c70157f62b954ce0fd5c",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-DRO-01",
@@ -225,7 +230,8 @@
     "contentHash": "2bebe1da9d559d1b0a14d0845cb2b5597e8c10f76d82dc853e719b6fee7b44ef",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-DRO-02",
@@ -263,7 +269,8 @@
     "contentHash": "1e74cd2bf41b00f2340acad5a5baab53bb4ded9d807cbdce155352c649dcdd80",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-MED-01",
@@ -300,7 +307,8 @@
     "contentHash": "1f0e2644e4972ac0a11464414b7dc147185cfcc6675a7f5ff693322b3976af9b",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-MED-02",
@@ -337,7 +345,8 @@
     "contentHash": "151ec3326fe1b421236c6b14cb254fa7eab317d617fafcaf01f8f31b024d5f1d",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-TRE-01",
@@ -374,7 +383,8 @@
     "contentHash": "0120389b74e679447bb2d74b491b080d43dfad2a5b9c4301d0aa1b2fd72d368e",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "ALC-TRE-02",
@@ -411,6 +421,7 @@
     "contentHash": "3b0954b9dadcbc5675ec42724429d631e0ccb53673295442288a5129ed1c9c5e",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   }
 ]

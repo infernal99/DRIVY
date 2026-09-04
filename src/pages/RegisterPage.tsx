@@ -25,6 +25,7 @@ export function RegisterPage() {
   const [formError, setFormError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [checkYourEmail, setCheckYourEmail] = useState(false);
+  const [acceptedLegal, setAcceptedLegal] = useState(false);
 
   function validate(): boolean {
     const errors: FieldErrors = {};
@@ -40,6 +41,10 @@ export function RegisterPage() {
     e.preventDefault();
     setFormError(null);
     if (!validate()) return;
+    if (!acceptedLegal) {
+      setFormError('Debes aceptar la política de privacidad y los términos y condiciones para crear una cuenta.');
+      return;
+    }
 
     setSubmitting(true);
     const result = await signUpWithEmail(name.trim(), email.trim(), password);
@@ -133,7 +138,38 @@ export function RegisterPage() {
           error={fieldErrors.confirmPassword}
         />
 
-        <div style={{ marginTop: 24 }}>
+        <label
+          style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: 10,
+            marginTop: 18,
+            fontSize: 12.5,
+            color: 'var(--color-text-muted-60)',
+            lineHeight: 1.5,
+            cursor: 'pointer',
+          }}
+        >
+          <input
+            type="checkbox"
+            checked={acceptedLegal}
+            onChange={(e) => setAcceptedLegal(e.target.checked)}
+            style={{ width: 16, height: 16, marginTop: 1, flex: 'none', accentColor: 'var(--color-primary)' }}
+          />
+          <span>
+            He leído y acepto la{' '}
+            <Link to="/privacidad" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
+              Política de privacidad
+            </Link>{' '}
+            y los{' '}
+            <Link to="/terminos" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
+              Términos y condiciones
+            </Link>
+            . Debes tener al menos 14 años para crear una cuenta por ti mismo.
+          </span>
+        </label>
+
+        <div style={{ marginTop: 20 }}>
           <Button type="submit" disabled={submitting}>
             {submitting ? 'Creando cuenta…' : 'Crear cuenta'}
           </Button>

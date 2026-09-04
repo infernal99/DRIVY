@@ -119,6 +119,461 @@
     "consultedAt": "2026-08-26"
   },
   {
+    "id": "boe-reutilizacion-anexos-graficos-rd465-2025",
+    "name": "BOE — ¿son reutilizables los pictogramas del Anexo del RD 465/2025 (catálogo de señales)?",
+    "description": "Investigación específica (2026-09-01) sobre si el artwork gráfico del catálogo oficial de señales, publicado como anexo del Real Decreto 465/2025, es legalmente reutilizable — para decidir si Roady puede sustituir sus SVG propios por reproducciones fieles del pictograma oficial.",
+    "url": "https://www.boe.es/informacion/aviso_legal/index.php",
+    "owner": "Agencia Estatal Boletín Oficial del Estado",
+    "license": "NO CONCLUYENTE — ver notes. No usar como base para reproducir artwork sin revisión legal profesional.",
+    "contentType": "Análisis legal (dos fuentes en tensión, sin resolver)",
+    "reviewStatus": "needs_review",
+    "canReuse": [
+      "Citar el razonamiento en la documentación interna como punto de partida para una consulta legal real"
+    ],
+    "cannotReuse": [
+      "Reproducir el artwork del Anexo I / RD 465/2025 en la app basándose únicamente en este análisis",
+      "Presentar esos pictogramas como \"oficiales\" en el sentido legal de \"reutilización confirmada\""
+    ],
+    "consultedAt": "2026-09-01",
+    "notes": "Dos argumentos en tensión, ninguno concluyente: (1) A FAVOR — el art. 13 del TRLPI (RDLeg 1/1996) excluye de propiedad intelectual \"las disposiciones legales o reglamentarias\"; la propia Wikipedia en español se apoya en este artículo para alojar libremente textos legales españoles y afirma (página \"Recursos libres/Artículo 13\") que la exclusión alcanza a \"anexos, gráficos, etc.\" de esas disposiciones — y el Anexo I del RD 465/2025 no es una ilustración decorativa añadida a la norma, es la norma misma (el decreto define el pictograma oficial dibujándolo). (2) EN CONTRA — la licencia de reutilización que el propio BOE publica en su aviso legal excluye expresamente \"el diseño del portal, así como sus elementos gráficos\"; no está claro si esa frase se refiere solo al diseño de la web boe.es o también a las imágenes incrustadas en los documentos que aloja, y no encontré jurisprudencia ni doctrina que resuelva específicamente este caso (catálogos técnicos/pictogramas de un reglamento). Conclusión: mantener needs_review y NO reproducir artwork DGT/BOE hasta que un abogado de propiedad intelectual lo confirme — el coste de equivocarse (retirar contenido, quedar mal con Stripe/premium ya en producción) supera el beneficio estético de un pictograma más fiel. Nota posterior (mismo día): esta vía sigue cerrada, pero se encontró una vía distinta y sí resuelta — ver la fuente `wikimedia-commons-spain-traffic-signals`."
+  },
+  {
+    "id": "wikimedia-commons-spain-traffic-signals",
+    "name": "Wikimedia Commons — serie \"Spain traffic signal *.svg\" (recreaciones independientes de señales españolas)",
+    "description": "Catálogo de la comunidad de Wikimedia Commons con recreaciones vectoriales independientes de señales de tráfico españolas (no el artwork oficial de la DGT/BOE). Investigado como alternativa a los SVG dibujados a mano de TrafficSign.tsx, después de que un usuario detectara que el icono de \"Obras\" era ilegible (parecía un peatón).",
+    "url": "https://commons.wikimedia.org/wiki/Category:SVG_road_signs_in_Spain",
+    "owner": "Comunidad de Wikimedia Commons (mayormente el usuario Benedicto16, cesión individual por archivo)",
+    "license": "Variable por archivo — NUNCA asumir dominio público solo por estar en Commons; ver notes.",
+    "contentType": "Recreaciones vectoriales de señales de tráfico (contenido de terceros, no gubernamental)",
+    "reviewStatus": "needs_review",
+    "canReuse": [
+      "Los archivos de Benedicto16 (o NACLE2, con dedicación CC0 propia) explícitamente liberados a dominio público, verificados individualmente y sin sustituto \"2023 set\" conocido — ya usados en signs.ts para 16 señales: R-1, P-11, P-18, R-305, R-100, R-308, P-24, P-13a, R-301 (50/90), S-1, S-2, S-17, R-116, R-407a, R-411",
+      "Un segundo archivo de Benedicto16 para R-2 (STOP), \"Spain_traffic_signal_r2_1992.svg\" — distinto del bloqueado por \"2023 set\", con docname genérico (\"Ajax.svg\") que no indica ningún origen gubernamental",
+      "Archivos CC BY-SA/GFDL de Gigillo83 (R-400a → usa el fichero Commons \"r400c.svg\", ver nota) y Majafego (R-402), y de Gigillo83 (R-501), ahora que la app muestra atribución visible en la pantalla \"Fuentes oficiales\" (ver `wikimedia-cc-by-sa-sign-attribution`)"
+    ],
+    "cannotReuse": [
+      "El archivo \"Spain_traffic_signal_s13.svg\" pese a su etiqueta de dominio público: su metadato interno de Inkscape (sodipodi:docname) revela que es una copia relicenciada del artwork \"2023 set\" de origen gubernamental — el mismo problema del art. 13 LPI sin resolver, no una fuente independiente. No usado; S-13 (paso de peatones) se mantiene dibujado a mano.",
+      "Cualquier archivo de esta serie sin comprobar individualmente licencia + vigencia + contenido real (no solo el nombre del archivo) — no extrapolar \"esta serie es toda de dominio público\", y no asumir que el sufijo a/b/c de un nombre de archivo Commons corresponde al sufijo del código oficial (ver nota sobre R-400a/b/c)"
+    ],
+    "consultedAt": "2026-09-01",
+    "notes": "La serie \"Spain traffic signal X.svg\" no es homogénea: mismo patrón de nombres, pero distintos autores y licencias mezclados en el mismo árbol de categorías. Confirmado dominio público (mismo texto de cesión, autor Benedicto16, sin sustituto posterior) para: r1, p11, p18, r305, r100, r308, p24, p13a, r301-50, r301-90, s1, s2, s17, r116, y (tercera pasada) r2_1992 (STOP). Confirmado CC0 1.0 (dedicación privada de su propio autor, NACLE2 — no depende del argumento del art. 13 LPI sobre artwork gubernamental) para: r407a (\"Señal_r407_bicicletas.svg\"), r411 (\"Señal_r411_velocidad_mínima.svg\"). Confirmado CC BY-SA/GFDL —usados en la tercera pasada con atribución— para: r400a (en realidad el fichero \"r400c.svg\", ver más abajo), r402 (autor real Majafego, no Gigillo83 — la investigación de la segunda pasada asumió mal que las 3 señales compartían autor; corregido tras leer el wikitext crudo de la página, no el resumen de un summarizer que ya se había equivocado una vez en esta misma investigación), r501 (autor Gigillo83). Confirmado NO reutilizable (relicenciado de artwork \"2023 set\" gubernamental) para: s13 (paso de peatones) — ver cannotReuse. Trampa detectada en la tercera pasada: la galería Commons de R-400 (r400a.svg/r400b.svg/r400c.svg) NO usa el mismo criterio a/b/c que el código oficial R-400a/b/c — al renderizar cada fichero, \"r400a.svg\" resultó ser la flecha de giro a la DERECHA (según su propia descripción \"Turn right sign... used for not turning left or straight ahead\"), \"r400b.svg\" la de giro a la IZQUIERDA, y \"r400c.svg\" la de RECTO — este último es el que se usa para nuestra señal R-400a (\"Sentido obligatorio recto\"). Sin esta comprobación visual se habría introducido un error de contenido real (flecha equivocada), del mismo tipo que el bug de \"obras\" que motivó todo este trabajo. r501 se usa con un número de ejemplo (\"60\") tachado por la franja diagonal — confirmado contra la Wikipedia Anexo (WIKI_R) que el pictograma real de R-501 SÍ incluye el número de la limitación que termina, no una franja genérica sin número. Segunda pasada (mismo día) resolvió también el código de dos señales que en la Fase 1 habían quedado sin confirmar: obras = P-18, prohibido-paso-peatones = R-116 (este último confirmado además contra cuatro catálogos comerciales independientes: Rotuvall, Preventec, Seton, Rótulos González)."
+  },
+  {
+    "id": "wikimedia-cc-by-sa-sign-attribution",
+    "name": "Atribución de imágenes CC BY-SA / GFDL de señales de tráfico (Wikimedia Commons)",
+    "description": "Cumplimiento de la condición de atribución de las 3 señales del catálogo (R-400a, R-402, R-501) cuya imagen real procede de un archivo de Wikimedia Commons licenciado CC BY-SA / GFDL, no de dominio público. La atribución se muestra aquí, en la pantalla \"Fuentes oficiales\" de la propia app.",
+    "url": "https://commons.wikimedia.org/wiki/Category:SVG_road_signs_in_Spain",
+    "owner": "Autores individuales en Wikimedia Commons (ver detalle)",
+    "license": "CC BY-SA 3.0 / GNU Free Documentation License — R-400a (\"Spain_traffic_signal_r400c.svg\"): autor Gigillo83. R-402 (\"Spain_traffic_signal_r402.svg\"): autor Majafego. R-501 (\"Spain_traffic_signal_r501.svg\"): autor Gigillo83. Ninguno de los 3 ficheros ha sido modificado respecto al original.",
+    "contentType": "Atribución de imagen (requisito de licencia)",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Mostrar estos 3 iconos en la app tal cual, con esta atribución visible, tal y como exige CC BY-SA/GFDL"
+    ],
+    "cannotReuse": [
+      "Modificar estos 3 SVG y redistribuirlos sin conservar la misma licencia (cláusula share-alike)"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-que-hacer-accidente",
+    "name": "DGT — Qué hacer ante un accidente de tráfico",
+    "description": "Protocolo PAS (Proteger, Alertar, Socorrer), distancias de los triángulos de señalización, qué hacer y qué no hacer con los heridos, y el teléfono 112.",
+    "url": "https://www.dgt.es/muevete-con-seguridad/que-hacer-ante-un-accidente-de-trafico/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-conduccion-eficiente",
+    "name": "DGT — Conducción eficiente",
+    "description": "Consejos oficiales de conducción eficiente y ecológica: marchas largas, apagar el motor en paradas superiores a 60 segundos, efecto de la baca en el consumo, y freno motor en descensos.",
+    "url": "https://www.dgt.es/muevete-con-seguridad/conviertete-en-un-buen-conductor/consejos-generales/conduccion-eficiente/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-a-pie",
+    "name": "DGT — A pie",
+    "description": "Recomendaciones oficiales para peatones, incluida la prioridad (o falta de ella) al cruzar fuera de un paso señalizado.",
+    "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/a-pie/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-en-patinete",
+    "name": "DGT — En patinete",
+    "description": "Normas oficiales para VMP (vehículos de movilidad personal): dónde pueden y no pueden circular, velocidad máxima, prohibición de alcohol/móvil/auriculares, y el estado (municipal, no nacional) de la obligación del casco.",
+    "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/en-patinete/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro",
+      "Afirmar una edad mínima nacional o una obligación de casco en toda España: la propia página no lo especifica, depende de ordenanza municipal"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "boe-rd-52-2026-vmp",
+    "name": "BOE — Real Decreto 52/2026, Registro de Vehículos Personales Ligeros",
+    "description": "Real Decreto 52/2026, de 28 de enero (BOE-A-2026-2140), que modifica el Reglamento General de Vehículos para regular el Registro de Vehículos Personales Ligeros y el seguro obligatorio de los VMP, desarrollando la Ley 5/2025, de 24 de julio.",
+    "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-2140",
+    "owner": "Boletín Oficial del Estado / Ministerio del Interior",
+    "license": "Texto normativo público (BOE) — reutilizable para citar y referenciar",
+    "contentType": "Norma jurídica (texto legal)",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Citar el ámbito de aplicación, fechas de entrada en vigor y régimen transitorio para preguntas `derived` sobre VMP"
+    ],
+    "cannotReuse": [
+      "Reproducir el texto legal completo como contenido propio"
+    ],
+    "consultedAt": "2026-09-01",
+    "notes": "En vigor desde el 30-01-2026 (mismo día de publicación). Ámbito: todos los VMP (1+ ruedas, plaza única, motor eléctrico exclusivo, 6-25 km/h si pesan <25kg o 6-14 km/h si pesan ≥25kg), excluyendo vehículos militares, dispositivos para personas con discapacidad y bicicletas de pedaleo asistido (EPAC). El seguro obligatorio es un requisito inmediato por la Ley 5/2025. Los VMP no certificados comercializados antes del 22-01-2024 pueden seguir circulando hasta el 22-01-2027 (disposición transitoria primera). Una nota de prensa previa de la propia DGT (2025-12-23) reflejaba un estado transitorio de incertidumbre/retraso sobre estas fechas — superado por la publicación final del RD, que es la fuente que prevalece."
+  },
+  {
+    "id": "dgt-con-ninos",
+    "name": "DGT — Con niños",
+    "description": "Sistemas de retención infantil (SRI): umbral de 135 cm, grupos clásicos por peso vs. i-Size/R129 por altura, asiento trasero y sus excepciones, desconexión del airbag frontal con sillas a contramarcha, y datos de reducción de mortalidad/lesiones.",
+    "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/con-ninos/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente y el artículo 117 del RGC"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro",
+      "Afirmar cómo queda la excepción de taxi (135 cm sin SRI en tráfico urbano) tras el RD 518/2026: esa reforma entra en vigor el 2026-10-01 y las fuentes consultadas no coinciden en si la mantiene igual — no preguntar por ella hasta confirmarlo después de esa fecha"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-hielo-nieve",
+    "name": "DGT — Hielo y nieve: con la adherencia al límite",
+    "description": "Zonas de mayor riesgo de hielo (umbrías, puentes), qué hacer si se pierde adherencia (no frenar), y comparativa de distancia de frenada en nieve entre neumáticos de invierno y de verano.",
+    "url": "https://www.dgt.es/comunicacion/noticias/hielo-y-nieve-con-la-adherencia-al-limite/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Nota de prensa / artículo informativo oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal del artículo como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-viento-fuerte",
+    "name": "DGT — Conducir con el viento en contra",
+    "description": "El \"efecto pantalla\" al adelantar vehículos grandes, zonas de mayor riesgo (puentes, viaductos, salidas de túnel) y vehículos más vulnerables al viento lateral (baca, remolque, carrocería angulosa).",
+    "url": "https://www.dgt.es/comunicacion/noticias/conducir-con-el-viento-en-contra/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Nota de prensa / artículo informativo oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal del artículo como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-conducir-de-noche",
+    "name": "DGT — Consejos para conducir de noche",
+    "description": "Deslumbramiento (tiempo de recuperación de la visión, qué hacer), adaptación de la velocidad al alcance del alumbrado propio, y estadística de accidentes/fallecidos nocturnos.",
+    "url": "https://www.dgt.es/comunicacion/noticias/consejos-para-conducir-de-noche/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Nota de prensa / artículo informativo oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal del artículo como si fuera nuestro",
+      "Afirmar una distancia fija (p.ej. \"150 metros\") para el cambio a luces de cruce: el art. 102 RGC no fija ninguna cifra, solo \"tan pronto como se aprecie la posibilidad\" de deslumbrar — una cifra concreta circula en blogs de autoescuela pero no está en el articulado"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-distintivo-ambiental",
+    "name": "DGT — Distintivo ambiental",
+    "description": "Clasificación de los distintivos ambientales (0, ECO, C, B): qué vehículos recibe cada uno, y su uso para regular zonas de bajas emisiones (ZBE) y restricciones por contaminación.",
+    "url": "https://www.dgt.es/nuestros-servicios/tu-vehiculo/tus-vehiculos/distintivo-ambiental/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-adas",
+    "name": "DGT — Sistemas avanzados de ayuda a la conducción (ADAS)",
+    "description": "Qué son los ADAS y lista de los 8 sistemas obligatorios en vehículos de nueva homologación desde julio de 2022 (ISA, DDR, RCTA, EDR, LDW, ESS, inhibidor de arranque con alcoholímetro, alerta de cinturón).",
+    "url": "https://www.dgt.es/muevete-con-seguridad/sistemas-avanzados-ayuda-conduccion/Sistemas-avanzados-de-ayuda-a-la-conduccion-ADAS-/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "boe-reglamento-general-vehiculos",
+    "name": "BOE — Reglamento General de Vehículos (RD 2822/1998)",
+    "description": "Normativa técnica de vehículos, incluida (junto con el manual de inspección ITV) la exigencia de transparencia mínima en el parabrisas y las lunas delanteras.",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1999-1826",
+    "owner": "Boletín Oficial del Estado / Ministerio del Interior",
+    "license": "Texto normativo público (BOE) — reutilizable para citar y referenciar",
+    "contentType": "Norma jurídica (texto legal)",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Citar la exigencia de visibilidad mínima en lunas delanteras para preguntas `derived`"
+    ],
+    "cannotReuse": [
+      "Reproducir el texto legal completo como contenido propio"
+    ],
+    "consultedAt": "2026-09-01",
+    "notes": "No se localizó un número de artículo único y preciso para la transparencia mínima de las lunas delanteras (el art. 16 RGV regula alumbrado, no cristales) — la cifra del 70% circula de forma consistente en múltiples fuentes profesionales del sector (talleres, ITV) que citan este RD junto con el reglamento ECE 43R y el manual de inspección ITV como base conjunta, así que se cita esa base normativa general en vez de un artículo concreto no confirmado."
+  },
+  {
+    "id": "boe-ley-trafico-rdl-6-2015",
+    "name": "BOE — Texto refundido de la Ley de Tráfico (RDL 6/2015)",
+    "description": "Ley de Tráfico, Circulación de Vehículos a Motor y Seguridad Vial. Usada para la clasificación de infracciones (art. 76, graves) y los supuestos de inmovilización del vehículo por agentes (art. 104).",
+    "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722",
+    "owner": "Boletín Oficial del Estado / Ministerio del Interior",
+    "license": "Texto normativo público (BOE) — reutilizable para citar y referenciar",
+    "contentType": "Norma jurídica (texto legal)",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Citar artículos y supuestos concretos (infracciones, inmovilización) para preguntas `derived`"
+    ],
+    "cannotReuse": [
+      "Reproducir el texto legal completo como contenido propio"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "practicatest-temario-indice",
+    "name": "PracticaTest — índice de temas del permiso B (solo títulos, no contenido)",
+    "description": "Índice de los 38 temas del temario del permiso B de un test público de terceros, consultado ÚNICAMENTE para detectar huecos de cobertura temática (títulos de tema, no preguntas ni respuestas). Nunca usado como fuente de contenido: cada hueco detectado se investigó y fundamentó después contra DGT/BOE, no contra este sitio.",
+    "url": "https://practicatest.com/temario/permiso-B",
+    "owner": "PracticaTest (sitio de terceros)",
+    "license": "Contenido de terceros — no copiado, solo se consultaron los títulos de sus 38 temas para planificación interna",
+    "contentType": "Índice temático (referencia externa)",
+    "reviewStatus": "reference_only",
+    "canReuse": [
+      "Detectar qué áreas temáticas del permiso B podrían faltar en nuestro banco (p. ej. distintivo ambiental, carga, visibilidad, ADAS, inmovilización)"
+    ],
+    "cannotReuse": [
+      "Copiar, parafrasear o inspirarse literalmente en sus preguntas, respuestas, explicaciones o imágenes",
+      "Usar este sitio como fundamento normativo de ninguna pregunta: la fundamentación siempre es DGT/BOE"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-distracciones-al-conducir",
+    "name": "DGT — Distracciones al conducir",
+    "description": "Estadística (>30% de accidentes), configuración del navegador antes de circular, comer/beber/fumar al volante, recomendaciones sobre pasajeros, y el dato de distancia de frenado marcando un número (28 m frente a 155 m a 100 km/h).",
+    "url": "https://www.dgt.es/muevete-con-seguridad/evita-conductas-de-riesgo/distracciones-al-conducir/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-permiso-mayores-65",
+    "name": "DGT — Permiso de conducir para mayores de 65 años",
+    "description": "Vigencia del permiso según la edad (10 años con carácter general, 5 años a partir de los 65, 3 años para permisos profesionales), y confirmación de que no existe edad máxima para conducir en España.",
+    "url": "https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permiso-de-conducir-para-mayores-de-65-anos/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-revista-paneles-complementarios",
+    "name": "DGT (revista) — Paneles complementarios",
+    "description": "Reportaje oficial de la revista de la DGT sobre el alcance real de las señales: qué son los paneles complementarios (distancia, longitud, restricción por dirección/carril/vehículo).",
+    "url": "https://revista.dgt.es/es/reportajes/2013/donde-llega-aplicacion-sennal.shtml",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior) — revista oficial",
+    "license": "© DGT — contenido editorial institucional",
+    "contentType": "Reportaje oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) sobre el concepto y función de los paneles complementarios, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal del reportaje como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01",
+    "notes": "El código S-810 (longitud del tramo) se corroboró además contra el Anexo de Wikipedia de señales de indicación, ya usado como referencia secundaria en signs.ts para códigos de señal."
+  },
+  {
+    "id": "dgt-en-tractor",
+    "name": "DGT — En tractor y vehículo agrícola",
+    "description": "Definición de vehículo especial agrícola, velocidades máximas por tipo (25/40/70 km/h), permiso de conducir requerido, señalización obligatoria (V-2, V-4, V-6) y restricción de acceso a autopistas/autovías.",
+    "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/tractor/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-revista-remolques",
+    "name": "DGT (revista) — Viajar con remolque",
+    "description": "Clasificación por MMA (ligero ≤750 kg vs. no ligero), velocidad máxima en cada tipo de vía, y permisos/autorizaciones necesarios según el peso del remolque y del conjunto (B, B-96, B+E). El límite de velocidad (90 km/h en autopista/autovía) se contrastó además con RACE: es el mismo para remolque ligero y pesado, corrigiendo un resumen agregado que daba 80 km/h para el pesado sin respaldo de ninguna fuente primaria.",
+    "url": "https://revista.dgt.es/es/reportajes/2017/07JULIO/Reportaje-remolques.shtml",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior) — revista oficial",
+    "license": "© DGT — contenido editorial institucional",
+    "contentType": "Reportaje oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal del reportaje como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-planificar-viaje-seguro",
+    "name": "DGT — Cómo planificar un viaje seguro por carretera",
+    "description": "Revisiones del vehículo antes de un viaje largo (aceite, refrigerante, frenos, neumáticos, luces), planificación por etapas, condiciones climáticas en puertos de montaña, y consejos sobre comidas antes de conducir.",
+    "url": "https://www.dgt.es/muevete-con-seguridad/viaja-seguro/como-planificar-un-viaje-seguro-por-carretera/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y explicaciones propias (derived) basadas en estos hechos, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal de la página como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-01"
+  },
+  {
+    "id": "dgt-glorietas-6-situaciones",
+    "name": "DGT — Glorietas: cómo actuar en 6 situaciones habituales",
+    "description": "Seis situaciones oficiales de circulación en glorietas: salida por el carril exterior (regla general), excepción de salida desde carril interior con flecha en el suelo, entrada por la izquierda cuando el derecho está saturado, prioridad de grupos de ciclistas, y precaución con vehículos grandes.",
+    "url": "https://www.dgt.es/comunicacion/noticias/glorietas-como-actuar-en-6-situaciones-habituales/",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior)",
+    "license": "unknown (contenido institucional público; sin licencia de reutilización explícita)",
+    "contentType": "Normativa e información oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y diagramas propios (derived) basados en estas 6 situaciones, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar o adaptar visualmente cualquier imagen o texto literal del artículo"
+    ],
+    "consultedAt": "2026-09-02"
+  },
+  {
+    "id": "dgt-revista-intermitentes",
+    "name": "DGT (revista) — Intermitentes: siempre imprescindibles (y obligatorios)",
+    "description": "El intermitente como \"declaración de intenciones\": nunca otorga prioridad por sí solo (salvo la excepción de dos vehículos en el mismo carril señalizando un adelantamiento), y la técnica RSM (Retrovisor-Señalizar-Maniobra).",
+    "url": "https://revista.dgt.es/es/educacion-formacion/conducir-mejor/2022/1202-CM-Intermitentes.shtml",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior) — revista oficial",
+    "license": "© DGT — contenido editorial institucional",
+    "contentType": "Reportaje oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y diagramas propios (derived) basados en este hecho, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar texto literal del reportaje como si fuera nuestro"
+    ],
+    "consultedAt": "2026-09-02"
+  },
+  {
+    "id": "dgt-revista-vehiculos-prioritarios",
+    "name": "DGT (revista) — Vehículos prioritarios: cómo actuar",
+    "description": "Comportamiento correcto ante un vehículo de emergencias: reducir la velocidad progresivamente sin frenazos, apartarse hacia un lado, y qué hacer si sorprende dentro de un cruce (no bloquearlo, sin maniobras bruscas) o dentro de una glorieta (ceder sin cortar su trayectoria, salir por el carril exterior).",
+    "url": "https://revista.dgt.es/es/educacion-formacion/conducir-mejor/2017/1207-Vehiculos-Prioritarios.shtml",
+    "owner": "Dirección General de Tráfico (Ministerio del Interior) — revista oficial",
+    "license": "© DGT — contenido editorial institucional",
+    "contentType": "Reportaje oficial",
+    "reviewStatus": "cleared",
+    "canReuse": [
+      "Redactar preguntas y diagramas propios (derived) basados en estas recomendaciones, citando la fuente"
+    ],
+    "cannotReuse": [
+      "Copiar o adaptar visualmente cualquier imagen o texto literal del artículo"
+    ],
+    "consultedAt": "2026-09-02"
+  },
+  {
     "id": "dgt-manual-permiso-b-lectura-facil",
     "name": "DGT — Manual básico del permiso B (Lectura Fácil)",
     "description": "Manual oficial de la DGT sobre los contenidos del permiso B.",

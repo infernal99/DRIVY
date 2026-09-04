@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { useAuthStore } from '../store/authStore';
 import { changePassword, deleteOwnAccount, MIN_PASSWORD_LENGTH } from '../services/authService';
-import { getMyFriendships, updatePrivacySettings } from '../services/friendsService';
+import { getBlockedUsers, getMyFriendships, unblockUser, updatePrivacySettings, type BlockedUser } from '../services/friendsService';
 import {
   disablePushNotifications,
   enablePushNotifications,
@@ -20,6 +20,7 @@ import { AuthField } from '../components/auth/AuthField';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Toggle } from '../components/ui/Toggle';
+import { Icon } from '../components/ui/Icon';
 
 export function SettingsPage() {
   const navigate = useNavigate();
@@ -55,10 +56,13 @@ export function SettingsPage() {
           <>
             <NotificationsCard />
             <PrivacyCard />
+            <BlockedUsersCard />
             <ChangePasswordCard />
             <DeleteAccountCard />
           </>
         )}
+
+        <LegalLinksCard />
 
         <Card style={{ padding: 16 }}>
           <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-error)', marginBottom: 8 }}>Reiniciar progreso</div>
@@ -233,6 +237,62 @@ function PrivacyCard() {
   );
 }
 
+function BlockedUsersCard() {
+  const [loading, setLoading] = useState(true);
+  const [blocked, setBlocked] = useState<BlockedUser[]>([]);
+  const [unblockingId, setUnblockingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getBlockedUsers()
+      .then(setBlocked)
+      .catch(() => setError('No se pudo cargar la lista de bloqueados.'))
+      .finally(() => setLoading(false));
+  }, []);
+
+  function handleUnblock(userId: string) {
+    setUnblockingId(userId);
+    setError(null);
+    unblockUser(userId)
+      .then(() => setBlocked((prev) => prev.filter((b) => b.userId !== userId)))
+      .catch(() => setError('No se pudo desbloquear. Inténtalo de nuevo.'))
+      .finally(() => setUnblockingId(null));
+  }
+
+  if (loading) return null;
+
+  return (
+    <Card style={{ padding: 16 }}>
+      <div style={{ fontWeight: 600, fontSize: 14, color: 'var(--color-text)', marginBottom: 4 }}>Usuarios bloqueados</div>
+      {error && <p style={{ fontSize: 12.5, color: 'var(--color-error)', margin: '4px 0 8px' }}>{error}</p>}
+      {blocked.length === 0 ? (
+        <p style={{ fontSize: 12.5, color: 'var(--color-text-muted-60)', lineHeight: 1.5, margin: 0 }}>
+          No has bloqueado a nadie.
+        </p>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 8 }}>
+          {blocked.map((b) => (
+            <div
+              key={b.userId}
+              style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, padding: '8px 0' }}
+            >
+              <span style={{ fontSize: 13, color: 'var(--color-text)' }}>{b.displayName}</span>
+              <Button
+                variant="secondary"
+                style={{ flex: 'none', width: 'auto', padding: '6px 12px', fontSize: 12 }}
+                disabled={unblockingId === b.userId}
+                onClick={() => handleUnblock(b.userId)}
+              >
+                {unblockingId === b.userId ? 'Desbloqueando…' : 'Desbloquear'}
+              </Button>
+            </div>
+          ))}
+        </div>
+      )}
+    </Card>
+  );
+}
+
 function ChangePasswordCard() {
   const [open, setOpen] = useState(false);
   const [currentPassword, setCurrentPassword] = useState('');
@@ -356,6 +416,44 @@ function ChangePasswordCard() {
           </div>
         </form>
       )}
+    </Card>
+  );
+}
+
+const LEGAL_LINKS = [
+  { to: '/privacidad', label: 'Política de privacidad' },
+  { to: '/cookies', label: 'Política de cookies' },
+  { to: '/aviso-legal', label: 'Aviso legal' },
+  { to: '/terminos', label: 'Términos y condiciones' },
+];
+
+function LegalLinksCard() {
+  const navigate = useNavigate();
+  return (
+    <Card style={{ padding: '4px 16px' }}>
+      {LEGAL_LINKS.map((link, i) => (
+        <button
+          key={link.to}
+          type="button"
+          onClick={() => navigate(link.to)}
+          style={{
+            width: '100%',
+            padding: '13px 0',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            background: 'none',
+            border: 'none',
+            borderTop: i > 0 ? '1px solid var(--color-divider)' : 'none',
+            font: 'inherit',
+            cursor: 'pointer',
+          }}
+        >
+          <Icon name="shield" size={15} color="var(--color-text-muted-50)" />
+          <span style={{ flex: 1, textAlign: 'left', fontSize: 13.5, color: 'var(--color-text)' }}>{link.label}</span>
+          <Icon name="chevronRight" size={14} color="var(--color-text-muted-40)" />
+        </button>
+      ))}
     </Card>
   );
 }

@@ -35,7 +35,8 @@
     "contentHash": "5fad617bea13b53908ce12d75cfae520605c8a96674e6d68f8553d116e0dd32d",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-NEU-02",
@@ -73,7 +74,8 @@
     "contentHash": "d071442a384d48be1369480400c8486759504f6c4b3c3aa1eae25d47823af720",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-NEU-03",
@@ -111,7 +113,8 @@
     "contentHash": "c9cb431f346d281c9a57559da47bf777aa23a8f67e75d7cdd2d7470841382554",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-FRE-01",
@@ -150,7 +153,8 @@
     "contentHash": "3306a127617a210c4fc3d6611cd0c4252f84dbebe52171e1e5c39232fc9588f5",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-FRE-02",
@@ -188,7 +192,8 @@
     "contentHash": "5460c5d7876233f7e674409f9c96409bb2c1691ddf3241e1b3ada761f748fa16",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-ALU-01",
@@ -226,7 +231,8 @@
     "contentHash": "92b07f0c5fe07c1c1ed9344dbe8eea08bca8578040beb847c245401f2159ee07",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-ALU-02",
@@ -264,7 +270,8 @@
     "contentHash": "0de0bcd54576e3ffd07853d421d5589c8f44fd12f337542df16caaf9967e4ce7",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-ITV-01",
@@ -302,7 +309,8 @@
     "contentHash": "b47eededdd319bdafd07f4b5131c81fbdae5fea26fffd211ffa1ad84a36e9df2",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-ITV-02",
@@ -340,7 +348,8 @@
     "contentHash": "ce9926ef6179e289a6094da55f4ee1f2eb7df4354b39339068c38fd25d033c7e",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-MAN-01",
@@ -378,7 +387,8 @@
     "contentHash": "e453594e88577d1ddefe98bb95b8dabbfde2d1fec407951d3ee0f69b37ae0d6d",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-SAC-01",
@@ -416,7 +426,8 @@
     "contentHash": "3dc9873476c67630f19e184ba1cfeb0aba09c2e3f6b3c50adbdfbd6a3a362bb9",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-SPA-01",
@@ -454,7 +465,8 @@
     "contentHash": "ec2079f71f4ed0a677909b5e264545c675d32b0d2c9b6684eae5a0fbbc0ec847",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   },
   {
     "id": "VEH-SPA-02",
@@ -492,6 +504,7 @@
     "contentHash": "0b37aec1e94adcfb7b2d532af8f27b82108276cdba7805ede032c6461a2bf3b6",
     "createdAt": "2026-08-25",
     "updatedAt": "2026-08-25",
-    "lastVerifiedAt": "2026-08-25"
+    "lastVerifiedAt": "2026-09-01",
+    "verificationStatus": "verified"
   }
 ]
