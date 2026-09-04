@@ -22,7 +22,10 @@ export type PathIconName =
   | 'chest'
   | 'signObligation'
   | 'signIndication'
-  | 'roadworks';
+  | 'roadworks'
+  | 'bicycle'
+  | 'motorcycle'
+  | 'priorityVehicle';
 
 /**
  * Iconos "de nodo": ilustraciones planas con color propio (no `currentColor`),
@@ -185,6 +188,31 @@ const PATH_ICON_PATHS: Record<PathIconName, ReactNode> = {
       <rect x="9.2" y="17.4" width="5.6" height="1.7" rx="0.6" fill="#f97316" />
     </>
   ),
+  bicycle: (
+    <>
+      <circle cx="6" cy="17" r="3.4" fill="none" stroke="#0ea5e9" strokeWidth="2" />
+      <circle cx="18" cy="17" r="3.4" fill="none" stroke="#0ea5e9" strokeWidth="2" />
+      <path d="M6 17 10 9h4l4 8M10 9 8.4 5.4h2.8" stroke="#0ea5e9" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="14" cy="9" r="1.3" fill="#0ea5e9" />
+    </>
+  ),
+  motorcycle: (
+    <>
+      <circle cx="5.5" cy="17" r="3" fill="none" stroke="#dc2626" strokeWidth="2" />
+      <circle cx="18" cy="17" r="3" fill="none" stroke="#dc2626" strokeWidth="2" />
+      <path d="M5.5 17 9 12h6l3 5M9.5 12 11 8h3.5" stroke="#dc2626" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="9.5" y="9.6" width="4" height="2.2" rx="1" fill="#dc2626" />
+    </>
+  ),
+  priorityVehicle: (
+    <>
+      <rect x="2" y="6" width="20" height="12" rx="3" fill="#ef4444" />
+      <rect x="10.6" y="8.4" width="2.8" height="7.2" rx="1" fill="#fff" />
+      <rect x="8.4" y="10.6" width="7.2" height="2.8" rx="1" fill="#fff" />
+      <circle cx="6.5" cy="18.4" r="1.7" fill="#26293a" />
+      <circle cx="17.5" cy="18.4" r="1.7" fill="#26293a" />
+    </>
+  ),
 };
 
 export function PathIcon({ name, size = 30 }: { name: PathIconName; size?: number }) {
@@ -224,7 +252,10 @@ const KEYWORD_RULES: [RegExp, PathIconName][] = [
   [/seguridad-pasiva|seguridad-activa|cinturon/, 'seatbelt'],
   [/alcohol|droga|alcoholemia/, 'alcohol'],
   [/peaton/, 'pedestrian'],
-  [/ciclista|motocicleta|transporte/, 'car'],
+  [/ciclista/, 'bicycle'],
+  [/motocicleta/, 'motorcycle'],
+  [/prioritari/, 'priorityVehicle'],
+  [/transporte/, 'car'],
   [/documentacion|permiso|puntos/, 'documentation'],
 ];
 
@@ -258,4 +289,7 @@ const ICON_GLOW: Record<PathIconName, string> = {
   signObligation: 'rgba(37,99,235,0.45)',
   signIndication: 'rgba(37,99,235,0.45)',
   roadworks: 'rgba(249,115,22,0.45)',
+  bicycle: 'rgba(14,165,233,0.4)',
+  motorcycle: 'rgba(220,38,38,0.4)',
+  priorityVehicle: 'rgba(239,68,68,0.45)',
 };
