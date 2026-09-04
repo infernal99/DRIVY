@@ -13,6 +13,16 @@ export const NODE_ASSET: Partial<Record<PathIconName, string>> = {
   signObligation: '/learn-path/obligation_button.png',
   signIndication: '/learn-path/information_button.png',
   roundabout: '/learn-path/roundabout_button.png',
+  // Lecciones de "Normas de circulación" (tema playa) — un botón de
+  // producción por lección, en vez del icono dibujado en CSS.
+  rightOfWay: '/learn-path/normas_priority_button.png',
+  overtake: '/learn-path/normas_overtake_button.png',
+  turnArrow: '/learn-path/normas_direction_button.png',
+  uturn: '/learn-path/normas_uturn_button.png',
+  merge: '/learn-path/normas_merge_button.png',
+  stopSign: '/learn-path/normas_stop_button.png',
+  parking: '/learn-path/normas_parking_button.png',
+  trafficFlow: '/learn-path/normas_motorway_button.png',
 };
 
 export const DAILY_CHALLENGE_ASSET = '/learn-path/daily_challenge.png';
