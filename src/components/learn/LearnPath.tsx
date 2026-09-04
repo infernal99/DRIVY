@@ -162,24 +162,30 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
 
   return (
     <div style={{ position: 'relative', width: ROW_WIDTH, height: totalHeight, margin: '84px auto 0' }}>
-      {/* Ambientación por tema (pathThemes.ts) — banda de fondo a todo el
-          ancho de la pantalla, por debajo de la carretera y los nodos. */}
+      {/* Ambientación por tema (pathThemes.ts) — la imagen trae su propia
+          transparencia (no es un rectángulo sólido), así que el fondo
+          oscuro de la app se sigue viendo fuera de la silueta de arena;
+          se repite en vertical para cubrir tramos de cualquier longitud. */}
       {themeSegments.map((seg, k) => {
         const palette = PATH_THEMES[seg.theme];
         if (!palette) return null;
-        const top = points[seg.startIdx].y - ROW_HEIGHT * 0.7;
-        const bottom = points[seg.endIdx].y + ROW_HEIGHT * 0.7;
+        const top = points[seg.startIdx].y - ROW_HEIGHT * 0.35;
+        const bottom = points[seg.endIdx].y + ROW_HEIGHT * 0.35;
         return (
           <div
             key={k}
             aria-hidden="true"
             style={{
               position: 'absolute',
-              left: -1000,
-              right: -1000,
+              left: '50%',
+              width: palette.bandImageWidth,
+              transform: 'translateX(-50%)',
               top,
               height: bottom - top,
-              background: palette.bandBackground,
+              backgroundImage: `url(${palette.bandImage})`,
+              backgroundRepeat: 'repeat-y',
+              backgroundPosition: 'center top',
+              backgroundSize: `${palette.bandImageWidth}px auto`,
               pointerEvents: 'none',
             }}
           />
@@ -268,17 +274,22 @@ export function LearnPath({ nodes }: { nodes: PathNode[] }) {
       </svg>
 
       {(() => {
+        // Los tramos con imagen de fondo propia (ver pathThemes.ts) ya
+        // traen sus propios elementos dibujados (palmeras, sombrillas...);
+        // los props de carretera de siempre se saltan ahí para no duplicar.
+        const skippedByTheme = nodes.reduce<number[]>((acc, n, i) => {
+          if (PATH_THEMES[themeForCategory(n.categoryId)]) acc.push(i);
+          return acc;
+        }, []);
         const wideIndices = nodes.reduce<number[]>((acc, n, i) => {
           if (n.kind === 'unitBanner' || n.kind === 'wall') acc.push(i);
           return acc;
         }, []);
-        const themeByIndex = nodes.map((n) => themeForCategory(n.categoryId));
         return (
           <RoadProps
             points={points}
             rowWidth={ROW_WIDTH}
-            themeByIndex={themeByIndex}
-            skip={[activeLessonIndex, rewardIndex, examIndex, ...wideIndices]}
+            skip={[activeLessonIndex, rewardIndex, examIndex, ...wideIndices, ...skippedByTheme]}
           />
         );
       })()}
@@ -469,18 +480,8 @@ function RoadLayer({ d, asphalt, edge, lane }: { d: string; asphalt: string; edg
   );
 }
 
-/** Pequeños elementos decorativos junto a la carretera — PNG reales del proyecto por defecto, o los emoji del tema (pathThemes.ts) en los tramos con ambientación propia. Nunca en el mismo nodo que la mascota, siempre en el lado contrario al que se inclina el nodo. */
-function RoadProps({
-  points,
-  rowWidth,
-  skip,
-  themeByIndex,
-}: {
-  points: { x: number; y: number }[];
-  rowWidth: number;
-  skip: number[];
-  themeByIndex: PathThemeId[];
-}) {
+/** Pequeños elementos decorativos junto a la carretera, con los PNG reales del proyecto — nunca en el mismo nodo que la mascota, siempre en el lado contrario al que se inclina el nodo. Los tramos con imagen de fondo propia (pathThemes.ts) se excluyen vía `skip` — ya traen su propio decorado dibujado. */
+function RoadProps({ points, rowWidth, skip }: { points: { x: number; y: number }[]; rowWidth: number; skip: number[] }) {
   const cycle: EnvPropKind[] = [
     'tree',
     'yield',
@@ -501,28 +502,20 @@ function RoadProps({
     <>
       {candidates.map(({ p, i }, k) => {
         const onLeft = p.x >= rowWidth / 2; // el decorado va al lado contrario al que se inclina el nodo
-        const palette = PATH_THEMES[themeByIndex[i]];
-        const style: React.CSSProperties = {
-          position: 'absolute',
-          left: p.x + (onLeft ? -90 : 90),
-          top: p.y + ROW_HEIGHT * 0.36,
-          transform: 'translate(-50%, -100%)',
-          opacity: 0.9,
-          pointerEvents: 'none',
-        };
-
-        if (palette) {
-          const emoji = palette.props[k % palette.props.length];
-          return (
-            <div key={i} style={{ ...style, fontSize: 34, lineHeight: 1, filter: 'drop-shadow(0 4px 5px rgba(0,0,0,0.35))' }}>
-              {emoji}
-            </div>
-          );
-        }
-
         const prop = ENV_PROP[cycle[k % cycle.length]];
         return (
-          <div key={i} style={{ ...style, filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.35))' }}>
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              left: p.x + (onLeft ? -90 : 90),
+              top: p.y + ROW_HEIGHT * 0.36,
+              transform: 'translate(-50%, -100%)',
+              opacity: 0.9,
+              pointerEvents: 'none',
+              filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.35))',
+            }}
+          >
             <img src={prop.src} alt="" style={{ width: prop.width, height: 'auto', display: 'block' }} />
           </div>
         );
