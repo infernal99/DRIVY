@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useProgressStore } from '../store/progressStore';
 import { usePremiumStore } from '../store/premiumStore';
 import { useLearnPath, useOverallProgressPct } from '../hooks/useLearnPath';
-import { useCategoryLessons } from '../hooks/useCategoryLessons';
+import { useFullLearnPath } from '../hooks/useFullLearnPath';
 import { getLessonsForCategory } from '../data/lessons';
+import { CATEGORIES } from '../data/categories';
 import { getLevelInfo } from '../utils/xp';
 import { getReadinessScore, READINESS_TIER_COPY } from '../services/masteryService';
 import { Icon } from '../components/ui/Icon';
@@ -21,31 +22,82 @@ import { useOnboarding } from '../hooks/useOnboarding';
 import { useMyAvatarId } from '../hooks/useMyAvatarId';
 import { Avatar } from '../components/ui/Avatar';
 
+const LAST_CATEGORY_ID = CATEGORIES[CATEGORIES.length - 1]?.id;
+
 export function HomePage() {
   const navigate = useNavigate();
   const { shouldShow: showOnboarding, complete: completeOnboarding } = useOnboarding();
   const progress = useProgressStore((s) => s.progress);
   const modules = useLearnPath();
+  const fullPath = useFullLearnPath();
   const pct = useOverallProgressPct();
   const readiness = getReadinessScore(progress);
   const { level } = getLevelInfo(progress.xp);
-  // Si ya no queda ningún tema "activo" (todo completado), seguimos mostrando
-  // el camino del último tema en vez de un mensaje muerto — todas sus
-  // lecciones salen en verde/"done" y siguen siendo clicables para repasar.
-  const activeModule = modules.find((m) => m.status === 'active') ?? modules[modules.length - 1];
-  const activeCategory = activeModule?.category;
-  const lessonNodes = useCategoryLessons(activeCategory?.id);
+  // El "tema" mostrado en la cinta de arriba sigue siendo el de la primera
+  // lección no completada del camino único — si ya está todo hecho, el
+  // último (todas sus lecciones en verde, clicables para repasar).
+  const activeCategoryId = fullPath.find((e) => e.status === 'active')?.category.id ?? fullPath[fullPath.length - 1]?.category.id;
+  const activeModule = modules.find((m) => m.category.id === activeCategoryId);
   const isPremium = usePremiumStore((s) => s.isPremium);
   const premiumLoading = usePremiumStore((s) => s.loading);
   const avatarId = useMyAvatarId();
 
+  // Camino único y continuo con las 8 categorías, en vez de un camino que se
+  // "cambia" por otro al terminar el tema — así se ve/recorre como un solo
+  // curso largo, con las lecciones bloqueadas secuencialmente (ver
+  // useFullLearnPath) y un muro visual justo en la frontera actual.
   const pathNodes: PathNode[] = useMemo(() => {
-    if (!activeCategory) return [];
+    if (fullPath.length === 0) return [];
 
-    const nodes: PathNode[] = lessonNodes.map(({ lesson, status }) => {
+    const nodes: PathNode[] = [];
+    let indexInCategory = 0;
+
+    fullPath.forEach((entry) => {
+      const { lesson, category, status, isFirstOfCategory, isLastOfCategory } = entry;
+      const categoryReachable = fullPath.find((e) => e.category.id === category.id)?.status !== 'locked';
+      const categoryTotalLessons = getLessonsForCategory(category.id).length;
+
+      if (isFirstOfCategory) {
+        indexInCategory = 0;
+        nodes.push({
+          id: `banner-${category.id}`,
+          label: category.name,
+          icon: 'flag',
+          kind: 'unitBanner',
+          status: 'active',
+          emoji: category.emoji,
+        });
+      }
+
+      // Hito intermedio: reto del día, a mitad de cada tema.
+      if (indexInCategory === 3 && categoryTotalLessons > 4) {
+        nodes.push({
+          id: `checkpoint-${category.id}`,
+          label: 'Reto del día',
+          icon: 'bolt',
+          kind: 'checkpoint',
+          status: categoryReachable ? 'active' : 'locked',
+          glow: 'rgba(250,204,21,0.5)',
+          onClick: categoryReachable ? () => navigate('/practice/daily') : undefined,
+        });
+      }
+
+      // Cofre de recompensa a mitad-final de cada tema, puramente celebratorio.
+      if (indexInCategory === 7 && categoryTotalLessons > 8) {
+        nodes.push({
+          id: `reward-${category.id}`,
+          label: '¡Recompensa!',
+          icon: 'chest',
+          kind: 'reward',
+          status: categoryReachable ? 'active' : 'locked',
+          glow: 'rgba(250,204,21,0.5)',
+          onClick: categoryReachable ? () => navigate('/progress') : undefined,
+        });
+      }
+
       const subId = lesson.id.split('::')[1];
-      const visual = lessonVisual(subId, activeCategory);
-      return {
+      const visual = lessonVisual(subId, category);
+      nodes.push({
         id: lesson.id,
         label: lesson.name,
         meta: status === 'done' ? 'Completado' : status !== 'locked' ? `${lesson.questionCount} preguntas` : undefined,
@@ -53,67 +105,43 @@ export function HomePage() {
         glow: visual.glow,
         kind: 'lesson',
         status,
-        onClick:
-          status === 'locked' ? undefined : () => navigate(`/learn/${activeCategory.id}/lesson/${subId}`),
-      };
-    });
-
-    // Hito intermedio: reto del día, siempre disponible, a mitad de camino.
-    if (nodes.length > 4) {
-      nodes.splice(3, 0, {
-        id: 'checkpoint',
-        label: 'Reto del día',
-        icon: 'bolt',
-        kind: 'checkpoint',
-        status: 'active',
-        glow: 'rgba(250,204,21,0.5)',
-        onClick: () => navigate('/practice/daily'),
+        onClick: status === 'locked' ? undefined : () => navigate(`/learn/${category.id}/lesson/${subId}`),
       });
-    }
+      indexInCategory++;
 
-    // Cofre de recompensa a mitad-final, puramente celebratorio.
-    if (nodes.length > 8) {
-      nodes.splice(7, 0, {
-        id: 'reward',
-        label: '¡Recompensa!',
-        icon: 'chest',
-        kind: 'reward',
-        status: 'active',
-        glow: 'rgba(250,204,21,0.5)',
-        onClick: () => navigate('/progress'),
-      });
-    }
-
-    // Remate del tema: simulacro de examen.
-    nodes.push({
-      id: 'exam',
-      label: 'Simulacro',
-      icon: 'flag',
-      kind: 'exam',
-      status: 'active',
-      glow: 'rgba(139,92,246,0.55)',
-      onClick: () => navigate('/practice/exam/simulacro'),
-    });
-
-    // Adelanto en gris del siguiente tema, para que el camino siga bajando.
-    const nextModule = modules[modules.indexOf(activeModule!) + 1];
-    if (nextModule) {
-      getLessonsForCategory(nextModule.category.id)
-        .slice(0, 2)
-        .forEach((lesson) => {
-          const subId = lesson.id.split('::')[1];
-          nodes.push({
-            id: `teaser-${lesson.id}`,
-            label: lesson.name,
-            icon: lessonVisual(subId, nextModule.category).icon,
-            kind: 'teaser',
-            status: 'locked',
-          });
+      // Simulacro: solo al final del curso entero — el examen no es por
+      // tema, es el mismo simulacro general, así que no tiene sentido
+      // repetir el mismo enlace al final de cada una de las 8 categorías.
+      if (isLastOfCategory && category.id === LAST_CATEGORY_ID) {
+        nodes.push({
+          id: 'exam',
+          label: 'Simulacro',
+          icon: 'flag',
+          kind: 'exam',
+          status: categoryReachable ? 'active' : 'locked',
+          glow: 'rgba(139,92,246,0.55)',
+          onClick: categoryReachable ? () => navigate('/practice/exam/simulacro') : undefined,
         });
+      }
+    });
+
+    // Muro: la frontera real del progreso — justo antes de la primera
+    // lección que todavía no se puede empezar porque falta completar la
+    // anterior. Todo lo de después sigue bloqueado (candado + gris) como ya
+    // pasaba, el muro solo marca visualmente ese único punto de corte.
+    const frontierIndex = nodes.findIndex((n) => n.kind === 'lesson' && n.status === 'locked');
+    if (frontierIndex !== -1) {
+      nodes.splice(frontierIndex, 0, {
+        id: 'wall',
+        label: '',
+        icon: 'flag',
+        kind: 'wall',
+        status: 'locked',
+      });
     }
 
     return nodes;
-  }, [activeCategory, lessonNodes, modules, activeModule, navigate]);
+  }, [fullPath, navigate]);
 
   return (
     <AppShell nav={<BottomNav />}>
