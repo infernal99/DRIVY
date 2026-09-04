@@ -48,7 +48,7 @@ export function HomePage() {
       return {
         id: lesson.id,
         label: lesson.name,
-        meta: status !== 'locked' ? `${lesson.questionCount} preguntas` : undefined,
+        meta: status === 'done' ? 'Completado' : status !== 'locked' ? `${lesson.questionCount} preguntas` : undefined,
         icon: visual.icon,
         glow: visual.glow,
         kind: 'lesson',
