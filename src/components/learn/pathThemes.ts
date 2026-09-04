@@ -35,7 +35,10 @@ export const PATH_THEMES: Record<PathThemeId, PathThemePalette | null> = {
     // que en este tema no se añaden los props de carretera de siempre
     // (ver skip de RoadProps en LearnPath.tsx) — se solaparían con el arte.
     bandImage: '/learn-path/beach_background.png',
-    bandImageWidth: 360,
+    // Ancho de la pantalla del móvil (--app-max-width en theme.css), no el
+    // de la columna de 330px de la carretera — así la imagen llega de lado
+    // a lado en vez de dejar franjas oscuras a los dos lados.
+    bandImageWidth: 480,
     roadAsphalt: '#e8c98f',
     roadEdge: '#fbecc7',
     roadLane: '#c9973f',
